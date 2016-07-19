@@ -23,40 +23,30 @@ class LoadCategoriaData extends AbstractFixture implements OrderedFixtureInterfa
 				'descripcion'        => "Gastronomía",
 				"slug"               => 'gastronomia',
 				'activo'             => 1,
-				'fechaCreacion'      => "2016-07-18 21:29:53",
-				'fechaActualizacion' => "2016-07-18 21:29:53"
 			),
 			array(
 				'nombre'             => "Recreación",
 				'descripcion'        => "Recreación",
 				"slug"               => 'recreacion',
 				'activo'             => 1,
-				'fechaCreacion'      => "2016-07-18 21:29:53",
-				'fechaActualizacion' => "2016-07-18 21:29:53"
 			),
 			array(
 				'nombre'             => "Compras",
 				'descripcion'        => "Compras",
 				"slug"               => 'compras',
 				'activo'             => 1,
-				'fechaCreacion'      => "2016-07-18 21:29:53",
-				'fechaActualizacion' => "2016-07-18 21:29:53"
 			),
 			array(
 				'nombre'             => "Hoteles",
 				'descripcion'        => "Hoteles",
 				"slug"               => 'hoteles',
 				'activo'             => 1,
-				'fechaCreacion'      => "2016-07-18 21:29:53",
-				'fechaActualizacion' => "2016-07-18 21:29:53"
 			),
 			array(
 				'nombre'             => "Agencias",
 				'descripcion'        => "Agencias",
 				"slug"               => 'agencias',
 				'activo'             => 1,
-				'fechaCreacion'      => "2016-07-18 21:29:53",
-				'fechaActualizacion' => "2016-07-18 21:29:53"
 			),
 		);
 
@@ -66,8 +56,6 @@ class LoadCategoriaData extends AbstractFixture implements OrderedFixtureInterfa
 			$entidadCategoria->setNombre( $categoria['nombre'] );
 			$entidadCategoria->setDescripcion( $categoria['descripcion'] );
 			$entidadCategoria->setSlug( $categoria['slug'] );
-			$entidadCategoria->setFechaCreacion( $categoria['fechaCreacion'] );
-			$entidadCategoria->setFechaActualizacion( $categoria['fechaActualizacion'] );
 
 			$manager->persist( $entidadCategoria );
 		}

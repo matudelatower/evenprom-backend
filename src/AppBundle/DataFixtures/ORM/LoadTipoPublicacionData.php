@@ -23,16 +23,12 @@ class LoadTipoPublicacionData extends AbstractFixture implements OrderedFixtureI
 				'descripcion'        => "Evento",
 				"slug"               => 'evento',
 				'activo'             => 1,
-				'fechaCreacion'      => "2016-07-18 21:29:53",
-				'fechaActualizacion' => "2016-07-18 21:29:53"
 			),
 			array(
 				'nombre'             => "Descuento",
 				'descripcion'        => "Descuento",
 				"slug"               => 'descuento',
 				'activo'             => 1,
-				'fechaCreacion'      => "2016-07-18 21:29:53",
-				'fechaActualizacion' => "2016-07-18 21:29:53"
 			),
 		);
 
@@ -42,9 +38,7 @@ class LoadTipoPublicacionData extends AbstractFixture implements OrderedFixtureI
 			$entidadTipoPublicacion->setNombre( $tipoPublicacion['nombre'] );
 			$entidadTipoPublicacion->setDescripcion( $tipoPublicacion['descripcion'] );
 			$entidadTipoPublicacion->setSlug( $tipoPublicacion['slug'] );
-			$entidadTipoPublicacion->setFechaCreacion( $tipoPublicacion['fechaCreacion'] );
-			$entidadTipoPublicacion->setFechaActualizacion( $tipoPublicacion['fechaActualizacion'] );
-
+			
 			$manager->persist( $entidadTipoPublicacion );
 		}
 
