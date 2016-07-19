@@ -1,0 +1,52 @@
+{% extends '::layout_base.html.twig' %}
+
+{% block content %}
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Publicacion list</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table class="data-table table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Titulo</th>
+                    <th>Descripcion</th>
+                    <th>Fechainicio</th>
+                    <th>Fechafin</th>
+                    <th>Horainicio</th>
+                    <th>Horafin</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for publicacion in publicacions %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('publicaciones_show', { 'id': publicacion.id }) }}">{{ publicacion.id }}</a>
+                        </td>
+                        <td>{{ publicacion.titulo }}</td>
+                        <td>{{ publicacion.descripcion }}</td>
+                        <td>{% if publicacion.fechaInicio %}{{ publicacion.fechaInicio|date('Y-m-d') }}{% endif %}</td>
+                        <td>{% if publicacion.fechaFin %}{{ publicacion.fechaFin|date('Y-m-d') }}{% endif %}</td>
+                        <td>{% if publicacion.horaInicio %}{{ publicacion.horaInicio|date('H:i:s') }}{% endif %}</td>
+                        <td>{% if publicacion.horaFin %}{{ publicacion.horaFin|date('H:i:s') }}{% endif %}</td>
+                        <td>
+                            <a class="btn btn-default"
+                               href="{{ path('publicaciones_show', { 'id': publicacion.id }) }}"><i
+                                        class="fa fa-eye"></i></a>
+                            <a class="btn btn-default"
+                               href="{{ path('publicaciones_edit', { 'id': publicacion.id }) }}"><i
+                                        class="fa fa-edit"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+
+    <a class="btn btn-primary" href="{{ path('publicaciones_new') }}">{{ "Create a new entry"|trans }}</a>
+{% endblock %}

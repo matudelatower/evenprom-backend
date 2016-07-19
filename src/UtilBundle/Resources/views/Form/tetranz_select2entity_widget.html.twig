@@ -1,0 +1,39 @@
+{% block tetranz_select2entity_widget %}
+    {% set attr = attr|merge({
+    'data-ajax--url':remote_path,
+    'data-ajax--cache': cache ? 'true' : 'false',
+    'data-ajax--cache-timeout': cache_timeout|default(0),
+    'data-ajax--delay':delay,
+    'data-ajax--data-type':"json",
+    'data-language':language,
+    'data-minimum-input-length':minimum_input_length,
+    'data-placeholder':placeholder|trans({}, translation_domain),
+    'data-page-limit':page_limit,
+    'data-scroll':scroll ? 'true' : 'false',
+    'data-tags':allow_add.enabled ? 'true' : 'false',
+    'data-tags-text':allow_add.new_tag_text|trans({}, translation_domain),
+    'data-new-tag-prefix':allow_add.new_tag_prefix|trans({}, translation_domain),
+    'data-token-separators':allow_add.tag_separators,
+    'class' : (attr.class|default('') ~ ' select2entity form-control')|trim
+    }) %}
+
+    {% if multiple %}
+        {% set attr = attr|merge({'multiple':'multiple'}) %}
+    {% endif %}
+
+    {% if allow_clear %}
+        {% set attr = attr|merge({'data-allow-clear': 'true'}) %}
+    {% endif %}
+
+    {% spaceless %}
+        <select {{ block('widget_attributes') }}>
+            {% if value is iterable %}
+                {% for id, label in value %}
+                    {% block tetranz_select2entity_widget_select_option %}
+                        <option value="{{ id }}" selected="selected">{{ label }}</option>
+                    {% endblock %}
+                {% endfor %}
+            {% endif %}
+        </select>
+    {% endspaceless %}
+{% endblock %}

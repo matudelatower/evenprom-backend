@@ -1,0 +1,24 @@
+    <div class="form-buttons">
+
+            <a class="btn btn-default" href="{{ "{{ path('" ~ route_name_prefix ~ "_index') }}" }}">{{ "{{ 'button.backtolist'|trans }}" }} </a>
+
+
+        {%- if ('edit' in actions) and (not hide_edit) %}
+
+
+            <a class="btn btn-default" href="{{ "{{ path('" ~ route_name_prefix ~ "_edit', { 'id': " ~ entity_singularized ~ "."~ identifier ~" }) }}" }}">{{ "{{ 'button.edit'|trans }}" }}</a>
+
+
+        {%- endif %}
+
+        {%- if ('delete' in actions) and (not hide_delete) %}
+
+
+            {{ '{{ form_start(delete_form) }}' }}
+                <input type="submit" class="btn btn-danger" value="Delete">
+            {{ '{{ form_end(delete_form) }}' }}
+
+
+        {%- endif %}
+
+    </div>

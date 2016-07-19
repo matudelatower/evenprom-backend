@@ -1,0 +1,29 @@
+#easy admin
+easy_admin:
+    site_name: %site_name%
+    entities:
+        Pais:
+            class: Matudelatower\UbicacionBundle\Entity\Pais
+        Provincia:
+            class: Matudelatower\UbicacionBundle\Entity\Provincia
+        Departamento:
+            class: Matudelatower\UbicacionBundle\Entity\Departamento
+        Localidad:
+            class: Matudelatower\UbicacionBundle\Entity\Localidad
+
+    design:
+        brand_color: '#367fa9'
+        menu:
+            - Categoria
+            - TipoPublicacion
+            - label: 'Ubicación'
+              children:
+                  - 'Pais'
+                  - 'Provincia'
+                  - 'Departamento'
+                  - 'Localidad'
+            - { label: 'layout.logout', route: 'fos_user_security_logout', icon: 'sign-out' }
+#
+#    assets:
+#        js:
+#            - 'bundles/app/js/app.js'

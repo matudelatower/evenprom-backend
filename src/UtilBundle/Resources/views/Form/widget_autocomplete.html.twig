@@ -1,0 +1,118 @@
+
+{% block entitydependjqueryautocomplete_widget %}
+    {% spaceless %}
+        <script type="text/javascript">
+
+            $(function() {
+                jQuery(document).ready(function($) {
+
+                    $('#suggest_{{ id }}').autocomplete({
+                        source:
+                                function(request, response) {
+                                    $.ajax({
+                                        url: "{{path(route_name)}}",
+                                        dataType: "json",
+                                        method: "get",
+                                        data: {
+                                            term: this.term,
+                                            class: "{{class}}",
+                                            property: "{{property}}",
+                                            search_method: "{{search_method}}"
+                                        },
+                                        success: function(data) {
+                                            response($.map(data, function(item) {
+                                                return {
+                                                    label: item.label,
+                                                    value: item.value,
+                                                    id: item.id
+                                                }
+                                            }));
+                                        }
+                                    });
+                                }
+                        ,
+                        minLength: 2,
+                        select: function(event, ui) {
+                            updateValue(ui);
+                        }
+                    });
+                });
+
+            });
+
+            /* COMIENZO */
+            function updateValue(ui) {
+                var hidden = $('#{{ id}}');
+
+                if (ui.item != null) {
+                    hidden.val(ui.item.id);
+                    //actualizo la lista dependiente (by juato)
+                    //alert(hidden);                    
+                    updateChildElement(ui.item.id);
+                } else {
+                    hidden.val('');
+                    $('#suggest_{{ id}}').val('');
+                    //$( "#{{ form.vars.id }}"  ).val('');
+                }
+            }
+            /* FIN */
+
+
+
+            function RellenarSelect(data, select) {
+                select.empty();
+                var defaultDescripcion;
+                $.each(data, function(clave, item) {
+                    if (clave == 0) {
+                        defaultDescripcion = item.descripcion;
+                    }
+                    select.append($('<option></option>').val(item.id).html(item.nombre).attr('desc', item.descripcion));
+
+                });
+                $(select).parent('td').find('#descripcion').html(defaultDescripcion);
+                return select;
+            }
+
+
+            ///////////WIDGET CHOICE/////////////
+            function updateChildElement(hidden) {
+
+                $.ajax({
+                    type: "GET",
+                    data: {
+                        parentID: hidden,
+                        class: "AdministracionBundle:Aplicativo"
+                    },
+                    url: "{{ path('ajax_default_grupo') }}",
+                    success: function(data) {
+                        var aplicativo = $('#{{ form.parent.aplicativo.vars.id}}');
+
+            {% if form.parent.grupo is defined%}
+                            var grupos = $('#{{ form.parent.grupo.vars.id}}');
+            {% endif%}
+                            RellenarSelect(data, grupos);
+                            //(data == null)?RellenarSinResultados(grupos):RellenarSelect(data, grupos);
+
+                        }
+                    });
+                }
+
+        </script>
+        <style>
+            .ui-autocomplete-loading {
+                background: white url('{{asset('bundles/sonataadmin/ajax-loader.gif')}}') right center no-repeat;
+            }
+        </style>
+        {{ block('hidden_widget') }}
+
+        {% set id = 'suggest_'~id %}
+        {% set full_name = 'suggest_'~full_name %}
+        {% set value = suggest_value %}
+        {% set padre_id = 1 %}
+
+
+        <input type="text" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+
+    {% endspaceless %}
+{% endblock %}
+{# --------------------------------------------------------------------------------------------------------------------------------------------- #}

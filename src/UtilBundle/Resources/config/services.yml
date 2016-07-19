@@ -1,0 +1,55 @@
+parameters:
+#    util.example.class: UtilBundle\Example
+
+services:
+    form.type.jqueryautocomplete:
+        class: UtilBundle\Form\Type\JqueryAutocompleteType
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
+        tags:
+            - { name: form.type, alias: jqueryautocomplete }
+            
+    form.type.bootstrapcollection:
+        class: UtilBundle\Form\Type\BootstrapCollectionType
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
+        tags:
+            - { name: form.type, alias: bootstrapcollection }
+
+            
+    form.type.jqueryautocompletetext:
+        class: UtilBundle\Form\Type\JqueryAutocompleteTextType
+        tags:
+            - { name: form.type, alias: jqueryautocompletetext }
+            
+    excel.tool:
+            class: UtilBundle\Services\ExcelTool
+            arguments:
+                phpexcel: "@phpexcel"
+                entityManager: "@doctrine.orm.entity_manager"
+            tags:
+                - { name: excel.tool, alias: excel.tool }
+
+    form.type.verticalcollection:
+        class: UtilBundle\Form\Type\VerticalCollectionType
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
+        tags:
+            - { name: form.type, alias: verticalcollection }
+
+    tetranz_select2entity.select2entity_type:
+        class: UtilBundle\Form\Type\Select2EntityType
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@router'
+            - %util.tetranz_select2_entity.config%
+        tags:
+            - { name: form.type, alias: jquery.type.select2 }
+#    genemu.form.jquery.type.select2:
+#        class: UtilBundle\Form\Type\Select2Type
+#        arguments:
+#            entityManager: "@doctrine.orm.entity_manager"
+#            abstract: true
+#        tags:
+#            - { name: form.type, alias: jquery.type.select2 }
+

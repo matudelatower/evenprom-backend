@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="es" target-language="es" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="register_already">
+                <source>register.already</source>
+                <target>Ya estoy registrado</target>
+            </trans-unit>
+            <trans-unit id="register_a_new_membership">
+                <source>register.a.new.membership</source>
+                <target>Registrar un Nuevo miembro</target>
+            </trans-unit>
+            <trans-unit id="button_register">
+                <source>button.register</source>
+                <target>Registrar</target>
+            </trans-unit>
+            <trans-unit id="business_name">
+                <source>business.name</source>
+                <target>Nombre Empresa</target>
+            </trans-unit>
+            <trans-unit id="login">
+                <source>login</source>
+                <target>Iniciar Sesión</target>
+            </trans-unit>
+            <!--menu-->
+            <trans-unit id="menu_empresa_profile">
+                <source>menu.empresa.profile</source>
+                <target>Perfil Empresa</target>
+            </trans-unit>
+            <trans-unit id="menu_empresa_publicaciones">
+                <source>menu.empresa.publicaciones</source>
+                <target>Publicaciones</target>
+            </trans-unit>
+
+            <!--propias de la app-->
+            <trans-unit id="profile_empresa">
+                <source>profile.empresa</source>
+                <target>Perfil Empresa</target>
+            </trans-unit>
+
+            <!--security-->
+            <trans-unit id="profile">
+                <source>perfil</source>
+                <target>Perfil</target>
+            </trans-unit>
+
+            <!--forms-->
+            <trans-unit id="button_guardar">
+                <source>button.guardar</source>
+                <target>Guardar</target>
+            </trans-unit>
+            <trans-unit id="Descripcion">
+                <source>Descripcion</source>
+                <target>Descripción</target>
+            </trans-unit>
+            <trans-unit id="Nombre">
+                <source>Nombre</source>
+                <target>Nombre</target>
+            </trans-unit>
+            <trans-unit id="Color">
+                <source>Color</source>
+                <target>Color</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

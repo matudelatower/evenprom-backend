@@ -1,0 +1,10 @@
+easy_admin:
+    entities:
+        Categoria:
+            class: AppBundle\Entity\Categoria
+            form:
+                fields:
+                    - { property: 'nombre' }
+                    - { property: 'descripcion' }
+                    - { property: 'slug' }
+                    - { property: 'activo' }

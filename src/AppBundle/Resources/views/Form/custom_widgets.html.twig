@@ -1,0 +1,23 @@
+{% extends 'bootstrap_3_layout.html.twig' %}
+
+{% block time_widget -%}
+    <div class="bootstrap-timepicker">
+    {% if widget == 'single_text' %}
+        <div class="input-group">
+        {{- block('form_widget_simple') -}}
+        <div class="input-group-addon">
+            <i class="fa fa-clock-o"></i>
+        </div>
+        </div>
+    {% else -%}
+        {% set attr = attr|merge({class: (attr.class|default('') ~ ' form-inline')|trim}) -%}
+        {% if datetime is not defined or false == datetime -%}
+            <div {{ block('widget_container_attributes') -}}>
+        {%- endif -%}
+        {{- form_widget(form.hour) }}{% if with_minutes %}:{{ form_widget(form.minute) }}{% endif %}{% if with_seconds %}:{{ form_widget(form.second) }}{% endif %}
+        {% if datetime is not defined or false == datetime -%}
+            </div>
+        {%- endif -%}
+    {% endif %}
+    </div>
+{%- endblock time_widget %}

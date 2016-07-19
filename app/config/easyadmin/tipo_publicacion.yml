@@ -1,0 +1,10 @@
+easy_admin:
+    entities:
+        TipoPublicacion:
+            class: AppBundle\Entity\TipoPublicacion
+            form:
+                fields:
+                    - { property: 'nombre' }
+                    - { property: 'descripcion' }
+                    - { property: 'slug' }
+                    - { property: 'activo' }

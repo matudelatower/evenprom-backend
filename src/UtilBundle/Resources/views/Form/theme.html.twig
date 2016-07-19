@@ -1,0 +1,55 @@
+{% use 'form_div_layout.html.twig' %}
+
+{# Input #}
+{% block form_widget_simple %}
+{% spaceless %}
+    {% set type = type|default('text') %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" rel="theme" />
+{% endspaceless %}
+{% endblock form_widget_simple %}
+
+{# Labels #}
+{% block form_label %}
+{% spaceless %}
+    {% if label is not sameas(false) %}
+        {% if not compound %}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {% endif %}
+        {% if required %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {% endif %}
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+        
+        {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' control-label')}) %}
+        
+        <label  {% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_label %}
+        
+{# Form rows #}
+{% block form_row %}
+{% spaceless %}
+    <div class="control-group">
+      {{ form_label(form) }}
+      <div class="controls">
+          
+         {% block form_errors %}
+            {% spaceless %}
+                {% if errors|length > 0 %}
+                  <div class="alert alert-error redondeame">
+                    {% for error in errors %}
+                      {{ error.message }}
+                      <button type="button" class="close" data-dismiss="alert">×</button>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+            {% endspaceless %}
+         {% endblock form_errors %}
+        {{ form_widget(form) }}
+      </div>
+    </div>
+{% endspaceless %}
+{% endblock form_row %}

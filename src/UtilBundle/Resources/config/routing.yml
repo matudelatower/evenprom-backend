@@ -1,0 +1,3 @@
+util_default:
+    resource: "@UtilBundle/Controller/DefaultController.php"
+    type:     annotation

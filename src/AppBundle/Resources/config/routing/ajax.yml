@@ -1,0 +1,3 @@
+get_categorias:
+    path: /get_categorias
+    defaults: { _controller: "AppBundle:Ajax:getCategorias" }

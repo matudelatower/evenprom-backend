@@ -1,0 +1,4 @@
+publicaciones :
+  type: rest
+  resource:     "@AppBundle/Controller/Rest/PublicacionesRestController.php"
+  name_prefix:  api_

@@ -1,0 +1,48 @@
+{% extends '::layout_base.html.twig' %}
+
+{% block content %}
+    <h1>Publicacion</h1>
+
+    <table>
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ publicacion.id }}</td>
+        </tr>
+        <tr>
+            <th>Titulo</th>
+            <td>{{ publicacion.titulo }}</td>
+        </tr>
+        <tr>
+            <th>Descripcion</th>
+            <td>{{ publicacion.descripcion }}</td>
+        </tr>
+        <tr>
+            <th>Fecha inicio</th>
+            <td>{% if publicacion.fechaInicio %}{{ publicacion.fechaInicio|date('Y-m-d') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Fecha fin</th>
+            <td>{% if publicacion.fechaFin %}{{ publicacion.fechaFin|date('Y-m-d') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Hora inicio</th>
+            <td>{% if publicacion.horaInicio %}{{ publicacion.horaInicio|date('H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Hora fin</th>
+            <td>{% if publicacion.horaFin %}{{ publicacion.horaFin|date('H:i:s') }}{% endif %}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="form-buttons">
+
+        <a class="btn btn-default" href="{{ path('publicaciones_index') }}">{{ 'button.backtolist'|trans }} </a>
+
+        <a class="btn btn-default"
+           href="{{ path('publicaciones_edit', { 'id': publicacion.id }) }}">{{ 'button.edit'|trans }}</a>
+
+
+    </div>
+{% endblock %}
