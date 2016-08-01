@@ -1,0 +1,15 @@
+easy_admin:
+    entities:
+        Empresa:
+            class: AppBundle\Entity\Empresa
+            form:
+                fields:
+                    - { property: 'nombre',  type_options: { disabled: true }  }
+                    - { property: 'descripcion', type_options: { disabled: true }  }
+                    - { property: 'premium' }
+            edit:
+                title:  'Editar Empresa'
+            new:
+                title:  'Alta Empresa'
+            list:
+                title:  'Empresa'

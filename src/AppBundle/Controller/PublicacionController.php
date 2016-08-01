@@ -20,10 +20,10 @@ class PublicacionController extends Controller {
 	 */
 	public function indexAction() {
 		$em = $this->getDoctrine()->getManager();
-		
+
 		$empresa = $this->getUser()->getEmpresa()->first();
 
-		$publicacions = $em->getRepository( 'AppBundle:Publicacion' )->findAllByEmpresa($empresa);
+		$publicacions = $em->getRepository( 'AppBundle:Publicacion' )->findAllByEmpresa( $empresa );
 
 		return $this->render( 'publicacion/index.html.twig',
 			array(

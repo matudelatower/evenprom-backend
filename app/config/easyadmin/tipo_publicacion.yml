@@ -8,3 +8,9 @@ easy_admin:
                     - { property: 'descripcion' }
                     - { property: 'slug' }
                     - { property: 'activo' }
+            edit:
+                title:  'Editar Tipo Publicacion'
+            new:
+                title:  'Alta Tipo Publicacion'
+            list:
+                title:  'Tipo Publicacion'

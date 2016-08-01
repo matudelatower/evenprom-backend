@@ -1,3 +1,18 @@
+registro_llamada :
+  type: rest
+  resource:     "@AppBundle/Controller/Rest/RegistroLlamadaEmpresaRestController.php"
+  name_prefix:  api_
+
+noticias :
+  type: rest
+  resource:     "@AppBundle/Controller/Rest/NoticiasRestController.php"
+  name_prefix:  api_
+
+empresas :
+  type: rest
+  resource:     "@AppBundle/Controller/Rest/EmpresasRestController.php"
+  name_prefix:  api_
+
 publicaciones :
   type: rest
   resource:     "@AppBundle/Controller/Rest/PublicacionesRestController.php"

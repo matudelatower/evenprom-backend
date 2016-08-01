@@ -1,0 +1,27 @@
+#Usuario
+easy_admin:
+    entities:
+        Usuario:
+            class: UsuariosBundle\Entity\Usuario
+            edit:
+                fields:
+                    - { property: 'username' }
+                    - { property: 'email' }
+                    - { property: 'enabled' }
+                    - { property: 'locked' }
+                    - { property: 'roles' }
+            new:
+                fields:
+                    - { property: 'username' }
+                    - { property: 'email', type: 'email', label: 'E-mail address' }
+                    - { property: 'plainPassword', type: 'password' }
+                    - { property: 'enabled'}
+                    - { property: 'locked'}
+
+            list:
+                fields:
+                    - { property: 'username' }
+                    - { property: 'email' }
+                    - { property: 'enabled' }
+                    - { property: 'lastLogin' }
+                    - { property: 'locked' }

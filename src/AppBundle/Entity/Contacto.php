@@ -2,15 +2,23 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Base\BaseClass;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
+
 
 /**
  * Contacto
  *
  * @ORM\Table(name="contactos")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ContactoRepository")
+ * @ExclusionPolicy("all")
  */
-class Contacto
+class Contacto extends BaseClass
 {
     /**
      * @var int
@@ -18,6 +26,7 @@ class Contacto
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose()
      */
     private $id;
 
@@ -25,6 +34,7 @@ class Contacto
      * @var string
      *
      * @ORM\Column(name="telefono", type="string", length=255)
+     * @Expose()
      */
     private $telefono;
 
@@ -32,6 +42,7 @@ class Contacto
      * @var string
      *
      * @ORM\Column(name="mail", type="string", length=255, nullable=true)
+     * @Expose()
      */
     private $mail;
 
@@ -39,6 +50,7 @@ class Contacto
      * @var string
      *
      * @ORM\Column(name="celular", type="string", length=255, nullable=true)
+     * @Expose()
      */
     private $celular;
 
@@ -46,6 +58,7 @@ class Contacto
      * @var string
      *
      * @ORM\Column(name="web", type="string", length=255, nullable=true)
+     * @Expose()
      */
     private $web;
 
@@ -150,5 +163,57 @@ class Contacto
     public function getWeb()
     {
         return $this->web;
+    }
+
+    /**
+     * Set fechaCreacion
+     *
+     * @param \DateTime $fechaCreacion
+     * @return Contacto
+     */
+    public function setFechaCreacion($fechaCreacion)
+    {
+        $this->fechaCreacion = $fechaCreacion;
+
+        return $this;
+    }
+
+    /**
+     * Set fechaActualizacion
+     *
+     * @param \DateTime $fechaActualizacion
+     * @return Contacto
+     */
+    public function setFechaActualizacion($fechaActualizacion)
+    {
+        $this->fechaActualizacion = $fechaActualizacion;
+
+        return $this;
+    }
+
+    /**
+     * Set creadoPor
+     *
+     * @param \UsuariosBundle\Entity\Usuario $creadoPor
+     * @return Contacto
+     */
+    public function setCreadoPor(\UsuariosBundle\Entity\Usuario $creadoPor = null)
+    {
+        $this->creadoPor = $creadoPor;
+
+        return $this;
+    }
+
+    /**
+     * Set actualizadoPor
+     *
+     * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
+     * @return Contacto
+     */
+    public function setActualizadoPor(\UsuariosBundle\Entity\Usuario $actualizadoPor = null)
+    {
+        $this->actualizadoPor = $actualizadoPor;
+
+        return $this;
     }
 }

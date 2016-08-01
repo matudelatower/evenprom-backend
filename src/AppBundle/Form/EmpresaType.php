@@ -56,6 +56,15 @@ class EmpresaType extends AbstractType {
 					'max_items_add' => 1
 				)
 			)
+			->add( 'categoriaEmpresa',
+				BootstrapCollectionType::class,
+				array(
+					'entry_type'    => CategoriaEmpresaType::class,
+					'allow_add'     => true,
+					'allow_delete'  => true,
+					'by_reference'  => false,
+					'max_items_add' => 1
+				) )
 //            ->add('premium')
 //            ->add('activo')
 //            ->add('usuario')

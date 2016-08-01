@@ -9,11 +9,12 @@ app:
         _locale: |en|es|pt
 
 easy_admin_bundle:
-    resource: "@EasyAdminBundle/Controller/"
+    resource: "@AppBundle/Controller/AdminController.php"
     type:     annotation
     prefix:   /{_locale}/admin
     requirements:
         _locale: |en|es|pt
+
 
 ubicacion_bundle:
     resource: "@UbicacionBundle/Resources/config/routing.yml"

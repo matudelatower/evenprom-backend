@@ -85,6 +85,12 @@ class Noticia {
 	 */
 	private $activo;
 
+	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\NoticiaEmpresa", mappedBy="noticia", cascade={"persist", "remove"})
+	 */
+	private $noticiaEmpresa;
+
 	public function __toString() {
 		return $this->titulo;
 	}
@@ -258,5 +264,45 @@ class Noticia {
     public function getActivo()
     {
         return $this->activo;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->noticiaEmpresa = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add noticiaEmpresa
+     *
+     * @param \AppBundle\Entity\NoticiaEmpresa $noticiaEmpresa
+     * @return Noticia
+     */
+    public function addNoticiaEmpresa(\AppBundle\Entity\NoticiaEmpresa $noticiaEmpresa)
+    {
+        $this->noticiaEmpresa[] = $noticiaEmpresa;
+
+        return $this;
+    }
+
+    /**
+     * Remove noticiaEmpresa
+     *
+     * @param \AppBundle\Entity\NoticiaEmpresa $noticiaEmpresa
+     */
+    public function removeNoticiaEmpresa(\AppBundle\Entity\NoticiaEmpresa $noticiaEmpresa)
+    {
+        $this->noticiaEmpresa->removeElement($noticiaEmpresa);
+    }
+
+    /**
+     * Get noticiaEmpresa
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNoticiaEmpresa()
+    {
+        return $this->noticiaEmpresa;
     }
 }

@@ -11,6 +11,7 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
 
 
 /**
@@ -87,6 +88,12 @@ class Publicacion extends BaseClass {
 	private $categoriaPublicacion;
 
 	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\EtiquetaPublicacion", mappedBy="publicacion", cascade={"persist", "remove"})
+	 */
+	private $etiquetaPublicacion;
+
+	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="cuerpo", type="text", nullable=true)
@@ -129,6 +136,9 @@ class Publicacion extends BaseClass {
 	 * @ORM\Column(type="string", length=255, nullable=true)
 	 *
 	 * @var string
+	 *
+	 * @Expose()
+	 * @SerializedName("imagen_publicacion")
 	 */
 	private $imageName;
 
@@ -182,15 +192,17 @@ class Publicacion extends BaseClass {
 
 	/**
 	 * @VirtualProperty()
-	 * @SerializedName("imagen_publicacion")
+	 * @SerializedName("premium")
 	 */
-	public function getImagenPublicacion() {
+	public function getPremium() {
 
-		if ( $this->getImageName() ) {
-			return '/web/uploads/images/publicaciones/' . $this->getImageName();
-		} else {
-			return null;
+		$return = false;
+
+		if ( $this->getPublicacionEmpresa()->first()->getEmpresa()->getPremium() ) {
+			$return = true;
 		}
+
+		return $return;
 
 	}
 
@@ -526,4 +538,37 @@ class Publicacion extends BaseClass {
 	public function getPublicado() {
 		return $this->publicado;
 	}
+
+    /**
+     * Add etiquetaPublicacion
+     *
+     * @param \AppBundle\Entity\EtiquetaPublicacion $etiquetaPublicacion
+     * @return Publicacion
+     */
+    public function addEtiquetaPublicacion(\AppBundle\Entity\EtiquetaPublicacion $etiquetaPublicacion)
+    {
+        $this->etiquetaPublicacion[] = $etiquetaPublicacion;
+
+        return $this;
+    }
+
+    /**
+     * Remove etiquetaPublicacion
+     *
+     * @param \AppBundle\Entity\EtiquetaPublicacion $etiquetaPublicacion
+     */
+    public function removeEtiquetaPublicacion(\AppBundle\Entity\EtiquetaPublicacion $etiquetaPublicacion)
+    {
+        $this->etiquetaPublicacion->removeElement($etiquetaPublicacion);
+    }
+
+    /**
+     * Get etiquetaPublicacion
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEtiquetaPublicacion()
+    {
+        return $this->etiquetaPublicacion;
+    }
 }

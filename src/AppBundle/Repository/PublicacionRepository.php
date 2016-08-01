@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Empresa;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -14,9 +15,17 @@ class PublicacionRepository extends EntityRepository {
 	public function findAllByEmpresa( $empresa ) {
 		$qb = $this->createQueryBuilder( 'p' );
 
-		$qb->join( 'p.publicacionEmpresa', 'pe' )
-		   ->where( 'pe.empresa = :empresa' )
-		   ->setParameter( 'empresa', $empresa );
+		$qb->join( 'p.publicacionEmpresa', 'pe' );
+
+		if ( is_integer( $empresa ) ) {
+			$qb->join( 'pe.empresa', 'e' )
+			   ->where( 'e.id = :empresa' )
+			   ->setParameter( 'empresa', $empresa );
+		} else if ( $empresa instanceof Empresa ) {
+			$qb->where( 'pe.empresa = :empresa' )
+			   ->setParameter( 'empresa', $empresa );
+		}
+
 
 		return $qb->getQuery()->getResult();
 

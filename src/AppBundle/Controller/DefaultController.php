@@ -3,9 +3,10 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller {
-	public function indexAction() {
+	public function indexAction( Request $request ) {
 
 
 		if ( ! $this->get( 'security.authorization_checker' )->isGranted( 'IS_AUTHENTICATED_FULLY' ) ) {
@@ -14,7 +15,7 @@ class DefaultController extends Controller {
 		}
 
 		if ( $this->get( 'security.authorization_checker' )->isGranted( 'ROLE_ADMIN' ) ) {
-			$this->redirectToRoute( 'easy_admin_bundle' );
+			return $this->redirectToRoute( 'easyadmin' );
 
 		}
 

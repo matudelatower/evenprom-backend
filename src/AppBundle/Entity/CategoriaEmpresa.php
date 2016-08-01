@@ -6,56 +6,55 @@ use AppBundle\Entity\Base\BaseClass;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CategoriaPublicacion
+ * CategoriaEmpresa
  *
- * @ORM\Table(name="categorias_publicaciones")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoriaPublicacionRepository")
+ * @ORM\Table(name="categorias_empresas")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoriaEmpresaRepository")
  */
-class CategoriaPublicacion extends BaseClass{
-	/**
-	 * @var int
-	 *
-	 * @ORM\Column(name="id", type="integer")
-	 * @ORM\Id
-	 * @ORM\GeneratedValue(strategy="AUTO")
-	 */
-	private $id;
+class CategoriaEmpresa extends BaseClass
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Categoria")
+     * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
+     */
+    private $categoria;
+
+    /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Empresa", inversedBy="categoriaEmpresa")
+     * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
+     */
+    private $empresa;
 
 
-	/**
-	 * @var
-	 *
-	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Categoria")
-	 * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
-	 */
-	private $categoria;
 
-	/**
-	 * @var
-	 *
-	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Publicacion", inversedBy="categoriaPublicacion")
-	 * @ORM\JoinColumn(name="publicacion_id", referencedColumnName="id")
-	 */
-	private $publicacion;
-
-	public function __toString() {
-		return $this->categoria->getNombre();
-	}
-
-	/**
-	 * Get id
-	 *
-	 * @return integer
-	 */
-	public function getId() {
-		return $this->id;
-	}
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set categoria
      *
      * @param \AppBundle\Entity\Categoria $categoria
-     * @return CategoriaPublicacion
+     * @return CategoriaEmpresa
      */
     public function setCategoria(\AppBundle\Entity\Categoria $categoria = null)
     {
@@ -75,33 +74,33 @@ class CategoriaPublicacion extends BaseClass{
     }
 
     /**
-     * Set publicacion
+     * Set empresa
      *
-     * @param \AppBundle\Entity\Publicacion $publicacion
-     * @return CategoriaPublicacion
+     * @param \AppBundle\Entity\Empresa $empresa
+     * @return CategoriaEmpresa
      */
-    public function setPublicacion(\AppBundle\Entity\Publicacion $publicacion = null)
+    public function setEmpresa(\AppBundle\Entity\Empresa $empresa = null)
     {
-        $this->publicacion = $publicacion;
+        $this->empresa = $empresa;
 
         return $this;
     }
 
     /**
-     * Get publicacion
+     * Get empresa
      *
-     * @return \AppBundle\Entity\Publicacion 
+     * @return \AppBundle\Entity\Empresa 
      */
-    public function getPublicacion()
+    public function getEmpresa()
     {
-        return $this->publicacion;
+        return $this->empresa;
     }
 
     /**
      * Set fechaCreacion
      *
      * @param \DateTime $fechaCreacion
-     * @return CategoriaPublicacion
+     * @return CategoriaEmpresa
      */
     public function setFechaCreacion($fechaCreacion)
     {
@@ -114,7 +113,7 @@ class CategoriaPublicacion extends BaseClass{
      * Set fechaActualizacion
      *
      * @param \DateTime $fechaActualizacion
-     * @return CategoriaPublicacion
+     * @return CategoriaEmpresa
      */
     public function setFechaActualizacion($fechaActualizacion)
     {
@@ -127,7 +126,7 @@ class CategoriaPublicacion extends BaseClass{
      * Set creadoPor
      *
      * @param \UsuariosBundle\Entity\Usuario $creadoPor
-     * @return CategoriaPublicacion
+     * @return CategoriaEmpresa
      */
     public function setCreadoPor(\UsuariosBundle\Entity\Usuario $creadoPor = null)
     {
@@ -140,7 +139,7 @@ class CategoriaPublicacion extends BaseClass{
      * Set actualizadoPor
      *
      * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
-     * @return CategoriaPublicacion
+     * @return CategoriaEmpresa
      */
     public function setActualizadoPor(\UsuariosBundle\Entity\Usuario $actualizadoPor = null)
     {
