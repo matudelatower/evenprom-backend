@@ -26,7 +26,7 @@ class CategoriaEmpresa extends BaseClass
      * @var
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Categoria")
-     * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="categoria_id", referencedColumnName="id")
      */
     private $categoria;
 
