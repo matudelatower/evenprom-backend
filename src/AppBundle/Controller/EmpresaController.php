@@ -24,6 +24,11 @@ class EmpresaController extends Controller {
 	 *
 	 */
 	public function indexAction() {
+
+		if ( $this->get( 'security.authorization_checker' )->isGranted( 'ROLE_EMPRESA' ) ) {
+			return $this->redirectToRoute( 'empresa_perfil' );
+		}
+
 		$em = $this->getDoctrine()->getManager();
 
 		$empresas = $em->getRepository( 'AppBundle:Empresa' )->findAll();

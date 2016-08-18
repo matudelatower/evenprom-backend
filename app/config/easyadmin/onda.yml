@@ -1,0 +1,16 @@
+easy_admin:
+    entities:
+        Onda:
+            class: AppBundle\Entity\Onda
+            form:
+                fields:
+                    - { property: 'nombre' }
+                    - { property: 'descripcion' }
+                    - { property: 'slug' }
+                    - { property: 'activo' }
+            edit:
+                title:  'Editar Onda'
+            new:
+                title:  'Alta Onda'
+            list:
+                title:  'Onda'

@@ -24,7 +24,7 @@ class DireccionType extends AbstractType
         $builder
             ->add('calle')
             ->add('altura')
-            ->add('departamento')
+//            ->add('departamento')
             ->add('piso')
             ->add('edificio')
 

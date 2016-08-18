@@ -1,0 +1,53 @@
+{% extends '::layout_base.html.twig' %}
+
+{% block content %}
+    <h1>Noticia</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ noticium.id }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ noticium.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Resumen</th>
+                <td>{{ noticium.resumen }}</td>
+            </tr>
+            <tr>
+                <th>Cuerpo</th>
+                <td>{{ noticium.cuerpo }}</td>
+            </tr>
+            <tr>
+                <th>Visibledesde</th>
+                <td>{% if noticium.visibleDesde %}{{ noticium.visibleDesde|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Visiblehasta</th>
+                <td>{% if noticium.visibleHasta %}{{ noticium.visibleHasta|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Orden</th>
+                <td>{{ noticium.orden }}</td>
+            </tr>
+            <tr>
+                <th>Activo</th>
+                <td>{% if noticium.activo %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="form-buttons">
+
+            <a class="btn btn-default" href="{{ path('noticias_index') }}">{{ 'button.backtolist'|trans }} </a>
+
+            <a class="btn btn-default" href="{{ path('noticias_edit', { 'id': noticium.id }) }}">{{ 'button.edit'|trans }}</a>
+
+            {{ form_start(delete_form) }}
+                <input type="submit" class="btn btn-danger" value="Delete">
+            {{ form_end(delete_form) }}
+    </div>
+{% endblock %}

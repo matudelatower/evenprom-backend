@@ -1,3 +1,7 @@
+app_noticias:
+    resource: "@AppBundle/Resources/config/routing/noticia.yml"
+    prefix:   /noticias
+
 app_publicaciones:
     resource: "@AppBundle/Resources/config/routing/publicacion.yml"
     prefix:   /publicaciones

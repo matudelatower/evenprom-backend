@@ -1,0 +1,62 @@
+    {% extends '::layout_base.html.twig' %}
+
+    {% block content %}
+
+    <div class="row">
+            <div class="col-md-3">
+                <a class="btn btn-primary margin-bottom" href="{{ path('noticias_new') }}">Create a new entry</a>
+            </div>
+        </div>    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">{{ 'menu.empresa.noticias'|trans }} {{ 'list'|trans }}</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table class="data-table table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                                <th>Id</th>
+                                <th>Titulo</th>
+                                <th>Resumen</th>
+                                <th>Visibledesde</th>
+                                <th>Visiblehasta</th>
+                                <th>Orden</th>
+                                <th>Activo</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for noticium in noticias %}
+                        <tr>
+                                    <td>
+                                        <a href="{{ path('noticias_show', { 'id': noticium.id }) }}">{{ noticium.id }}</a>
+                                    </td>
+                                    <td>{{ noticium.titulo }}</td>
+                                    <td>{{ noticium.resumen }}</td>
+                                    <td>{% if noticium.visibleDesde %}{{ noticium.visibleDesde|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                    <td>{% if noticium.visibleHasta %}{{ noticium.visibleHasta|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                    <td>{{ noticium.orden }}</td>
+                                    <td>{% if noticium.activo %}Yes{% else %}No{% endif %}</td>
+                                    <td>
+
+                                            <a class="btn btn-default"
+                                               href="{{ path('noticias_show', { 'id': noticium.id }) }}"><i
+                                                        class="fa fa-eye"></i></a>
+
+                                            <a class="btn btn-default"
+                                               href="{{ path('noticias_edit', { 'id': noticium.id }) }}"><i
+                                                        class="fa fa-edit"></i></a>
+                                    </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

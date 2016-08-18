@@ -30,7 +30,8 @@
         "vich/uploader-bundle": "^1.1",
         "liuggio/ExcelBundle": "^2.1",
         "egeloen/ckeditor-bundle": "^4.0",
-        "friendsofsymfony/rest-bundle": "^2.0"
+        "friendsofsymfony/rest-bundle": "^2.0",
+        "nelmio/cors-bundle": "^1.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

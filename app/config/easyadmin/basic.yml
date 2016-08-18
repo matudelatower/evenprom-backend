@@ -16,6 +16,7 @@ easy_admin:
         menu:
             - Empresa
             - Categoria
+            - Onda
             - { label: 'Tipo Publicación', entity: TipoPublicacion }
             - label: 'Ubicación'
               children:

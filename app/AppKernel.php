@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new UtilBundle\UtilBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new FOS\RestBundle\FOSRestBundle(),
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
             new UsuariosBundle\UsuariosBundle(),
             new AppBundle\AppBundle(),
         );

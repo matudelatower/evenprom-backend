@@ -1,0 +1,39 @@
+    {% extends '::layout_base.html.twig' %}
+
+    {% block content %}
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Noticia edit</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    {{ form_start(edit_form) }}
+                    {{ form_widget(edit_form) }}
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> {{ 'button.save'|trans }}
+                    </button>
+                    {{ form_end(edit_form) }}
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+    </div>
+            <div class="form-buttons">
+
+            <a class="btn btn-default" href="{{ path('noticias_index') }}">{{ 'button.backtolist'|trans }} </a>
+
+            {{ form_start(delete_form) }}
+                <input type="submit" class="btn btn-danger" value="Delete">
+            {{ form_end(delete_form) }}
+    </div>
+{% endblock %}

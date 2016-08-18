@@ -29,7 +29,11 @@
             </trans-unit>
             <trans-unit id="menu_empresa_publicaciones">
                 <source>menu.empresa.publicaciones</source>
-                <target>Publicaciones</target>
+                <target>Ofertas y Eventos</target>
+            </trans-unit>
+            <trans-unit id="menu_empresa_noticias">
+                <source>menu.empresa.noticias</source>
+                <target>Noticias Empresa</target>
             </trans-unit>
 
             <!--propias de la app-->
@@ -45,6 +49,18 @@
             </trans-unit>
 
             <!--forms-->
+            <trans-unit id="list">
+                <source>list</source>
+                <target>listado</target>
+            </trans-unit>
+            <trans-unit id="button_backtolist">
+                <source>button.backtolist</source>
+                <target>Volver</target>
+            </trans-unit>
+            <trans-unit id="button_new_publicacion">
+                <source>button.new.publicacion</source>
+                <target>Publicación Nueva</target>
+            </trans-unit>
             <trans-unit id="button_guardar">
                 <source>button.guardar</source>
                 <target>Guardar</target>

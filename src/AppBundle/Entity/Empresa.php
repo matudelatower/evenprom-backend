@@ -73,6 +73,30 @@ class Empresa extends BaseClass {
 	private $linkYoutube;
 
 	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="link_facebook", type="string", length=255, nullable=true)
+	 * @Expose()
+	 */
+	private $linkFacebook;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="link_twitter", type="string", length=255, nullable=true)
+	 * @Expose()
+	 */
+	private $linkTwitter;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="link_instagram", type="string", length=255, nullable=true)
+	 * @Expose()
+	 */
+	private $linkInstagram;
+
+	/**
 	 * @var
 	 *
 	 * @ORM\ManyToOne(targetEntity="UsuariosBundle\Entity\Usuario", inversedBy="empresa")
@@ -109,6 +133,12 @@ class Empresa extends BaseClass {
 	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\CategoriaEmpresa", mappedBy="empresa", cascade={"persist", "remove"})
 	 */
 	private $categoriaEmpresa;
+	
+	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\EmpresaOnda", mappedBy="empresa", cascade={"persist", "remove"})
+	 */
+	private $empresaOnda;
 
 
 	/**
@@ -693,5 +723,135 @@ class Empresa extends BaseClass {
     public function removeCategoriaEmpresa(\AppBundle\Entity\CategoriaEmpresa $categoriaEmpresa)
     {
         $this->categoriaEmpresa->removeElement($categoriaEmpresa);
+    }
+
+    /**
+     * Set linkFacebook
+     *
+     * @param string $linkFacebook
+     * @return Empresa
+     */
+    public function setLinkFacebook($linkFacebook)
+    {
+        $this->linkFacebook = $linkFacebook;
+
+        return $this;
+    }
+
+    /**
+     * Get linkFacebook
+     *
+     * @return string 
+     */
+    public function getLinkFacebook()
+    {
+        return $this->linkFacebook;
+    }
+
+    /**
+     * Set linkTwitter
+     *
+     * @param string $linkTwitter
+     * @return Empresa
+     */
+    public function setLinkTwitter($linkTwitter)
+    {
+        $this->linkTwitter = $linkTwitter;
+
+        return $this;
+    }
+
+    /**
+     * Get linkTwitter
+     *
+     * @return string 
+     */
+    public function getLinkTwitter()
+    {
+        return $this->linkTwitter;
+    }
+
+    /**
+     * Set linkInstagram
+     *
+     * @param string $linkInstagram
+     * @return Empresa
+     */
+    public function setLinkInstagram($linkInstagram)
+    {
+        $this->linkInstagram = $linkInstagram;
+
+        return $this;
+    }
+
+    /**
+     * Get linkInstagram
+     *
+     * @return string 
+     */
+    public function getLinkInstagram()
+    {
+        return $this->linkInstagram;
+    }
+
+    /**
+     * Add empresaOnda
+     *
+     * @param \AppBundle\Entity\EmpresaOnda $empresaOnda
+     * @return Empresa
+     */
+    public function addEmpresaOnda(\AppBundle\Entity\EmpresaOnda $empresaOnda)
+    {
+        $this->empresaOnda[] = $empresaOnda;
+
+        return $this;
+    }
+
+    /**
+     * Remove empresaOnda
+     *
+     * @param \AppBundle\Entity\EmpresaOnda $empresaOnda
+     */
+    public function removeEmpresaOnda(\AppBundle\Entity\EmpresaOnda $empresaOnda)
+    {
+        $this->empresaOnda->removeElement($empresaOnda);
+    }
+
+	/**
+	 * Add empresaOnda
+	 *
+	 * @param \AppBundle\Entity\EmpresaOnda $empresaOnda
+	 * @return Empresa
+	 */
+	public function addEmpresaOndon(\AppBundle\Entity\EmpresaOnda $empresaOnda)
+	{
+
+		$empresaOnda->setEmpresa( $this );
+
+		$this->empresaOnda->add( $empresaOnda );
+
+//		$this->empresaOnda[] = $empresaOnda;
+
+		return $this;
+	}
+
+	/**
+	 * Remove empresaOnda
+	 *
+	 * @param \AppBundle\Entity\EmpresaOnda $empresaOnda
+	 */
+	public function removeEmpresaOndon(\AppBundle\Entity\EmpresaOnda $empresaOnda)
+	{
+		$this->empresaOnda->removeElement($empresaOnda);
+	}
+
+    /**
+     * Get empresaOnda
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEmpresaOnda()
+    {
+        return $this->empresaOnda;
     }
 }

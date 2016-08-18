@@ -22,9 +22,25 @@ class EmpresaType extends AbstractType {
 			->add( 'color',
 				TextType::class,
 				array(
-					'attr' => array( 'class' => 'colorpicker' )
+					'attr'  => array( 'class' => 'colorpicker' ),
+					'label' => 'Color Empresa'
 				) )
 			->add( 'linkYoutube',
+				UrlType::class,
+				array(
+					'required' => false
+				) )
+			->add( 'linkFacebook',
+				UrlType::class,
+				array(
+					'required' => false
+				) )
+			->add( 'linkTwitter',
+				UrlType::class,
+				array(
+					'required' => false
+				) )
+			->add( 'linkInstagram',
 				UrlType::class,
 				array(
 					'required' => false
@@ -35,6 +51,7 @@ class EmpresaType extends AbstractType {
 					'required'      => false,
 					'allow_delete'  => true, // not mandatory, default is true
 					'download_link' => true, // not mandatory, default is true
+					'label'         => 'Logo'
 				) )
 			->add( 'direccionEmpresa',
 				BootstrapCollectionType::class,
@@ -64,6 +81,14 @@ class EmpresaType extends AbstractType {
 					'allow_delete'  => true,
 					'by_reference'  => false,
 					'max_items_add' => 1
+				) )
+			->add( 'empresaOnda',
+				BootstrapCollectionType::class,
+				array(
+					'entry_type'    => EmpresaOndaType::class,
+					'allow_add'     => true,
+					'allow_delete'  => true,
+					'by_reference'  => false,
 				) )
 //            ->add('premium')
 //            ->add('activo')

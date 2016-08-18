@@ -62,6 +62,15 @@ class Builder implements ContainerAwareInterface {
 						'route' => 'publicaciones_index',
 					)
 				);
+			$menu[ $keyEmpresa ]
+				->addChild(
+					$this->container->get( 'translator' )->trans( 'menu.empresa.noticias',
+						array(),
+						'app' ),
+					array(
+						'route' => 'noticias_index',
+					)
+				);
 		}
 
 		return $menu;
