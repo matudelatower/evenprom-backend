@@ -36,4 +36,19 @@ class AjaxController extends Controller {
 
 	}
 
+	public function getSubRubrosAction( Request $request ) {
+
+		$rubroId   = $request->get( 'id' );
+		$em        = $this->getDoctrine()->getManager();
+		$rubro     = $em->getRepository( 'AppBundle:Rubro' )->find( $rubroId );
+		$subRubros = $em->getRepository( 'AppBundle:SubRubro' )->findByRubro( $rubro );
+
+		if ( ! $subRubros ) {
+			$subRubros = array();
+		}
+
+		return $this->render( ':ajax:subRubros.html.twig',
+			array( 'subRubros' => $subRubros ) );
+	}
+
 }

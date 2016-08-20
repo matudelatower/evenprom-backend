@@ -1,0 +1,16 @@
+easy_admin:
+    entities:
+        HotelAgencia:
+            class: AppBundle\Entity\HotelAgencia
+            form:
+                fields:
+                    - { property: 'nombre' }
+                    - { property: 'descripcion' }
+                    - { property: 'slug' }
+                    - { property: 'activo' }
+            edit:
+                title:  'Editar Hoteles y Agencias'
+            new:
+                title:  'Alta Hoteles y Agencias'
+            list:
+                title:  'Hoteles y Agencias'

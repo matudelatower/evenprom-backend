@@ -55,6 +55,9 @@
         $.widget.bridge('uibutton', $.ui.button);
     </script>
 </head>
+
+{% trans_default_domain "app" %}
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -155,7 +158,7 @@
                                 </ul>
                             </li>
                             <li class="footer">
-                                <a href="#">View all tasks</a>
+
                             </li>
                         </ul>
                     </li>
@@ -336,6 +339,7 @@
     twigLocale = "{{ app.request.locale }}";
 </script>
 <script src="{{ asset('bundles/app/js/app.js') }}"></script>
+{% include '::app.js.twig' %}
 
 {% block javascripts %}
 {% endblock javascripts %}

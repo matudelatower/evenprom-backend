@@ -21,7 +21,7 @@ class NoticiasRestController extends FOSRestController {
 
 	public function getNoticiasEmpresaAction( Request $request, $empresaId ) {
 
-		$noticias = $this->getDoctrine()->getRepository( "AppBundle:Noticia" )->findByEmpresa($empresaId);
+		$noticias = $this->getDoctrine()->getRepository( "AppBundle:Noticia" )->findAllByEmpresa($empresaId);
 
 
 		$vista = $this->view( $noticias,

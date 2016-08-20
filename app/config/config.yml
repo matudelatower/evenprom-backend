@@ -13,6 +13,7 @@ parameters:
     languages: "(es|en|pt)"
     app.path.empresas_image: /uploads/images/empresas
     app.path.publicaciones_image: /uploads/images/publicaciones
+    app.path.noticias_image: /uploads/images/noticias
 
 framework:
     #esi:             ~
@@ -117,6 +118,9 @@ vich_uploader:
         publicaciones_image:
             uri_prefix:         %app.path.publicaciones_image%
             upload_destination: %kernel.root_dir%/../web/uploads/images/publicaciones
+        noticias_image:
+            uri_prefix:         %app.path.publicaciones_image%
+            upload_destination: %kernel.root_dir%/../web/uploads/images/noticias
 
 ivory_ck_editor:
     default_config: my_config

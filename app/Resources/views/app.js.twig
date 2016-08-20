@@ -1,0 +1,17 @@
+<script>
+//llamada ajax para todos los combos dependientes de country -> city
+$(document).on('change', '.select_rubro', function () {
+    var thisElem = $(this);
+    var data = {
+        id: $(this).val()
+    };
+    $.ajax({
+        type: 'post',
+        url: '{{ path("get_sub_rubros") }}',
+        data: data,
+        success: function (data) {
+            thisElem.parents('tr').find('.select_sub_rubro').html(data);
+        }
+    });
+});
+</script>

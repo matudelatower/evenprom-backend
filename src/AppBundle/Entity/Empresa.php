@@ -133,12 +133,25 @@ class Empresa extends BaseClass {
 	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\CategoriaEmpresa", mappedBy="empresa", cascade={"persist", "remove"})
 	 */
 	private $categoriaEmpresa;
-	
+
 	/**
 	 *
 	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\EmpresaOnda", mappedBy="empresa", cascade={"persist", "remove"})
 	 */
 	private $empresaOnda;
+
+	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\EmpresaSubRubro", mappedBy="empresa", cascade={"persist", "remove"})
+	 */
+	private $empresaSubRubro;
+
+
+	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\EmpresaHotelAgencia", mappedBy="empresa", cascade={"persist", "remove"})
+	 */
+	private $empresaHotelAgencia;
 
 
 	/**
@@ -238,7 +251,7 @@ class Empresa extends BaseClass {
 
 		$return = array();
 
-		if ( $this->getDireccionEmpresa() ) {
+		if ( count( $this->getDireccionEmpresa() ) > 0 ) {
 			if ( $this->getDireccionEmpresa()->first()->getDireccion() ) {
 				$return = $this->getDireccionEmpresa()->first()->getDireccion();
 			}
@@ -248,583 +261,625 @@ class Empresa extends BaseClass {
 
 	}
 
-	
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->direccionEmpresa = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->contactoEmpresa = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->noticiaEmpresa = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->etiquetaEmpresa = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->categoriaEmpresa = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("categorias")
+	 */
+	public function getCategorias() {
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+		$return = array();
 
-    /**
-     * Set nombre
-     *
-     * @param string $nombre
-     * @return Empresa
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
+		if ( $this->getCategoriaEmpresa() ) {
+			foreach ( $this->getCategoriaEmpresa() as $empresaCategoria ) {
+				$return[] = $empresaCategoria->getCategoria();
+			}
+		}
 
-        return $this;
-    }
+		return $return;
 
-    /**
-     * Get nombre
-     *
-     * @return string 
-     */
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
+	}
 
-    /**
-     * Set descripcion
-     *
-     * @param string $descripcion
-     * @return Empresa
-     */
-    public function setDescripcion($descripcion)
-    {
-        $this->descripcion = $descripcion;
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("ondas")
+	 */
+	public function getOndas() {
 
-        return $this;
-    }
+		$return = array();
 
-    /**
-     * Get descripcion
-     *
-     * @return string 
-     */
-    public function getDescripcion()
-    {
-        return $this->descripcion;
-    }
+		if ( $this->getEmpresaOnda() ) {
+			foreach ( $this->getEmpresaOnda() as $empresaOnda ) {
+				$return[] = $empresaOnda->getOnda();
+			}
+		}
 
-    /**
-     * Set color
-     *
-     * @param string $color
-     * @return Empresa
-     */
-    public function setColor($color)
-    {
-        $this->color = $color;
+		return $return;
 
-        return $this;
-    }
+	}
 
-    /**
-     * Get color
-     *
-     * @return string 
-     */
-    public function getColor()
-    {
-        return $this->color;
-    }
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("rubros")
+	 */
+	public function getRubros() {
 
-    /**
-     * Set premium
-     *
-     * @param boolean $premium
-     * @return Empresa
-     */
-    public function setPremium($premium)
-    {
-        $this->premium = $premium;
+		$return = array();
 
-        return $this;
-    }
+		if ( $this->getEmpresaSubRubro() ) {
+			foreach ( $this->getEmpresaSubRubro() as $empresaSubRubro ) {
+				$return[] = $empresaSubRubro->getSubRubro();
+			}
+		}
 
-    /**
-     * Get premium
-     *
-     * @return boolean 
-     */
-    public function getPremium()
-    {
-        return $this->premium;
-    }
+		return $return;
 
-    /**
-     * Set linkYoutube
-     *
-     * @param string $linkYoutube
-     * @return Empresa
-     */
-    public function setLinkYoutube($linkYoutube)
-    {
-        $this->linkYoutube = $linkYoutube;
+	}
 
-        return $this;
-    }
 
-    /**
-     * Get linkYoutube
-     *
-     * @return string 
-     */
-    public function getLinkYoutube()
-    {
-        return $this->linkYoutube;
-    }
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
+		$this->direccionEmpresa    = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->contactoEmpresa     = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->noticiaEmpresa      = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->etiquetaEmpresa     = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->categoriaEmpresa    = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->empresaOnda         = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->empresaSubRubro     = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->empresaHotelAgencia = new \Doctrine\Common\Collections\ArrayCollection();
+	}
 
-    /**
-     * Set fechaCreacion
-     *
-     * @param \DateTime $fechaCreacion
-     * @return Empresa
-     */
-    public function setFechaCreacion($fechaCreacion)
-    {
-        $this->fechaCreacion = $fechaCreacion;
+	/**
+	 * Get id
+	 *
+	 * @return integer
+	 */
+	public function getId() {
+		return $this->id;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set nombre
+	 *
+	 * @param string $nombre
+	 *
+	 * @return Empresa
+	 */
+	public function setNombre( $nombre ) {
+		$this->nombre = $nombre;
 
-    /**
-     * Set fechaActualizacion
-     *
-     * @param \DateTime $fechaActualizacion
-     * @return Empresa
-     */
-    public function setFechaActualizacion($fechaActualizacion)
-    {
-        $this->fechaActualizacion = $fechaActualizacion;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Get nombre
+	 *
+	 * @return string
+	 */
+	public function getNombre() {
+		return $this->nombre;
+	}
 
-    /**
-     * Set usuario
-     *
-     * @param \UsuariosBundle\Entity\Usuario $usuario
-     * @return Empresa
-     */
-    public function setUsuario(\UsuariosBundle\Entity\Usuario $usuario = null)
-    {
-        $this->usuario = $usuario;
+	/**
+	 * Set descripcion
+	 *
+	 * @param string $descripcion
+	 *
+	 * @return Empresa
+	 */
+	public function setDescripcion( $descripcion ) {
+		$this->descripcion = $descripcion;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get usuario
-     *
-     * @return \UsuariosBundle\Entity\Usuario 
-     */
-    public function getUsuario()
-    {
-        return $this->usuario;
-    }
+	/**
+	 * Get descripcion
+	 *
+	 * @return string
+	 */
+	public function getDescripcion() {
+		return $this->descripcion;
+	}
 
-    /**
-     * Add direccionEmpresa
-     *
-     * @param \AppBundle\Entity\DireccionEmpresa $direccionEmpresa
-     * @return Empresa
-     */
-    public function addDireccionEmpreson(\AppBundle\Entity\DireccionEmpresa $direccionEmpresa)
-    {
-        $this->direccionEmpresa[] = $direccionEmpresa;
+	/**
+	 * Set color
+	 *
+	 * @param string $color
+	 *
+	 * @return Empresa
+	 */
+	public function setColor( $color ) {
+		$this->color = $color;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Remove direccionEmpresa
-     *
-     * @param \AppBundle\Entity\DireccionEmpresa $direccionEmpresa
-     */
-    public function removeDireccionEmpreson(\AppBundle\Entity\DireccionEmpresa $direccionEmpresa)
-    {
-        $this->direccionEmpresa->removeElement($direccionEmpresa);
-    }
+	/**
+	 * Get color
+	 *
+	 * @return string
+	 */
+	public function getColor() {
+		return $this->color;
+	}
 
-    /**
-     * Get direccionEmpresa
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getDireccionEmpresa()
-    {
-        return $this->direccionEmpresa;
-    }
+	/**
+	 * Set premium
+	 *
+	 * @param boolean $premium
+	 *
+	 * @return Empresa
+	 */
+	public function setPremium( $premium ) {
+		$this->premium = $premium;
 
-    /**
-     * Add contactoEmpresa
-     *
-     * @param \AppBundle\Entity\ContactoEmpresa $contactoEmpresa
-     * @return Empresa
-     */
-    public function addContactoEmpreson(\AppBundle\Entity\ContactoEmpresa $contactoEmpresa)
-    {
-        $this->contactoEmpresa[] = $contactoEmpresa;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Get premium
+	 *
+	 * @return boolean
+	 */
+	public function getPremium() {
+		return $this->premium;
+	}
 
-    /**
-     * Remove contactoEmpresa
-     *
-     * @param \AppBundle\Entity\ContactoEmpresa $contactoEmpresa
-     */
-    public function removeContactoEmpreson(\AppBundle\Entity\ContactoEmpresa $contactoEmpresa)
-    {
-        $this->contactoEmpresa->removeElement($contactoEmpresa);
-    }
+	/**
+	 * Set linkYoutube
+	 *
+	 * @param string $linkYoutube
+	 *
+	 * @return Empresa
+	 */
+	public function setLinkYoutube( $linkYoutube ) {
+		$this->linkYoutube = $linkYoutube;
 
-    /**
-     * Get contactoEmpresa
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getContactoEmpresa()
-    {
-        return $this->contactoEmpresa;
-    }
+		return $this;
+	}
 
-    /**
-     * Add noticiaEmpresa
-     *
-     * @param \AppBundle\Entity\NoticiaEmpresa $noticiaEmpresa
-     * @return Empresa
-     */
-    public function addNoticiaEmpresa(\AppBundle\Entity\NoticiaEmpresa $noticiaEmpresa)
-    {
-        $this->noticiaEmpresa[] = $noticiaEmpresa;
+	/**
+	 * Get linkYoutube
+	 *
+	 * @return string
+	 */
+	public function getLinkYoutube() {
+		return $this->linkYoutube;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set fechaCreacion
+	 *
+	 * @param \DateTime $fechaCreacion
+	 *
+	 * @return Empresa
+	 */
+	public function setFechaCreacion( $fechaCreacion ) {
+		$this->fechaCreacion = $fechaCreacion;
 
-    /**
-     * Remove noticiaEmpresa
-     *
-     * @param \AppBundle\Entity\NoticiaEmpresa $noticiaEmpresa
-     */
-    public function removeNoticiaEmpresa(\AppBundle\Entity\NoticiaEmpresa $noticiaEmpresa)
-    {
-        $this->noticiaEmpresa->removeElement($noticiaEmpresa);
-    }
+		return $this;
+	}
 
-    /**
-     * Get noticiaEmpresa
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getNoticiaEmpresa()
-    {
-        return $this->noticiaEmpresa;
-    }
+	/**
+	 * Set fechaActualizacion
+	 *
+	 * @param \DateTime $fechaActualizacion
+	 *
+	 * @return Empresa
+	 */
+	public function setFechaActualizacion( $fechaActualizacion ) {
+		$this->fechaActualizacion = $fechaActualizacion;
 
-    /**
-     * Add etiquetaEmpresa
-     *
-     * @param \AppBundle\Entity\EtiquetaEmpresa $etiquetaEmpresa
-     * @return Empresa
-     */
-    public function addEtiquetaEmpreson(\AppBundle\Entity\EtiquetaEmpresa $etiquetaEmpresa)
-    {
+		return $this;
+	}
+
+	/**
+	 * Set usuario
+	 *
+	 * @param \UsuariosBundle\Entity\Usuario $usuario
+	 *
+	 * @return Empresa
+	 */
+	public function setUsuario( \UsuariosBundle\Entity\Usuario $usuario = null ) {
+		$this->usuario = $usuario;
+
+		return $this;
+	}
+
+	/**
+	 * Get usuario
+	 *
+	 * @return \UsuariosBundle\Entity\Usuario
+	 */
+	public function getUsuario() {
+		return $this->usuario;
+	}
+
+	/**
+	 * Add direccionEmpresa
+	 *
+	 * @param \AppBundle\Entity\DireccionEmpresa $direccionEmpresa
+	 *
+	 * @return Empresa
+	 */
+	public function addDireccionEmpreson( \AppBundle\Entity\DireccionEmpresa $direccionEmpresa ) {
+
+		$direccionEmpresa->setEmpresa( $this );
+
+		$this->direccionEmpresa->add( $direccionEmpresa );
+
+		return $this;
+	}
+
+	/**
+	 * Remove direccionEmpresa
+	 *
+	 * @param \AppBundle\Entity\DireccionEmpresa $direccionEmpresa
+	 */
+	public function removeDireccionEmpreson( \AppBundle\Entity\DireccionEmpresa $direccionEmpresa ) {
+		$this->direccionEmpresa->removeElement( $direccionEmpresa );
+	}
+
+	/**
+	 * Get direccionEmpresa
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getDireccionEmpresa() {
+		return $this->direccionEmpresa;
+	}
+
+	/**
+	 * Add contactoEmpresa
+	 *
+	 * @param \AppBundle\Entity\ContactoEmpresa $contactoEmpresa
+	 *
+	 * @return Empresa
+	 */
+	public function addContactoEmpreson( \AppBundle\Entity\ContactoEmpresa $contactoEmpresa ) {
+
+		$contactoEmpresa->setEmpresa( $this );
+
+		$this->contactoEmpresa->add( $contactoEmpresa );
+
+		return $this;
+	}
+
+	/**
+	 * Remove contactoEmpresa
+	 *
+	 * @param \AppBundle\Entity\ContactoEmpresa $contactoEmpresa
+	 */
+	public function removeContactoEmpreson( \AppBundle\Entity\ContactoEmpresa $contactoEmpresa ) {
+		$this->contactoEmpresa->removeElement( $contactoEmpresa );
+	}
+
+	/**
+	 * Get contactoEmpresa
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getContactoEmpresa() {
+		return $this->contactoEmpresa;
+	}
+
+	/**
+	 * Add noticiaEmpresa
+	 *
+	 * @param \AppBundle\Entity\NoticiaEmpresa $noticiaEmpresa
+	 *
+	 * @return Empresa
+	 */
+	public function addNoticiaEmpresa( \AppBundle\Entity\NoticiaEmpresa $noticiaEmpresa ) {
+		$this->noticiaEmpresa[] = $noticiaEmpresa;
+
+		return $this;
+	}
+
+	/**
+	 * Remove noticiaEmpresa
+	 *
+	 * @param \AppBundle\Entity\NoticiaEmpresa $noticiaEmpresa
+	 */
+	public function removeNoticiaEmpresa( \AppBundle\Entity\NoticiaEmpresa $noticiaEmpresa ) {
+		$this->noticiaEmpresa->removeElement( $noticiaEmpresa );
+	}
+
+	/**
+	 * Get noticiaEmpresa
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getNoticiaEmpresa() {
+		return $this->noticiaEmpresa;
+	}
+
+	/**
+	 * Add etiquetaEmpresa
+	 *
+	 * @param \AppBundle\Entity\EtiquetaEmpresa $etiquetaEmpresa
+	 *
+	 * @return Empresa
+	 */
+	public function addEtiquetaEmpreson( \AppBundle\Entity\EtiquetaEmpresa $etiquetaEmpresa ) {
 //        $this->etiquetaEmpresa[] = $etiquetaEmpresa;
 
-	    $etiquetaEmpresa->setEmpresa( $this );
+		$etiquetaEmpresa->setEmpresa( $this );
 
-	    $this->categoriaEmpresa->add( $etiquetaEmpresa );
+		$this->categoriaEmpresa->add( $etiquetaEmpresa );
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Remove etiquetaEmpresa
-     *
-     * @param \AppBundle\Entity\EtiquetaEmpresa $etiquetaEmpresa
-     */
-    public function removeEtiquetaEmpreson(\AppBundle\Entity\EtiquetaEmpresa $etiquetaEmpresa)
-    {
-        $this->etiquetaEmpresa->removeElement($etiquetaEmpresa);
-    }
+	/**
+	 * Remove etiquetaEmpresa
+	 *
+	 * @param \AppBundle\Entity\EtiquetaEmpresa $etiquetaEmpresa
+	 */
+	public function removeEtiquetaEmpreson( \AppBundle\Entity\EtiquetaEmpresa $etiquetaEmpresa ) {
+		$this->etiquetaEmpresa->removeElement( $etiquetaEmpresa );
+	}
 
-    /**
-     * Get etiquetaEmpresa
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getEtiquetaEmpresa()
-    {
-        return $this->etiquetaEmpresa;
-    }
+	/**
+	 * Get etiquetaEmpresa
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getEtiquetaEmpresa() {
+		return $this->etiquetaEmpresa;
+	}
 
-    /**
-     * Add categoriaEmpresa
-     *
-     * @param \AppBundle\Entity\CategoriaEmpresa $categoriaEmpresa
-     * @return Empresa
-     */
-    public function addCategoriaEmpreson(\AppBundle\Entity\CategoriaEmpresa $categoriaEmpresa)
-    {
+	/**
+	 * Add categoriaEmpresa
+	 *
+	 * @param \AppBundle\Entity\CategoriaEmpresa $categoriaEmpresa
+	 *
+	 * @return Empresa
+	 */
+	public function addCategoriaEmpreson( \AppBundle\Entity\CategoriaEmpresa $categoriaEmpresa ) {
 
-	    $categoriaEmpresa->setEmpresa( $this );
+		$categoriaEmpresa->setEmpresa( $this );
 
-	    $this->categoriaEmpresa->add( $categoriaEmpresa );
+		$this->categoriaEmpresa->add( $categoriaEmpresa );
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Remove categoriaEmpresa
-     *
-     * @param \AppBundle\Entity\CategoriaEmpresa $categoriaEmpresa
-     */
-    public function removeCategoriaEmpreson(\AppBundle\Entity\CategoriaEmpresa $categoriaEmpresa)
-    {
-        $this->categoriaEmpresa->removeElement($categoriaEmpresa);
-    }
+	/**
+	 * Remove categoriaEmpresa
+	 *
+	 * @param \AppBundle\Entity\CategoriaEmpresa $categoriaEmpresa
+	 */
+	public function removeCategoriaEmpreson( \AppBundle\Entity\CategoriaEmpresa $categoriaEmpresa ) {
+		$this->categoriaEmpresa->removeElement( $categoriaEmpresa );
+	}
 
-    /**
-     * Get categoriaEmpresa
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCategoriaEmpresa()
-    {
-        return $this->categoriaEmpresa;
-    }
+	/**
+	 * Get categoriaEmpresa
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getCategoriaEmpresa() {
+		return $this->categoriaEmpresa;
+	}
 
-    /**
-     * Set creadoPor
-     *
-     * @param \UsuariosBundle\Entity\Usuario $creadoPor
-     * @return Empresa
-     */
-    public function setCreadoPor(\UsuariosBundle\Entity\Usuario $creadoPor = null)
-    {
-        $this->creadoPor = $creadoPor;
+	/**
+	 * Set creadoPor
+	 *
+	 * @param \UsuariosBundle\Entity\Usuario $creadoPor
+	 *
+	 * @return Empresa
+	 */
+	public function setCreadoPor( \UsuariosBundle\Entity\Usuario $creadoPor = null ) {
+		$this->creadoPor = $creadoPor;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Set actualizadoPor
-     *
-     * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
-     * @return Empresa
-     */
-    public function setActualizadoPor(\UsuariosBundle\Entity\Usuario $actualizadoPor = null)
-    {
-        $this->actualizadoPor = $actualizadoPor;
+	/**
+	 * Set actualizadoPor
+	 *
+	 * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
+	 *
+	 * @return Empresa
+	 */
+	public function setActualizadoPor( \UsuariosBundle\Entity\Usuario $actualizadoPor = null ) {
+		$this->actualizadoPor = $actualizadoPor;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Add direccionEmpresa
-     *
-     * @param \AppBundle\Entity\DireccionEmpresa $direccionEmpresa
-     * @return Empresa
-     */
-    public function addDireccionEmpresa(\AppBundle\Entity\DireccionEmpresa $direccionEmpresa)
-    {
-        $this->direccionEmpresa[] = $direccionEmpresa;
+	/**
+	 * Add direccionEmpresa
+	 *
+	 * @param \AppBundle\Entity\DireccionEmpresa $direccionEmpresa
+	 *
+	 * @return Empresa
+	 */
+	public function addDireccionEmpresa( \AppBundle\Entity\DireccionEmpresa $direccionEmpresa ) {
 
-        return $this;
-    }
+		$direccionEmpresa->setEmpresa( $this );
 
-    /**
-     * Remove direccionEmpresa
-     *
-     * @param \AppBundle\Entity\DireccionEmpresa $direccionEmpresa
-     */
-    public function removeDireccionEmpresa(\AppBundle\Entity\DireccionEmpresa $direccionEmpresa)
-    {
-        $this->direccionEmpresa->removeElement($direccionEmpresa);
-    }
+		$this->direccionEmpresa->add( $direccionEmpresa );
 
-    /**
-     * Add contactoEmpresa
-     *
-     * @param \AppBundle\Entity\ContactoEmpresa $contactoEmpresa
-     * @return Empresa
-     */
-    public function addContactoEmpresa(\AppBundle\Entity\ContactoEmpresa $contactoEmpresa)
-    {
-        $this->contactoEmpresa[] = $contactoEmpresa;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Remove direccionEmpresa
+	 *
+	 * @param \AppBundle\Entity\DireccionEmpresa $direccionEmpresa
+	 */
+	public function removeDireccionEmpresa( \AppBundle\Entity\DireccionEmpresa $direccionEmpresa ) {
+		$this->direccionEmpresa->removeElement( $direccionEmpresa );
+	}
 
-    /**
-     * Remove contactoEmpresa
-     *
-     * @param \AppBundle\Entity\ContactoEmpresa $contactoEmpresa
-     */
-    public function removeContactoEmpresa(\AppBundle\Entity\ContactoEmpresa $contactoEmpresa)
-    {
-        $this->contactoEmpresa->removeElement($contactoEmpresa);
-    }
+	/**
+	 * Add contactoEmpresa
+	 *
+	 * @param \AppBundle\Entity\ContactoEmpresa $contactoEmpresa
+	 *
+	 * @return Empresa
+	 */
+	public function addContactoEmpresa( \AppBundle\Entity\ContactoEmpresa $contactoEmpresa ) {
+		$contactoEmpresa->setEmpresa( $this );
 
-    /**
-     * Add etiquetaEmpresa
-     *
-     * @param \AppBundle\Entity\EtiquetaEmpresa $etiquetaEmpresa
-     * @return Empresa
-     */
-    public function addEtiquetaEmpresa(\AppBundle\Entity\EtiquetaEmpresa $etiquetaEmpresa)
-    {
-        $this->etiquetaEmpresa[] = $etiquetaEmpresa;
+		$this->contactoEmpresa->add( $contactoEmpresa );
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Remove etiquetaEmpresa
-     *
-     * @param \AppBundle\Entity\EtiquetaEmpresa $etiquetaEmpresa
-     */
-    public function removeEtiquetaEmpresa(\AppBundle\Entity\EtiquetaEmpresa $etiquetaEmpresa)
-    {
-        $this->etiquetaEmpresa->removeElement($etiquetaEmpresa);
-    }
+	/**
+	 * Remove contactoEmpresa
+	 *
+	 * @param \AppBundle\Entity\ContactoEmpresa $contactoEmpresa
+	 */
+	public function removeContactoEmpresa( \AppBundle\Entity\ContactoEmpresa $contactoEmpresa ) {
+		$this->contactoEmpresa->removeElement( $contactoEmpresa );
+	}
 
-    /**
-     * Add categoriaEmpresa
-     *
-     * @param \AppBundle\Entity\CategoriaEmpresa $categoriaEmpresa
-     * @return Empresa
-     */
-    public function addCategoriaEmpresa(\AppBundle\Entity\CategoriaEmpresa $categoriaEmpresa)
-    {
-        $this->categoriaEmpresa[] = $categoriaEmpresa;
+	/**
+	 * Add etiquetaEmpresa
+	 *
+	 * @param \AppBundle\Entity\EtiquetaEmpresa $etiquetaEmpresa
+	 *
+	 * @return Empresa
+	 */
+	public function addEtiquetaEmpresa( \AppBundle\Entity\EtiquetaEmpresa $etiquetaEmpresa ) {
+		$this->etiquetaEmpresa[] = $etiquetaEmpresa;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Remove categoriaEmpresa
-     *
-     * @param \AppBundle\Entity\CategoriaEmpresa $categoriaEmpresa
-     */
-    public function removeCategoriaEmpresa(\AppBundle\Entity\CategoriaEmpresa $categoriaEmpresa)
-    {
-        $this->categoriaEmpresa->removeElement($categoriaEmpresa);
-    }
+	/**
+	 * Remove etiquetaEmpresa
+	 *
+	 * @param \AppBundle\Entity\EtiquetaEmpresa $etiquetaEmpresa
+	 */
+	public function removeEtiquetaEmpresa( \AppBundle\Entity\EtiquetaEmpresa $etiquetaEmpresa ) {
+		$this->etiquetaEmpresa->removeElement( $etiquetaEmpresa );
+	}
 
-    /**
-     * Set linkFacebook
-     *
-     * @param string $linkFacebook
-     * @return Empresa
-     */
-    public function setLinkFacebook($linkFacebook)
-    {
-        $this->linkFacebook = $linkFacebook;
+	/**
+	 * Add categoriaEmpresa
+	 *
+	 * @param \AppBundle\Entity\CategoriaEmpresa $categoriaEmpresa
+	 *
+	 * @return Empresa
+	 */
+	public function addCategoriaEmpresa( \AppBundle\Entity\CategoriaEmpresa $categoriaEmpresa ) {
+		$this->categoriaEmpresa[] = $categoriaEmpresa;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get linkFacebook
-     *
-     * @return string 
-     */
-    public function getLinkFacebook()
-    {
-        return $this->linkFacebook;
-    }
+	/**
+	 * Remove categoriaEmpresa
+	 *
+	 * @param \AppBundle\Entity\CategoriaEmpresa $categoriaEmpresa
+	 */
+	public function removeCategoriaEmpresa( \AppBundle\Entity\CategoriaEmpresa $categoriaEmpresa ) {
+		$this->categoriaEmpresa->removeElement( $categoriaEmpresa );
+	}
 
-    /**
-     * Set linkTwitter
-     *
-     * @param string $linkTwitter
-     * @return Empresa
-     */
-    public function setLinkTwitter($linkTwitter)
-    {
-        $this->linkTwitter = $linkTwitter;
+	/**
+	 * Set linkFacebook
+	 *
+	 * @param string $linkFacebook
+	 *
+	 * @return Empresa
+	 */
+	public function setLinkFacebook( $linkFacebook ) {
+		$this->linkFacebook = $linkFacebook;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get linkTwitter
-     *
-     * @return string 
-     */
-    public function getLinkTwitter()
-    {
-        return $this->linkTwitter;
-    }
+	/**
+	 * Get linkFacebook
+	 *
+	 * @return string
+	 */
+	public function getLinkFacebook() {
+		return $this->linkFacebook;
+	}
 
-    /**
-     * Set linkInstagram
-     *
-     * @param string $linkInstagram
-     * @return Empresa
-     */
-    public function setLinkInstagram($linkInstagram)
-    {
-        $this->linkInstagram = $linkInstagram;
+	/**
+	 * Set linkTwitter
+	 *
+	 * @param string $linkTwitter
+	 *
+	 * @return Empresa
+	 */
+	public function setLinkTwitter( $linkTwitter ) {
+		$this->linkTwitter = $linkTwitter;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get linkInstagram
-     *
-     * @return string 
-     */
-    public function getLinkInstagram()
-    {
-        return $this->linkInstagram;
-    }
+	/**
+	 * Get linkTwitter
+	 *
+	 * @return string
+	 */
+	public function getLinkTwitter() {
+		return $this->linkTwitter;
+	}
 
-    /**
-     * Add empresaOnda
-     *
-     * @param \AppBundle\Entity\EmpresaOnda $empresaOnda
-     * @return Empresa
-     */
-    public function addEmpresaOnda(\AppBundle\Entity\EmpresaOnda $empresaOnda)
-    {
-        $this->empresaOnda[] = $empresaOnda;
+	/**
+	 * Set linkInstagram
+	 *
+	 * @param string $linkInstagram
+	 *
+	 * @return Empresa
+	 */
+	public function setLinkInstagram( $linkInstagram ) {
+		$this->linkInstagram = $linkInstagram;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Remove empresaOnda
-     *
-     * @param \AppBundle\Entity\EmpresaOnda $empresaOnda
-     */
-    public function removeEmpresaOnda(\AppBundle\Entity\EmpresaOnda $empresaOnda)
-    {
-        $this->empresaOnda->removeElement($empresaOnda);
-    }
+	/**
+	 * Get linkInstagram
+	 *
+	 * @return string
+	 */
+	public function getLinkInstagram() {
+		return $this->linkInstagram;
+	}
 
 	/**
 	 * Add empresaOnda
 	 *
 	 * @param \AppBundle\Entity\EmpresaOnda $empresaOnda
+	 *
 	 * @return Empresa
 	 */
-	public function addEmpresaOndon(\AppBundle\Entity\EmpresaOnda $empresaOnda)
-	{
+	public function addEmpresaOnda( \AppBundle\Entity\EmpresaOnda $empresaOnda ) {
+		$this->empresaOnda[] = $empresaOnda;
+
+		return $this;
+	}
+
+	/**
+	 * Remove empresaOnda
+	 *
+	 * @param \AppBundle\Entity\EmpresaOnda $empresaOnda
+	 */
+	public function removeEmpresaOnda( \AppBundle\Entity\EmpresaOnda $empresaOnda ) {
+		$this->empresaOnda->removeElement( $empresaOnda );
+	}
+
+	/**
+	 * Add empresaOnda
+	 *
+	 * @param \AppBundle\Entity\EmpresaOnda $empresaOnda
+	 *
+	 * @return Empresa
+	 */
+	public function addEmpresaOndon( \AppBundle\Entity\EmpresaOnda $empresaOnda ) {
 
 		$empresaOnda->setEmpresa( $this );
 
@@ -840,18 +895,84 @@ class Empresa extends BaseClass {
 	 *
 	 * @param \AppBundle\Entity\EmpresaOnda $empresaOnda
 	 */
-	public function removeEmpresaOndon(\AppBundle\Entity\EmpresaOnda $empresaOnda)
-	{
-		$this->empresaOnda->removeElement($empresaOnda);
+	public function removeEmpresaOndon( \AppBundle\Entity\EmpresaOnda $empresaOnda ) {
+		$this->empresaOnda->removeElement( $empresaOnda );
 	}
 
-    /**
-     * Get empresaOnda
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getEmpresaOnda()
-    {
-        return $this->empresaOnda;
-    }
+	/**
+	 * Get empresaOnda
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getEmpresaOnda() {
+		return $this->empresaOnda;
+	}
+
+	/**
+	 * Add empresaSubRubro
+	 *
+	 * @param \AppBundle\Entity\EmpresaSubRubro $empresaSubRubro
+	 *
+	 * @return Empresa
+	 */
+	public function addEmpresaSubRubro( \AppBundle\Entity\EmpresaSubRubro $empresaSubRubro ) {
+
+		$empresaSubRubro->setEmpresa( $this );
+
+		$this->empresaSubRubro->add( $empresaSubRubro );
+
+		return $this;
+	}
+
+	/**
+	 * Remove empresaSubRubro
+	 *
+	 * @param \AppBundle\Entity\EmpresaSubRubro $empresaSubRubro
+	 */
+	public function removeEmpresaSubRubro( \AppBundle\Entity\EmpresaSubRubro $empresaSubRubro ) {
+		$this->empresaSubRubro->removeElement( $empresaSubRubro );
+	}
+
+	/**
+	 * Get empresaSubRubro
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getEmpresaSubRubro() {
+		return $this->empresaSubRubro;
+	}
+
+	/**
+	 * Add empresaHotelAgencia
+	 *
+	 * @param \AppBundle\Entity\EmpresaHotelAgencia $empresaHotelAgencia
+	 *
+	 * @return Empresa
+	 */
+	public function addEmpresaHotelAgencium( \AppBundle\Entity\EmpresaHotelAgencia $empresaHotelAgencia ) {
+		$empresaHotelAgencia->setEmpresa( $this );
+
+		$this->empresaHotelAgencia->add( $empresaHotelAgencia );
+
+
+		return $this;
+	}
+
+	/**
+	 * Remove empresaHotelAgencia
+	 *
+	 * @param \AppBundle\Entity\EmpresaHotelAgencia $empresaHotelAgencia
+	 */
+	public function removeEmpresaHotelAgencium( \AppBundle\Entity\EmpresaHotelAgencia $empresaHotelAgencia ) {
+		$this->empresaHotelAgencia->removeElement( $empresaHotelAgencia );
+	}
+
+	/**
+	 * Get empresaHotelAgencia
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getEmpresaHotelAgencia() {
+		return $this->empresaHotelAgencia;
+	}
 }

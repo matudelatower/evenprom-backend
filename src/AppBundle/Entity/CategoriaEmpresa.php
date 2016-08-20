@@ -4,12 +4,15 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity\Base\BaseClass;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+use JMS\Serializer\Annotation\ExclusionPolicy;
 
 /**
  * CategoriaEmpresa
  *
  * @ORM\Table(name="categorias_empresas")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoriaEmpresaRepository")
+ * @ExclusionPolicy("all")
  */
 class CategoriaEmpresa extends BaseClass
 {

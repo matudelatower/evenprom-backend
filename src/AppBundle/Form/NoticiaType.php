@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class NoticiaType extends AbstractType
 {
@@ -44,6 +45,14 @@ class NoticiaType extends AbstractType
                     ),
                 ) )
             ->add('orden')
+            ->add( 'imageFile',
+                VichImageType::class,
+                array(
+                    'required'      => false,
+                    'allow_delete'  => true, // not mandatory, default is true
+                    'download_link' => true, // not mandatory, default is true
+                    'label'         => 'Imagen Destacada'
+                ) )
             ->add('activo')
         ;
     }

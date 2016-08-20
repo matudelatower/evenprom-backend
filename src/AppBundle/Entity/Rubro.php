@@ -4,18 +4,14 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity\Base\BaseClass;
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as Serializer;
-use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
 
 /**
- * Categoria
+ * Rubro
  *
- * @ORM\Table(name="categorias")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoriaRepository")
- * @ExclusionPolicy("all")
+ * @ORM\Table(name="rubros")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\RubroRepository")
  */
-class Categoria extends BaseClass
+class Rubro extends BaseClass
 {
     /**
      * @var int
@@ -30,7 +26,6 @@ class Categoria extends BaseClass
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=255, unique=true)
-     * @Expose()
      */
     private $nombre;
 
@@ -45,10 +40,8 @@ class Categoria extends BaseClass
      * @var string
      *
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
-     * @Expose()
      */
     private $slug;
-
 
     public function __toString() {
         return $this->nombre;
@@ -69,7 +62,7 @@ class Categoria extends BaseClass
      * Set nombre
      *
      * @param string $nombre
-     * @return Categoria
+     * @return Rubro
      */
     public function setNombre($nombre)
     {
@@ -92,7 +85,7 @@ class Categoria extends BaseClass
      * Set descripcion
      *
      * @param string $descripcion
-     * @return Categoria
+     * @return Rubro
      */
     public function setDescripcion($descripcion)
     {
@@ -115,7 +108,7 @@ class Categoria extends BaseClass
      * Set slug
      *
      * @param string $slug
-     * @return Categoria
+     * @return Rubro
      */
     public function setSlug($slug)
     {
@@ -138,7 +131,7 @@ class Categoria extends BaseClass
      * Set fechaCreacion
      *
      * @param \DateTime $fechaCreacion
-     * @return Categoria
+     * @return Rubro
      */
     public function setFechaCreacion($fechaCreacion)
     {
@@ -151,7 +144,7 @@ class Categoria extends BaseClass
      * Set fechaActualizacion
      *
      * @param \DateTime $fechaActualizacion
-     * @return Categoria
+     * @return Rubro
      */
     public function setFechaActualizacion($fechaActualizacion)
     {
@@ -164,7 +157,7 @@ class Categoria extends BaseClass
      * Set creadoPor
      *
      * @param \UsuariosBundle\Entity\Usuario $creadoPor
-     * @return Categoria
+     * @return Rubro
      */
     public function setCreadoPor(\UsuariosBundle\Entity\Usuario $creadoPor = null)
     {
@@ -177,7 +170,7 @@ class Categoria extends BaseClass
      * Set actualizadoPor
      *
      * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
-     * @return Categoria
+     * @return Rubro
      */
     public function setActualizadoPor(\UsuariosBundle\Entity\Usuario $actualizadoPor = null)
     {

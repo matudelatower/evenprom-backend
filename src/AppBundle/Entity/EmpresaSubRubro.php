@@ -8,54 +8,56 @@ use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 
 /**
- * EmpresaOnda
+ * EmpresaSubRubro
  *
- * @ORM\Table(name="empresa_ondas")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\EmpresaOndaRepository")
+ * @ORM\Table(name="empresa_sub_rubros")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EmpresaSubRubroRepository")
  * @ExclusionPolicy("all")
  */
-class EmpresaOnda extends BaseClass{
-	/**
-	 * @var int
-	 *
-	 * @ORM\Column(name="id", type="integer")
-	 * @ORM\Id
-	 * @ORM\GeneratedValue(strategy="AUTO")
-	 */
-	private $id;
+class EmpresaSubRubro extends BaseClass
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
 
-	/**
-	 * @var
-	 *
-	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Empresa", inversedBy="empresaOnda")
-	 * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
-	 */
-	private $empresa;
+    /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Empresa", inversedBy="empresaSubRubro")
+     * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
+     */
+    private $empresa;
 
 
-	/**
-	 * @var
-	 *
-	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Onda", inversedBy="empresaOnda")
-	 * @ORM\JoinColumn(name="onda_id", referencedColumnName="id")
-	 */
-	private $onda;
+    /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\SubRubro", inversedBy="empresaRubro")
+     * @ORM\JoinColumn(name="sub_rubro_id", referencedColumnName="id")
+     */
+    private $subRubro;
 
-	/**
-	 * Get id
-	 *
-	 * @return integer
-	 */
-	public function getId() {
-		return $this->id;
-	}
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set fechaCreacion
      *
      * @param \DateTime $fechaCreacion
-     * @return EmpresaOnda
+     * @return EmpresaSubRubro
      */
     public function setFechaCreacion($fechaCreacion)
     {
@@ -68,7 +70,7 @@ class EmpresaOnda extends BaseClass{
      * Set fechaActualizacion
      *
      * @param \DateTime $fechaActualizacion
-     * @return EmpresaOnda
+     * @return EmpresaSubRubro
      */
     public function setFechaActualizacion($fechaActualizacion)
     {
@@ -81,7 +83,7 @@ class EmpresaOnda extends BaseClass{
      * Set empresa
      *
      * @param \AppBundle\Entity\Empresa $empresa
-     * @return EmpresaOnda
+     * @return EmpresaSubRubro
      */
     public function setEmpresa(\AppBundle\Entity\Empresa $empresa = null)
     {
@@ -101,33 +103,33 @@ class EmpresaOnda extends BaseClass{
     }
 
     /**
-     * Set onda
+     * Set subRubro
      *
-     * @param \AppBundle\Entity\Onda $onda
-     * @return EmpresaOnda
+     * @param \AppBundle\Entity\SubRubro $subRubro
+     * @return EmpresaSubRubro
      */
-    public function setOnda(\AppBundle\Entity\Onda $onda = null)
+    public function setSubRubro(\AppBundle\Entity\SubRubro $subRubro = null)
     {
-        $this->onda = $onda;
+        $this->subRubro = $subRubro;
 
         return $this;
     }
 
     /**
-     * Get onda
+     * Get subRubro
      *
-     * @return \AppBundle\Entity\Onda 
+     * @return \AppBundle\Entity\SubRubro 
      */
-    public function getOnda()
+    public function getSubRubro()
     {
-        return $this->onda;
+        return $this->subRubro;
     }
 
     /**
      * Set creadoPor
      *
      * @param \UsuariosBundle\Entity\Usuario $creadoPor
-     * @return EmpresaOnda
+     * @return EmpresaSubRubro
      */
     public function setCreadoPor(\UsuariosBundle\Entity\Usuario $creadoPor = null)
     {
@@ -140,7 +142,7 @@ class EmpresaOnda extends BaseClass{
      * Set actualizadoPor
      *
      * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
-     * @return EmpresaOnda
+     * @return EmpresaSubRubro
      */
     public function setActualizadoPor(\UsuariosBundle\Entity\Usuario $actualizadoPor = null)
     {
@@ -148,11 +150,4 @@ class EmpresaOnda extends BaseClass{
 
         return $this;
     }
-
-
-	public function addEmpresa( Empresa $empresa ) {
-		if ( ! $this->empresa->contains( $empresa ) ) {
-			$this->empresa->add( $empresa );
-		}
-	}
 }

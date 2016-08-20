@@ -6,12 +6,12 @@ use AppBundle\Entity\Base\BaseClass;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ContactoEmpresa
+ * EmpresaHotelAgencia
  *
- * @ORM\Table(name="contactos_empresas")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ContactoEmpresaRepository")
+ * @ORM\Table(name="empresas_hoteles_agencias")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EmpresaHotelAgenciaRepository")
  */
-class ContactoEmpresa extends BaseClass
+class EmpresaHotelAgencia extends BaseClass
 {
     /**
      * @var int
@@ -22,21 +22,23 @@ class ContactoEmpresa extends BaseClass
      */
     private $id;
 
-    /**
-     * @var
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Empresa", inversedBy="contactoEmpresa")
-     * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
-     */
-    private $empresa;
 
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Contacto", cascade={"persist"})
-     * @ORM\JoinColumn(name="contacto_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Empresa", inversedBy="empresaHotelAgencia")
+     * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
      */
-    private $contacto;
+    private $empresa;
+
+
+    /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\HotelAgencia", inversedBy="empresaHotelAgencia")
+     * @ORM\JoinColumn(name="hotel_agencia_id", referencedColumnName="id")
+     */
+    private $hotelAgencia;
 
 
     /**
@@ -53,7 +55,7 @@ class ContactoEmpresa extends BaseClass
      * Set empresa
      *
      * @param \AppBundle\Entity\Empresa $empresa
-     * @return ContactoEmpresa
+     * @return EmpresaHotelAgencia
      */
     public function setEmpresa(\AppBundle\Entity\Empresa $empresa = null)
     {
@@ -73,39 +75,33 @@ class ContactoEmpresa extends BaseClass
     }
 
     /**
-     * Set contacto
+     * Set hotelAgencia
      *
-     * @param \AppBundle\Entity\Contacto $contacto
-     * @return ContactoEmpresa
+     * @param \AppBundle\Entity\HotelAgencia $hotelAgencia
+     * @return EmpresaHotelAgencia
      */
-    public function setContacto(\AppBundle\Entity\Contacto $contacto = null)
+    public function setHotelAgencia(\AppBundle\Entity\HotelAgencia $hotelAgencia = null)
     {
-        $this->contacto = $contacto;
+        $this->hotelAgencia = $hotelAgencia;
 
         return $this;
     }
 
     /**
-     * Get contacto
+     * Get hotelAgencia
      *
-     * @return \AppBundle\Entity\Contacto 
+     * @return \AppBundle\Entity\HotelAgencia 
      */
-    public function getContacto()
+    public function getHotelAgencia()
     {
-        return $this->contacto;
-    }
-
-    public function addEmpresa( Empresa $empresa ) {
-        if ( ! $this->empresa->contains( $empresa ) ) {
-            $this->empresa->add( $empresa );
-        }
+        return $this->hotelAgencia;
     }
 
     /**
      * Set fechaCreacion
      *
      * @param \DateTime $fechaCreacion
-     * @return ContactoEmpresa
+     * @return EmpresaHotelAgencia
      */
     public function setFechaCreacion($fechaCreacion)
     {
@@ -118,7 +114,7 @@ class ContactoEmpresa extends BaseClass
      * Set fechaActualizacion
      *
      * @param \DateTime $fechaActualizacion
-     * @return ContactoEmpresa
+     * @return EmpresaHotelAgencia
      */
     public function setFechaActualizacion($fechaActualizacion)
     {
@@ -131,7 +127,7 @@ class ContactoEmpresa extends BaseClass
      * Set creadoPor
      *
      * @param \UsuariosBundle\Entity\Usuario $creadoPor
-     * @return ContactoEmpresa
+     * @return EmpresaHotelAgencia
      */
     public function setCreadoPor(\UsuariosBundle\Entity\Usuario $creadoPor = null)
     {
@@ -144,7 +140,7 @@ class ContactoEmpresa extends BaseClass
      * Set actualizadoPor
      *
      * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
-     * @return ContactoEmpresa
+     * @return EmpresaHotelAgencia
      */
     public function setActualizadoPor(\UsuariosBundle\Entity\Usuario $actualizadoPor = null)
     {

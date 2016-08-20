@@ -22,6 +22,10 @@
                 <source>login</source>
                 <target>Iniciar Sesión</target>
             </trans-unit>
+            <trans-unit id="cambiar_idioma">
+                <source>cambiar.idioma</source>
+                <target>Cambiar Idioma</target>
+            </trans-unit>
             <!--menu-->
             <trans-unit id="menu_empresa_profile">
                 <source>menu.empresa.profile</source>
@@ -57,9 +61,21 @@
                 <source>button.backtolist</source>
                 <target>Volver</target>
             </trans-unit>
+            <trans-unit id="button_save">
+                <source>button.save</source>
+                <target>Guardar</target>
+            </trans-unit>
+            <trans-unit id="button_edit">
+                <source>button.edit</source>
+                <target>Editar</target>
+            </trans-unit>
             <trans-unit id="button_new_publicacion">
                 <source>button.new.publicacion</source>
                 <target>Publicación Nueva</target>
+            </trans-unit>
+            <trans-unit id="button_new_noticia">
+                <source>button.new.noticia</source>
+                <target>Noticia Nueva</target>
             </trans-unit>
             <trans-unit id="button_guardar">
                 <source>button.guardar</source>

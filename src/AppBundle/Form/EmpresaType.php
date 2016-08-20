@@ -90,9 +90,24 @@ class EmpresaType extends AbstractType {
 					'allow_delete'  => true,
 					'by_reference'  => false,
 				) )
-//            ->add('premium')
-//            ->add('activo')
-//            ->add('usuario')
+
+			->add( 'empresaSubRubro',
+				BootstrapCollectionType::class,
+				array(
+					'entry_type'    => EmpresaSubRubroType::class,
+					'allow_add'     => true,
+					'allow_delete'  => true,
+					'by_reference'  => false,
+				) )
+			->add( 'empresaHotelAgencia',
+				BootstrapCollectionType::class,
+				array(
+					'entry_type'    => EmpresaHotelAgenciaType::class,
+					'allow_add'     => true,
+					'allow_delete'  => true,
+					'by_reference'  => false,
+					'max_items_add' => 1
+				) )
 		;
 	}
 

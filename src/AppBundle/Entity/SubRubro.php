@@ -4,18 +4,20 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity\Base\BaseClass;
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
 
 /**
- * Categoria
+ * SubRubro
  *
- * @ORM\Table(name="categorias")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoriaRepository")
+ * @ORM\Table(name="sub_rubros")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SubRubroRepository")
  * @ExclusionPolicy("all")
  */
-class Categoria extends BaseClass
+class SubRubro extends BaseClass
 {
     /**
      * @var int
@@ -25,6 +27,7 @@ class Categoria extends BaseClass
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
 
     /**
      * @var string
@@ -38,6 +41,7 @@ class Categoria extends BaseClass
      * @var string
      *
      * @ORM\Column(name="descripcion", type="string", length=255, nullable=true)
+     * @Expose()
      */
     private $descripcion;
 
@@ -49,11 +53,25 @@ class Categoria extends BaseClass
      */
     private $slug;
 
+    /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Rubro")
+     * @ORM\JoinColumn(name="rubro_id", referencedColumnName="id")
+     */
+    private $rubro;
+
+
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\EmpresaSubRubro", mappedBy="subRubro", cascade={"persist", "remove"})
+     */
+    private $empresaRubro;
+
 
     public function __toString() {
         return $this->nombre;
     }
-
 
     /**
      * Get id
@@ -64,12 +82,19 @@ class Categoria extends BaseClass
     {
         return $this->id;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->empresaRubro = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Set nombre
      *
      * @param string $nombre
-     * @return Categoria
+     * @return SubRubro
      */
     public function setNombre($nombre)
     {
@@ -92,7 +117,7 @@ class Categoria extends BaseClass
      * Set descripcion
      *
      * @param string $descripcion
-     * @return Categoria
+     * @return SubRubro
      */
     public function setDescripcion($descripcion)
     {
@@ -115,7 +140,7 @@ class Categoria extends BaseClass
      * Set slug
      *
      * @param string $slug
-     * @return Categoria
+     * @return SubRubro
      */
     public function setSlug($slug)
     {
@@ -138,7 +163,7 @@ class Categoria extends BaseClass
      * Set fechaCreacion
      *
      * @param \DateTime $fechaCreacion
-     * @return Categoria
+     * @return SubRubro
      */
     public function setFechaCreacion($fechaCreacion)
     {
@@ -151,7 +176,7 @@ class Categoria extends BaseClass
      * Set fechaActualizacion
      *
      * @param \DateTime $fechaActualizacion
-     * @return Categoria
+     * @return SubRubro
      */
     public function setFechaActualizacion($fechaActualizacion)
     {
@@ -161,10 +186,66 @@ class Categoria extends BaseClass
     }
 
     /**
+     * Set rubro
+     *
+     * @param \AppBundle\Entity\Rubro $rubro
+     * @return SubRubro
+     */
+    public function setRubro(\AppBundle\Entity\Rubro $rubro = null)
+    {
+        $this->rubro = $rubro;
+
+        return $this;
+    }
+
+    /**
+     * Get rubro
+     *
+     * @return \AppBundle\Entity\Rubro 
+     */
+    public function getRubro()
+    {
+        return $this->rubro;
+    }
+
+    /**
+     * Add empresaRubro
+     *
+     * @param \AppBundle\Entity\EmpresaSubRubro $empresaRubro
+     * @return SubRubro
+     */
+    public function addEmpresaRubro(\AppBundle\Entity\EmpresaSubRubro $empresaRubro)
+    {
+        $this->empresaRubro[] = $empresaRubro;
+
+        return $this;
+    }
+
+    /**
+     * Remove empresaRubro
+     *
+     * @param \AppBundle\Entity\EmpresaSubRubro $empresaRubro
+     */
+    public function removeEmpresaRubro(\AppBundle\Entity\EmpresaSubRubro $empresaRubro)
+    {
+        $this->empresaRubro->removeElement($empresaRubro);
+    }
+
+    /**
+     * Get empresaRubro
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEmpresaRubro()
+    {
+        return $this->empresaRubro;
+    }
+
+    /**
      * Set creadoPor
      *
      * @param \UsuariosBundle\Entity\Usuario $creadoPor
-     * @return Categoria
+     * @return SubRubro
      */
     public function setCreadoPor(\UsuariosBundle\Entity\Usuario $creadoPor = null)
     {
@@ -177,7 +258,7 @@ class Categoria extends BaseClass
      * Set actualizadoPor
      *
      * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
-     * @return Categoria
+     * @return SubRubro
      */
     public function setActualizadoPor(\UsuariosBundle\Entity\Usuario $actualizadoPor = null)
     {

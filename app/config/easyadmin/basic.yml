@@ -17,6 +17,9 @@ easy_admin:
             - Empresa
             - Categoria
             - Onda
+            - Rubro
+            - SubRubro
+            - { label: 'Hoteles y Agencias', entity: HotelAgencia }
             - { label: 'Tipo Publicación', entity: TipoPublicacion }
             - label: 'Ubicación'
               children:

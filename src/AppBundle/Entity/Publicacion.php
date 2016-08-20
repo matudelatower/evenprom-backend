@@ -207,6 +207,22 @@ class Publicacion extends BaseClass {
 	}
 
 	/**
+	 * @VirtualProperty()
+	 * @SerializedName("empresa_id")
+	 */
+	public function getEmpresa() {
+
+		$return = false;
+
+		if ( $this->getPublicacionEmpresa()->first()->getEmpresa()->getId() ) {
+			$return = $this->getPublicacionEmpresa()->first()->getEmpresa()->getId();
+		}
+
+		return $return;
+
+	}
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {
@@ -539,36 +555,34 @@ class Publicacion extends BaseClass {
 		return $this->publicado;
 	}
 
-    /**
-     * Add etiquetaPublicacion
-     *
-     * @param \AppBundle\Entity\EtiquetaPublicacion $etiquetaPublicacion
-     * @return Publicacion
-     */
-    public function addEtiquetaPublicacion(\AppBundle\Entity\EtiquetaPublicacion $etiquetaPublicacion)
-    {
-        $this->etiquetaPublicacion[] = $etiquetaPublicacion;
+	/**
+	 * Add etiquetaPublicacion
+	 *
+	 * @param \AppBundle\Entity\EtiquetaPublicacion $etiquetaPublicacion
+	 *
+	 * @return Publicacion
+	 */
+	public function addEtiquetaPublicacion( \AppBundle\Entity\EtiquetaPublicacion $etiquetaPublicacion ) {
+		$this->etiquetaPublicacion[] = $etiquetaPublicacion;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Remove etiquetaPublicacion
-     *
-     * @param \AppBundle\Entity\EtiquetaPublicacion $etiquetaPublicacion
-     */
-    public function removeEtiquetaPublicacion(\AppBundle\Entity\EtiquetaPublicacion $etiquetaPublicacion)
-    {
-        $this->etiquetaPublicacion->removeElement($etiquetaPublicacion);
-    }
+	/**
+	 * Remove etiquetaPublicacion
+	 *
+	 * @param \AppBundle\Entity\EtiquetaPublicacion $etiquetaPublicacion
+	 */
+	public function removeEtiquetaPublicacion( \AppBundle\Entity\EtiquetaPublicacion $etiquetaPublicacion ) {
+		$this->etiquetaPublicacion->removeElement( $etiquetaPublicacion );
+	}
 
-    /**
-     * Get etiquetaPublicacion
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getEtiquetaPublicacion()
-    {
-        return $this->etiquetaPublicacion;
-    }
+	/**
+	 * Get etiquetaPublicacion
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getEtiquetaPublicacion() {
+		return $this->etiquetaPublicacion;
+	}
 }

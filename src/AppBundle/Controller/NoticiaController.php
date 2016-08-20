@@ -23,7 +23,9 @@ class NoticiaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $noticias = $em->getRepository('AppBundle:Noticia')->findAll();
+        $empresa = $this->getUser()->getEmpresa()->first();
+
+        $noticias = $em->getRepository('AppBundle:Noticia')->findAllByEmpresa( $empresa );
 
         return $this->render('noticia/index.html.twig', array(
             'noticias' => $noticias,

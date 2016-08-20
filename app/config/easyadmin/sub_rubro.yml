@@ -1,0 +1,17 @@
+easy_admin:
+    entities:
+        SubRubro:
+            class: AppBundle\Entity\SubRubro
+            form:
+                fields:
+                    - { property: 'rubro' }
+                    - { property: 'nombre' }
+                    - { property: 'descripcion' }
+                    - { property: 'slug' }
+                    - { property: 'activo' }
+            edit:
+                title:  'Editar Sub Rubro'
+            new:
+                title:  'Alta Sub Rubro'
+            list:
+                title:  'Sub Rubro'

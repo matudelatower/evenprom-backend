@@ -11,14 +11,21 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class NoticiaRepository extends EntityRepository {
-	public function findByEmpresa( $empresa ) {
 
-		$qb = $this->createQueryBuilder( 'n' );
+	public function findAllByEmpresa( $empresa ) {
+		$qb = $this->createQueryBuilder( 'p' );
 
-		$qb->join( 'n.noticiaEmpresa', 'ne' )
-		   ->join( 'ne.empresa', 'e' )
-		   ->where( 'ne.id = :empresaId' )
-		   ->setParameter( 'empresaId', $empresa );
+		$qb->join( 'p.noticiaEmpresa', 'ne' );
+
+		if ( is_integer( $empresa ) ) {
+			$qb->join( 'ne.empresa', 'e' )
+			   ->where( 'e.id = :empresa' )
+			   ->setParameter( 'empresa', $empresa );
+		} else if ( $empresa instanceof Empresa ) {
+			$qb->where( 'ne.empresa = :empresa' )
+			   ->setParameter( 'empresa', $empresa );
+		}
+
 
 		return $qb->getQuery()->getResult();
 

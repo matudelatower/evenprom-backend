@@ -1,53 +1,61 @@
 {% extends '::layout_base.html.twig' %}
-
+{% trans_default_domain "app" %}
 {% block content %}
-    <h1>Noticia</h1>
+    <div class="row">
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ noticium.id }}</td>
-            </tr>
-            <tr>
-                <th>Titulo</th>
-                <td>{{ noticium.titulo }}</td>
-            </tr>
-            <tr>
-                <th>Resumen</th>
-                <td>{{ noticium.resumen }}</td>
-            </tr>
-            <tr>
-                <th>Cuerpo</th>
-                <td>{{ noticium.cuerpo }}</td>
-            </tr>
-            <tr>
-                <th>Visibledesde</th>
-                <td>{% if noticium.visibleDesde %}{{ noticium.visibleDesde|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Visiblehasta</th>
-                <td>{% if noticium.visibleHasta %}{{ noticium.visibleHasta|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Orden</th>
-                <td>{{ noticium.orden }}</td>
-            </tr>
-            <tr>
-                <th>Activo</th>
-                <td>{% if noticium.activo %}Yes{% else %}No{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="col-md-6">
+            <!-- Box Comment -->
+            <div class="box box-widget">
+                <div class="box-header with-border">
+                    <div class="user-block">
+                        <img class="img-circle" src="{{ asset('uploads/images/empresas/'~ noticium.noticiaEmpresa.first.empresa.imageName) }}" alt="User Image">
+                        <span class="username"><a href="#">{{ noticium.noticiaEmpresa.first.empresa }}</a></span>
+                        <span class="description">{{ 'publicado el'|trans }} {{ noticium.fechaCreacion | date('d/m/Y') }}</span>
+                    </div>
+                    <!-- /.user-block -->
+                    <div class="box-tools">
+                        <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Mark as read">
+                            <i class="fa fa-circle-o"></i></button>
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+
+                    <div>
+                        <label>Visible Desde:</label><span>{% if noticium.visibleDesde %}{{ noticium.visibleDesde|date('Y-m-d H:i:s') }}{% endif %}</span>
+                        <label>Visible Hasta:</label><span>{% if noticium.visibleHasta %}{{ noticium.visibleHasta|date('Y-m-d H:i:s') }}{% endif %}</span>
+
+                    </div>
+
+                    <h1>{{ noticium.titulo }}</h1>
+
+                    <img class="img-responsive pad" src="{{ asset('uploads/images/noticias/'~ noticium.imageName) }}" alt="Photo">
+
+                    <p>{{ noticium.cuerpo |raw }}</p>
+                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
+                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
+                    <span class="pull-right text-muted">127 likes - 3 comments</span>
+                </div>
+                <!-- /.box-body -->
+
+                <!-- /.box-footer -->
+            </div>
+            <!-- /.box -->
+        </div>
+
+
+    </div>
 
     <div class="form-buttons">
 
-            <a class="btn btn-default" href="{{ path('noticias_index') }}">{{ 'button.backtolist'|trans }} </a>
+        <a class="btn btn-default" href="{{ path('noticias_index') }}">{{ 'button.backtolist'|trans }} </a>
 
-            <a class="btn btn-default" href="{{ path('noticias_edit', { 'id': noticium.id }) }}">{{ 'button.edit'|trans }}</a>
+        <a class="btn btn-default"
+           href="{{ path('noticias_edit', { 'id': noticium.id }) }}">{{ 'button.edit'|trans }}</a>
 
-            {{ form_start(delete_form) }}
-                <input type="submit" class="btn btn-danger" value="Delete">
-            {{ form_end(delete_form) }}
     </div>
 {% endblock %}
