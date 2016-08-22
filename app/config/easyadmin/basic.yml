@@ -19,6 +19,7 @@ easy_admin:
             - Onda
             - Rubro
             - SubRubro
+            - Descuento
             - { label: 'Hoteles y Agencias', entity: HotelAgencia }
             - { label: 'Tipo Publicación', entity: TipoPublicacion }
             - label: 'Ubicación'

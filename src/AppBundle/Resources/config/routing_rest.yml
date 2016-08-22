@@ -1,3 +1,8 @@
+categorias :
+  type: rest
+  resource:     "@AppBundle/Controller/Rest/CategoriasRestController.php"
+  name_prefix:  api_
+
 registro_llamada :
   type: rest
   resource:     "@AppBundle/Controller/Rest/RegistroLlamadaEmpresaRestController.php"

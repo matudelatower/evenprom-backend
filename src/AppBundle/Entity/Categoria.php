@@ -23,6 +23,7 @@ class Categoria extends BaseClass
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose()
      */
     private $id;
 
@@ -48,6 +49,15 @@ class Categoria extends BaseClass
      * @Expose()
      */
     private $slug;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="icono", type="string", length=255, nullable=true)
+     * @Expose()
+     */
+    private $icono;
 
 
     public function __toString() {
@@ -184,5 +194,28 @@ class Categoria extends BaseClass
         $this->actualizadoPor = $actualizadoPor;
 
         return $this;
+    }
+
+    /**
+     * Set icono
+     *
+     * @param string $icono
+     * @return Categoria
+     */
+    public function setIcono($icono)
+    {
+        $this->icono = $icono;
+
+        return $this;
+    }
+
+    /**
+     * Get icono
+     *
+     * @return string 
+     */
+    public function getIcono()
+    {
+        return $this->icono;
     }
 }

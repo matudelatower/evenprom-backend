@@ -94,6 +94,12 @@ class Publicacion extends BaseClass {
 	private $etiquetaPublicacion;
 
 	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\DescuentoPublicacion", mappedBy="publicacion", cascade={"persist", "remove"})
+	 */
+	private $descuentoPublicacion;
+
+	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="cuerpo", type="text", nullable=true)
@@ -227,6 +233,9 @@ class Publicacion extends BaseClass {
 	 */
 	public function __construct() {
 		$this->categoriaPublicacion = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->descuentoPublicacion = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->publicacionEmpresa = new \Doctrine\Common\Collections\ArrayCollection();
+
 	}
 
 	/**
@@ -510,7 +519,10 @@ class Publicacion extends BaseClass {
 	 * @return Publicacion
 	 */
 	public function addPublicacionEmpresa( \AppBundle\Entity\PublicacionEmpresa $publicacionEmpresa ) {
-		$this->publicacionEmpresa[] = $publicacionEmpresa;
+
+		$publicacionEmpresa->setPublicacion( $this );
+
+		$this->publicacionEmpresa->add( $publicacionEmpresa );
 
 		return $this;
 	}
@@ -563,7 +575,11 @@ class Publicacion extends BaseClass {
 	 * @return Publicacion
 	 */
 	public function addEtiquetaPublicacion( \AppBundle\Entity\EtiquetaPublicacion $etiquetaPublicacion ) {
-		$this->etiquetaPublicacion[] = $etiquetaPublicacion;
+
+		$etiquetaPublicacion->setPublicacion( $this );
+
+		$this->etiquetaPublicacion->add( $etiquetaPublicacion );
+
 
 		return $this;
 	}
@@ -585,4 +601,42 @@ class Publicacion extends BaseClass {
 	public function getEtiquetaPublicacion() {
 		return $this->etiquetaPublicacion;
 	}
+
+    /**
+     * Add descuentoPublicacion
+     *
+     * @param \AppBundle\Entity\DescuentoPublicacion $descuentoPublicacion
+     * @return Publicacion
+     */
+    public function addDescuentoPublicacion(\AppBundle\Entity\DescuentoPublicacion $descuentoPublicacion)
+    {
+
+
+	    $descuentoPublicacion->setPublicacion( $this );
+
+	    $this->descuentoPublicacion->add( $descuentoPublicacion );
+
+
+        return $this;
+    }
+
+    /**
+     * Remove descuentoPublicacion
+     *
+     * @param \AppBundle\Entity\DescuentoPublicacion $descuentoPublicacion
+     */
+    public function removeDescuentoPublicacion(\AppBundle\Entity\DescuentoPublicacion $descuentoPublicacion)
+    {
+        $this->descuentoPublicacion->removeElement($descuentoPublicacion);
+    }
+
+    /**
+     * Get descuentoPublicacion
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDescuentoPublicacion()
+    {
+        return $this->descuentoPublicacion;
+    }
 }

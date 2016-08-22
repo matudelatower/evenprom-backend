@@ -2,15 +2,16 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Base\BaseClass;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Descuento
  *
- * @ORM\Table(name="descuento")
+ * @ORM\Table(name="descuentos")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\DescuentoRepository")
  */
-class Descuento
+class Descuento extends BaseClass
 {
     /**
      * @var int
@@ -42,7 +43,24 @@ class Descuento
      */
     private $porcentaje;
 
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\DescuentoPublicacion", mappedBy="descuento", cascade={"persist", "remove"})
+     */
+    private $descuentoPublicacion;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="abreviacion", type="string", length=255, nullable=true)
+     */
+    private $abreviacion;
+
+    public function __toString() {
+        return $this->nombre;
+    }
+    
     /**
      * Get id
      *
@@ -120,5 +138,120 @@ class Descuento
     public function getPorcentaje()
     {
         return $this->porcentaje;
+    }
+
+    /**
+     * Set fechaCreacion
+     *
+     * @param \DateTime $fechaCreacion
+     * @return Descuento
+     */
+    public function setFechaCreacion($fechaCreacion)
+    {
+        $this->fechaCreacion = $fechaCreacion;
+
+        return $this;
+    }
+
+    /**
+     * Set fechaActualizacion
+     *
+     * @param \DateTime $fechaActualizacion
+     * @return Descuento
+     */
+    public function setFechaActualizacion($fechaActualizacion)
+    {
+        $this->fechaActualizacion = $fechaActualizacion;
+
+        return $this;
+    }
+
+    /**
+     * Set creadoPor
+     *
+     * @param \UsuariosBundle\Entity\Usuario $creadoPor
+     * @return Descuento
+     */
+    public function setCreadoPor(\UsuariosBundle\Entity\Usuario $creadoPor = null)
+    {
+        $this->creadoPor = $creadoPor;
+
+        return $this;
+    }
+
+    /**
+     * Set actualizadoPor
+     *
+     * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
+     * @return Descuento
+     */
+    public function setActualizadoPor(\UsuariosBundle\Entity\Usuario $actualizadoPor = null)
+    {
+        $this->actualizadoPor = $actualizadoPor;
+
+        return $this;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->descuentoPublicacion = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add descuentoPublicacion
+     *
+     * @param \AppBundle\Entity\DescuentoPublicacion $descuentoPublicacion
+     * @return Descuento
+     */
+    public function addDescuentoPublicacion(\AppBundle\Entity\DescuentoPublicacion $descuentoPublicacion)
+    {
+        $this->descuentoPublicacion[] = $descuentoPublicacion;
+
+        return $this;
+    }
+
+    /**
+     * Remove descuentoPublicacion
+     *
+     * @param \AppBundle\Entity\DescuentoPublicacion $descuentoPublicacion
+     */
+    public function removeDescuentoPublicacion(\AppBundle\Entity\DescuentoPublicacion $descuentoPublicacion)
+    {
+        $this->descuentoPublicacion->removeElement($descuentoPublicacion);
+    }
+
+    /**
+     * Get descuentoPublicacion
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDescuentoPublicacion()
+    {
+        return $this->descuentoPublicacion;
+    }
+
+    /**
+     * Set abreviacion
+     *
+     * @param string $abreviacion
+     * @return Descuento
+     */
+    public function setAbreviacion($abreviacion)
+    {
+        $this->abreviacion = $abreviacion;
+
+        return $this;
+    }
+
+    /**
+     * Get abreviacion
+     *
+     * @return string 
+     */
+    public function getAbreviacion()
+    {
+        return $this->abreviacion;
     }
 }

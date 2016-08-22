@@ -1,0 +1,17 @@
+easy_admin:
+    entities:
+        Descuento:
+            class: AppBundle\Entity\Descuento
+            form:
+                fields:
+                    - { property: 'nombre' }
+                    - { property: 'descripcion' }
+                    - { property: 'porcentaje' }
+                    - { property: 'abreviacion' }
+
+            edit:
+                title:  'Editar Descuento'
+            new:
+                title:  'Alta Descuento'
+            list:
+                title:  'Descuento'

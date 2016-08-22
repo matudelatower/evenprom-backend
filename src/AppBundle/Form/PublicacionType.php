@@ -79,7 +79,17 @@ class PublicacionType extends AbstractType {
 					'allow_delete'  => true, // not mandatory, default is true
 					'download_link' => true, // not mandatory, default is true
 				) )
-			->add( 'publicado' );
+			->add( 'descuentoPublicacion',
+				BootstrapCollectionType::class,
+				array(
+					'entry_type'   => DescuentoPublicacionType::class,
+					'allow_add'    => true,
+					'allow_delete' => true,
+					'by_reference' => false,
+					'max_items_add'=> 1
+				) )
+			->add( 'publicado' )
+		;
 	}
 
 	/**

@@ -73,6 +73,10 @@
                 <source>button.new.publicacion</source>
                 <target>Publicación Nueva</target>
             </trans-unit>
+            <trans-unit id="image_publicacion">
+                <source>image.publicacion</source>
+                <target>Imagen destacada</target>
+            </trans-unit>
             <trans-unit id="button_new_noticia">
                 <source>button.new.noticia</source>
                 <target>Noticia Nueva</target>
