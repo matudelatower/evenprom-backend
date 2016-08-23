@@ -22,7 +22,7 @@ class NoticiaType extends AbstractType {
 				array(
 					'attr' => array( 'placeholder' => 'Recomendado 12 caracteres' ),
 				) )
-			->add( 'descripcion',
+			->add( 'resumen',
 				TextType::class,
 				array(
 					'attr' => array( 'placeholder' => 'Recomendado 12 caracteres' ),
