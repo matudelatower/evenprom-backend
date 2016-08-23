@@ -26,6 +26,10 @@
                 <source>cambiar.idioma</source>
                 <target>Cambiar Idioma</target>
             </trans-unit>
+            <trans-unit id="Member since">
+                <source>Member since</source>
+                <target>Miembro Desde</target>
+            </trans-unit>
             <!--menu-->
             <trans-unit id="menu_empresa_profile">
                 <source>menu.empresa.profile</source>
@@ -44,6 +48,18 @@
             <trans-unit id="profile_empresa">
                 <source>profile.empresa</source>
                 <target>Perfil Empresa</target>
+            </trans-unit>
+            <trans-unit id="image_publicacion">
+                <source>image.publicacion</source>
+                <target>Imagen destacada</target>
+            </trans-unit>
+            <trans-unit id="button_new_noticia">
+                <source>button.new.noticia</source>
+                <target>Noticia Nueva</target>
+            </trans-unit>
+            <trans-unit id="button_new_publicacion">
+                <source>button.new.publicacion</source>
+                <target>Publicación Nueva</target>
             </trans-unit>
 
             <!--security-->
@@ -69,18 +85,6 @@
                 <source>button.edit</source>
                 <target>Editar</target>
             </trans-unit>
-            <trans-unit id="button_new_publicacion">
-                <source>button.new.publicacion</source>
-                <target>Publicación Nueva</target>
-            </trans-unit>
-            <trans-unit id="image_publicacion">
-                <source>image.publicacion</source>
-                <target>Imagen destacada</target>
-            </trans-unit>
-            <trans-unit id="button_new_noticia">
-                <source>button.new.noticia</source>
-                <target>Noticia Nueva</target>
-            </trans-unit>
             <trans-unit id="button_guardar">
                 <source>button.guardar</source>
                 <target>Guardar</target>
@@ -96,6 +100,50 @@
             <trans-unit id="Color">
                 <source>Color</source>
                 <target>Color</target>
+            </trans-unit>
+            <trans-unit id="Titulo">
+                <source>Titulo</source>
+                <target>Titulo</target>
+            </trans-unit>
+            <trans-unit id="Recomendado 12 caracteres">
+                <source>Recomendado 12 caracteres</source>
+                <target>Recomendado 12 caracteres</target>
+            </trans-unit>
+            <trans-unit id="Cuerpo">
+                <source>Cuerpo</source>
+                <target>Cuerpo</target>
+            </trans-unit>
+            <trans-unit id="Fecha inicio">
+                <source>Fecha inicio</source>
+                <target>Fecha inicio</target>
+            </trans-unit>
+            <trans-unit id="Fecha fin">
+                <source>Fecha fin</source>
+                <target>Fecha fin</target>
+            </trans-unit>
+            <trans-unit id="Hora inicio">
+                <source>Hora inicio</source>
+                <target>Hora inicio</target>
+            </trans-unit>
+            <trans-unit id="Hora fin">
+                <source>Hora fin</source>
+                <target>Hora fin</target>
+            </trans-unit>
+            <trans-unit id="Tipo publicacion">
+                <source>Tipo publicacion</source>
+                <target>Tipo publicación</target>
+            </trans-unit>
+            <trans-unit id="Categoria publicacion">
+                <source>Categoria publicacion</source>
+                <target>Categoria publicación</target>
+            </trans-unit>
+            <trans-unit id="Descuento publicacion">
+                <source>Descuento publicacion</source>
+                <target>Descuento publicación</target>
+            </trans-unit>
+            <trans-unit id="Publicado">
+                <source>Publicado</source>
+                <target>Publicado</target>
             </trans-unit>
         </body>
     </file>

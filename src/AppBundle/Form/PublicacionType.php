@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,8 +19,12 @@ class PublicacionType extends AbstractType {
 	 */
 	public function buildForm( FormBuilderInterface $builder, array $options ) {
 		$builder
-			->add( 'titulo' )
-			->add( 'descripcion' )
+			->add( 'titulo', TextType::class, array(
+				'attr' => array( 'placeholder' => 'Recomendado 12 caracteres' ),
+			) )
+			->add( 'descripcion' , TextType::class, array(
+				'attr' => array( 'placeholder' => 'Recomendado 12 caracteres' ),
+			) )
 			->add( 'cuerpo',
 				CKEditorType::class,
 				array(
@@ -97,7 +102,8 @@ class PublicacionType extends AbstractType {
 	 */
 	public function configureOptions( OptionsResolver $resolver ) {
 		$resolver->setDefaults( array(
-			'data_class' => 'AppBundle\Entity\Publicacion'
+			'data_class' => 'AppBundle\Entity\Publicacion',
+			'translation_domain' => 'app'
 		) );
 	}
 }
