@@ -15,7 +15,7 @@ class PublicacionesRestController extends FOSRestController {
 
 		foreach ( $publicaciones as $publicacione ) {
 			if ( $publicacione->getImageName() ) {
-				$publicacione->setImageName( $host . $publicacione->getImageName() );
+				$publicacione->setImageName( $host . '/' . $publicacione->getImageName() );
 			}
 		}
 
@@ -31,13 +31,13 @@ class PublicacionesRestController extends FOSRestController {
 
 	public function getPublicacionesporempresaAction( Request $request, $empresaId ) {
 
-		$publicaciones = $this->getDoctrine()->getRepository( "AppBundle:Publicacion" )->findAllByEmpresa($empresaId);
+		$publicaciones = $this->getDoctrine()->getRepository( "AppBundle:Publicacion" )->findAllByEmpresa( $empresaId );
 
 		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.publicaciones_image' );
 
 		foreach ( $publicaciones as $publicacione ) {
 			if ( $publicacione->getImageName() ) {
-				$publicacione->setImageName( $host . $publicacione->getImageName() );
+				$publicacione->setImageName( $host . '/' . $publicacione->getImageName() );
 			}
 		}
 

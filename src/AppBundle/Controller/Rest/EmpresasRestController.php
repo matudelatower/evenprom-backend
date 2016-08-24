@@ -15,7 +15,7 @@ class EmpresasRestController extends FOSRestController {
 
 		foreach ( $empresas as $empresa ) {
 			if ( $empresa->getImageName() ) {
-				$empresa->setImageName( $host . $empresa->getImageName() );
+				$empresa->setImageName( $host .'/'. $empresa->getImageName() );
 			}
 		}
 
@@ -29,10 +29,16 @@ class EmpresasRestController extends FOSRestController {
 
 	public function getEmpresaAction( Request $request, $id ) {
 
-		$empresas = $this->getDoctrine()->getRepository( "AppBundle:Empresa" )->find($id);
+		$empresa = $this->getDoctrine()->getRepository( "AppBundle:Empresa" )->find($id);
+
+		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter('app.path.empresas_image');
+
+		if ( $empresa->getImageName() ) {
+			$empresa->setImageName( $host .'/'. $empresa->getImageName() );
+		}
 
 
-		$vista = $this->view( $empresas,
+		$vista = $this->view( $empresa,
 			200 )
 		;
 
@@ -43,6 +49,13 @@ class EmpresasRestController extends FOSRestController {
 
 		$empresas = $this->getDoctrine()->getRepository( "AppBundle:Empresa" )->findBySlugCategoria($slug);
 
+		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter('app.path.empresas_image');
+
+		foreach ( $empresas as $empresa ) {
+			if ( $empresa->getImageName() ) {
+				$empresa->setImageName( $host .'/'. $empresa->getImageName() );
+			}
+		}
 
 		$vista = $this->view( $empresas,
 			200 )

@@ -12,29 +12,34 @@ class NoticiasRestController extends FOSRestController {
 		$noticias = $this->getDoctrine()->getRepository( "AppBundle:Noticia" )->findAll();
 
 
-		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter('app.path.noticias_image');
+		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.noticias_image' );
 
 		foreach ( $noticias as $noticia ) {
 			if ( $noticia->getImageName() ) {
-				$noticia->setImageName( $host . $noticia->getImageName() );
+				$noticia->setImageName( $host . '/' . $noticia->getImageName() );
 			}
 		}
 
 		$vista = $this->view( $noticias,
-			200 )
-		;
+			200 );
 
 		return $this->handleView( $vista );
 	}
 
 	public function getNoticiasEmpresaAction( Request $request, $noticiaId ) {
 
-		$noticias = $this->getDoctrine()->getRepository( "AppBundle:Noticia" )->findAllByEmpresa($noticiaId);
+		$noticias = $this->getDoctrine()->getRepository( "AppBundle:Noticia" )->findAllByEmpresa( $noticiaId );
 
+		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.noticias_image' );
+
+		foreach ( $noticias as $noticia ) {
+			if ( $noticia->getImageName() ) {
+				$noticia->setImageName( $host . '/' . $noticia->getImageName() );
+			}
+		}
 
 		$vista = $this->view( $noticias,
-			200 )
-		;
+			200 );
 
 		return $this->handleView( $vista );
 	}
