@@ -229,12 +229,61 @@ class Publicacion extends BaseClass {
 	}
 
 	/**
+	 * @VirtualProperty()
+	 * @SerializedName("nombre_empresa")
+	 */
+	public function getNombreEmpresa() {
+
+		$return = false;
+
+		if ( $this->getPublicacionEmpresa()->first()->getEmpresa()->getNombre() ) {
+			$return = $this->getPublicacionEmpresa()->first()->getEmpresa()->getNombre();
+		}
+
+		return $return;
+
+	}
+
+
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("color")
+	 */
+	public function getColorPublicacion() {
+
+		$return = false;
+
+		if ( $this->getPublicacionEmpresa()->first()->getEmpresa()->getColor() ) {
+			$return = $this->getPublicacionEmpresa()->first()->getEmpresa()->getColor();
+		}
+
+		return $return;
+
+	}
+
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("promocion")
+	 */
+	public function getPromocion() {
+
+		$return = false;
+
+		if ( count( $this->getDescuentoPublicacion() ) > 0 ) {
+			$return = $this->getDescuentoPublicacion()->first()->getDescuento()->getAbreviacion();
+		}
+
+		return $return;
+
+	}
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		$this->categoriaPublicacion = new \Doctrine\Common\Collections\ArrayCollection();
 		$this->descuentoPublicacion = new \Doctrine\Common\Collections\ArrayCollection();
-		$this->publicacionEmpresa = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->publicacionEmpresa   = new \Doctrine\Common\Collections\ArrayCollection();
 
 	}
 
@@ -602,41 +651,39 @@ class Publicacion extends BaseClass {
 		return $this->etiquetaPublicacion;
 	}
 
-    /**
-     * Add descuentoPublicacion
-     *
-     * @param \AppBundle\Entity\DescuentoPublicacion $descuentoPublicacion
-     * @return Publicacion
-     */
-    public function addDescuentoPublicacion(\AppBundle\Entity\DescuentoPublicacion $descuentoPublicacion)
-    {
+	/**
+	 * Add descuentoPublicacion
+	 *
+	 * @param \AppBundle\Entity\DescuentoPublicacion $descuentoPublicacion
+	 *
+	 * @return Publicacion
+	 */
+	public function addDescuentoPublicacion( \AppBundle\Entity\DescuentoPublicacion $descuentoPublicacion ) {
 
 
-	    $descuentoPublicacion->setPublicacion( $this );
+		$descuentoPublicacion->setPublicacion( $this );
 
-	    $this->descuentoPublicacion->add( $descuentoPublicacion );
+		$this->descuentoPublicacion->add( $descuentoPublicacion );
 
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Remove descuentoPublicacion
-     *
-     * @param \AppBundle\Entity\DescuentoPublicacion $descuentoPublicacion
-     */
-    public function removeDescuentoPublicacion(\AppBundle\Entity\DescuentoPublicacion $descuentoPublicacion)
-    {
-        $this->descuentoPublicacion->removeElement($descuentoPublicacion);
-    }
+	/**
+	 * Remove descuentoPublicacion
+	 *
+	 * @param \AppBundle\Entity\DescuentoPublicacion $descuentoPublicacion
+	 */
+	public function removeDescuentoPublicacion( \AppBundle\Entity\DescuentoPublicacion $descuentoPublicacion ) {
+		$this->descuentoPublicacion->removeElement( $descuentoPublicacion );
+	}
 
-    /**
-     * Get descuentoPublicacion
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getDescuentoPublicacion()
-    {
-        return $this->descuentoPublicacion;
-    }
+	/**
+	 * Get descuentoPublicacion
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getDescuentoPublicacion() {
+		return $this->descuentoPublicacion;
+	}
 }
