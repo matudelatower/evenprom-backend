@@ -278,6 +278,24 @@ class Publicacion extends BaseClass {
 	}
 
 	/**
+	 * @VirtualProperty()
+	 * @SerializedName("categorias")
+	 */
+	public function getCategorias() {
+
+		$return = array();
+
+		if ( $this->getCategoriaPublicacion() ) {
+			foreach ( $this->getCategoriaPublicacion() as $categoriaPublicacion ) {
+				$return[] = $categoriaPublicacion->getCategoria();
+			}
+		}
+
+		return $return;
+
+	}
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {

@@ -49,45 +49,18 @@
                 <source>profile.empresa</source>
                 <target>Perfil Empresa</target>
             </trans-unit>
-            <trans-unit id="image_publicacion">
-                <source>image.publicacion</source>
-                <target>Imagen destacada</target>
+            <trans-unit id="sin.categoria">
+                <source>sin.categoria</source>
+                <target>Sin Categoría</target>
             </trans-unit>
-            <trans-unit id="button_new_noticia">
-                <source>button.new.noticia</source>
-                <target>Noticia Nueva</target>
-            </trans-unit>
+            <!--publicacion-->
             <trans-unit id="button_new_publicacion">
                 <source>button.new.publicacion</source>
                 <target>Publicación Nueva</target>
             </trans-unit>
-
-            <!--security-->
-            <trans-unit id="profile">
-                <source>perfil</source>
-                <target>Perfil</target>
-            </trans-unit>
-
-            <!--forms-->
-            <trans-unit id="list">
-                <source>list</source>
-                <target>listado</target>
-            </trans-unit>
-            <trans-unit id="button_backtolist">
-                <source>button.backtolist</source>
-                <target>Volver</target>
-            </trans-unit>
-            <trans-unit id="button_save">
-                <source>button.save</source>
-                <target>Guardar</target>
-            </trans-unit>
-            <trans-unit id="button_edit">
-                <source>button.edit</source>
-                <target>Editar</target>
-            </trans-unit>
-            <trans-unit id="button_guardar">
-                <source>button.guardar</source>
-                <target>Guardar</target>
+            <trans-unit id="image_publicacion">
+                <source>image.publicacion</source>
+                <target>Imagen destacada</target>
             </trans-unit>
             <trans-unit id="Descripcion">
                 <source>Descripcion</source>
@@ -141,9 +114,74 @@
                 <source>Descuento publicacion</source>
                 <target>Descuento publicación</target>
             </trans-unit>
+            <!--noticia-->
+            <trans-unit id="button_new_noticia">
+                <source>button.new.noticia</source>
+                <target>Noticia Nueva</target>
+            </trans-unit>
             <trans-unit id="Publicado">
                 <source>Publicado</source>
                 <target>Publicado</target>
+            </trans-unit>
+            <trans-unit id="Resumen">
+                <source>Resumen</source>
+                <target>Resumen</target>
+            </trans-unit>
+            <trans-unit id="Visible desde">
+                <source>Visible desde</source>
+                <target>Visible desde</target>
+            </trans-unit>
+            <trans-unit id="Visible hasta">
+                <source>Visible hasta</source>
+                <target>Visible hasta</target>
+            </trans-unit>
+            <trans-unit id="Imagen Destacada">
+                <source>Imagen Destacada</source>
+                <target>Imagen Destacada</target>
+            </trans-unit>
+            <trans-unit id="Orden">
+                <source>Orden</source>
+                <target>Orden</target>
+            </trans-unit>
+            <trans-unit id="Activo">
+                <source>Activo</source>
+                <target>Activo</target>
+            </trans-unit>
+
+            <!--security-->
+            <trans-unit id="profile">
+                <source>perfil</source>
+                <target>Perfil</target>
+            </trans-unit>
+
+            <!--forms-->
+            <trans-unit id="list">
+                <source>list</source>
+                <target>listado</target>
+            </trans-unit>
+            <trans-unit id="creation">
+                <source>creation</source>
+                <target>Nueva</target>
+            </trans-unit>
+            <trans-unit id="button_backtolist">
+                <source>button.backtolist</source>
+                <target>Volver</target>
+            </trans-unit>
+            <trans-unit id="button_save">
+                <source>button.save</source>
+                <target>Guardar</target>
+            </trans-unit>
+            <trans-unit id="button_edit">
+                <source>button.edit</source>
+                <target>Editar</target>
+            </trans-unit>
+            <trans-unit id="button_guardar">
+                <source>button.guardar</source>
+                <target>Guardar</target>
+            </trans-unit>
+            <trans-unit id="Actions">
+                <source>Actions</source>
+                <target>Acciones</target>
             </trans-unit>
         </body>
     </file>

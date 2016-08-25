@@ -18,13 +18,27 @@ class PublicacionType extends AbstractType {
 	 * @param array $options
 	 */
 	public function buildForm( FormBuilderInterface $builder, array $options ) {
+		$maxLength= 12;
+
+
 		$builder
-			->add( 'titulo', TextType::class, array(
-				'attr' => array( 'placeholder' => 'Recomendado 12 caracteres' ),
-			) )
-			->add( 'descripcion' , TextType::class, array(
-				'attr' => array( 'placeholder' => 'Recomendado 12 caracteres' ),
-			) )
+			->add( 'titulo',
+				TextType::class,
+				array(
+					'attr' => array(
+						'placeholder' => "Recomendado $maxLength caracteres",
+						'maxlength'   => $maxLength,
+						'help_text' => 'Por ej en si es una oferta "pastas, vinos, etc"'
+					),
+				) )
+			->add( 'descripcion',
+				TextType::class,
+				array(
+					'attr' => array(
+						'placeholder' => "Recomendado $maxLength caracteres",
+						'maxlength'   => $maxLength,
+					),
+				) )
 			->add( 'cuerpo',
 				CKEditorType::class,
 				array(
@@ -38,6 +52,7 @@ class PublicacionType extends AbstractType {
 					'format' => 'dd-MM-yyyy',
 					'attr'   => array(
 						'class' => 'datepicker',
+						'placeholder' => "Fecha de inicio de evento/oferta ",
 					),
 				) )->add( 'fechaFin',
 				DateType::class,
@@ -46,6 +61,7 @@ class PublicacionType extends AbstractType {
 					'format' => 'dd-MM-yyyy',
 					'attr'   => array(
 						'class' => 'datepicker',
+						'placeholder' => "Fecha de fin de evento/oferta ",
 					),
 				) )
 			->add( 'horaInicio',
@@ -55,7 +71,8 @@ class PublicacionType extends AbstractType {
 					'widget'   => 'single_text',
 					'data'     => null,
 					'attr'     => array(
-						'class' => 'timepicker'
+						'class' => 'timepicker',
+						'placeholder' => "Si es un evento, la hora de inicio del evento",
 					)
 				) )
 			->add( 'horaFin',
@@ -64,7 +81,8 @@ class PublicacionType extends AbstractType {
 					'required' => false,
 					'widget'   => 'single_text',
 					'attr'     => array(
-						'class' => 'timepicker'
+						'class' => 'timepicker',
+						'placeholder' => "Si es un evento, la hora de fin del evento",
 					)
 				) )
 			->add( 'tipoPublicacion' )
@@ -87,14 +105,13 @@ class PublicacionType extends AbstractType {
 			->add( 'descuentoPublicacion',
 				BootstrapCollectionType::class,
 				array(
-					'entry_type'   => DescuentoPublicacionType::class,
-					'allow_add'    => true,
-					'allow_delete' => true,
-					'by_reference' => false,
-					'max_items_add'=> 1
+					'entry_type'    => DescuentoPublicacionType::class,
+					'allow_add'     => true,
+					'allow_delete'  => true,
+					'by_reference'  => false,
+					'max_items_add' => 1
 				) )
-			->add( 'publicado' )
-		;
+			->add( 'publicado' );
 	}
 
 	/**
@@ -102,7 +119,7 @@ class PublicacionType extends AbstractType {
 	 */
 	public function configureOptions( OptionsResolver $resolver ) {
 		$resolver->setDefaults( array(
-			'data_class' => 'AppBundle\Entity\Publicacion',
+			'data_class'         => 'AppBundle\Entity\Publicacion',
 			'translation_domain' => 'app'
 		) );
 	}

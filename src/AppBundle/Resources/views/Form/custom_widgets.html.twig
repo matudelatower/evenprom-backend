@@ -1,5 +1,15 @@
 {% extends 'bootstrap_3_layout.html.twig' %}
 
+{% block form_widget_simple -%}
+    {% if type is not defined or type not in ['file', 'hidden'] %}
+        {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-control')|trim}) -%}
+    {% endif %}
+    {{- parent() -}}
+    {% if attr.help_text is defined %}
+        <span class="help-block text-yellow">{{ attr.help_text }}</span>
+    {% endif %}
+{%- endblock form_widget_simple %}
+
 {% block time_widget -%}
     <div class="bootstrap-timepicker">
     {% if widget == 'single_text' %}

@@ -2,6 +2,19 @@
 {% trans_default_domain "app" %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('bundles/app/plugins/colorpicker/bootstrap-colorpicker.min.css') }}">
+    <style>
+        .widget-user .widget-user-image {
+            left: 50%;
+            margin-left: -45px;
+            position: absolute;
+            top: 50px;
+        }
+        .widget-user .widget-user-image > img {
+            border: 3px solid #fff;
+            height: 100px;
+            width: 100px;
+        }
+    </style>
 {% endblock stylesheets %}
 {% block content %}
     <div class="box box-default">
