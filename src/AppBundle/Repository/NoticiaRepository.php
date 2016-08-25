@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Empresa;
 use Doctrine\ORM\EntityRepository;
 
 /**

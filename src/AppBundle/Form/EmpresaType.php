@@ -18,7 +18,14 @@ class EmpresaType extends AbstractType {
 	public function buildForm( FormBuilderInterface $builder, array $options ) {
 		$builder
 			->add( 'nombre' )
-			->add( 'descripcion' )
+			->add( 'descripcion',
+				TextType::class,
+				array(
+					'attr'     => array(
+						'help_text' => 'Por ej si su empresa es Macowens, la descripcion sería: Ropa Formal',
+					),
+					'required' => false,
+				) )
 			->add( 'color',
 				TextType::class,
 				array(
@@ -85,19 +92,18 @@ class EmpresaType extends AbstractType {
 			->add( 'empresaOnda',
 				BootstrapCollectionType::class,
 				array(
-					'entry_type'    => EmpresaOndaType::class,
-					'allow_add'     => true,
-					'allow_delete'  => true,
-					'by_reference'  => false,
+					'entry_type'   => EmpresaOndaType::class,
+					'allow_add'    => true,
+					'allow_delete' => true,
+					'by_reference' => false,
 				) )
-
 			->add( 'empresaSubRubro',
 				BootstrapCollectionType::class,
 				array(
-					'entry_type'    => EmpresaSubRubroType::class,
-					'allow_add'     => true,
-					'allow_delete'  => true,
-					'by_reference'  => false,
+					'entry_type'   => EmpresaSubRubroType::class,
+					'allow_add'    => true,
+					'allow_delete' => true,
+					'by_reference' => false,
 				) )
 			->add( 'empresaHotelAgencia',
 				BootstrapCollectionType::class,
@@ -107,8 +113,7 @@ class EmpresaType extends AbstractType {
 					'allow_delete'  => true,
 					'by_reference'  => false,
 					'max_items_add' => 1
-				) )
-		;
+				) );
 	}
 
 	/**

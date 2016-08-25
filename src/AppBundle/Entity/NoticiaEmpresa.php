@@ -26,7 +26,7 @@ class NoticiaEmpresa extends BaseClass
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Noticia")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Noticia", inversedBy="noticiaEmpresa")
      * @ORM\JoinColumn(name="noticia_id", referencedColumnName="id")
      */
     private $noticia;

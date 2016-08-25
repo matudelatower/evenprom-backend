@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\CategoriaPublicacion;
 use AppBundle\Entity\PublicacionEmpresa;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -37,6 +38,8 @@ class PublicacionController extends Controller {
 	 */
 	public function newAction( Request $request ) {
 		$publicacion = new Publicacion();
+		$categoriaPublicacion = new CategoriaPublicacion();
+		$publicacion->addCategoriaPublicacion($categoriaPublicacion);
 		$form        = $this->createForm( 'AppBundle\Form\PublicacionType', $publicacion );
 		$form->handleRequest( $request );
 

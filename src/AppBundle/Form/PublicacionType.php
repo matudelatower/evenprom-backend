@@ -43,6 +43,16 @@ class PublicacionType extends AbstractType {
 				CKEditorType::class,
 				array(
 					'config' => array(//'uiColor' => '#ffffff',
+						'extraPlugins' => 'confighelper',
+					),
+					'plugins' => array(
+						'confighelper' => array(
+							'path' => '/bundles/app/js/confighelper/',
+							'filename' => 'plugin.js',
+						),
+					),
+					'attr' => array(
+						'placeholder' => 'Las condiciones de la oferta o Descripcion larga del evento.'
 					),
 				) )
 			->add( 'fechaInicio',
