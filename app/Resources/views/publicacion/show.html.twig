@@ -1,48 +1,71 @@
 {% extends '::layout_base.html.twig' %}
-
+{% trans_default_domain "app" %}
 {% block content %}
-    <h1>Publicacion</h1>
+    <div class="row">
 
-    <table>
-        <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ publicacion.id }}</td>
-        </tr>
-        <tr>
-            <th>Titulo</th>
-            <td>{{ publicacion.titulo }}</td>
-        </tr>
-        <tr>
-            <th>Descripcion</th>
-            <td>{{ publicacion.descripcion }}</td>
-        </tr>
-        <tr>
-            <th>Fecha inicio</th>
-            <td>{% if publicacion.fechaInicio %}{{ publicacion.fechaInicio|date('Y-m-d') }}{% endif %}</td>
-        </tr>
-        <tr>
-            <th>Fecha fin</th>
-            <td>{% if publicacion.fechaFin %}{{ publicacion.fechaFin|date('Y-m-d') }}{% endif %}</td>
-        </tr>
-        <tr>
-            <th>Hora inicio</th>
-            <td>{% if publicacion.horaInicio %}{{ publicacion.horaInicio|date('H:i:s') }}{% endif %}</td>
-        </tr>
-        <tr>
-            <th>Hora fin</th>
-            <td>{% if publicacion.horaFin %}{{ publicacion.horaFin|date('H:i:s') }}{% endif %}</td>
-        </tr>
-        </tbody>
-    </table>
+        <div class="col-md-6">
+            <!-- Box Comment -->
+            <div class="box box-widget">
+                <div class="box-header with-border">
+                    <div class="user-block">
+                        <img class="img-circle"
+                             src="{{ asset('uploads/images/empresas/'~ publicacion.publicacionEmpresa.first.empresa.imageName) }}"
+                             alt="User Image">
+                        <span class="username"><a href="#">{{ publicacion.publicacionEmpresa.first.empresa }}</a></span>
+                        <span class="description">{{ 'publicado el'|trans }} {{ publicacion.fechaCreacion | date('d/m/Y') }}</span>
+                    </div>
+                    <!-- /.user-block -->
+                    <div class="box-tools">
+                        <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Mark as read">
+                            <i class="fa fa-circle-o"></i></button>
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                    class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+
+                    <div>
+                        <label>Visible
+                            Desde:</label><span>{% if publicacion.fechaInicio %}{{ publicacion.fechaInicio|date('Y-m-d H:i:s') }}{% endif %}</span>
+                        <label>Visible
+                            Hasta:</label><span>{% if publicacion.fechaFin %}{{ publicacion.fechaFin|date('Y-m-d H:i:s') }}{% endif %}</span>
+
+                    </div>
+
+                    <h1>{{ publicacion.titulo }}</h1>
+
+                    <img class="img-responsive pad" src="{{ asset('uploads/images/publicaciones/'~ publicacion.imageName) }}"
+                         alt="Photo">
+
+                    <p>{{ publicacion.cuerpo |raw }}</p>
+                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
+                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
+                    <span class="pull-right text-muted">127 likes - 3 comments</span>
+                </div>
+                <!-- /.box-body -->
+
+                <!-- /.box-footer -->
+            </div>
+            <!-- /.box -->
+        </div>
+
+
+    </div>
 
     <div class="form-buttons">
 
-        <a class="btn btn-default" href="{{ path('publicaciones_index') }}">{{ 'button.backtolist'|trans }} </a>
 
         <a class="btn btn-default"
-           href="{{ path('publicaciones_edit', { 'id': publicacion.id }) }}">{{ 'button.edit'|trans }}</a>
-
+           href="{% if publicacion.tipoPublicacion.slug =='evento' %}
+                                            {{ path('evento_edit', { 'id': publicacion.id }) }}
+                                        {% elseif publicacion.tipoPublicacion.slug =='oferta' %}
+                                            {{ path('evento_edit', { 'id': publicacion.id }) }}
+                                        {% endif %}">{{ 'button.edit'|trans }}</a>
 
     </div>
 {% endblock %}

@@ -1,12 +1,12 @@
 {% extends '::layout_base.html.twig' %}
 {% trans_default_domain "app" %}
 {% block content %}
-    <div class="row">
-        <div class="col-md-3">
-            <a class="btn btn-primary margin-bottom"
-               href="{{ path('publicaciones_new') }}">{{ "button.new.publicacion"|trans }}</a>
-        </div>
-    </div>
+    {#<div class="row">#}
+    {#<div class="col-md-3">#}
+    {#<a class="btn btn-primary margin-bottom"#}
+    {#href="{{ path('publicaciones_new') }}">{{ "button.new.publicacion"|trans }}</a>#}
+    {#</div>#}
+    {#</div>#}
     <div class="row">
         <div class="col-md-12">
             <div class="box">
@@ -46,8 +46,13 @@
                                        href="{{ path('publicaciones_show', { 'id': publicacion.id }) }}"><i
                                                 class="fa fa-eye"></i></a>
                                     <a class="btn btn-default"
-                                       href="{{ path('publicaciones_edit', { 'id': publicacion.id }) }}"><i
-                                                class="fa fa-edit"></i></a>
+                                       href="
+                                        {% if publicacion.tipoPublicacion.slug =='evento' %}
+                                            {{ path('evento_edit', { 'id': publicacion.id }) }}
+                                        {% elseif publicacion.tipoPublicacion.slug =='oferta' %}
+                                            {{ path('evento_edit', { 'id': publicacion.id }) }}
+                                        {% endif %}
+                                    "><i class="fa fa-edit"></i></a>
                                 </td>
                             </tr>
                             {% set contador = contador + 1 %}

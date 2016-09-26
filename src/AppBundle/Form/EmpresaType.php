@@ -67,7 +67,8 @@ class EmpresaType extends AbstractType {
 					'allow_add'     => true,
 					'allow_delete'  => true,
 					'by_reference'  => false,
-					'max_items_add' => 1
+					'max_items_add' => 1,
+					'label_attr'    => array( 'class' => 'text-green h2' )
 				)
 			)
 			->add( 'contactoEmpresa',
@@ -77,7 +78,8 @@ class EmpresaType extends AbstractType {
 					'allow_add'     => true,
 					'allow_delete'  => true,
 					'by_reference'  => false,
-					'max_items_add' => 1
+					'max_items_add' => 1,
+					'label_attr'    => array( 'class' => 'text-green h2' )
 				)
 			)
 			->add( 'categoriaEmpresa',
@@ -87,7 +89,8 @@ class EmpresaType extends AbstractType {
 					'allow_add'     => true,
 					'allow_delete'  => true,
 					'by_reference'  => false,
-					'max_items_add' => 1
+					'max_items_add' => 1,
+					'label_attr'    => array( 'class' => 'text-green h2' )
 				) )
 			->add( 'empresaOnda',
 				BootstrapCollectionType::class,
@@ -96,6 +99,7 @@ class EmpresaType extends AbstractType {
 					'allow_add'    => true,
 					'allow_delete' => true,
 					'by_reference' => false,
+					'label_attr'    => array( 'class' => 'text-green h2' )
 				) )
 			->add( 'empresaSubRubro',
 				BootstrapCollectionType::class,
@@ -104,6 +108,7 @@ class EmpresaType extends AbstractType {
 					'allow_add'    => true,
 					'allow_delete' => true,
 					'by_reference' => false,
+					'label_attr'    => array( 'class' => 'text-green h2' )
 				) )
 			->add( 'empresaHotelAgencia',
 				BootstrapCollectionType::class,
@@ -112,7 +117,8 @@ class EmpresaType extends AbstractType {
 					'allow_add'     => true,
 					'allow_delete'  => true,
 					'by_reference'  => false,
-					'max_items_add' => 1
+					'max_items_add' => 1,
+					'label_attr'    => array( 'class' => 'text-green h2' )
 				) );
 	}
 

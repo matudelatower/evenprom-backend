@@ -43,6 +43,22 @@
                 <source>menu.empresa.noticias</source>
                 <target>Noticias Empresa</target>
             </trans-unit>
+            <trans-unit id="menu_empresa_nuevo_evento">
+                <source>menu.empresa.nuevo_evento</source>
+                <target>Nuevo Evento</target>
+            </trans-unit>
+            <trans-unit id="menu_empresa_nueva_oferta">
+                <source>menu.empresa.nueva_oferta</source>
+                <target>Nueva Oferta</target>
+            </trans-unit>
+            <trans-unit id="menu_empresa_noticias_recientes">
+                <source>menu.empresa.noticias_recientes</source>
+                <target>Noticias de mi Empresa</target>
+            </trans-unit>
+            <trans-unit id="menu_empresa_publicaciones_recientes">
+                <source>menu.empresa.publicaciones_recientes</source>
+                <target>Publicaciones de mi Empresa</target>
+            </trans-unit>
 
             <!--propias de la app-->
             <trans-unit id="profile_empresa">
@@ -53,6 +69,17 @@
                 <source>sin.categoria</source>
                 <target>Sin Categoría</target>
             </trans-unit>
+            <!--oferta-->
+            <trans-unit id="nombre.oferta">
+                <source>nombre.oferta</source>
+                <target>Nombre de la Oferta</target>
+            </trans-unit>
+            <!--oferta-->
+            <trans-unit id="nombre.evento">
+                <source>nombre.evento</source>
+                <target>Nombre del Evento</target>
+            </trans-unit>
+
             <!--publicacion-->
             <trans-unit id="button_new_publicacion">
                 <source>button.new.publicacion</source>

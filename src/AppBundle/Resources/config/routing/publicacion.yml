@@ -22,3 +22,23 @@ publicaciones_delete:
     path:     /{id}/delete
     defaults: { _controller: "AppBundle:Publicacion:delete" }
     methods:  DELETE
+
+oferta_new:
+    path:     /new_oferta
+    defaults: { _controller: "AppBundle:Publicacion:nuevaOferta" }
+    methods:  [GET, POST]
+
+oferta_edit:
+    path:     /{id}/edit_oferta
+    defaults: { _controller: "AppBundle:Publicacion:editarOferta" }
+    methods:  [GET, POST]
+
+evento_new:
+    path:     /new_evento
+    defaults: { _controller: "AppBundle:Publicacion:nuevoEvento" }
+    methods:  [GET, POST]
+
+evento_edit:
+    path:     /{id}/edit_evento
+    defaults: { _controller: "AppBundle:Publicacion:editarEvento" }
+    methods:  [GET, POST]

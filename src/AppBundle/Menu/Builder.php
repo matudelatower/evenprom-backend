@@ -55,22 +55,61 @@ class Builder implements ContainerAwareInterface {
 
 			$menu[ $keyEmpresa ]
 				->addChild(
-					$this->container->get( 'translator' )->trans( 'menu.empresa.publicaciones',
+					$this->container->get( 'translator' )->trans( 'menu.empresa.nuevo_evento',
 						array(),
 						'app' ),
 					array(
-						'route' => 'publicaciones_index',
+						'route' => 'evento_new',
 					)
 				);
 			$menu[ $keyEmpresa ]
 				->addChild(
-					$this->container->get( 'translator' )->trans( 'menu.empresa.noticias',
+					$this->container->get( 'translator' )->trans( 'menu.empresa.nueva_oferta',
+						array(),
+						'app' ),
+					array(
+						'route' => 'oferta_new',
+					)
+				);
+
+			$menu[ $keyEmpresa ]
+				->addChild(
+					$this->container->get( 'translator' )->trans( 'menu.empresa.noticias_recientes',
 						array(),
 						'app' ),
 					array(
 						'route' => 'noticias_index',
 					)
 				);
+
+			$menu[ $keyEmpresa ]
+				->addChild(
+					$this->container->get( 'translator' )->trans( 'menu.empresa.publicaciones_recientes',
+						array(),
+						'app' ),
+					array(
+						'route' => 'publicaciones_index',
+					)
+				);
+
+//			$menu[ $keyEmpresa ]
+//				->addChild(
+//					$this->container->get( 'translator' )->trans( 'menu.empresa.publicaciones',
+//						array(),
+//						'app' ),
+//					array(
+//						'route' => 'publicaciones_index',
+//					)
+//				);
+//			$menu[ $keyEmpresa ]
+//				->addChild(
+//					$this->container->get( 'translator' )->trans( 'menu.empresa.noticias',
+//						array(),
+//						'app' ),
+//					array(
+//						'route' => 'noticias_index',
+//					)
+//				);
 		}
 
 		return $menu;

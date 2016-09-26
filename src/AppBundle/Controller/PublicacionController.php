@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\CategoriaPublicacion;
+use AppBundle\Entity\DescuentoPublicacion;
 use AppBundle\Entity\PublicacionEmpresa;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -37,10 +38,10 @@ class PublicacionController extends Controller {
 	 *
 	 */
 	public function newAction( Request $request ) {
-		$publicacion = new Publicacion();
+		$publicacion          = new Publicacion();
 		$categoriaPublicacion = new CategoriaPublicacion();
-		$publicacion->addCategoriaPublicacion($categoriaPublicacion);
-		$form        = $this->createForm( 'AppBundle\Form\PublicacionType', $publicacion );
+		$publicacion->addCategoriaPublicacion( $categoriaPublicacion );
+		$form = $this->createForm( 'AppBundle\Form\PublicacionType', $publicacion );
 		$form->handleRequest( $request );
 
 		if ( $form->isSubmitted() && $form->isValid() ) {
@@ -148,4 +149,158 @@ class PublicacionController extends Controller {
 		            ->setMethod( 'DELETE' )
 		            ->getForm();
 	}
+
+	/**
+	 * Creates a new Oferta.
+	 *
+	 */
+	public function nuevaOfertaAction( Request $request ) {
+		$publicacion          = new Publicacion();
+		$descuentoPublicacion = new DescuentoPublicacion();
+		$publicacion->addDescuentoPublicacion( $descuentoPublicacion );
+
+		$em = $this->getDoctrine()->getManager();
+
+		$tipoPublicacion = $em->getRepository( 'AppBundle:TipoPublicacion' )->findOneBySlug( 'oferta' );
+
+		$publicacion->setTipoPublicacion( $tipoPublicacion );
+
+		$form = $this->createForm( 'AppBundle\Form\OfertaType', $publicacion );
+		$form->handleRequest( $request );
+
+		if ( $form->isSubmitted() && $form->isValid() ) {
+
+
+			$publicacionEmpresa = new PublicacionEmpresa();
+			$publicacionEmpresa->setPublicacion( $publicacion );
+			$empresa = $this->getUser()->getEmpresa()->first();
+			$publicacionEmpresa->setEmpresa( $empresa );
+			$publicacion->addPublicacionEmpresa( $publicacionEmpresa );
+
+			$em->persist( $publicacion );
+			$em->flush();
+
+			$this->get( 'session' )->getFlashBag()->add(
+				'success',
+				$this->get( 'translator' )->trans( '%entity% Creado Correctamente',
+					array( '%entity%' => 'Oferta' ),
+					'flashes' )
+			);
+
+			return $this->redirectToRoute( 'publicaciones_show', array( 'id' => $publicacion->getId() ) );
+		}
+
+		return $this->render( 'publicacion/new_oferta.html.twig',
+			array(
+				'publicacion' => $publicacion,
+				'form'        => $form->createView(),
+			) );
+	}
+
+	/**
+	 * Displays a form to edit an existing Offerta.
+	 *
+	 */
+	public function editarOfertaAction( Request $request, Publicacion $publicacion ) {
+
+		$editForm = $this->createForm( 'AppBundle\Form\OfertaType', $publicacion );
+		$editForm->handleRequest( $request );
+
+		if ( $editForm->isSubmitted() && $editForm->isValid() ) {
+			$em = $this->getDoctrine()->getManager();
+			$em->persist( $publicacion );
+			$em->flush();
+
+			$this->get( 'session' )->getFlashBag()->add(
+				'success',
+				$this->get( 'translator' )->trans( '%entity% Actualizado Correctamente',
+					array( '%entity%' => 'Oferta' ),
+					'flashes' )
+			);
+
+			return $this->redirectToRoute( 'oferta_edit', array( 'id' => $publicacion->getId() ) );
+		}
+
+		return $this->render( 'publicacion/edit_oferta.html.twig',
+			array(
+				'publicacion' => $publicacion,
+				'edit_form'   => $editForm->createView(),
+			) );
+	}
+
+	/**
+	 * Creates a new Publicacion entity.
+	 *
+	 */
+	public function nuevoEventoAction( Request $request ) {
+		$publicacion = new Publicacion();
+		$em          = $this->getDoctrine()->getManager();
+
+		$tipoPublicacion = $em->getRepository( 'AppBundle:TipoPublicacion' )->findOneBySlug( 'evento' );
+
+		$publicacion->setTipoPublicacion( $tipoPublicacion );
+
+		$form = $this->createForm( 'AppBundle\Form\EventoType', $publicacion );
+		$form->handleRequest( $request );
+
+		if ( $form->isSubmitted() && $form->isValid() ) {
+
+			$publicacionEmpresa = new PublicacionEmpresa();
+			$publicacionEmpresa->setPublicacion( $publicacion );
+			$empresa = $this->getUser()->getEmpresa()->first();
+			$publicacionEmpresa->setEmpresa( $empresa );
+			$publicacion->addPublicacionEmpresa( $publicacionEmpresa );
+
+			$em->persist( $publicacion );
+			$em->flush();
+
+			$this->get( 'session' )->getFlashBag()->add(
+				'success',
+				$this->get( 'translator' )->trans( '%entity% Creado Correctamente',
+					array( '%entity%' => 'Evento' ),
+					'flashes' )
+			);
+
+			return $this->redirectToRoute( 'publicaciones_show', array( 'id' => $publicacion->getId() ) );
+		}
+
+		return $this->render( 'publicacion/new_evento.html.twig',
+			array(
+				'publicacion' => $publicacion,
+				'form'        => $form->createView(),
+			) );
+	}
+
+	/**
+	 * Displays a form to edit an existing Evento.
+	 *
+	 */
+	public function editarEventoAction( Request $request, Publicacion $publicacion ) {
+
+		$editForm = $this->createForm( 'AppBundle\Form\EventoType', $publicacion );
+		$editForm->handleRequest( $request );
+
+		if ( $editForm->isSubmitted() && $editForm->isValid() ) {
+			$em = $this->getDoctrine()->getManager();
+			$em->persist( $publicacion );
+			$em->flush();
+
+			$this->get( 'session' )->getFlashBag()->add(
+				'success',
+				$this->get( 'translator' )->trans( '%entity% Actualizado Correctamente',
+					array( '%entity%' => 'Evento' ),
+					'flashes' )
+			);
+
+			return $this->redirectToRoute( 'evento_edit', array( 'id' => $publicacion->getId() ) );
+		}
+
+		return $this->render( 'publicacion/edit_evento.html.twig',
+			array(
+				'publicacion' => $publicacion,
+				'edit_form'   => $editForm->createView(),
+			) );
+	}
+
+
 }

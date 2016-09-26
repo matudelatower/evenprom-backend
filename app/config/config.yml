@@ -9,7 +9,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: es
-    site_name: 'WhatsOnCity'
+    site_name: 'EvenProm'
     languages: "(es|en|pt)"
     app.path.empresas_image: /uploads/images/empresas
     app.path.publicaciones_image: /uploads/images/publicaciones

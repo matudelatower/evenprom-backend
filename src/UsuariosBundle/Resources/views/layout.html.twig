@@ -17,8 +17,6 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('bundles/app/AdminLTE-2.3.5/css/AdminLTE.min.css') }}">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="{{ asset('bundles/app/plugins/iCheck/square/blue.css') }}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -73,16 +71,8 @@
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
-                <div class="col-xs-8">
-                    <div class="checkbox icheck">
-                        <label>
-                            <input name="_remember_me"
-                                   type="checkbox"> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
-                        </label>
-                    </div>
-                </div>
                 <!-- /.col -->
-                <div class="col-xs-4">
+                <div class="col-xs-4 col-xs-offset-8">
                     <button type="submit" name="_submit"
                             class="btn btn-primary btn-block btn-flat">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
                 </div>
@@ -101,16 +91,6 @@
 <script src="{{ asset('bundles/app/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 <!-- Bootstrap 3.3.5 -->
 <script src="{{ asset('bundles/app/bootstrap/js/bootstrap.min.js') }}"></script>
-<!-- iCheck -->
-<script src="{{ asset('bundles/app/plugins/iCheck/icheck.min.js') }}"></script>
-<script>
-    $(function () {
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
-            increaseArea: '20%' // optional
-        });
-    });
-</script>
+
 </body>
 </html>

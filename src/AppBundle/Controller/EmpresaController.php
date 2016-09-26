@@ -2,6 +2,13 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\CategoriaEmpresa;
+use AppBundle\Entity\ContactoEmpresa;
+use AppBundle\Entity\DireccionEmpresa;
+use AppBundle\Entity\EmpresaHotelAgencia;
+use AppBundle\Entity\EmpresaOnda;
+use AppBundle\Entity\EmpresaSubRubro;
+use AppBundle\Entity\HotelAgencia;
 use AppBundle\Form\RegistrarEmpresaType;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
@@ -192,9 +199,36 @@ class EmpresaController extends Controller {
 
 	public function perfilAction( Request $request ) {
 
+		/* @var $empresa Empresa */
 		$empresa = $this->getUser()->getEmpresa()->first();
 
+		if ( null == $empresa->getDireccionEmpresa() ) {
+			$direccionEmpresa = new DireccionEmpresa();
+			$empresa->addDireccionEmpresa( $direccionEmpresa );
+		}
+		if ( null == $empresa->getContactoEmpresa() ) {
+			$contactoEmpresa     = new ContactoEmpresa();
+			$empresa->addContactoEmpresa( $contactoEmpresa );
+		}
+		if ( null == $empresa->getCategoriaEmpresa() ) {
+			$categoriaEmpresa    = new CategoriaEmpresa();
+			$empresa->addCategoriaEmpresa( $categoriaEmpresa );
+		}
+		if ( null == $empresa->getEmpresaOnda() ) {
+			$empresaOnda         = new EmpresaOnda();
+			$empresa->addEmpresaOnda( $empresaOnda );
+		}
+		if ( null == $empresa->getEmpresaSubRubro() ) {
+			$empresaSubRubro     = new EmpresaSubRubro();
+			$empresa->addEmpresaSubRubro( $empresaSubRubro );
+		}
+		if ( null == $empresa->getEmpresaHotelAgencia() ) {
+			$empresaHotelAgencia = new EmpresaHotelAgencia();
+			$empresa->addEmpresaHotelAgencium( $empresaHotelAgencia );
+		}
+
 		$form = $this->createForm( EmpresaType::class, $empresa );
+
 
 		if ( $request->getMethod() == 'POST' ) {
 
