@@ -296,6 +296,22 @@ class Publicacion extends BaseClass {
 	}
 
 	/**
+	 * @VirtualProperty()
+	 * @SerializedName("tipo_publicacion")
+	 */
+	public function getTipoDePublicacion() {
+
+		$return = false;
+
+		if ( $this->getTipoPublicacion() ) {
+			$return = $this->getTipoPublicacion()->getSlug();
+		}
+
+		return $return;
+
+	}
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {
