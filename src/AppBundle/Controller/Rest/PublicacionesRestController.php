@@ -51,5 +51,15 @@ class PublicacionesRestController extends FOSRestController {
 		return $this->handleView( $vista );
 	}
 
+	public function getPromoCalendarioAction( Request $request ) {
+
+		$promoCalenadario = array();
+
+		$vista = $this->view( $promoCalenadario,
+			200 );
+
+		return $this->handleView( $vista );
+	}
+
 
 }

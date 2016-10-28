@@ -1,0 +1,11 @@
+easy_admin:
+    entities:
+        Plan:
+            class: AppBundle\Entity\Plan
+            form:
+                fields:
+                    - { property: 'nombre' }
+                    - { property: 'descripcion' }
+                    - { property: 'valor' }
+                    - { property: 'periodo', label: 'Periodo (en Dias)' }
+                    - { property: 'imageFile', type: 'vich_image' }

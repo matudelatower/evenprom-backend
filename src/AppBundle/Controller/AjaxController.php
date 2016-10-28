@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\NoticiaInternaEmpresa;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,6 +50,48 @@ class AjaxController extends Controller {
 
 		return $this->render( ':ajax:subRubros.html.twig',
 			array( 'subRubros' => $subRubros ) );
+	}
+
+	public function noticiaMarcarLeidaAction( Request $request ) {
+
+		$noticiaInternaId = $request->get( 'id' );
+
+		$em = $this->getDoctrine()->getManager();
+
+		$noticiaInterna = $em->getRepository( 'AppBundle:NoticiaInterna' )->find( $noticiaInternaId );
+
+		$empresa = $this->getUser()->getEmpresa()->first();
+
+		$criteria = array(
+			'empresa'        => $empresa,
+			'noticiaInterna' => $noticiaInterna
+		);
+
+		$noticiaInternaEmpresa = $em->getRepository( 'AppBundle:NoticiaInternaEmpresa' )->findOneBy( $criteria );
+
+		if ( $noticiaInternaEmpresa ) {
+			$leido = ! $noticiaInternaEmpresa->getLeido();
+			$noticiaInternaEmpresa->setLeido( $leido );
+			if ( ! $noticiaInternaEmpresa->getLeidoEl() ) {
+				$noticiaInternaEmpresa->setLeidoEl( new \DateTime( 'now' ) );
+			}
+		} else {
+			$noticiaInternaEmpresa = new NoticiaInternaEmpresa();
+			$noticiaInternaEmpresa->setLeidoEl( new \DateTime( 'now' ) );
+			$leido = true;
+			$noticiaInternaEmpresa->setLeido( $leido );
+			$noticiaInternaEmpresa->setNoticiaInterna( $noticiaInterna );
+			$noticiaInternaEmpresa->setEmpresa($empresa);
+			$em->persist( $noticiaInternaEmpresa );
+		}
+
+		$em->flush();
+
+		$json = array(
+			'leido' => $leido
+		);
+
+		return new JsonResponse( $json );
 	}
 
 }

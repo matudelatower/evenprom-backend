@@ -14,6 +14,8 @@ parameters:
     app.path.empresas_image: /uploads/images/empresas
     app.path.publicaciones_image: /uploads/images/publicaciones
     app.path.noticias_image: /uploads/images/noticias
+    app.path.noticias_internas_image: /uploads/images/noticias_internas
+    app.path.planes_image: /uploads/images/planes
 
 framework:
     #esi:             ~
@@ -119,8 +121,14 @@ vich_uploader:
             uri_prefix:         %app.path.publicaciones_image%
             upload_destination: %kernel.root_dir%/../web/uploads/images/publicaciones
         noticias_image:
-            uri_prefix:         %app.path.publicaciones_image%
+            uri_prefix:         %app.path.noticias_image%
             upload_destination: %kernel.root_dir%/../web/uploads/images/noticias
+        noticias_internas_image:
+            uri_prefix:         %app.path.noticias_internas_image%
+            upload_destination: %kernel.root_dir%/../web/uploads/images/noticias_internas
+        planes_image:
+            uri_prefix:         %app.path.planes_image%
+            upload_destination: %kernel.root_dir%/../web/uploads/images/planes
 
 ivory_ck_editor:
     default_config: my_config
@@ -169,13 +177,13 @@ nelmio_cors:
         paths:
             '^/api/':
                 allow_origin: ['*']
-                allow_headers: ['accept', 'authorization', 'content-type']
+                allow_headers: ['X-Custom-Auth']
                 allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
                 max_age: 3600
             '^/':
                 origin_regex: true
                 allow_origin: ['^http://localhost:[0-9]+']
-                allow_headers: ['accept', 'authorization', 'content-type']
+                allow_headers: ['X-Custom-Auth']
                 allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
                 max_age: 3600
                 hosts: ['^api\.']

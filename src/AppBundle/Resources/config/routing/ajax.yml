@@ -5,3 +5,7 @@ get_sub_rubros:
 get_categorias:
     path: /get_categorias
     defaults: { _controller: "AppBundle:Ajax:getCategorias" }
+
+noticia_interna_marcar_leida:
+    path: /noticia_interna_marcar_leida
+    defaults: { _controller: "AppBundle:Ajax:noticiaMarcarLeida" }

@@ -1,0 +1,12 @@
+noticia_interna_index:
+    path:     /
+    defaults: { _controller: "AppBundle:NoticiaInterna:index" }
+    methods:  GET
+
+noticia_interna_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:NoticiaInterna:show" }
+    methods:  GET
+
+
+

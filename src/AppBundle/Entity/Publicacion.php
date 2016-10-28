@@ -70,6 +70,7 @@ class Publicacion extends BaseClass {
 	 *
 	 * @ORM\Column(name="hora_inicio", type="time", nullable=true)
 	 * @Expose()
+	 * @Type("DateTime<'H:i'>")
 	 */
 	private $horaInicio;
 

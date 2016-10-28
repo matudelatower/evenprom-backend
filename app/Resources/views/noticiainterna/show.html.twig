@@ -1,0 +1,46 @@
+{% extends '::layout_base.html.twig' %}
+{% trans_default_domain "app" %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Box Comment -->
+            <div class="box box-widget">
+                <div class="box-header with-border">
+                    <div class="user-block">
+                        <img class="img-circle" src="{{ asset('bundles/app/img/avatar.jpg') }}" alt="User Image">
+                        <span class="username"><a href="#">{{ noticiaInterna.creadoPor }}</a></span>
+                        <span class="description">{{ 'Shared publicly' | trans }}
+                            - {{ noticiaInterna.fechaCreacion | date('d/m/Y') }}</span>
+                    </div>
+                    <!-- /.user-block -->
+
+
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+
+                    <img class="img-responsive pad"
+                         src="{{ asset('uploads/images/noticias_internas/'~ noticiaInterna.imageName) }}"
+                         alt="Attachment Image">
+
+                    <!-- post text -->
+                    {{ noticiaInterna.cuerpo |raw }}
+
+
+                </div>
+                <!-- /.box-body -->
+
+                <!-- /.box-footer -->
+                <div class="box-footer">
+
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+    <div class="form-buttons">
+
+        <a class="btn btn-default" href="{{ path('noticia_interna_index') }}">{{ 'button.backtolist'|trans }} </a>
+    </div>
+{% endblock %}

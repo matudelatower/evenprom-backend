@@ -96,6 +96,11 @@ $(document).ready(function () {
     $(document).ajaxStop($.unblockUI);
 
 
+    if (typeof twigLocale === 'undefined') {
+        twigLocale = 'es';
+    }
+
+
     inicializarFecha();
 
     $(".data-table").DataTable({

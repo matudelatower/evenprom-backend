@@ -19,9 +19,17 @@ class DefaultController extends Controller {
 
 		}
 
+		$empresa = $this->getUser()->getEmpresa()->first();
+
+		$em                      = $this->getDoctrine();
+		$noticias                = $em->getRepository( 'AppBundle:NoticiaInterna' )->getNoticiasActuales();
+		$noticiasInternasEmpresa = $em->getRepository( 'AppBundle:NoticiaInternaEmpresa' )->findByEmpresa( $empresa );
+
 		return $this->render( ':empresa:empresa_admin.html.twig',
 			array(
-				'empresa' => $this->getUser()->getEmpresa()->first(),
+				'empresa'                 => $empresa,
+				'noticias'                => $noticias,
+				'noticiasInternasEmpresa' => $noticiasInternasEmpresa,
 			) );
 
 	}

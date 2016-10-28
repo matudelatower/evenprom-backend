@@ -16,6 +16,10 @@
 !web/uploads/images/publicaciones/.gitkeep
 /web/uploads/images/noticias/*
 !web/uploads/images/noticias/.gitkeep
+/web/uploads/images/noticias_internas/*
+!web/uploads/images/noticias_internas/.gitkeep
+/web/uploads/images/planes/*
+!web/uploads/images/planes/.gitkeep
 
 # Backup entities generated with doctrine:generate:entities command
 */Entity/*~

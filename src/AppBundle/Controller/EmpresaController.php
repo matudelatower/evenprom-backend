@@ -202,27 +202,27 @@ class EmpresaController extends Controller {
 		/* @var $empresa Empresa */
 		$empresa = $this->getUser()->getEmpresa()->first();
 
-		if ( null == $empresa->getDireccionEmpresa() ) {
+		if ( $empresa->getDireccionEmpresa()->count() == 0 ) {
 			$direccionEmpresa = new DireccionEmpresa();
 			$empresa->addDireccionEmpresa( $direccionEmpresa );
 		}
-		if ( null == $empresa->getContactoEmpresa() ) {
+		if ( $empresa->getContactoEmpresa()->count() == 0 ) {
 			$contactoEmpresa     = new ContactoEmpresa();
 			$empresa->addContactoEmpresa( $contactoEmpresa );
 		}
-		if ( null == $empresa->getCategoriaEmpresa() ) {
+		if ( $empresa->getCategoriaEmpresa()->count() == 0  ) {
 			$categoriaEmpresa    = new CategoriaEmpresa();
 			$empresa->addCategoriaEmpresa( $categoriaEmpresa );
 		}
-		if ( null == $empresa->getEmpresaOnda() ) {
+		if ( $empresa->getEmpresaOnda()->count() == 0  ) {
 			$empresaOnda         = new EmpresaOnda();
 			$empresa->addEmpresaOnda( $empresaOnda );
 		}
-		if ( null == $empresa->getEmpresaSubRubro() ) {
+		if ( $empresa->getEmpresaSubRubro()->count() == 0  ) {
 			$empresaSubRubro     = new EmpresaSubRubro();
 			$empresa->addEmpresaSubRubro( $empresaSubRubro );
 		}
-		if ( null == $empresa->getEmpresaHotelAgencia() ) {
+		if ( $empresa->getEmpresaHotelAgencia()->count() == 0  ) {
 			$empresaHotelAgencia = new EmpresaHotelAgencia();
 			$empresa->addEmpresaHotelAgencium( $empresaHotelAgencia );
 		}

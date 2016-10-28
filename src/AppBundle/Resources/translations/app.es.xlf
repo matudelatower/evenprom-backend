@@ -30,6 +30,15 @@
                 <source>Member since</source>
                 <target>Miembro Desde</target>
             </trans-unit>
+            <trans-unit id="Mark as Read">
+                <source>Mark as Read</source>
+                <target>Marcar como leído</target>
+            </trans-unit>
+            <trans-unit id="Shared publicly">
+                <source>Shared publicly</source>
+                <target>Publicado el</target>
+            </trans-unit>
+
             <!--menu-->
             <trans-unit id="menu_empresa_profile">
                 <source>menu.empresa.profile</source>
@@ -58,6 +67,10 @@
             <trans-unit id="menu_empresa_publicaciones_recientes">
                 <source>menu.empresa.publicaciones_recientes</source>
                 <target>Publicaciones de mi Empresa</target>
+            </trans-unit>
+            <trans-unit id="menu_empresa_noticias_internas">
+                <source>menu.empresa.noticias_internas</source>
+                <target>Noticias Internas</target>
             </trans-unit>
 
             <!--propias de la app-->

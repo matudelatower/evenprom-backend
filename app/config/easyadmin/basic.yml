@@ -1,6 +1,11 @@
 #easy admin
 easy_admin:
     site_name: %site_name%
+    list:
+        actions:
+            - { name: 'show', icon: 'eye', label: '' }
+            - { name: 'edit', icon: 'pencil', label: '' }
+            - { name: 'delete', icon: 'trash', label: '' }
     entities:
         Pais:
             class: Matudelatower\UbicacionBundle\Entity\Pais
@@ -16,6 +21,8 @@ easy_admin:
         menu:
             - Empresa
             - Categoria
+            - Plan
+            - { label: 'Noticia Interna', entity: NoticiaInterna }
             - Onda
             - Rubro
             - SubRubro
@@ -31,6 +38,14 @@ easy_admin:
             - 'Usuario'
             - { label: 'Cerrar Sesión', route: 'fos_user_security_logout', icon: 'sign-out' }
 #
-#    assets:
-#        js:
-#            - 'bundles/app/js/app.js'
+    assets:
+        css:
+            - 'bundles/app/plugins/datepicker/datepicker3.css'
+            - 'bundles/app/plugins/daterangepicker/daterangepicker.css'
+            - 'bundles/app/plugins/timepicker/bootstrap-timepicker.min.css'
+        js:
+            - "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"
+            - 'bundles/app/plugins/daterangepicker/daterangepicker.js'
+            - 'bundles/app/plugins/datepicker/bootstrap-datepicker.js'
+            - 'bundles/app/plugins/datepicker/locales/bootstrap-datepicker.es.js'
+            - 'bundles/app/js/app.js'

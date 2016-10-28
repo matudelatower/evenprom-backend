@@ -1,0 +1,18 @@
+easy_admin:
+    entities:
+        NoticiaInterna:
+            class: AppBundle\Entity\NoticiaInterna
+            form:
+                fields:
+                    - { property: 'titulo' }
+                    - { property: 'resumen' }
+                    - { property: 'cuerpo', type: 'ckeditor' }
+                    - { property: 'visibleDesde',  ,type_options: { widget: 'single_text', format: 'dd-MM-yyyy', attr: { class: 'datepicker' }} }
+                    - { property: 'visibleHasta', type_options: { widget: 'single_text', format: 'dd-MM-yyyy', attr: { class: 'datepicker' }} }
+                    - { property: 'imageFile', type: 'vich_image' }
+            edit:
+                title:  'Editar Noticia Interna'
+            new:
+                title:  'Alta Noticia Interna'
+            list:
+                title:  'Noticia Interna'

@@ -1,71 +1,94 @@
 {% extends '::layout_base.html.twig' %}
+{% trans_default_domain "app" %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('.btn-marcar-leido').click(function () {
+                var data = {
+                    id: $(this).data('id')
+                };
+                var btn = $(this);
+                $.ajax({
+                    type: 'post',
+                    url: '{{ path("noticia_interna_marcar_leida") }}',
+                    data: data,
+                    success: function (data) {
 
+                        if (data.leido) {
+                            btn.html('<i class="fa fa-circle icon-leido"></i>');
+
+                        } else {
+                            btn.html('<i class="fa fa-circle-o icon-no-leido"></i>');
+                        }
+
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}
 {% block content %}
- Hola {{ empresa }}
+    Hola {{ empresa }}
 
- <h1>Noticias EvenProm</h1>
+    <h1>Noticias EvenProm</h1>
 
- <div class="row">
-  <div class="col-md-6">
-   <!-- Box Comment -->
-   <div class="box box-widget">
-    <div class="box-header with-border">
-     <div class="user-block">
-      <img class="img-circle" src="{{ asset('bundles/app/img/avatar.jpg') }}" alt="User Image">
-      <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-      <span class="description">Shared publicly - 7:30 PM Today</span>
-     </div>
-     <!-- /.user-block -->
-     <div class="box-tools">
-      <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Mark as read">
-       <i class="fa fa-circle-o"></i></button>
-      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-      </button>
-      <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-     </div>
-     <!-- /.box-tools -->
+    <div class="row">
+
+        {% for noticia in noticias %}
+            <div class="col-md-6">
+                <!-- Box Comment -->
+                <div class="box box-widget">
+                    <div class="box-header with-border">
+                        <div class="user-block">
+                            <img class="img-circle" src="{{ asset('bundles/app/img/avatar.jpg') }}" alt="User Image">
+                            <span class="username"><a href="#">{{ noticia.creadoPor }}</a></span>
+                            <span class="description">{{ 'Shared publicly' | trans }}
+                                - {{ noticia.fechaCreacion | date('d/m/Y') }}</span>
+                        </div>
+                        <!-- /.user-block -->
+                        <div class="box-tools">
+                            <button type="button" class="btn btn-box-tool btn-marcar-leido" data-id="{{ noticia.id }}"
+                                    data-toggle="tooltip"
+                                    title="{{ "Marcar como leído" | trans }}">
+                                {% if noticia in noticiasInternasEmpresa %}
+                                    {% if noticiasInternasEmpresa[noticia].leido %}
+                                        <i class="fa fa-circle icon-leido"></i>
+                                    {% endif %}
+                                {% else %}
+                                    <i class="fa fa-circle-o icon-no-leido"></i>
+                                {% endif %}
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                        class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool btn-no-mostrar-mas" data-widget="remove"><i
+                                        class="fa fa-times"></i></button>
+                        </div>
+                        <!-- /.box-tools -->
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+
+                        <img class="img-responsive pad"
+                             src="{{ asset('uploads/images/noticias_internas/'~ noticia.imageName) }}"
+                             alt="Attachment Image">
+
+                        <!-- post text -->
+                        {{ noticia.cuerpo |raw }}
+
+
+                    </div>
+                    <!-- /.box-body -->
+
+                    <!-- /.box-footer -->
+                    <div class="box-footer">
+
+                    </div>
+                    <!-- /.box-footer -->
+                </div>
+                <!-- /.box -->
+            </div>
+        {% endfor %}
+
     </div>
-    <!-- /.box-header -->
-    <div class="box-body">
-     <!-- post text -->
-     <p>Far far away, behind the word mountains, far from the
-      countries Vokalia and Consonantia, there live the blind
-      texts. Separated they live in Bookmarksgrove right at</p>
-
-     <p>the coast of the Semantics, a large language ocean.
-      A small river named Duden flows by their place and supplies
-      it with the necessary regelialia. It is a paradisematic
-      country, in which roasted parts of sentences fly into
-      your mouth.</p>
-
-     <!-- Attachment -->
-     <div class="attachment-block clearfix">
-      <img class="attachment-img" src="{{ asset('bundles/app/AdminLTE-2.3.5/img/photo1.png') }}" alt="Attachment Image">
-
-      <div class="attachment-pushed">
-       <h4 class="attachment-heading"><a href="http://www.lipsum.com/">Lorem ipsum text generator</a></h4>
-
-       <div class="attachment-text">
-        Description about the attachment can be placed here.
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry... <a href="#">more</a>
-       </div>
-       <!-- /.attachment-text -->
-      </div>
-      <!-- /.attachment-pushed -->
-     </div>
-     <!-- /.attachment-block -->
-
-
-    </div>
-    <!-- /.box-body -->
-
-    <!-- /.box-footer -->
-    <div class="box-footer">
-
-    </div>
-    <!-- /.box-footer -->
-   </div>
-   <!-- /.box -->
-  </div>
- </div>
 {% endblock %}

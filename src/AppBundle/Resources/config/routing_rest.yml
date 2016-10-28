@@ -1,3 +1,8 @@
+ubicacion :
+  type: rest
+  resource:     "@AppBundle/Controller/Rest/UbicacionRestController.php"
+  name_prefix:  api_
+
 categorias :
   type: rest
   resource:     "@AppBundle/Controller/Rest/CategoriasRestController.php"

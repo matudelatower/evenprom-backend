@@ -9,10 +9,21 @@
             position: absolute;
             top: 50px;
         }
+
         .widget-user .widget-user-image > img {
             border: 3px solid #fff;
             height: 100px;
             width: 100px;
+        }
+
+        .btn-color {
+            border-radius: 60px;
+            height: 100px;
+            width: 100px;
+        }
+
+        .users-list > li {
+            width: 33%;
         }
     </style>
 {% endblock stylesheets %}
@@ -20,13 +31,6 @@
     <div class="box box-default">
         <div class="box-header with-border">
             <h3 class="box-title">{{ 'profile.empresa'|trans }}</h3>
-
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i>
-                </button>
-            </div>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -82,8 +86,43 @@
                         <!-- /.widget-user -->
                     </div>
 
-                    {{ form_widget(form) }}
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> {{ 'button.guardar' |trans }}</button>
+                    {{ form_row(form.nombre) }}
+                    {{ form_row(form.descripcion) }}
+                    {{ form_row(form.color) }}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span>Colores Recomendados</span>
+                            <ul class="users-list clearfix">
+                                <li>
+                                    <button type="button" class="btn btn-color"
+                                            style="background-color: #00ea9f"></button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn btn-color"
+                                            style="background-color: #00c0cf"></button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn btn-color"
+                                            style="background-color: #6a66d2"></button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn btn-color"
+                                            style="background-color: #5c666f"></button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn btn-color"
+                                            style="background-color: #efe91c"></button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn btn-color"
+                                            style="background-color: #d45ce6"></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    {{ form_rest(form) }}
+                    <button type="submit" class="btn btn-primary"><i
+                                class="fa fa-save"></i> {{ 'button.guardar' |trans }}</button>
                     {{ form_end(form) }}
                 </div>
             </div>
@@ -94,8 +133,25 @@
 {% block javascripts %}
     <script src="{{ asset('bundles/app/plugins/colorpicker/bootstrap-colorpicker.min.js') }}"></script>
     <script>
+        var hexDigits = new Array
+        ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
+
+        //Function to convert hex format to a rgb color
+        function rgb2hex(rgb) {
+            rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+            return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+        }
+
+        function hex(x) {
+            return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
+        }
+
         $(document).ready(function () {
             $(".colorpicker").colorpicker();
+            $(".btn-color").click(function () {
+                var color = $(this).css('background-color');
+                $('#{{ form.color.vars.id }}').val(rgb2hex(color));
+            })
         });
     </script>
     {% include 'UbicacionBundle:Default:matudelatower_ubicacionbundle.js.twig' %}
