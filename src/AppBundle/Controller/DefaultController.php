@@ -8,9 +8,15 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller {
 	public function indexAction( Request $request ) {
 
-
+		$em = $this->getDoctrine();
 		if ( ! $this->get( 'security.authorization_checker' )->isGranted( 'IS_AUTHENTICATED_FULLY' ) ) {
-			return $this->render( 'AppBundle:Default:index.html.twig' );
+
+			$publicaciones = $em->getRepository( "AppBundle:Publicacion" )->findAll();
+
+			return $this->render( 'AppBundle:Default:index.html.twig',
+				array(
+					'publicaciones' => $publicaciones
+				) );
 
 		}
 
@@ -21,7 +27,7 @@ class DefaultController extends Controller {
 
 		$empresa = $this->getUser()->getEmpresa()->first();
 
-		$em                      = $this->getDoctrine();
+
 		$noticias                = $em->getRepository( 'AppBundle:NoticiaInterna' )->getNoticiasActuales();
 		$noticiasInternasEmpresa = $em->getRepository( 'AppBundle:NoticiaInternaEmpresa' )->findByEmpresa( $empresa );
 
@@ -32,5 +38,28 @@ class DefaultController extends Controller {
 				'noticiasInternasEmpresa' => $noticiasInternasEmpresa,
 			) );
 
+	}
+
+	public function indexSitiosAction( Request $request ) {
+
+		$em = $this->getDoctrine();
+
+		$empresas = $em->getRepository( 'AppBundle:Empresa' )->findAll();
+
+		return $this->render( '@App/Default/sitios.html.twig',
+			array(
+				'empresas' => $empresas
+			) );
+	}
+
+	public function sitiosAction( Request $request, $id ) {
+		$em = $this->getDoctrine();
+
+		$empresa = $em->getRepository( 'AppBundle:Empresa' )->find( $id );
+
+		return $this->render( '@App/Default/perfil_empresa.html.twig',
+			array(
+				'empresa' => $empresa
+			) );
 	}
 }

@@ -1,0 +1,281 @@
+{% extends 'layout_base_public.html.twig' %}
+
+{% block stylesheets %}
+    <style>
+        .bar-btns {
+            border-radius: 12px;
+            padding: 1%;
+        }
+
+        .user-block .username {
+            font-size: 28px;
+        }
+
+        .carousel-inner.onebyone-carosel {
+            margin: auto;
+            width: 90%;
+        }
+
+        .onebyone-carosel .active.left {
+            left: -33.33%;
+        }
+
+        .onebyone-carosel .active.right {
+            left: 33.33%;
+        }
+
+        .onebyone-carosel .next {
+            left: 33.33%;
+        }
+
+        .onebyone-carosel .prev {
+            left: -33.33%;
+        }
+
+        /*social*/
+        #sticky-social {
+            left: 0;
+            position: fixed;
+            top: 150px;
+        }
+        #sticky-social a {
+            background: #333;
+            color: #fff;
+            display: block;
+            height: 35px;
+            font: 16px "Open Sans", sans-serif;
+            line-height: 35px;
+            position: relative;
+            text-align: center;
+            width: 35px;
+        }
+        #sticky-social a span {
+            line-height: 35px;
+            left: -120px;
+            position: absolute;
+            text-align:center;
+            width:120px;
+        }
+        #sticky-social a:hover span {
+            left: 100%;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <aside id="sticky-social">
+
+        <a class="btn btn-social-icon btn-facebook">
+            <i class="fa fa-facebook"></i>
+        </a>
+        <a class="btn btn-social-icon btn-twitter">
+            <i class="fa fa-twitter"></i>
+        </a>
+
+    </aside>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Box Comment -->
+            <div class="box box-widget">
+                <div class="box-header with-border">
+                    <div class="user-block">
+                        <img class="img-circle"
+                             src="{% if empresa.imageName %}{{ asset('uploads/images/empresas/'~ empresa.imageName) }}{% else %} {{ asset('bundles/app/img/avatar.jpg') }} {% endif %} "
+                             alt="User Image">
+                        <span class="username"><a href="#"
+                                                  style="color: {{ empresa.color }}">{{ empresa.nombre }}</a></span>
+                        {#<span class="description">{{ empresa.descripcion }}</span>#}
+                    </div>
+                    <div class="box-tools">
+                        <i class="fa {% if empresa.categoriaEmpresa.count >0 %}{{ empresa.categoriaEmpresa.first.categoria.icono }} {% endif %}"></i>
+                    </div>
+
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="text-center">
+                        <iframe width="560" height="315" src="{{ empresa.linkYoutube }}" frameborder="0"
+                                allowfullscreen></iframe>
+                    </div>
+                    <div class="bar-btns" style="background-color: {{ empresa.color }}">
+
+                        <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share
+                        </button>
+                        <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like
+                        </button>
+                        <button type="button" class="btn btn-default btn-xs"><i class="fa fa-heart-o"></i> Fav
+                        </button>
+
+                    </div>
+
+                    <div class="well margin-top-5">
+                        <div id="myCarousel" class="carousel fdi-Carousel slide">
+                            <!-- Carousel items -->
+                            <div class="carousel fdi-Carousel slide" id="eventCarousel" data-interval="0">
+                                <div class="carousel-inner onebyone-carosel">
+                                    <div class="item active">
+                                        <div class="col-md-4">
+                                            <a href="#"><img src="http://placehold.it/250x250"
+                                                             class="img-responsive center-block"></a>
+                                            <div class="text-center">1</div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="col-md-4">
+                                            <a href="#"><img src="http://placehold.it/250x250"
+                                                             class="img-responsive center-block"></a>
+                                            <div class="text-center">2</div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="col-md-4">
+                                            <a href="#"><img src="http://placehold.it/250x250"
+                                                             class="img-responsive center-block"></a>
+                                            <div class="text-center">3</div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="col-md-4">
+                                            <a href="#"><img src="http://placehold.it/250x250"
+                                                             class="img-responsive center-block"></a>
+                                            <div class="text-center">4</div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="col-md-4">
+                                            <a href="#"><img src="http://placehold.it/250x250"
+                                                             class="img-responsive center-block"></a>
+                                            <div class="text-center">5</div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="col-md-4">
+                                            <a href="#"><img src="http://placehold.it/250x250"
+                                                             class="img-responsive center-block"></a>
+                                            <div class="text-center">6</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="left carousel-control" href="#eventCarousel" data-slide="prev"></a>
+                                <a class="right carousel-control" href="#eventCarousel" data-slide="next"></a>
+                            </div>
+                            <!--/carousel-inner-->
+                        </div><!--/myCarousel-->
+                    </div><!--/well-->
+
+
+                    <div class="row margin-top-5">
+                        <div class="col-md-3">
+                            <div class="info-box bg-green">
+                                <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Likes</span>
+                                    <span class="info-box-number">41,410</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="info-box bg-aqua">
+                                <span class="info-box-icon"><i class="fa fa-share"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Shares</span>
+                                    <span class="info-box-number">41,410</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <a href="#" class="btn btn-app"><i class="fa fa-map-marker"></i> Cómo Llegar</a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="{% if empresa.contactoEmpresa.count > 0 %}{{ empresa.contactoEmpresa.first.contacto.web }}{% else %} # {% endif %}"
+                               target="_blank"
+                               class="btn btn-app"><i class="fa fa-link"></i> Web</a>
+                        </div>
+                        <div class="col-md-3 text-center">
+                        </div>
+                    </div>
+                    <span class="pull-right text-muted">2 comments</span>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer box-comments">
+                    <div class="box-comment">
+                        <!-- User image -->
+                        <img class="img-circle img-sm" src="{{ asset('bundles/app/img/avatar.jpg') }}" alt="User Image">
+
+                        <div class="comment-text">
+                      <span class="username">
+                        Maria Gonzales
+                        <span class="text-muted pull-right">8:03 PM Today</span>
+                      </span><!-- /.username -->
+                            It is a long established fact that a reader will be distracted
+                            by the readable content of a page when looking at its layout.
+                        </div>
+                        <!-- /.comment-text -->
+                    </div>
+                    <!-- /.box-comment -->
+                    <div class="box-comment">
+                        <!-- User image -->
+                        <img class="img-circle img-sm" src="{{ asset('bundles/app/img/avatar.jpg') }}" alt="User Image">
+
+                        <div class="comment-text">
+                      <span class="username">
+                        Luna Stark
+                        <span class="text-muted pull-right">8:03 PM Today</span>
+                      </span><!-- /.username -->
+                            It is a long established fact that a reader will be distracted
+                            by the readable content of a page when looking at its layout.
+                        </div>
+                        <!-- /.comment-text -->
+                    </div>
+                    <!-- /.box-comment -->
+                </div>
+                <!-- /.box-footer -->
+                <div class="box-footer">
+                    <form action="#" method="post">
+                        <img class="img-responsive img-circle img-sm" src="{{ asset('bundles/app/img/avatar.jpg') }}"
+                             alt="Alt Text">
+                        <!-- .img-push is used to add margin to elements next to floating images -->
+                        <div class="img-push">
+                            <input type="text" class="form-control input-sm" placeholder="Press enter to post comment">
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box-footer -->
+            </div>
+
+
+            <!-- /.box-body -->
+
+        </div>
+        <!-- /.box -->
+    </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('#myCarousel').carousel({
+                interval: 10000
+            })
+            $('.fdi-Carousel .item').each(function () {
+                var next = $(this).next();
+                if (!next.length) {
+                    next = $(this).siblings(':first');
+                }
+                next.children(':first-child').clone().appendTo($(this));
+
+                if (next.next().length > 0) {
+                    next.next().children(':first-child').clone().appendTo($(this));
+                }
+                else {
+                    $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+                }
+            });
+        });
+    </script>
+{% endblock %}

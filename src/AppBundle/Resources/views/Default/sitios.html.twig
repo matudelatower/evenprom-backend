@@ -1,0 +1,56 @@
+{% extends 'layout_base_public.html.twig' %}
+
+{% block content %}
+
+    <div class="row">
+        {% for empresa in empresas %}
+            <div class="col-md-4">
+                <!-- Widget: user widget style 1 -->
+                <div class="box box-widget widget-user">
+                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                    <div class="widget-user-header" style="background-color: {{ empresa.color }}">
+                        <h3 class="widget-user-username">{{ empresa.nombre }}</h3>
+                        <h5 class="widget-user-desc">{{ empresa.descripcion }}</h5>
+                    </div>
+                    <div class="widget-user-image">
+                        <img class="img-circle" src="{% if empresa.imageName %}{{ asset('uploads/images/empresas/'~ empresa.imageName) }}{% else %} {{ asset('bundles/app/img/avatar.jpg') }} {% endif %} " alt="User Avatar">
+                    </div>
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-sm-4 border-right">
+                                <div class="description-block">
+                                    <h5 class="description-header">0</h5>
+                                    <span class="description-text">LIKES</span>
+                                </div>
+                                <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-4 border-right">
+                                <div class="description-block">
+                                    <span class="description-text">
+                                        <a href="{{ path('app_perfil_empresa', {'id': empresa.id }) }}">Ver Perfil</a>
+                                    </span>
+
+                                </div>
+                                <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-4">
+                                <div class="description-block">
+                                    <span class="description-text">
+                                        <a class="btn" href="#"><i class="fa fa-heart-o"></i></a>
+                                    </span>
+                                </div>
+                                <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                </div>
+                <!-- /.widget-user -->
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

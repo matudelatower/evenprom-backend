@@ -1,0 +1,70 @@
+.margin-top-5{
+    margin-top: 5%;
+}
+
+.margin-top-10{
+    margin-top: 10%;
+}
+
+.margin-top-20{
+    margin-top: 20%;
+}
+
+
+.ep-info-box {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    display: flex;
+    margin-bottom: 15px;
+    min-height: 90px;
+    width: 100%;
+}
+
+.ep-info-box-content {
+    width: 50%;
+    color: #5c666f;
+}
+
+.ep-info-box-titulo {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.ep-info-box-empresa {
+    width: 50%;
+    font-weight: bold;
+}
+
+.ep-info-box-content-body {
+    margin-top: 10%;
+}
+
+.ep-info-box-empresa-body {
+    margin-top: 15%;
+}
+
+.ep-info-box-nombre-empresa {
+    text-transform: uppercase;
+    /*margin-top: 7%;*/
+    /*position: absolute;*/
+}
+
+.ep-info-box-botones {
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
+    width: 38px;
+    /*width: 15%;*/
+}
+
+.ep-btn-oferta {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+    background-color: #fff;
+    color: #5c666f;
+}

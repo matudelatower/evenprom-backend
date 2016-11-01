@@ -38,6 +38,10 @@
                 <source>Shared publicly</source>
                 <target>Publicado el</target>
             </trans-unit>
+            <trans-unit id="Sitios">
+                <source>Sitios</source>
+                <target>Sitios</target>
+            </trans-unit>
 
             <!--menu-->
             <trans-unit id="menu_empresa_profile">

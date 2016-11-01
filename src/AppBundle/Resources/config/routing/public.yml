@@ -1,0 +1,7 @@
+sitios_index:
+    path:     /sitios
+    defaults: { _controller: "AppBundle:Default:indexSitios" }
+
+app_perfil_empresa:
+    path:     /{id}/sitios
+    defaults: { _controller: "AppBundle:Default:sitios" }

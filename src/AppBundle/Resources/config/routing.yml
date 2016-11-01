@@ -1,3 +1,7 @@
+app_public:
+    resource: "@AppBundle/Resources/config/routing/public.yml"
+    prefix:   /app
+
 app_noticia_interna:
     resource: "@AppBundle/Resources/config/routing/noticiainterna.yml"
     prefix:   /noticia_interna
