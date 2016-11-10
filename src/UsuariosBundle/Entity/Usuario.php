@@ -76,6 +76,12 @@ class Usuario extends BaseUser {
 	 */
 	private $empresa;
 
+	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\Persona", mappedBy="usuario", cascade={"persist", "remove"})
+	 */
+	private $persona;
+
 
 	/**
 	 * Set creado
@@ -197,5 +203,39 @@ class Usuario extends BaseUser {
     public function getEmpresa()
     {
         return $this->empresa;
+    }
+
+    /**
+     * Add persona
+     *
+     * @param \AppBundle\Entity\Persona $persona
+     *
+     * @return Usuario
+     */
+    public function addPersona(\AppBundle\Entity\Persona $persona)
+    {
+        $this->persona[] = $persona;
+
+        return $this;
+    }
+
+    /**
+     * Remove persona
+     *
+     * @param \AppBundle\Entity\Persona $persona
+     */
+    public function removePersona(\AppBundle\Entity\Persona $persona)
+    {
+        $this->persona->removeElement($persona);
+    }
+
+    /**
+     * Get persona
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPersona()
+    {
+        return $this->persona;
     }
 }

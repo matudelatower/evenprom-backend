@@ -16,6 +16,7 @@ parameters:
     app.path.noticias_image: /uploads/images/noticias
     app.path.noticias_internas_image: /uploads/images/noticias_internas
     app.path.planes_image: /uploads/images/planes
+    app.path.personas_image: /uploads/images/personas
 
 framework:
     #esi:             ~
@@ -129,6 +130,9 @@ vich_uploader:
         planes_image:
             uri_prefix:         %app.path.planes_image%
             upload_destination: %kernel.root_dir%/../web/uploads/images/planes
+        personas_image:
+            uri_prefix:         %app.path.personas_image%
+            upload_destination: %kernel.root_dir%/../web/uploads/images/personas
 
 ivory_ck_editor:
     default_config: my_config
@@ -187,6 +191,17 @@ nelmio_cors:
                 allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
                 max_age: 3600
                 hosts: ['^api\.']
+
+hwi_oauth:
+    firewall_name: secured_area
+    resource_owners:
+        facebook:
+            type:                facebook
+            client_id:           %fb_client_id%
+            client_secret:       %fb_client_secret%
+            options:
+                display: popup #dialog is optimized for popup window
+                auth_type: rerequest # Re-asking for Declined Permissions
 
 #select 2
 #util:

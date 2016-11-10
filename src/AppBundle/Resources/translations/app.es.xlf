@@ -10,6 +10,14 @@
                 <source>register.a.new.membership</source>
                 <target>Registrar un Nuevo miembro</target>
             </trans-unit>
+            <trans-unit id="register_a_new_empresa">
+                <source>register.a.new.empresa</source>
+                <target>Registrar Nueva Empresa</target>
+            </trans-unit>
+            <trans-unit id="register_as_empresa">
+                <source>register.as.empresa</source>
+                <target>Registrarse Como Empresa</target>
+            </trans-unit>
             <trans-unit id="button_register">
                 <source>button.register</source>
                 <target>Registrar</target>

@@ -29,6 +29,7 @@ easy_admin:
             - Descuento
             - { label: 'Hoteles y Agencias', entity: HotelAgencia }
             - { label: 'Tipo Publicación', entity: TipoPublicacion }
+            - { label: 'Tipo Doccumento', entity: TipoDocumento }
             - label: 'Ubicación'
               children:
                   - 'Pais'

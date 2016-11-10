@@ -1,0 +1,16 @@
+easy_admin:
+    entities:
+        TipoDocumento:
+            class: AppBundle\Entity\TipoDocumento
+            form:
+                fields:
+                    - { property: 'siglas' }
+                    - { property: 'descripcion' }
+                    - { property: 'slug' }
+                    - { property: 'activo' }
+            edit:
+                title:  'Editar Tipo Documento'
+            new:
+                title:  'Alta Tipo Documento'
+            list:
+                title:  'Tipo Documento'

@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
+	        new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new UsuariosBundle\UsuariosBundle(),
             new AppBundle\AppBundle(),
         );

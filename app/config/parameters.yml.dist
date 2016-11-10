@@ -18,3 +18,7 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
     version:            1.0.0
+
+    # social login
+    fb_client_id: 9999
+    fb_client_secret: 9999

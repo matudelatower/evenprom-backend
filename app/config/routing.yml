@@ -1,3 +1,15 @@
+facebook_login:
+    path: /login/check-facebook
+    defaults: { _controller: "UsuariosBundle:Default:checkFb" }
+
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
+
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   /login_social
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 

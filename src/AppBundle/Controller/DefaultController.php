@@ -9,7 +9,8 @@ class DefaultController extends Controller {
 	public function indexAction( Request $request ) {
 
 		$em = $this->getDoctrine();
-		if ( ! $this->get( 'security.authorization_checker' )->isGranted( 'IS_AUTHENTICATED_FULLY' ) ) {
+		if ( ! $this->get( 'security.authorization_checker' )->isGranted( 'IS_AUTHENTICATED_FULLY' ) ||
+		     $this->get( 'security.authorization_checker' )->isGranted( 'ROLE_USUARIO' )) {
 
 			$publicaciones = $em->getRepository( "AppBundle:Publicacion" )->findAll();
 
@@ -22,7 +23,6 @@ class DefaultController extends Controller {
 
 		if ( $this->get( 'security.authorization_checker' )->isGranted( 'ROLE_ADMIN' ) ) {
 			return $this->redirectToRoute( 'easyadmin' );
-
 		}
 
 		$empresa = $this->getUser()->getEmpresa()->first();

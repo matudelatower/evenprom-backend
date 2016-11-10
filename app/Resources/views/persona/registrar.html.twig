@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{{ asset('bundles/app/AdminLTE-2.3.5/css/AdminLTE.min.css') }}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('bundles/app/plugins/iCheck/square/blue.css') }}">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="{{ asset('bundles/app/plugins/datepicker/datepicker3.css') }}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,7 +34,8 @@
     </div>
 
     <div class="register-box-body">
-        <p class="login-box-msg">{{ 'register.a.new.empresa'|trans }}</p>
+        <span class="pull-right"><a href="{{ path('empresa_registrar') }}" class="text-center">{{ 'register.as.empresa'|trans }}</a></span><br>
+        <p class="login-box-msg">{{ 'register.a.new.membership'|trans }}</p>
 
         {{ form_start(form) }}
         {{ form_widget(form) }}
@@ -98,12 +101,23 @@
 <script src="{{ asset('bundles/app/bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- iCheck -->
 <script src="{{ asset('bundles/app/plugins/iCheck/icheck.min.js') }}"></script>
+<!-- datepicker -->
+<script src="{{ asset('bundles/app/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
+<!-- datepicker locales-->
+{% if app.request.locale != 'en' %}
+    <script src="{{ asset('bundles/app/plugins/datepicker/locales/bootstrap-datepicker.'~ app.request.locale ~'.js') }}"></script>
+{% endif %}
 <script>
     $(function () {
         $('input').iCheck({
             checkboxClass: 'icheckbox_square-blue',
             radioClass: 'iradio_square-blue',
             increaseArea: '20%' // optional
+        });
+        $('.datepicker').datepicker({
+            format: "dd/mm/yyyy",
+            language: '{{ app.request.locale }}',
+            autoclose: true
         });
     });
 </script>
