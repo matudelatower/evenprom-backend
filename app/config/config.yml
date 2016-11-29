@@ -48,6 +48,9 @@ twig:
     globals:
         site_name: %site_name%
         version: %version%
+        fb_app_id: %fb_client_id%
+        g_app_id: %g_client_id%
+        g_api_key: %g_api_key%
     form_themes:
         - 'AppBundle:Form:custom_widgets.html.twig'
 #        - 'bootstrap_3_layout.html.twig'
@@ -180,7 +183,7 @@ nelmio_cors:
             origin_regex: false
         paths:
             '^/api/':
-                allow_origin: ['*']
+                allow_origin: ['^http://localhost:[0-9]+']
                 allow_headers: ['X-Custom-Auth']
                 allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
                 max_age: 3600
@@ -193,15 +196,34 @@ nelmio_cors:
                 hosts: ['^api\.']
 
 hwi_oauth:
-    firewall_name: secured_area
+    connect:
+        confirmation: true
+#        registration_form: fos_user.registration.form
+    firewall_name: main
+    fosub:
+        username_iterations: 30
+        properties:
+            facebook: facebookId
+#            google: googleId
     resource_owners:
+        # Facebook Access
         facebook:
             type:                facebook
             client_id:           %fb_client_id%
             client_secret:       %fb_client_secret%
+            scope:               "public_profile"
+            infos_url:           'https://graph.facebook.com/me?fields=email,first_name,last_name,id,picture'
             options:
-                display: popup #dialog is optimized for popup window
-                auth_type: rerequest # Re-asking for Declined Permissions
+                display: popup
+        # Google Access
+        google:
+            type:                google
+            client_id:           %g_client_id%
+            client_secret:       %g_client_secret%
+            scope:               "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+            options:
+                display: popup
+    firewall_name: secured_area
 
 #select 2
 #util:

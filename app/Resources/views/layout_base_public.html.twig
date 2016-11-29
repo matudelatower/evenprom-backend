@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-signin-client_id"
+          content="{{ g_app_id }}">
     <title> {{ site_name }}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -12,12 +14,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('bundles/app/plugins/datatables/dataTables.bootstrap.css') }}">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('bundles/app/plugins/select2/select2.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('bundles/app/AdminLTE-2.3.5/css/AdminLTE.min.css') }}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset('bundles/app/AdminLTE-2.3.5/css/skins/_all-skins.min.css') }}">
 
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="{{ asset('bundles/app/plugins/datepicker/datepicker3.css') }}">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="{{ asset('bundles/app/plugins/daterangepicker/daterangepicker.css') }}">
+    <!-- Bootstrap time Picker -->
+    <link rel="stylesheet" href="{{ asset('bundles/app/plugins/timepicker/bootstrap-timepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/app/css/public.css') }}">
 
     {% block stylesheets %}
@@ -66,174 +78,20 @@
                 <!-- User Account Menu -->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        {% if is_granted("ROLE_USUARIO") %}
-                        <!-- Navbar Right Menu -->
-
-                        <!-- Messages: style can be found in dropdown.less-->
-                        <li class="dropdown messages-menu">
-                            <!-- Menu toggle button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="label label-success">4</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 4 messages</li>
-                                <li>
-                                    <!-- inner menu: contains the messages -->
-                                    <ul class="menu">
-                                        <li><!-- start message -->
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <!-- User Image -->
-                                                    <img src="../../dist/img/user2-160x160.jpg" class="img-circle"
-                                                         alt="User Image">
-                                                </div>
-                                                <!-- Message title and timestamp -->
-                                                <h4>
-                                                    Support Team
-                                                    <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                                </h4>
-                                                <!-- The message -->
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                        <!-- end message -->
-                                    </ul>
-                                    <!-- /.menu -->
-                                </li>
-                                <li class="footer"><a href="#">See All Messages</a></li>
-                            </ul>
-                        </li>
-                        <!-- /.messages-menu -->
-
-                        <!-- Notifications Menu -->
-                        <li class="dropdown notifications-menu">
-                            <!-- Menu toggle button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">10</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 10 notifications</li>
-                                <li>
-                                    <!-- Inner Menu: contains the notifications -->
-                                    <ul class="menu">
-                                        <li><!-- start notification -->
-                                            <a href="#">
-                                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                            </a>
-                                        </li>
-                                        <!-- end notification -->
-                                    </ul>
-                                </li>
-                                <li class="footer"><a href="#">View all</a></li>
-                            </ul>
-                        </li>
-                        <!-- Tasks Menu -->
-                        <li class="dropdown tasks-menu">
-                            <!-- Menu Toggle Button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-flag-o"></i>
-                                <span class="label label-danger">9</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 9 tasks</li>
-                                <li>
-                                    <!-- Inner menu: contains the tasks -->
-                                    <ul class="menu">
-                                        <li><!-- Task item -->
-                                            <a href="#">
-                                                <!-- Task title and progress text -->
-                                                <h3>
-                                                    Design some buttons
-                                                    <small class="pull-right">20%</small>
-                                                </h3>
-                                                <!-- The progress bar -->
-                                                <div class="progress xs">
-                                                    <!-- Change the css width attribute to simulate progress -->
-                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%"
-                                                         role="progressbar" aria-valuenow="20" aria-valuemin="0"
-                                                         aria-valuemax="100">
-                                                        <span class="sr-only">20% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <!-- end task item -->
-                                    </ul>
-                                </li>
-                                <li class="footer">
-                                    <a href="#">View all tasks</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- User Account Menu -->
-                        <li class="dropdown user user-menu">
-                            <!-- Menu Toggle Button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="{% if app.user.persona.first.imageName %}
-                                {{ asset('uploads/images/personas/'~ app.user.persona.first.imageName) }}
-                                {% else %}
-                                    {{ asset('bundles/app/img/avatar.jpg') }}
-                                {% endif %}" class="user-image" alt="User Image">
-                                <span class="hidden-xs">{{ app.user.persona.first }}</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- The user image in the menu -->
-                                <li class="user-header">
-                                    <img src="{% if app.user.persona.first.imageName %}
-                                {{ asset('uploads/images/personas/'~ app.user.persona.first.imageName) }}
-                                {% else %}
-                                    {{ asset('bundles/app/img/avatar.jpg') }}
-                                {% endif %}
-                                " class="img-circle" alt="User Image">
-
-                                    <p>
-                                        {{ app.user.persona.first }}
-                                        <small>{{ "Member since" | trans }} {{ app.user.actualizadoPor | date('M Y') }}</small>
-                                    </p>
-                                </li>
-                                <!-- Menu Body -->
-                                <li class="user-body">
-                                    <div class="row">
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Followers</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Sales</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Friends</a>
-                                        </div>
-                                    </div>
-                                    <!-- /.row -->
-                                </li>
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <!-- /.container-fluid -->
-                    {% else %}
-                        <li class="user user-menu">
-                            <a href="{{ path('fos_user_security_login') }}" class="dropdown-toggle">
-                                <span class="hidden-xs">{{ 'login' | trans }}</span>
-                            </a>
-                        </li>
-                        <li class="user user-menu">
-                            <a href="#" class="dropdown-toggle">
-                                <span class="hidden-xs">{{ 'button.register' | trans }}</span>
-                            </a>
-                        </li>
-                    {% endif %}
+                        {% if is_granted("ROLE_PERSONA") %}
+                            {% include 'userPersonaDropdown.html.twig' %}
+                        {% else %}
+                            <li class="user user-menu">
+                                <a href="{{ path('fos_user_security_login') }}" class="dropdown-toggle">
+                                    <span class="hidden-xs">{{ 'login' | trans }}</span>
+                                </a>
+                            </li>
+                            <li class="user user-menu">
+                                <a href="#" class="dropdown-toggle">
+                                    <span class="hidden-xs">{{ 'button.register' | trans }}</span>
+                                </a>
+                            </li>
+                        {% endif %}
                 </div>
                 <!-- /.navbar-custom-menu -->
             </div>
@@ -280,14 +138,102 @@
 <script src="{{ asset('bundles/app/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="{{ asset('bundles/app/bootstrap/js/bootstrap.min.js') }}"></script>
+<!-- DataTables -->
+<script src="{{ asset('bundles/app/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('bundles/app/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
+<!-- daterangepicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script src="{{ asset('bundles/app/plugins/daterangepicker/daterangepicker.js') }}"></script>
+<!-- datepicker -->
+<script src="{{ asset('bundles/app/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
+<!-- datepicker locales-->
+{% if app.request.locale != 'en' %}
+    <script src="{{ asset('bundles/app/plugins/datepicker/locales/bootstrap-datepicker.'~ app.request.locale ~'.js') }}"></script>
+{% endif %}
+<!-- bootstrap time picker -->
+<script src="{{ asset('bundles/app/plugins/timepicker/bootstrap-timepicker.min.js') }}"></script>
 <!-- SlimScroll -->
 <script src="{{ asset('bundles/app/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+<!-- blockUI -->
+<script src="{{ asset('bundles/util/js/jquery.blockUI.js') }}"></script>
+<!-- Select2 -->
+<script src="{{ asset('bundles/app/plugins/select2/select2.full.min.js') }}"></script>
 <!-- FastClick -->
 <script src="{{ asset('bundles/app/plugins/fastclick/fastclick.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('bundles/app/AdminLTE-2.3.5/js/app.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 {#<script src="../../dist/js/demo.js"></script>#}
+
+{# global sets #}
+<script>
+    twigLocale = "{{ app.request.locale }}";
+</script>
+<script src="{{ asset('bundles/app/js/app.js') }}"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://apis.google.com/js/client.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $.getScript('//connect.facebook.net/en_US/sdk.js', function () {
+            FB.init({
+                appId: '{{ fb_app_id }}',
+                status: true,
+                xfbml: true,
+                version: 'v2.7' // or v2.6, v2.5, v2.4, v2.3
+            });
+
+            {% if app.user and app.user.facebookAccessToken %}
+
+            FB.api('/me', {
+                access_token: '{{ app.user.facebookAccessToken }}',
+                fields: 'first_name,last_name,id,picture'
+            }, function (response) {
+                console.log(response);
+                $(".user-image").attr("src", response.picture.data.url);
+//                $(".username").html(response.first_name + ' ' + response.last_name);
+            });
+            {% endif %}
+
+        })
+
+
+    });
+
+</script>
+
+<script src="https://apis.google.com/js/api.js"></script>
+<script>
+    {% if is_granted("ROLE_PERSONA") %}
+    function initClient() {
+        gapi.client.init({
+            apiKey: '{{ g_api_key }}',
+            discoveryDocs: ["https://people.googleapis.com/$discovery/rest?version=v1"],
+            clientId: '{{ g_app_id }}',
+            scope: 'profile'
+        }).then(function () {
+
+            return gapi.client.people.people.get({
+                access_token: "{{ app.user.googleAccessToken }}",
+                resourceName: 'people/me'
+            });
+        }).then(function (resp) {
+//            console.log(resp.result);
+//            console.log("resp", resp);
+            $(".user-image").attr("src", resp.result.photos[0].url);
+            console.log("resp.result", resp.result);
+        }, function (reason) {
+            console.log('Error: ' + reason);
+//            console.log('Error: ' + reason.result.error.message);
+        });
+        ;
+    }
+
+    // 1. Load the JavaScript client library.
+    gapi.load('client', initClient);
+    {% endif %}
+</script>
+
 {% block javascripts %}
 {% endblock javascripts %}
 </body>

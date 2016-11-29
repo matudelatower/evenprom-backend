@@ -34,7 +34,7 @@ class PersonaController extends Controller {
 				'personas' => $personas,
 			) );
 	}
-
+	
 	/**
 	 * Creates a new Persona entity.
 	 *
@@ -197,5 +197,39 @@ class PersonaController extends Controller {
 				'form' => $form->createView(),
 			)
 		);
+	}
+
+	public function perfilAction( Request $request ) {
+
+		/* @var $persona Persona */
+		$persona = $this->getUser()->getPersona()->first();
+
+		
+		$form = $this->createForm( PersonaType::class, $persona );
+
+
+		if ( $request->getMethod() == 'POST' ) {
+
+			$form->handleRequest( $request );
+			if ( $form->isValid() ) {
+				$em = $this->getDoctrine()->getManager();
+
+				$em->persist( $persona );
+				$em->flush();
+				$this->get( 'session' )->getFlashBag()->add(
+					'success',
+					$this->get( 'translator' )->trans( '%entity% Actualizado Correctamente',
+						array( '%entity%' => 'Perfil' ),
+						'flashes' )
+				);
+			}
+		}
+
+
+		return $this->render( ':persona:perfil.html.twig',
+			array(
+				'persona' => $persona,
+				'form'    => $form->createView(),
+			) );
 	}
 }

@@ -1,0 +1,41 @@
+<li class="dropdown user user-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <img src="{% if app.user.persona.first and app.user.persona.first.imageName %}
+                                {{ asset('uploads/images/personas/'~ app.user.persona.first.imageName) }}
+                                {% else %}
+                                    {{ asset('bundles/app/img/avatar.jpg') }}
+                                {% endif %}" class="user-image" alt="User Image">
+        <span class="hidden-xs username">{{ app.user.persona.first }}</span>
+    </a>
+    <ul class="dropdown-menu">
+        <!-- User image -->
+        <li class="user-header">
+            <img src="{% if app.user.persona.first and app.user.persona.first.imageName %}
+                                {{ asset('uploads/images/personas/'~ app.user.persona.first.imageName) }}
+                                {% else %}
+                                    {{ asset('bundles/app/img/avatar.jpg') }}
+                                {% endif %}
+                                " class="img-circle user-image" alt="User Image">
+
+            <p>
+                <span class="username">{{ app.user.persona.first }}</span>
+                <small>{{ "Member since" | trans }} {{ app.user.actualizadoPor | date('M Y') }}</small>
+            </p>
+        </li>
+
+        <!-- Menu Footer-->
+        <li class="user-footer">
+            <div class="pull-left">
+                {% if is_granted("ROLE_PERSONA") %}
+                    <a href="{{ path('persona_perfil') }}" class="btn btn-default btn-flat">
+                        {{ 'profile' |trans }}
+                    </a>
+                {% endif %}
+            </div>
+            <div class="pull-right">
+                <a href="{{ path('fos_user_security_logout') }}"
+                   class="btn btn-default btn-flat">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+            </div>
+        </li>
+    </ul>
+</li>

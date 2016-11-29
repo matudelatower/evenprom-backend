@@ -42,14 +42,14 @@ class Persona extends BaseClass
 	/**
 	 * @var \DateTime
 	 *
-	 * @ORM\Column(name="fecha_nacimiento", type="date")
+	 * @ORM\Column(name="fecha_nacimiento", type="date", nullable=true)
 	 */
 	private $fechaNacimiento;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="dni", type="string", length=255, unique=true)
+     * @ORM\Column(name="dni", type="string", length=255, unique=true, nullable=true)
      */
     private $dni;
 

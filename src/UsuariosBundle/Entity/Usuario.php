@@ -31,7 +31,7 @@ class Usuario extends BaseUser {
 	public function __construct() {
 		parent::__construct();
 		// your own logic
-		$this->roles = array('ROLE_USER');
+		$this->roles   = array( 'ROLE_USER' );
 		$this->empresa = new \Doctrine\Common\Collections\ArrayCollection();
 	}
 
@@ -81,6 +81,26 @@ class Usuario extends BaseUser {
 	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\Persona", mappedBy="usuario", cascade={"persist", "remove"})
 	 */
 	private $persona;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="facebook_id", type="string", nullable=true)
+	 */
+	protected $facebookId;
+
+	/** @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true) */
+	protected $facebookAccessToken;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="google_id", type="string", nullable=true)
+	 */
+	protected $googleId;
+
+	/** @ORM\Column(name="google_access_token", type="string", length=255, nullable=true) */
+	protected $googleAccessToken;
 
 
 	/**
@@ -172,70 +192,157 @@ class Usuario extends BaseUser {
 	}
 
 
+	/**
+	 * Add empresa
+	 *
+	 * @param \AppBundle\Entity\Empresa $empresa
+	 *
+	 * @return Usuario
+	 */
+	public function addEmpresa( \AppBundle\Entity\Empresa $empresa ) {
+		$this->empresa[] = $empresa;
+
+		return $this;
+	}
+
+	/**
+	 * Remove empresa
+	 *
+	 * @param \AppBundle\Entity\Empresa $empresa
+	 */
+	public function removeEmpresa( \AppBundle\Entity\Empresa $empresa ) {
+		$this->empresa->removeElement( $empresa );
+	}
+
+	/**
+	 * Get empresa
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getEmpresa() {
+		return $this->empresa;
+	}
+
+	/**
+	 * Add persona
+	 *
+	 * @param \AppBundle\Entity\Persona $persona
+	 *
+	 * @return Usuario
+	 */
+	public function addPersona( \AppBundle\Entity\Persona $persona ) {
+		$this->persona[] = $persona;
+
+		return $this;
+	}
+
+	/**
+	 * Remove persona
+	 *
+	 * @param \AppBundle\Entity\Persona $persona
+	 */
+	public function removePersona( \AppBundle\Entity\Persona $persona ) {
+		$this->persona->removeElement( $persona );
+	}
+
+	/**
+	 * Get persona
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getPersona() {
+		return $this->persona;
+	}
+
+	/**
+	 * Set facebookId
+	 *
+	 * @param string $facebookId
+	 *
+	 * @return Usuario
+	 */
+	public function setFacebookId( $facebookId ) {
+		$this->facebookId = $facebookId;
+
+		return $this;
+	}
+
+	/**
+	 * Get facebookId
+	 *
+	 * @return string
+	 */
+	public function getFacebookId() {
+		return $this->facebookId;
+	}
+
+	/**
+	 * Set googleId
+	 *
+	 * @param string $googleId
+	 *
+	 * @return Usuario
+	 */
+	public function setGoogleId( $googleId ) {
+		$this->googleId = $googleId;
+
+		return $this;
+	}
+
+	/**
+	 * Get googleId
+	 *
+	 * @return string
+	 */
+	public function getGoogleId() {
+		return $this->googleId;
+	}
+
     /**
-     * Add empresa
+     * Set facebookAccessToken
      *
-     * @param \AppBundle\Entity\Empresa $empresa
+     * @param string $facebookAccessToken
+     *
      * @return Usuario
      */
-    public function addEmpresa(\AppBundle\Entity\Empresa $empresa)
+    public function setFacebookAccessToken($facebookAccessToken)
     {
-        $this->empresa[] = $empresa;
+        $this->facebookAccessToken = $facebookAccessToken;
 
         return $this;
     }
 
     /**
-     * Remove empresa
+     * Get facebookAccessToken
      *
-     * @param \AppBundle\Entity\Empresa $empresa
+     * @return string
      */
-    public function removeEmpresa(\AppBundle\Entity\Empresa $empresa)
+    public function getFacebookAccessToken()
     {
-        $this->empresa->removeElement($empresa);
+        return $this->facebookAccessToken;
     }
 
     /**
-     * Get empresa
+     * Set googleAccessToken
      *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getEmpresa()
-    {
-        return $this->empresa;
-    }
-
-    /**
-     * Add persona
-     *
-     * @param \AppBundle\Entity\Persona $persona
+     * @param string $googleAccessToken
      *
      * @return Usuario
      */
-    public function addPersona(\AppBundle\Entity\Persona $persona)
+    public function setGoogleAccessToken($googleAccessToken)
     {
-        $this->persona[] = $persona;
+        $this->googleAccessToken = $googleAccessToken;
 
         return $this;
     }
 
     /**
-     * Remove persona
+     * Get googleAccessToken
      *
-     * @param \AppBundle\Entity\Persona $persona
+     * @return string
      */
-    public function removePersona(\AppBundle\Entity\Persona $persona)
+    public function getGoogleAccessToken()
     {
-        $this->persona->removeElement($persona);
-    }
-
-    /**
-     * Get persona
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPersona()
-    {
-        return $this->persona;
+        return $this->googleAccessToken;
     }
 }

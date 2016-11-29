@@ -1,0 +1,58 @@
+<li class="dropdown user user-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <img src="{% if app.user.empresa.first and app.user.empresa.first.imageName %}
+                                {{ asset('uploads/images/empresas/'~ app.user.empresa.first.imageName) }}
+                                {% else %}
+                                    {#{{ asset('bundles/app/img/avatar.jpg') }}#}
+                                {% endif %}" class="user-image" alt="User Image">
+        <span class="hidden-xs">{{ app.user.empresa.first }}</span>
+    </a>
+    <ul class="dropdown-menu">
+        <!-- User image -->
+        <li class="user-header">
+            <img src="{% if app.user.empresa.first.imageName %}
+                                {{ asset('uploads/images/empresas/'~ app.user.empresa.first.imageName) }}
+                                {% else %}
+                                    {{ asset('bundles/app/img/avatar.jpg') }}
+                                {% endif %}
+                                " class="img-circle" alt="User Image">
+
+            <p>
+                {{ app.user.empresa.first }} - {% if (app.user.empresa.first.categoriaEmpresa | length) > 0  %}
+                    {{ app.user.empresa.first.categoriaEmpresa.first.categoria }}
+                {% else %}
+                    {{ 'sin.categoria' | trans }}
+                {% endif %}
+                <small>{{ "Member since" | trans }} {{ app.user.actualizadoPor | date('M Y') }}</small>
+            </p>
+        </li>
+        <!-- Menu Body -->
+        <li class="user-body">
+            <div class="row">
+                <div class="col-xs-4 text-center">
+                    <a href="#">Followers</a>
+                </div>
+                <div class="col-xs-4 text-center">
+                    <a href="#">Likes</a>
+                </div>
+                <div class="col-xs-4 text-center">
+                    <a href="#">Ranking</a>
+                </div>
+            </div>
+            <!-- /.row -->
+        </li>
+        <!-- Menu Footer-->
+        <li class="user-footer">
+            <div class="pull-left">
+                {% if is_granted("ROLE_EMPRESA") %}
+                    <a href="{{ path('empresa_perfil') }}" class="btn btn-default btn-flat">
+                        {{ 'perfil' |trans }}
+                    </a>
+                {% endif %}
+            </div>
+            <div class="pull-right">
+                <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default btn-flat">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+            </div>
+        </li>
+    </ul>
+</li>

@@ -1,0 +1,7 @@
+hwi_oauth_connect_service:
+    path:     /service/{service}
+    defaults: { _controller: "HWIOAuthBundle:Connect:connectService" }
+
+hwi_oauth_connect_registration:
+    path:     /registration/{key}
+    defaults: { _controller: "UsuariosBundle:Connect:registration" }

@@ -2,3 +2,6 @@ services:
 #    app.example:
 #        class: AppBundle\Example
 #        arguments: ["@service_id", "plain_value", %parameter%]
+#    manager.personas:
+#        class: AppBundle\Services\PersonasManager
+#        arguments: ["@service_id", "plain_value"]

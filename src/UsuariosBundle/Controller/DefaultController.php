@@ -11,10 +11,4 @@ class DefaultController extends Controller {
 		return $this->render( 'UsuariosBundle:Default:index.html.twig', array( 'name' => $name ) );
 	}
 
-	public function checkFbAction( Request $request ) {
-
-		$code = $request->get('code');
-
-		return $this->render( ':persona:test.html.twig', array( 'respuesta' => $code ) );
-	}
 }

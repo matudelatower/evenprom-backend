@@ -10,7 +10,8 @@ class DefaultController extends Controller {
 
 		$em = $this->getDoctrine();
 		if ( ! $this->get( 'security.authorization_checker' )->isGranted( 'IS_AUTHENTICATED_FULLY' ) ||
-		     $this->get( 'security.authorization_checker' )->isGranted( 'ROLE_USUARIO' )) {
+		     $this->get( 'security.authorization_checker' )->isGranted( 'ROLE_USUARIO' ) ||
+		     $this->get( 'security.authorization_checker' )->isGranted( 'ROLE_PERSONA' )) {
 
 			$publicaciones = $em->getRepository( "AppBundle:Publicacion" )->findAll();
 

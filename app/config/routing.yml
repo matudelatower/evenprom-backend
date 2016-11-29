@@ -1,14 +1,22 @@
-facebook_login:
-    path: /login/check-facebook
-    defaults: { _controller: "UsuariosBundle:Default:checkFb" }
+# HWIOAuthBundle
+hwi_oauth_security:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix: /connect
 
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
     prefix:   /connect
 
-hwi_oauth_login:
-    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
-    prefix:   /login_social
+# We override this part of the routing
+hwi_oauth_connect:
+     resource: "@UsuariosBundle/Resources/config/routing/connect.yml"
+     prefix: /connect
+
+facebook_login:
+    path: /connect/check-facebook
+
+google_login:
+    path: /connect/check-google
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

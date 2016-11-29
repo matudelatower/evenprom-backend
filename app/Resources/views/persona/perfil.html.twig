@@ -1,0 +1,54 @@
+{% extends '::layout_base_public.html.twig' %}
+{% trans_default_domain "app" %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/app/plugins/colorpicker/bootstrap-colorpicker.min.css') }}">
+    <style>
+        .widget-user .widget-user-image {
+            left: 50%;
+            margin-left: -45px;
+            position: absolute;
+            top: 50px;
+        }
+
+        .widget-user .widget-user-image > img {
+            border: 3px solid #fff;
+            height: 100px;
+            width: 100px;
+        }
+
+        .btn-color {
+            border-radius: 60px;
+            height: 100px;
+            width: 100px;
+        }
+
+        .users-list > li {
+            width: 33%;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">{{ 'profile.persona'|trans }}</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+
+            <div class="row">
+                <div class="col-md-12">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    {{ form_rest(form) }}
+                    <button type="submit" class="btn btn-primary"><i
+                                class="fa fa-save"></i> {{ 'button.guardar' |trans }}</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {% include 'UbicacionBundle:Default:matudelatower_ubicacionbundle.js.twig' %}
+{% endblock %}

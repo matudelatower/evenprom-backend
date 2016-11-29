@@ -27,3 +27,8 @@ persona_registrar:
     path:     /registrar
     defaults: { _controller: "AppBundle:Persona:registrar" }
     methods:  [GET, POST]
+
+persona_perfil:
+    path:     /perfil
+    defaults: { _controller: "AppBundle:Persona:perfil" }
+    methods:  [GET, POST]
