@@ -52,6 +52,14 @@ class Onda extends BaseClass{
 	private $slug;
 
 	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="icono", type="string", length=255, nullable=true)
+	 * @Expose()
+	 */
+	private $icono;
+
+	/**
 	 *
 	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\EmpresaOnda", mappedBy="onda", cascade={"persist", "remove"})
 	 */
@@ -227,5 +235,29 @@ class Onda extends BaseClass{
         $this->actualizadoPor = $actualizadoPor;
 
         return $this;
+    }
+
+    /**
+     * Set icono
+     *
+     * @param string $icono
+     *
+     * @return Onda
+     */
+    public function setIcono($icono)
+    {
+        $this->icono = $icono;
+
+        return $this;
+    }
+
+    /**
+     * Get icono
+     *
+     * @return string
+     */
+    public function getIcono()
+    {
+        return $this->icono;
     }
 }

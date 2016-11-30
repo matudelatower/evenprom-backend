@@ -1,3 +1,8 @@
+onda :
+  type: rest
+  resource:     "@AppBundle/Controller/Rest/OndasRestController.php"
+  name_prefix:  api_
+
 ubicacion :
   type: rest
   resource:     "@AppBundle/Controller/Rest/UbicacionRestController.php"
