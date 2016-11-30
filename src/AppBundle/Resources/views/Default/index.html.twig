@@ -4,33 +4,90 @@
 
     <div class="row">
         {% for publicacion in publicaciones %}
-            {% if publicacion.publicacionEmpresa.first.empresa.premium %}
-                {% set colorPublicacion = publicacion.colorPublicacion %}
-            {% else %}
-                {% set colorPublicacion = '#5c666f' %}
-            {% endif %}
 
             <div class="col-md-offset-3 col-md-6 col-sm-6 col-xs-12 ep-publicacion-box">
-                <!-- Info Boxes Style 2 -->
-                <div class="ep-info-box">
-                    <div class="ep-info-box-empresa">
+
+                {% if publicacion.publicacionEmpresa.first.empresa.premium %}
+                    {% set colorPublicacion = publicacion.colorPublicacion %}
+                    {# Premium #}
+                    <div class="ep-info-box-premium">
+                        <div class="ep-info-box-empresa-premium">
                         <span class="fecha-publicacion">
-                            {% set fecha =  publicacion.fechaInicio | date('d-M')  %}
-                            {% set hora =  publicacion.horaInicio | date('H')  %}
+                            {% set fecha =  publicacion.fechaInicio | date('d-M') %}
+                            {% set hora =  publicacion.horaInicio | date('H') %}
                             {% if publicacion.tipoPublicacion.slug =='evento' %}
                                 {% if hora != publicacion.horaInicio | date('H') %}
-                                    {% set hora =  publicacion.horaInicio | date('H')  %}
+                                    {% set hora =  publicacion.horaInicio | date('H') %}
                                 {% endif %}
                                 {{ hora }} HS
                             {% elseif publicacion.tipoPublicacion.slug =='oferta' %}
                                 {% if fecha != publicacion.fechaInicio | date('d-M') %}
-                                    {% set fecha =  publicacion.fechaInicio | date('d-M')  %}
+                                    {% set fecha =  publicacion.fechaInicio | date('d-M') %}
                                 {% endif %}
-                                {{ fecha | upper}}
+                                {{ fecha | upper }}
                             {% endif %}
 
                         </span>
-                        <div class="ep-info-box-empresa-body">
+                            <div class="ep-info-box-empresa-body-premium">
+
+                        <span class="ep-info-box-nombre-empresa-premium"
+                              style="color: {{ colorPublicacion }}">
+                            <i class="fa {% if publicacion.publicacionEmpresa.first.empresa.categoriaEmpresa.first | length > 0
+                            and publicacion.publicacionEmpresa.first.empresa.categoriaEmpresa.first.categoria.icono == 'restaurant' %}
+                            fa-cutlery
+                            {% else %}
+                            fa-heart-o
+                            {% endif %}"></i> | {{ publicacion.publicacionEmpresa.first.empresa }}</span>
+                            </div>
+                            <div class="">
+                                <span class="ep-info-box-descripcion">{{ publicacion.descripcion }}</span>
+                            </div>
+
+                        </div>
+                        <div class="ep-info-box-content text-center">
+                            <div class="ep-info-box-content-body">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ep-info-box-premium">
+                        <img class="img-responsive pad" src="{{ asset('uploads/images/publicaciones/'~ publicacion.imageName) }}"
+                             alt="Photo">
+                        <div class="ep-badge-evento-premium" style="background-color: {{ colorPublicacion }}">
+                            <span class="ep-info-box-titulo-premium">
+                                {% if publicacion.tipoPublicacion.slug =='evento' %}
+                                    {{ publicacion.titulo }}
+                                {% elseif publicacion.tipoPublicacion.slug =='oferta' %}
+                                    {% if publicacion.descuentoPublicacion.first | length > 0 %}
+                                        {{ publicacion.descuentoPublicacion.first.descuento.nombre }}
+                                    {% endif %}
+                                {% endif %}
+
+                            </span>
+                        </div>
+                    </div>
+                {% else %}
+                    {% set colorPublicacion = '#5c666f' %}
+                    <!-- Info Boxes Style 2 -->
+                    <div class="ep-info-box">
+                        <div class="ep-info-box-empresa">
+                        <span class="fecha-publicacion">
+                            {% set fecha =  publicacion.fechaInicio | date('d-M') %}
+                            {% set hora =  publicacion.horaInicio | date('H') %}
+                            {% if publicacion.tipoPublicacion.slug =='evento' %}
+                                {% if hora != publicacion.horaInicio | date('H') %}
+                                    {% set hora =  publicacion.horaInicio | date('H') %}
+                                {% endif %}
+                                {{ hora }} HS
+                            {% elseif publicacion.tipoPublicacion.slug =='oferta' %}
+                                {% if fecha != publicacion.fechaInicio | date('d-M') %}
+                                    {% set fecha =  publicacion.fechaInicio | date('d-M') %}
+                                {% endif %}
+                                {{ fecha | upper }}
+                            {% endif %}
+
+                        </span>
+                            <div class="ep-info-box-empresa-body">
 
                         <span class="ep-info-box-nombre-empresa"
                               style="color: {{ colorPublicacion }}">
@@ -40,14 +97,14 @@
                             {% else %}
                             fa-heart-o
                             {% endif %}"></i> | {{ publicacion.publicacionEmpresa.first.empresa }}</span>
-                        </div>
-                        <div class="text-center">
-                            <span class="ep-info-box-descripcion">{{ publicacion.descripcion }}</span>
-                        </div>
+                            </div>
+                            <div class="text-center">
+                                <span class="ep-info-box-descripcion">{{ publicacion.descripcion }}</span>
+                            </div>
 
-                    </div>
-                    <div class="ep-info-box-content text-center">
-                        <div class="ep-info-box-content-body">
+                        </div>
+                        <div class="ep-info-box-content text-center">
+                            <div class="ep-info-box-content-body">
                             <span class="ep-info-box-titulo" style="color: {{ colorPublicacion }}">
                                 {% if publicacion.tipoPublicacion.slug =='evento' %}
                                     {{ publicacion.titulo }}
@@ -58,9 +115,10 @@
                                 {% endif %}
 
                             </span><br>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {% endif %}
                 <div class="ep-info-box-botones">
                     <a href="#" data-publicacion-id="{{ publicacion.id }}"
                        class="btn ep-btn-oferta-comentar ep-btn-oferta ep-celeste">
