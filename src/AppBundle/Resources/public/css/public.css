@@ -1,22 +1,21 @@
-.margin-top-5{
+.margin-top-5 {
     margin-top: 5%;
 }
 
-.margin-top-10{
+.margin-top-10 {
     margin-top: 10%;
 }
 
-.margin-top-20{
+.margin-top-20 {
     margin-top: 20%;
 }
-
 
 .ep-info-box {
     background: #fff none repeat scroll 0 0;
     border-radius: 2px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     display: flex;
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
     min-height: 90px;
     width: 100%;
 }
@@ -29,11 +28,11 @@
 .ep-info-box-titulo {
     text-transform: uppercase;
     font-weight: bold;
+    font-size: 2em;
 }
 
 .ep-info-box-empresa {
     width: 50%;
-    font-weight: bold;
 }
 
 .ep-info-box-content-body {
@@ -41,30 +40,121 @@
 }
 
 .ep-info-box-empresa-body {
-    margin-top: 15%;
+    /*margin-top: 15%;*/
+    margin-left: 10%;
 }
 
 .ep-info-box-nombre-empresa {
     text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.5em;
     /*margin-top: 7%;*/
     /*position: absolute;*/
 }
 
+.ep-info-box-descripcion {
+    margin-left: 20%;
+}
+
 .ep-info-box-botones {
     border-bottom-right-radius: 2px;
-    border-top-right-radius: 2px;
-    width: 38px;
+    border-bottom-left-radius: 2px;
+    /*border-top-right-radius: 2px;*/
+    background-color: #fff;
+    border-bottom: solid lightslategray;
+    /*width: 38px;*/
     /*width: 15%;*/
 }
 
 .ep-btn-oferta {
     width: 30px;
-    height: 30px;
+    /*height: 30px;*/
     text-align: center;
     padding: 6px 0;
-    font-size: 12px;
+    font-size: 1.3em;
     line-height: 1.428571429;
     border-radius: 15px;
     background-color: #fff;
     color: #5c666f;
+    margin-left: 20%;
+}
+
+.ep-publicacion-box {
+
+}
+.fecha-publicacion{
+    margin-left:1%;
+}
+/*evenprom colors*/
+
+.ep-verde {
+    color: #00e9af;
+}
+
+.ep-celeste {
+    color: #00c0cf;
+}
+
+.ep-violeta {
+    color: #6a66d2;
+}
+
+.ep-gris {
+    color: #5c666f;
+}
+
+.ep-amarillo {
+    color: #efe91c;
+}
+
+.ep-fucsia {
+    color: #d45ce6;
+}
+
+.ep-gris-claro {
+    color: #d1dbe3;
+}
+
+.ep-rojo {
+    color: #ff1c46;
+}
+
+.ep-bg-verde {
+    background-color: #00e9af;
+    color: #fff;
+}
+
+.ep-bg-celeste {
+    background-color: #00c0cf;
+    color: #fff;
+}
+
+.ep-bg-violeta {
+    background-color: #6a66d2;
+    color: #fff;
+}
+
+.ep-bg-gris {
+    background-color: #5c666f;
+    color: #fff;
+}
+
+.ep-bg-amarillo {
+    background-color: #efe91c;
+    color: #fff;
+}
+
+.ep-bg-fucsia {
+    background-color: #d45ce6;
+    color: #fff;
+}
+
+.ep-bg-gris-claro {
+    background-color: #d1dbe3;
+    color: #fff;
+}
+
+.ep-bg-rojo {
+    background-color: #ff1c46;
+    color: #fff;
 }

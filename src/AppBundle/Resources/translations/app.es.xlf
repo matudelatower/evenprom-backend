@@ -18,6 +18,14 @@
                 <source>register.as.empresa</source>
                 <target>Registrarse Como Empresa</target>
             </trans-unit>
+            <trans-unit id="register_as_persona">
+                <source>register.as.persona</source>
+                <target>Registrarse Como Persona</target>
+            </trans-unit>
+            <trans-unit id="or">
+                <source>or</source>
+                <target>o</target>
+            </trans-unit>
             <trans-unit id="button_register">
                 <source>button.register</source>
                 <target>Registrar</target>

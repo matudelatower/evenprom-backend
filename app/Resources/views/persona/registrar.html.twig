@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-signin-client_id"
+          content="{{ g_app_id }}">
     <title>{{ site_name }}| Registrar</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -37,6 +39,17 @@
         <span class="pull-right"><a href="{{ path('empresa_registrar') }}" class="text-center">{{ 'register.as.empresa'|trans }}</a></span><br>
         <p class="login-box-msg">{{ 'register.a.new.membership'|trans }}</p>
 
+
+            <a class="btn btn-block btn-social btn-facebook" href="#" onclick="fb_login();">
+                <i class="fa fa-facebook"></i> Register with Facebook
+            </a>
+            <a class="btn btn-block btn-social btn-google"
+               href="{{ path('hwi_oauth_service_redirect', {'service': 'google' }) }}">
+                <i class="fa fa-google-plus"></i> Register with Google
+            </a>
+
+
+        <p class="login-box-msg">{{ 'or'|trans }}</p>
         {{ form_start(form) }}
         {{ form_widget(form) }}
         <div class="row">
@@ -120,6 +133,51 @@
             autoclose: true
         });
     });
+</script>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script>
+    window.fbAsyncInit = function () {
+        // init the FB JS SDK
+        FB.init({
+            appId: '{{ fb_app_id }}',                        // App ID from the app dashboard
+            status: true,                                 // Check Facebook Login status
+            xfbml: true                                  // Look for social plugins on the page
+        });
+    };
+
+    // Load the SDK asynchronously
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function fb_login() {
+        FB.getLoginStatus(function (response) {
+            if (response.status === 'connected') {
+                // connected
+                alert('Already connected, redirect to login page to create token.');
+                document.location = "{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}";
+            } else {
+                // not_authorized
+                FB.login(function (response) {
+                    if (response.authResponse) {
+                        document.location = "{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}";
+                    } else {
+                        alert('Cancelled.');
+                    }
+                }, {scope: 'email'});
+            }
+        });
+    }
+
+
 </script>
 </body>
 </html>

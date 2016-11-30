@@ -3,7 +3,7 @@
         <img src="{% if app.user.empresa.first and app.user.empresa.first.imageName %}
                                 {{ asset('uploads/images/empresas/'~ app.user.empresa.first.imageName) }}
                                 {% else %}
-                                    {#{{ asset('bundles/app/img/avatar.jpg') }}#}
+                                    {{ asset('bundles/app/img/avatar.jpg') }}
                                 {% endif %}" class="user-image" alt="User Image">
         <span class="hidden-xs">{{ app.user.empresa.first }}</span>
     </a>
