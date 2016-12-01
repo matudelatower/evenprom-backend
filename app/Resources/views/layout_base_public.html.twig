@@ -6,6 +6,7 @@
     <meta name="google-signin-client_id"
           content="{{ g_app_id }}">
     <title> {{ site_name }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/app/img/favicon.png') }}" />
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -46,6 +47,28 @@
 {% trans_default_domain "app" %}
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav fixed">
+<div id="modal-alert" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Atención</h4>
+            </div>
+            <div class="modal-body">
+
+
+            </div>
+            <div class="hidden">
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 <div class="wrapper">
 
     <header class="main-header">
@@ -205,6 +228,32 @@
             });
             {% endif %}
 
+        });
+
+//        acciones publicaciones
+        $('.ep-btn-oferta-compartir').click(function (ev) {
+            ev.preventDefault();
+
+            var href = $(this).data('href');
+            var image = $(this).data('image');
+            var name = $(this).data('name');
+            console.log(image);
+            FB.ui({
+                method: 'feed',
+                name: name,
+                link: href,
+                picture: image,
+                caption: 'evenprom.com',
+
+//                method: 'feed',
+//                display: 'popup',
+//                link: href,
+//                picture: image
+            }, function (response) {
+            });
+
+
+            console.log("pubID", $(this).data('publicacion-id'));
         })
 
 
@@ -243,6 +292,7 @@
     gapi.load('client', initClient);
     {% endif %}
 </script>
+<script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
 
 {% block javascripts %}
 {% endblock javascripts %}

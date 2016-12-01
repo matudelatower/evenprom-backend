@@ -5,3 +5,8 @@ sitios_index:
 app_perfil_empresa:
     path:     /{id}/sitios
     defaults: { _controller: "AppBundle:Default:sitios" }
+
+publicacion_show:
+    path:     /publicacion/{id}/show
+    defaults: { _controller: "AppBundle:Publicacion:show" }
+    methods:  [GET]

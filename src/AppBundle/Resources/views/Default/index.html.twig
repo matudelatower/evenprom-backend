@@ -51,7 +51,8 @@
                         </div>
                     </div>
                     <div class="ep-info-box-premium">
-                        <img class="img-responsive pad" src="{{ asset('uploads/images/publicaciones/'~ publicacion.imageName) }}"
+                        <img class="img-responsive pad"
+                             src="{{ asset('uploads/images/publicaciones/'~ publicacion.imageName) }}"
                              alt="Photo">
                         <div class="ep-badge-evento-premium" style="background-color: {{ colorPublicacion }}">
                             <span class="ep-info-box-titulo-premium">
@@ -128,10 +129,29 @@
                        class="btn ep-btn-oferta-favear ep-btn-oferta ep-rojo">
                         <i class="fa fa-heart-o"></i>
                     </a>
-                    <a href="#" data-publicacion-id="{{ publicacion.id }}"
-                       class="btn ep-btn-oferta-compartir ep-btn-oferta ep-verde">
-                        <i class="fa fa-share-alt"></i>
-                    </a>
+                    <div class="btn-group ep-btn-share">
+                        <a class="btn dropdown-toggle ep-btn-oferta ep-verde" data-toggle="dropdown">
+                            <span class="fa fa-share-alt"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#" data-publicacion-id="{{ publicacion.id }}"
+                                   data-href="{{ url('publicacion_show', {'id': publicacion.id }) }}"
+                                   data-image="{{ asset('uploads/images/publicaciones/'~ publicacion.imageName, null, true) }}"
+                                   data-name="{{ publicacion.titulo }}"
+                                   class="ep-btn-oferta-compartir">
+                                    <i class="fa fa-facebook"></i> Compartir
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/intent/tweet?text={{ publicacion.titulo }}&url={{ url('publicacion_show', {'id': publicacion.id }) }}&via=evenprom">
+                                    <i class="fa fa-twitter"></i> Tweet
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
                 </div>
                 <!-- /.info-box -->
 
