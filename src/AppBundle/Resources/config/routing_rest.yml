@@ -1,3 +1,8 @@
+persona :
+  type: rest
+  resource:     "@AppBundle/Controller/Rest/PersonasRestController.php"
+  name_prefix:  api_
+
 onda :
   type: rest
   resource:     "@AppBundle/Controller/Rest/OndasRestController.php"

@@ -254,4 +254,21 @@ class EmpresaController extends Controller {
 				'form'    => $form->createView(),
 			) );
 	}
+
+	public function adminAction(Request $request )
+	{
+		$empresa = $this->getUser()->getEmpresa()->first();
+
+		$em = $this->getDoctrine()->getManager();
+
+		$noticias                = $em->getRepository( 'AppBundle:NoticiaInterna' )->getNoticiasActuales();
+		$noticiasInternasEmpresa = $em->getRepository( 'AppBundle:NoticiaInternaEmpresa' )->findByEmpresa( $empresa );
+
+		return $this->render( ':empresa:empresa_admin.html.twig',
+			array(
+				'empresa'                 => $empresa,
+				'noticias'                => $noticias,
+				'noticiasInternasEmpresa' => $noticiasInternasEmpresa,
+			) );
+	}
 }

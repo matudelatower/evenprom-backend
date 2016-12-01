@@ -65,6 +65,12 @@ class Onda extends BaseClass{
 	 */
 	private $empresaOnda;
 
+	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\PersonaOnda", mappedBy="onda", cascade={"persist", "remove"})
+	 */
+	private $personaOnda;
+
 	public function __toString() {
 		return $this->nombre;
 	}
@@ -259,5 +265,39 @@ class Onda extends BaseClass{
     public function getIcono()
     {
         return $this->icono;
+    }
+
+    /**
+     * Add personaOnda
+     *
+     * @param \AppBundle\Entity\PersonaOnda $personaOnda
+     *
+     * @return Onda
+     */
+    public function addPersonaOnda(\AppBundle\Entity\PersonaOnda $personaOnda)
+    {
+        $this->personaOnda[] = $personaOnda;
+
+        return $this;
+    }
+
+    /**
+     * Remove personaOnda
+     *
+     * @param \AppBundle\Entity\PersonaOnda $personaOnda
+     */
+    public function removePersonaOnda(\AppBundle\Entity\PersonaOnda $personaOnda)
+    {
+        $this->personaOnda->removeElement($personaOnda);
+    }
+
+    /**
+     * Get personaOnda
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPersonaOnda()
+    {
+        return $this->personaOnda;
     }
 }

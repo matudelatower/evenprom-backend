@@ -98,6 +98,10 @@
                 <source>profile.empresa</source>
                 <target>Perfil Empresa</target>
             </trans-unit>
+            <trans-unit id="profile_persona">
+                <source>profile.persona</source>
+                <target>Mi Perfil</target>
+            </trans-unit>
             <trans-unit id="sin.categoria">
                 <source>sin.categoria</source>
                 <target>Sin Categoría</target>

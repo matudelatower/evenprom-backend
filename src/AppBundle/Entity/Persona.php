@@ -6,6 +6,12 @@ use AppBundle\Entity\Base\BaseClass;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use JMS\Serializer\Annotation as Serializer;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Persona
@@ -13,6 +19,7 @@ use Symfony\Component\HttpFoundation\File\File;
  * @Vich\Uploadable
  * @ORM\Table(name="personas")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PersonaRepository")
+ * @ExclusionPolicy("all")
  */
 class Persona extends BaseClass
 {
@@ -22,6 +29,7 @@ class Persona extends BaseClass
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose()
      */
     private $id;
 
@@ -29,6 +37,7 @@ class Persona extends BaseClass
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=255)
+     * @Expose()
      */
     private $nombre;
 
@@ -36,6 +45,7 @@ class Persona extends BaseClass
      * @var string
      *
      * @ORM\Column(name="apellido", type="string", length=255)
+     * @Expose()
      */
     private $apellido;
 
@@ -43,6 +53,7 @@ class Persona extends BaseClass
 	 * @var \DateTime
 	 *
 	 * @ORM\Column(name="fecha_nacimiento", type="date", nullable=true)
+	 * @Expose()
 	 */
 	private $fechaNacimiento;
 
@@ -50,6 +61,7 @@ class Persona extends BaseClass
      * @var string
      *
      * @ORM\Column(name="dni", type="string", length=255, unique=true, nullable=true)
+     * @Expose()
      */
     private $dni;
 
@@ -58,6 +70,7 @@ class Persona extends BaseClass
 	 *
 	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TipoDocumento")
 	 * @ORM\JoinColumn(name="tipo_documento_id", referencedColumnName="id")
+	 * @Expose()
 	 */
 	private $tipoDocumento;
 
@@ -68,6 +81,12 @@ class Persona extends BaseClass
 	 * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
 	 */
 	private $usuario;
+
+	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\PersonaOnda", mappedBy="persona", cascade={"persist", "remove"})
+	 */
+	private $personaOnda;
 
 	/**
 	 * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -83,6 +102,7 @@ class Persona extends BaseClass
 	 *
 	 * @var string
 	 *
+	 * @Expose()
 	 */
 	private $imageName;
 
@@ -132,6 +152,25 @@ class Persona extends BaseClass
 	 */
 	public function getImageName() {
 		return $this->imageName;
+	}
+
+
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("ondas")
+	 */
+	public function getOndas() {
+
+		$return = array();
+
+		if ( $this->getPersonaOnda() ) {
+			foreach ( $this->getPersonaOnda() as $personaOnda ) {
+				$return[] = $personaOnda->getOnda();
+			}
+		}
+
+		return $return;
+
 	}
 
 	public function __toString() {
@@ -346,5 +385,46 @@ class Persona extends BaseClass
     public function getUsuario()
     {
         return $this->usuario;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->personaOnda = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add personaOnda
+     *
+     * @param \AppBundle\Entity\PersonaOnda $personaOnda
+     *
+     * @return Persona
+     */
+    public function addPersonaOnda(\AppBundle\Entity\PersonaOnda $personaOnda)
+    {
+        $this->personaOnda[] = $personaOnda;
+
+        return $this;
+    }
+
+    /**
+     * Remove personaOnda
+     *
+     * @param \AppBundle\Entity\PersonaOnda $personaOnda
+     */
+    public function removePersonaOnda(\AppBundle\Entity\PersonaOnda $personaOnda)
+    {
+        $this->personaOnda->removeElement($personaOnda);
+    }
+
+    /**
+     * Get personaOnda
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPersonaOnda()
+    {
+        return $this->personaOnda;
     }
 }

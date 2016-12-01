@@ -26,18 +26,8 @@ class DefaultController extends Controller {
 			return $this->redirectToRoute( 'easyadmin' );
 		}
 
-		$empresa = $this->getUser()->getEmpresa()->first();
+		return $this->redirectToRoute( 'empresa_admin' );
 
-
-		$noticias                = $em->getRepository( 'AppBundle:NoticiaInterna' )->getNoticiasActuales();
-		$noticiasInternasEmpresa = $em->getRepository( 'AppBundle:NoticiaInternaEmpresa' )->findByEmpresa( $empresa );
-
-		return $this->render( ':empresa:empresa_admin.html.twig',
-			array(
-				'empresa'                 => $empresa,
-				'noticias'                => $noticias,
-				'noticiasInternasEmpresa' => $noticiasInternasEmpresa,
-			) );
 
 	}
 

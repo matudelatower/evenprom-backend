@@ -1,3 +1,4 @@
+{% trans_default_domain "app" %}
 <li class="dropdown user user-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <img src="{% if app.user.persona.first and app.user.persona.first.imageName %}
@@ -28,7 +29,7 @@
             <div class="pull-left">
                 {% if is_granted("ROLE_PERSONA") %}
                     <a href="{{ path('persona_perfil') }}" class="btn btn-default btn-flat">
-                        {{ 'profile' |trans }}
+                        {{ 'perfil' |trans }}
                     </a>
                 {% endif %}
             </div>

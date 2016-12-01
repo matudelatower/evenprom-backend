@@ -193,9 +193,15 @@
                 access_token: '{{ app.user.facebookAccessToken }}',
                 fields: 'first_name,last_name,id,picture'
             }, function (response) {
-                console.log(response);
-                $(".user-image").attr("src", response.picture.data.url);
-//                $(".username").html(response.first_name + ' ' + response.last_name);
+//                console.log(response);
+                FB.api('/' + response.id + '/picture?type=large', {
+                    access_token: '{{ app.user.facebookAccessToken }}'
+                }, function (responsePhoto) {
+//                    console.log('responsePhoto', responsePhoto);
+                    $(".user-image").attr("src", responsePhoto.data.url);
+                })
+
+
             });
             {% endif %}
 
@@ -208,7 +214,7 @@
 
 <script src="https://apis.google.com/js/api.js"></script>
 <script>
-    {% if is_granted("ROLE_PERSONA") %}
+    {% if app.user and app.user.googleAccessToken %}
     function initClient() {
         gapi.client.init({
             apiKey: '{{ g_api_key }}',

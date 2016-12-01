@@ -32,3 +32,8 @@ empresa_perfil:
     path:     /perfil
     defaults: { _controller: "AppBundle:Empresa:perfil" }
     methods:  [GET, POST]
+
+empresa_admin:
+    path:     /inicio
+    defaults: { _controller: "AppBundle:Empresa:admin" }
+    methods:  [GET, POST]

@@ -25,8 +25,9 @@ class PersonaType extends AbstractType {
 						'class'       => 'datepicker',
 					),
 				) )
-			->add( 'dni' )
 			->add( 'tipoDocumento' )
+			->add( 'dni' )
+			->add( 'personaOnda' )
 		;
 	}
 
