@@ -221,6 +221,7 @@
 <script src="https://apis.google.com/js/client.js"></script>
 
 <script>
+    var usrImg = '{{ asset('bundles/app/img/avatar.jpg') }}';
     $(document).ready(function () {
         $.getScript('//connect.facebook.net/en_US/sdk.js', function () {
             FB.init({
@@ -242,6 +243,7 @@
                 }, function (responsePhoto) {
 //                    console.log('responsePhoto', responsePhoto);
                     $(".user-image").attr("src", responsePhoto.data.url);
+                    usrImg = responsePhoto.data.url;
                 })
 
 

@@ -42,8 +42,12 @@ or publicacion.publicacionEmpresa.first.empresa.premium == false %}
         {# Premium #}
         <div class="ep-info-box-premium">
             <a href="#" class="btn-ver-publicacion" data-publicacion-id="{{ publicacion.id }}">
+                {% set src = asset('bundles/app/img/default-thumbnail.jpeg') %}
+                {% if publicacion.imageName %}
+                    {% set src = asset('uploads/images/publicaciones/'~ publicacion.imageName) %}
+                {% endif %}
                 <img class="img-responsive pad"
-                     src="{{ asset('uploads/images/publicaciones/'~ publicacion.imageName) }}"
+                     src="{{ src }}"
                      alt="Photo">
             </a>
             <div class="ep-badge-evento-premium-modal" style="background-color: {{ colorPublicacion }}">
@@ -145,8 +149,9 @@ or publicacion.publicacionEmpresa.first.empresa.premium == false %}
     </div>
     <div class="box-footer">
         <form action="#" method="post">
-            <img class="img-responsive img-circle img-sm"
-                 src="{{ asset('bundles/app/AdminLTE-2.3.5//img/user4-128x128.jpg') }}" alt="Alt Text">
+
+            <img class="img-responsive img-circle img-sm user-avatar"
+                 src="{{ asset('bundles/app/img/avatar.jpg') }}" alt="Alt Text">
             <!-- .img-push is used to add margin to elements next to floating images -->
             <div class="img-push">
                 <input type="text" class="form-control input-sm" placeholder="Presioná Enter para comentar">
@@ -159,7 +164,7 @@ or publicacion.publicacionEmpresa.first.empresa.premium == false %}
 <!-- /.box -->
 <script>
     $(document).ready(function () {
-
+        $('.user-avatar').attr("src", usrImg);
 
         {% if publicacion.publicacionEmpresa.first.empresa.direccionEmpresa.count > 0 %}
         var address = '{{ publicacion.publicacionEmpresa.first.empresa.direccionEmpresa.first.direccion.calle }} {{ publicacion.publicacionEmpresa.first.empresa.direccionEmpresa.first.direccion.altura }}, {{ publicacion.publicacionEmpresa.first.empresa.direccionEmpresa.first.direccion.localidad }}, {{ publicacion.publicacionEmpresa.first.empresa.direccionEmpresa.first.direccion.localidad.departamento.provincia }}'

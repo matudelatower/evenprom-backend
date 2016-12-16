@@ -72,8 +72,12 @@
                     </div>
                     <div class="ep-info-box-premium">
                         <a href="#" class="btn-ver-publicacion" data-publicacion-id="{{ publicacion.id }}">
+                            {% set src = asset('bundles/app/img/default-thumbnail.jpeg') %}
+                            {% if publicacion.imageName %}
+                                {% set src = asset('uploads/images/publicaciones/'~ publicacion.imageName) %}
+                            {% endif %}
                             <img class="img-responsive pad"
-                                 src="{{ asset('uploads/images/publicaciones/'~ publicacion.imageName) }}"
+                                 src="{{ src }}"
                                  alt="Photo">
                         </a>
                         <div class="ep-badge-evento-premium" style="background-color: {{ colorPublicacion }}">
