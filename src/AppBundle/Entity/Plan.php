@@ -53,6 +53,13 @@ class Plan extends BaseClass
 	 */
 	private $periodo;
 
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="slug", type="string", length=255, nullable=true)
+	 */
+	private $slug;
+
 
 	/**
 	 * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -279,5 +286,29 @@ class Plan extends BaseClass
         $this->actualizadoPor = $actualizadoPor;
 
         return $this;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Plan
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

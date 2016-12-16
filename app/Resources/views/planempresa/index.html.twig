@@ -1,0 +1,91 @@
+{% extends '::layout_base.html.twig' %}
+{% trans_default_domain "app" %}
+    {% block content %}
+
+        <div class="row">
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">{{ planBasic.Nombre }}</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <b>Descripcion:</b> <span>{{ planBasic.descripcion }}</span><br>
+                        <b>Periodo:</b> <span> {{ planBasic.periodo }} días</span>
+
+                        <img class="img-responsive pad" src="{{ asset('uploads/images/planes/'~ planBasic.imageName) }}">
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        {% if planEmpresa is not empty and planEmpresa[0].plan == planBasic %}
+                            <a class="btn btn-block btn-default disabled" href="{{ path('plan_empresa_basic') }}">
+                                Adquirido
+                            </a>
+                        {% else %}
+                            <a class="btn btn-block btn-primary" href="{{ path('plan_empresa_basic') }}">
+                                Adquirir
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">{{ planPlus.nombre }}</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <b>Descripcion:</b> <span>{{ planPlus.descripcion }}</span><br>
+                        <b>Periodo:</b> <span> {{ planPlus.periodo }} días</span>
+
+                        <img class="img-responsive pad" src="{{ asset('uploads/images/planes/'~ planPlus.imageName) }}">
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer text-center">
+                        {% if planEmpresa is not empty and planEmpresa[0].plan == planPlus %}
+                        <a class="btn btn-block btn-default disabled" href="#">
+                            Adquirido
+                        </a>
+                        {% else %}
+                        <a mp-mode="dftl" href="https://www.mercadopago.com/mla/checkout/start?pref_id=237984010-b97ada73-1509-41f3-94fd-d618c825a4e2" name="MP-payButton" class='blue-ar-l-ov-arall'>Pagar</a>
+                        <script type="text/javascript">
+                            (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
+                        </script>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">{{ planPremium.nombre }}</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <b>Descripcion:</b> <span>{{ planPremium.descripcion }}</span><br>
+                        <b>Periodo:</b> <span> {{ planPremium.periodo }} días</span>
+
+                        <img class="img-responsive pad" src="{{ asset('uploads/images/planes/'~ planPremium.imageName) }}">
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer text-center">
+                        {% if planEmpresa is not empty and planEmpresa[0].plan == planPremium %}
+                        <a class="btn btn-block btn-default disabled" href="#">
+                            Adquirido
+                        </a>
+                        {% else %}
+                        <a mp-mode="dftl" href="https://www.mercadopago.com/mla/checkout/start?pref_id=237984010-62c3a550-ae63-4b25-acdd-efbbdf13360e" name="MP-payButton" class='blue-ar-l-ov-arall'>Pagar</a>
+                        <script type="text/javascript">
+                            (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
+                        </script>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}

@@ -96,6 +96,10 @@
                 <source>menu.empresa.noticias_internas</source>
                 <target>Noticias Internas</target>
             </trans-unit>
+            <trans-unit id="menu_empresa_suscripcion">
+                <source>menu.empresa.suscripcion</source>
+                <target>Suscripción</target>
+            </trans-unit>
 
             <!--propias de la app-->
             <trans-unit id="profile_empresa">

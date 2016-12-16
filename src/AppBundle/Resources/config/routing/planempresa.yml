@@ -1,0 +1,19 @@
+plan_empresa_index:
+    path:     /
+    defaults: { _controller: "AppBundle:PlanEmpresa:index" }
+    methods:  GET
+
+plan_empresa_basic:
+    path:     /basic
+    defaults: { _controller: "AppBundle:PlanEmpresa:basic" }
+    methods:  GET
+
+plan_empresa_plus:
+    path:     /plus
+    defaults: { _controller: "AppBundle:PlanEmpresa:plus" }
+    methods:  GET
+
+plan_empresa_premium:
+    path:     /premium
+    defaults: { _controller: "AppBundle:PlanEmpresa:premium" }
+    methods:  GET

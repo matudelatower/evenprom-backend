@@ -1,3 +1,7 @@
+app_plan_empresa:
+    resource: "@AppBundle/Resources/config/routing/planempresa.yml"
+    prefix:   /plan_empresa
+
 app_persona:
     resource: "@AppBundle/Resources/config/routing/persona.yml"
     prefix:   /persona
