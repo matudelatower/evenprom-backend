@@ -9,3 +9,7 @@ get_categorias:
 noticia_interna_marcar_leida:
     path: /noticia_interna_marcar_leida
     defaults: { _controller: "AppBundle:Ajax:noticiaMarcarLeida" }
+
+ver_publicacion:
+    path: /ver_publicacion
+    defaults: { _controller: "AppBundle:Ajax:verPublicacion" }

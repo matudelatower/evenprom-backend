@@ -9,6 +9,16 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('bundles/app/img/favicon.png') }}" />
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <meta name="description" content="EvenProm" />";
+    <meta name="robots" content="ALL" />
+    <meta name="revisit-after" content="15 days" />
+    <meta name="abstract" content="EvenProm" />
+    <meta name="doc-publisher" content="EvenProm" />
+    <meta name="Keywords" content="evenprom, evenprom.com.ar, evenprom.com.br, promociones, descuentos, Misiones, Ecología, Turismo, Posadas, San Ignacio, Iguazú, Cataratas, Forestación, Yerba Mate, Te, Reservas Naturales" />
+    <meta name="Author" content="Matias Solis de la Torre" />
+    <meta name="Author" content="Sergio Sanabria" />
+
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="{{ asset('bundles/app/bootstrap/css/bootstrap.min.css') }}">
     <!-- Font Awesome -->
@@ -31,6 +41,14 @@
     <link rel="stylesheet" href="{{ asset('bundles/app/plugins/daterangepicker/daterangepicker.css') }}">
     <!-- Bootstrap time Picker -->
     <link rel="stylesheet" href="{{ asset('bundles/app/plugins/timepicker/bootstrap-timepicker.min.css') }}">
+
+    <!-- ionicons -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    {#leaflet#}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+
+
     <link rel="stylesheet" href="{{ asset('bundles/app/css/public.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/app/css/evenprom/style.css') }}">
 
@@ -197,6 +215,8 @@
     twigLocale = "{{ app.request.locale }}";
 </script>
 <script src="{{ asset('bundles/app/js/app.js') }}"></script>
+
+{# fbapi #}
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="https://apis.google.com/js/client.js"></script>
 
@@ -244,11 +264,6 @@
                 link: href,
                 picture: image,
                 caption: 'evenprom.com',
-
-//                method: 'feed',
-//                display: 'popup',
-//                link: href,
-//                picture: image
             }, function (response) {
             });
 
@@ -261,6 +276,7 @@
 
 </script>
 
+{#gapi#}
 <script src="https://apis.google.com/js/api.js"></script>
 <script>
     {% if app.user and app.user.googleAccessToken %}
@@ -293,6 +309,9 @@
     {% endif %}
 </script>
 <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+
+{#leaflet#}
+<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
 
 {% block javascripts %}
 {% endblock javascripts %}

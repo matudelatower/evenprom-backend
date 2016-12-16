@@ -1,0 +1,195 @@
+<style>
+    #mapid {
+        height: 90px;
+    }
+</style>
+
+{% if publicacion.publicacionEmpresa.first.empresa.premium is null
+or publicacion.publicacionEmpresa.first.empresa.premium == false %}
+    {% set colorPublicacion = '#5c666f' %}
+{% else %}
+    {% set colorPublicacion = publicacion.colorPublicacion %}
+{% endif %}
+
+<div class="row">
+    <div class="col-md-6">
+        <h2 style="color: {{ colorPublicacion }}">
+            <b>{{ publicacion.publicacionEmpresa.first.empresa | upper }}</b>
+        </h2>
+    </div>
+    <div class="col-md-6">
+        <div class="pull-right" style="font-size: 20pt; margin-top: 5%">
+            <i class="fa fa-check-circle-o ep-rojo"></i>
+            {% if publicacion.likeSharePorElemento.count > 0 %}
+                {{ publicacion.likeSharePorElemento.first.likes }}
+            {% else %}
+                0
+            {% endif %}
+            <i class="fa fa-user ep-rojo"></i>
+            {% if publicacion.likeSharePorElemento.count > 0 %}
+                {{ publicacion.likeSharePorElemento.first.visitas }}
+            {% else %}
+                0
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+<div class="ep-publicacion-box">
+
+    {% if publicacion.publicacionEmpresa.first.empresa.premium %}
+        {# Premium #}
+        <div class="ep-info-box-premium">
+            <a href="#" class="btn-ver-publicacion" data-publicacion-id="{{ publicacion.id }}">
+                <img class="img-responsive pad"
+                     src="{{ asset('uploads/images/publicaciones/'~ publicacion.imageName) }}"
+                     alt="Photo">
+            </a>
+            <div class="ep-badge-evento-premium-modal" style="background-color: {{ colorPublicacion }}">
+                            <span class="ep-info-box-titulo-premium">
+                                {% if publicacion.tipoPublicacion.slug =='evento' %}
+                                    {{ publicacion.titulo }}
+                                {% elseif publicacion.tipoPublicacion.slug =='oferta' %}
+                                    {% if publicacion.descuentoPublicacion.first | length > 0 %}
+                                        {{ publicacion.descuentoPublicacion.first.descuento.nombre }}
+                                    {% endif %}
+                                {% endif %}
+
+                            </span>
+            </div>
+            <a href="#" data-publicacion-id="{{ publicacion.id }}"
+               class="btn ep-btn-oferta-favear-modal ep-rojo">
+                <i class="fa fa-heart-o"></i>
+            </a>
+        </div>
+    {% else %}
+
+        <!-- Info Boxes Style 2 -->
+        <div class="ep-info-box">
+            <div class="ep-info-box-empresa">
+                <span class="ep-info-box-descripcion">{{ publicacion.descripcion }}</span>
+            </div>
+            <div class="ep-info-box-content text-center">
+                <div class="ep-info-box-content-body">
+                            <span class="ep-info-box-titulo" style="color: {{ colorPublicacion }}">
+                                {% if publicacion.tipoPublicacion.slug =='evento' %}
+                                    {{ publicacion.titulo }}
+                                {% elseif publicacion.tipoPublicacion.slug =='oferta' %}
+                                    {% if publicacion.descuentoPublicacion.first | length > 0 %}
+                                        {{ publicacion.descuentoPublicacion.first.descuento.nombre }}
+                                    {% endif %}
+                                {% endif %}
+
+                            </span>
+                </div>
+            </div>
+            <a href="#" data-publicacion-id="{{ publicacion.id }}"
+               class="btn ep-btn-oferta-favear-modal ep-rojo">
+                <i class="fa fa-heart-o"></i>
+            </a>
+        </div>
+    {% endif %}
+    <div class="row text-center block-modal-publicacion">
+        {% set fecha =  publicacion.fechaInicio | date('d-M') %}
+        {% set hora =  publicacion.horaInicio | date('H') %}
+        <span class="ep-gris">Fecha:</span> <span>{{ fecha | upper }}</span><br>
+        <span class="ep-gris">Hora:</span> <span>{{ hora }} HS</span>
+
+    </div>
+    <div class="row text-center block-modal-publicacion">
+        <h4 class="ep-gris">Descripción</h4>
+        <p>
+            {{ publicacion.cuerpo | raw }}
+        </p>
+    </div>
+    <div class="row">
+        {#mapa#}
+        <div id="mapid"></div>
+    </div>
+    <div class="row">
+
+    </div>
+    <div class="row text-center block-modal-publicacion">
+        <a class="btn ep-btn-lg-publicacion ep-bg-celeste"
+           href="{% if publicacion.publicacionEmpresa.first.empresa.contactoEmpresa.count > 0 %}
+           tel://{{ publicacion.publicacionEmpresa.first.empresa.contactoEmpresa.first.contacto.telefono }}
+           {% else %}
+           #
+           {% endif %}
+            ">
+            <i class="fa fa-phone"></i>
+        </a>
+        <a class="btn ep-btn-lg-publicacion ep-bg-rojo" id="btn-maps" target="_blank">
+            <i class="fa fa-map-marker"></i>
+        </a>
+        <a class="btn ep-btn-lg-publicacion ep-bg-violeta" target="_blank"
+           href="
+            {% if publicacion.publicacionEmpresa.first.empresa.contactoEmpresa.count > 0 %}
+            {{ publicacion.publicacionEmpresa.first.empresa.contactoEmpresa.first.contacto.web }}
+            {% else %}
+           #
+           {% endif %}
+            ">
+            <i class="fa fa-globe"></i>
+        </a>
+    </div>
+    <div class="row text-center block-modal-publicacion">
+        <img src="{{ asset('bundles/app/AdminLTE-2.3.5/img/credit/mestro.png') }}" alt="Maestro">
+        <img src="{{ asset('bundles/app/AdminLTE-2.3.5/img/credit/paypal2.png') }}" alt="Paypal">
+        <img src="{{ asset('bundles/app/AdminLTE-2.3.5/img/credit/mastercard.png') }}" alt="Mastercard">
+        <img src="{{ asset('bundles/app/AdminLTE-2.3.5/img/credit/visa.png') }}" alt="Visa">
+        <img src="{{ asset('bundles/app/AdminLTE-2.3.5/img/credit/mercadopago.png') }}" width="51" height="32"
+             alt="mercado pago">
+        <img src="{{ asset('bundles/app/AdminLTE-2.3.5/img/credit/american-express.png') }}" alt="American Express">
+    </div>
+    <div class="box-footer">
+        <form action="#" method="post">
+            <img class="img-responsive img-circle img-sm"
+                 src="{{ asset('bundles/app/AdminLTE-2.3.5//img/user4-128x128.jpg') }}" alt="Alt Text">
+            <!-- .img-push is used to add margin to elements next to floating images -->
+            <div class="img-push">
+                <input type="text" class="form-control input-sm" placeholder="Presioná Enter para comentar">
+            </div>
+        </form>
+    </div>
+
+
+</div>
+<!-- /.box -->
+<script>
+    $(document).ready(function () {
+
+
+        {% if publicacion.publicacionEmpresa.first.empresa.direccionEmpresa.count > 0 %}
+        var address = '{{ publicacion.publicacionEmpresa.first.empresa.direccionEmpresa.first.direccion.calle }} {{ publicacion.publicacionEmpresa.first.empresa.direccionEmpresa.first.direccion.altura }}, {{ publicacion.publicacionEmpresa.first.empresa.direccionEmpresa.first.direccion.localidad }}, {{ publicacion.publicacionEmpresa.first.empresa.direccionEmpresa.first.direccion.localidad.departamento.provincia }}'
+
+        $.ajax({
+            url: "//maps.googleapis.com/maps/api/geocode/json?address=" + address + "&sensor=false",
+            type: "POST",
+            success: function (res) {
+                lat = res.results[0].geometry.location.lat;
+                long = res.results[0].geometry.location.lng;
+                console.log(long);
+                $('#btn-maps').attr('href', 'https://www.google.com/maps/place/' + lat + ',' + long);
+
+                var map = L.map('mapid').setView([lat, long],
+                    15);
+
+                L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+                    maxZoom: 18
+                }).addTo(map);
+
+                L.marker([lat, long], {draggable: false}).addTo(map);
+
+            },
+
+
+        });
+        {% endif %}
+
+
+    });
+
+</script>

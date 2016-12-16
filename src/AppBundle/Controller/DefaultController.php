@@ -37,9 +37,12 @@ class DefaultController extends Controller {
 
 		$empresas = $em->getRepository( 'AppBundle:Empresa' )->findAll();
 
+		$categorias = $em->getRepository('AppBundle:Categoria')->findAll();
+
 		return $this->render( '@App/Default/sitios.html.twig',
 			array(
-				'empresas' => $empresas
+				'empresas' => $empresas,
+				'categorias' => $categorias
 			) );
 	}
 

@@ -81,7 +81,7 @@ class AjaxController extends Controller {
 			$leido = true;
 			$noticiaInternaEmpresa->setLeido( $leido );
 			$noticiaInternaEmpresa->setNoticiaInterna( $noticiaInterna );
-			$noticiaInternaEmpresa->setEmpresa($empresa);
+			$noticiaInternaEmpresa->setEmpresa( $empresa );
 			$em->persist( $noticiaInternaEmpresa );
 		}
 
@@ -92,6 +92,22 @@ class AjaxController extends Controller {
 		);
 
 		return new JsonResponse( $json );
+	}
+
+	public function verPublicacionAction( Request $request ) {
+
+		$publicacionId = $request->get( 'id' );
+
+		$em = $this->getDoctrine()->getManager();
+
+		$publicacion = $em->getRepository( 'AppBundle:Publicacion' )->find( $publicacionId );
+
+		return $this->render( 'ajax/publicacion.html.twig',
+			array(
+				'publicacion' => $publicacion
+			)
+		);
+
 	}
 
 }

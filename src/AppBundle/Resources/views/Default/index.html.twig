@@ -1,6 +1,26 @@
 {% extends 'layout_base_public.html.twig' %}
-
+{% trans_default_domain "app" %}
 {% block content %}
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-publicacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">EvenProm</h4>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ "close"|trans }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="row">
         {% for publicacion in publicaciones %}
@@ -51,9 +71,11 @@
                         </div>
                     </div>
                     <div class="ep-info-box-premium">
-                        <img class="img-responsive pad"
-                             src="{{ asset('uploads/images/publicaciones/'~ publicacion.imageName) }}"
-                             alt="Photo">
+                        <a href="#" class="btn-ver-publicacion" data-publicacion-id="{{ publicacion.id }}">
+                            <img class="img-responsive pad"
+                                 src="{{ asset('uploads/images/publicaciones/'~ publicacion.imageName) }}"
+                                 alt="Photo">
+                        </a>
                         <div class="ep-badge-evento-premium" style="background-color: {{ colorPublicacion }}">
                             <span class="ep-info-box-titulo-premium">
                                 {% if publicacion.tipoPublicacion.slug =='evento' %}
@@ -70,7 +92,7 @@
                 {% else %}
                     {% set colorPublicacion = '#5c666f' %}
                     <!-- Info Boxes Style 2 -->
-                    <div class="ep-info-box">
+                    <div class="ep-info-box" data-publicacion-id="{{ publicacion.id }}">
                         <div class="ep-info-box-empresa">
                         <span class="fecha-publicacion">
                             {% set fecha =  publicacion.fechaInicio | date('d-M') %}
@@ -163,3 +185,25 @@
     </div>
 
 {% endblock content %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+
+            $('.btn-ver-publicacion, .ep-info-box').click(function (e) {
+                e.preventDefault();
+
+                var id = $(this).data('publicacion-id');
+                $.ajax({
+                    type: 'get',
+                    url: '{{ path("ver_publicacion") }}',
+                    data: {id:id},
+                    success: function (data) {
+                        $('#modal-publicacion .modal-body').html(data);
+                        $('#modal-publicacion').modal('toggle');
+                    }
+                });
+
+            })
+        });
+    </script>
+{% endblock %}

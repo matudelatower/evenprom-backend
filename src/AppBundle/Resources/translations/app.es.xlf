@@ -58,6 +58,10 @@
                 <source>Sitios</source>
                 <target>Sitios</target>
             </trans-unit>
+            <trans-unit id="close">
+                <source>close</source>
+                <target>Cerrar</target>
+            </trans-unit>
 
             <!--menu-->
             <trans-unit id="menu_empresa_profile">

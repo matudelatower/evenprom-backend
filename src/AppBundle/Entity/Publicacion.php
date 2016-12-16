@@ -123,6 +123,12 @@ class Publicacion extends BaseClass {
 	private $publicacionEmpresa;
 
 	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\LikesSharePorElemento", mappedBy="publicacion", cascade={"persist", "remove"})
+	 */
+	private $likeSharePorElemento;
+
+	/**
 	 * @var bool
 	 *
 	 * @ORM\Column(name="publicado", type="boolean", nullable=true)
@@ -721,4 +727,38 @@ class Publicacion extends BaseClass {
 	public function getDescuentoPublicacion() {
 		return $this->descuentoPublicacion;
 	}
+
+    /**
+     * Add likeSharePorElemento
+     *
+     * @param \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento
+     *
+     * @return Publicacion
+     */
+    public function addLikeSharePorElemento(\AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento)
+    {
+        $this->likeSharePorElemento[] = $likeSharePorElemento;
+
+        return $this;
+    }
+
+    /**
+     * Remove likeSharePorElemento
+     *
+     * @param \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento
+     */
+    public function removeLikeSharePorElemento(\AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento)
+    {
+        $this->likeSharePorElemento->removeElement($likeSharePorElemento);
+    }
+
+    /**
+     * Get likeSharePorElemento
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLikeSharePorElemento()
+    {
+        return $this->likeSharePorElemento;
+    }
 }

@@ -10,6 +10,18 @@
     margin-top: 20%;
 }
 
+.margin-bottom-5 {
+    margin-bottom: 5%;
+}
+
+.margin-bottom-10 {
+    margin-bottom: 10%;
+}
+
+.margin-bottom-20 {
+    margin-top: 20%;
+}
+
 .ep-info-box {
     background: #fff none repeat scroll 0 0;
     border-radius: 2px;
@@ -103,7 +115,7 @@
     margin-left: 20%;
 }
 
-.ep-badge-evento-premium{
+.ep-badge-evento-premium {
     border-radius: 15px;
     bottom: 15%;
     color: #fff;
@@ -117,10 +129,9 @@
     padding: 1%;
 }
 
-.ep-btn-share{
+.ep-btn-share {
     margin-left: 20%;
 }
-
 
 /*fin Premium*/
 
@@ -150,9 +161,11 @@
 .ep-publicacion-box {
 
 }
-.fecha-publicacion{
-    margin-left:1%;
+
+.fecha-publicacion {
+    margin-left: 1%;
 }
+
 /*evenprom colors*/
 
 .ep-verde {
@@ -225,4 +238,75 @@
 .ep-bg-rojo {
     background-color: #ff1c46;
     color: #fff;
+}
+
+.ep-btn-app {
+    border-radius: 50%;
+    position: relative;
+    padding: 15px 5px;
+    margin: 0 0 10px 10px;
+    min-width: 80px;
+    height: 80px;
+    text-align: center;
+    color: #666;
+    border: 1px solid #ddd;
+    background-color: #f4f4f4;
+    font-size: 12px;
+}
+
+.ep-btn-app > .fa,
+.ep-btn-app > .glyphicon,
+.ep-btn-app > .ion {
+    font-size: 20px;
+    display: block;
+}
+
+.ep-btn-lg-publicacion {
+    border-radius: 50%;
+    position: relative;
+    padding: 15px 5px;
+    margin: 0 0 10px 10px;
+    min-width: 80px;
+    height: 80px;
+    text-align: center;
+    /*color: #666;*/
+    border: 1px solid #ddd;
+    /*background-color: #f4f4f4;*/
+    font-size: 12px;
+}
+
+.ep-btn-lg-publicacion > .fa,
+.ep-btn-lg-publicacion > .glyphicon,
+.ep-btn-lg-publicacion > .ion {
+    font-size: 50px;
+    display: block;
+}
+
+/*modal*/
+.ep-badge-evento-premium-modal {
+    /*border-radius: 15px;*/
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    /*top: 20%;*/
+    margin-top: 45%;
+    color: #fff;
+    float: right;
+    /*height: 15%;*/
+    position: absolute;
+    right: 4%;
+    /*top: 70%;*/
+    z-index: 999;
+    text-align: right;
+    padding: 1%;
+}
+
+.ep-btn-oferta-favear-modal {
+    font-size: 20pt;
+    left: 85%;
+    position: absolute;
+    top: 12%;
+}
+.block-modal-publicacion {
+    border-bottom: 1px solid gray;
+    padding: 2%;
 }

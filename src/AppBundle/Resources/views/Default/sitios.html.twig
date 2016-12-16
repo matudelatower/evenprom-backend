@@ -1,8 +1,54 @@
 {% extends 'layout_base_public.html.twig' %}
 
 {% block content %}
-    <div class="row">
+    <div class="row margin-bottom-5">
+        <div class="col-md-6 col-md-offset-3">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    {% for categoria in categorias %}
+                        <li data-target="#carousel-example-generic" data-slide-to="{{ loop.index }}" class=""></li>
+                    {% endfor %}
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="http://placehold.it/900x500/39CCCC/ffffff&text=EvenProm" alt="First slide">
 
+                        <div class="carousel-caption">
+                            {#First Slide#}
+                        </div>
+                    </div>
+                    {% set colores = ['00e9af', '00c0cf', '6a66d2', 'efe91c', 'd45ce6', 'd1dbe3', 'ff1c46'] %}
+                    {% for categoria in categorias %}
+                        <div class="item">
+                            <img src="http://placehold.it/900x500/{{ colores[loop.index0] }}/ffffff&text={{ categoria.nombre }}"
+                                 alt="Second slide">
+
+                            <div class="carousel-caption">
+                                {#Second Slide#}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                    <span class="fa fa-angle-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                    <span class="fa fa-angle-right"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            {% for categoria in categorias %}
+                <button class="btn ep-btn-app" type="button">
+                    <i class="fa ion-android-{{ categoria.icono }}"></i>
+                    {{ categoria.nombre }}
+                </button>
+            {% endfor %}
+        </div>
     </div>
     <div class="row">
         {% for empresa in empresas %}
@@ -15,7 +61,9 @@
                         <h5 class="widget-user-desc">{{ empresa.descripcion }}</h5>
                     </div>
                     <div class="widget-user-image">
-                        <img class="img-circle" src="{% if empresa.imageName %}{{ asset('uploads/images/empresas/'~ empresa.imageName) }}{% else %} {{ asset('bundles/app/img/avatar.jpg') }} {% endif %} " alt="User Avatar">
+                        <img class="img-circle"
+                             src="{% if empresa.imageName %}{{ asset('uploads/images/empresas/'~ empresa.imageName) }}{% else %} {{ asset('bundles/app/img/avatar.jpg') }} {% endif %} "
+                             alt="User Avatar">
                     </div>
                     <div class="box-footer">
                         <div class="row">
