@@ -251,6 +251,24 @@ class Publicacion extends BaseClass {
 
 	}
 
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("direccion_empresa")
+	 */
+	public function getDireccionEmpresa() {
+
+		$return = array();
+
+		if ( count( $this->getPublicacionEmpresa()->first()->getEmpresa()->getDireccionEmpresa() ) > 0 ) {
+			if ( $this->getPublicacionEmpresa()->first()->getEmpresa()->getDireccionEmpresa()->first()->getDireccion() ) {
+				$return = $this->getPublicacionEmpresa()->first()->getEmpresa()->getDireccionEmpresa()->first()->getDireccion();
+			}
+		}
+
+		return $return;
+
+	}
+
 
 	/**
 	 * @VirtualProperty()
