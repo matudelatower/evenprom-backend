@@ -153,6 +153,12 @@ class Empresa extends BaseClass {
 	 */
 	private $empresaHotelAgencia;
 
+	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\LikesSharePorElemento", mappedBy="empresa", cascade={"persist", "remove"})
+	 */
+	private $likeSharePorElemento;
+
 
 	/**
 	 * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -975,4 +981,38 @@ class Empresa extends BaseClass {
 	public function getEmpresaHotelAgencia() {
 		return $this->empresaHotelAgencia;
 	}
+
+    /**
+     * Add likeSharePorElemento
+     *
+     * @param \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento
+     *
+     * @return Empresa
+     */
+    public function addLikeSharePorElemento(\AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento)
+    {
+        $this->likeSharePorElemento[] = $likeSharePorElemento;
+
+        return $this;
+    }
+
+    /**
+     * Remove likeSharePorElemento
+     *
+     * @param \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento
+     */
+    public function removeLikeSharePorElemento(\AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento)
+    {
+        $this->likeSharePorElemento->removeElement($likeSharePorElemento);
+    }
+
+    /**
+     * Get likeSharePorElemento
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLikeSharePorElemento()
+    {
+        return $this->likeSharePorElemento;
+    }
 }

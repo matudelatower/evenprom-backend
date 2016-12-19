@@ -46,7 +46,7 @@ class LikesSharePorElemento extends BaseClass
 	/**
 	 * @var
 	 *
-	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Empresa")
+	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Empresa", inversedBy="likeSharePorElemento")
 	 * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id", nullable=true)
 	 */
 	private $empresa;

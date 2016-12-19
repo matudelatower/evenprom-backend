@@ -302,5 +302,10 @@ class PublicacionController extends Controller {
 			) );
 	}
 
+	public function redirectFbAction( $id )
+	{
+		return $this->redirectToRoute('publicacion_public_show', array('id'=> $id));
+	}
+
 
 }

@@ -39,6 +39,7 @@
             position: fixed;
             top: 150px;
         }
+
         #sticky-social a {
             /*background: #333;*/
             /*color: #fff;*/
@@ -50,15 +51,74 @@
             text-align: center;
             width: 35px;
         }
+
         #sticky-social a span {
             line-height: 35px;
             left: -120px;
             position: absolute;
-            text-align:center;
-            width:120px;
+            text-align: center;
+            width: 120px;
         }
+
         #sticky-social a:hover span {
             left: 100%;
+        }
+
+        .icon-onda {
+            width: 33%;
+        }
+
+        .link-empresa {
+            color: #fff;
+        }
+
+        /*rating*/
+        .rating {
+            border: none;
+            float: left;
+        }
+
+        .rating > input {
+            display: none;
+        }
+
+        .rating > label:before {
+            margin: 5px;
+            font-size: 1.25em;
+            font-family: FontAwesome;
+            display: inline-block;
+            content: "\f005";
+        }
+
+        .rating > .half:before {
+            content: "\f089";
+            position: absolute;
+        }
+
+        .rating > label {
+            color: #ddd;
+            float: right;
+        }
+
+        /***** CSS Magic to Highlight Stars on Hover *****/
+
+        .rating > input:checked ~ label, /* show gold star when clicked */
+        .rating:not(:checked) > label:hover, /* hover current star */
+        .rating:not(:checked) > label:hover ~ label {
+            color: #FFD700;
+        }
+
+        /* hover previous stars in list */
+
+        .rating > input:checked + label:hover, /* hover current star when changing rating */
+        .rating > input:checked ~ label:hover,
+        .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+        .rating > input:checked ~ label:hover ~ label {
+            color: #FFED85;
+        }
+
+        .rating-number {
+            font-size: 22px;
         }
 
     </style>
@@ -67,10 +127,16 @@
 {% block content %}
     <aside id="sticky-social">
 
-        <a class="btn btn-social-icon btn-facebook">
+        <a class="btn btn-social-icon btn-facebook ep-btn-perfil-compartir"
+           data-publicacion-id="{{ empresa.id }}"
+           data-href="{{ url('app_perfil_empresa', {'id': empresa.id }, true) }}"
+           data-image="{{ asset('uploads/images/empresas/'~ empresa.imageName, null, true) }}"
+           data-name="{{ empresa.nombre }}">
             <i class="fa fa-facebook"></i>
         </a>
-        <a class="btn btn-social-icon btn-twitter">
+        <a class="btn btn-social-icon btn-twitter"
+           href="https://twitter.com/intent/tweet?text={{ empresa.nombre }}&url={{ url('app_perfil_empresa', {'id': empresa.id }) }}&via=evenprom"
+        >
             <i class="fa fa-twitter"></i>
         </a>
 
@@ -85,11 +151,15 @@
                              src="{% if empresa.imageName %}{{ asset('uploads/images/empresas/'~ empresa.imageName) }}{% else %} {{ asset('bundles/app/img/avatar.jpg') }} {% endif %} "
                              alt="User Image">
                         <span class="username"><a href="#"
-                                                  style="color: {{ empresa.color }}">{{ empresa.nombre }}</a></span>
+                                                  style="color: {{ empresa.color }}">{{ empresa.nombre | upper }}</a></span>
                         {#<span class="description">{{ empresa.descripcion }}</span>#}
                     </div>
                     <div class="box-tools">
-                        <i class="fa {% if empresa.categoriaEmpresa.count >0 %}{{ empresa.categoriaEmpresa.first.categoria.icono }} {% endif %}"></i>
+                        <i class="fa {% if empresa.categoriaEmpresa.count >0 %}{{ empresa.categoriaEmpresa.first.categoria.iconoWeb }} {% endif %}"></i>
+                        {% if empresa.empresaOnda.count >0 %}
+                            <img class="img-responsive icon-onda"
+                                 src="{{ path('bundles/app/img/'~empresa.empresaOnda.first.onda.icono~'-only.png') }}">
+                        {% endif %}
                     </div>
 
                 </div>
@@ -101,12 +171,16 @@
                     </div>
                     <div class="bar-btns" style="background-color: {{ empresa.color }}">
 
-                        <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share
-                        </button>
-                        <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like
-                        </button>
-                        <button type="button" class="btn btn-default btn-xs"><i class="fa fa-heart-o"></i> Fav
-                        </button>
+                        <a class="link-empresa"
+                           href="{% if empresa.contactoEmpresa.count > 0 %}
+                               tel://{{ empresa.contactoEmpresa.first.contacto.telefono }}
+                               {% else %}
+                               #
+                               {% endif %}
+                                ">
+                            <i class="fa fa-phone"></i> Llamar
+                        </a>
+
 
                     </div>
 
@@ -166,85 +240,150 @@
                     </div><!--/well-->
 
 
-                    <div class="row margin-top-5">
-                        <div class="col-md-3">
-                            <div class="info-box bg-green">
-                                <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+                    <div class="row">
 
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Likes</span>
-                                    <span class="info-box-number">41,410</span>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="info-box bg-aqua">
-                                <span class="info-box-icon"><i class="fa fa-share"></i></span>
+                        <div class="col-md-4 col-md-offset-4">
+                            <button class="btn btn-block btn-info btn-lg" type="button">Ver Eventos y Promociones Hoy
+                            </button>
 
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Shares</span>
-                                    <span class="info-box-number">41,410</span>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <a href="#" class="btn btn-app"><i class="fa fa-map-marker"></i> Cómo Llegar</a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="{% if empresa.contactoEmpresa.count > 0 %}{{ empresa.contactoEmpresa.first.contacto.web }}{% else %} # {% endif %}"
-                               target="_blank"
-                               class="btn btn-app"><i class="fa fa-link"></i> Web</a>
-                        </div>
-                        <div class="col-md-3 text-center">
                         </div>
                     </div>
-                    <span class="pull-right text-muted">2 comments</span>
+
+                    <div class="well margin-top-5">
+                        <h3 class="text-center">Novedades</h3>
+                        <div class="col-md-12">
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <dl class="dl-horizontal">
+                                <dt>
+                                <fieldset class="rating pull-right">
+                                    <input type="radio" id="star5" name="rating" value="5"/><label class="full"
+                                                                                                   for="star5"
+                                                                                                   title="Awesome - 5 stars"></label>
+                                    <input type="radio" id="star4half" name="rating" value="4 and a half"/><label
+                                            class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                                    <input type="radio" id="star4" name="rating" value="4"/><label class="full"
+                                                                                                   for="star4"
+                                                                                                   title="Pretty good - 4 stars"></label>
+                                    <input type="radio" id="star3half" name="rating" value="3 and a half"/><label
+                                            class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                                    <input type="radio" id="star3" name="rating" value="3"/><label class="full"
+                                                                                                   for="star3"
+                                                                                                   title="Meh - 3 stars"></label>
+                                    <input type="radio" id="star2half" name="rating" value="2 and a half"/><label
+                                            class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                                    <input type="radio" id="star2" name="rating" value="2"/><label class="full"
+                                                                                                   for="star2"
+                                                                                                   title="Kinda bad - 2 stars"></label>
+                                    <input type="radio" id="star1half" name="rating" value="1 and a half"/><label
+                                            class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                                    <input type="radio" id="star1" name="rating" value="1"/><label class="full"
+                                                                                                   for="star1"
+                                                                                                   title="Sucks big time - 1 star"></label>
+                                    <input type="radio" id="starhalf" name="rating" value="half"/><label class="half"
+                                                                                                         for="starhalf"
+                                                                                                         title="Sucks big time - 0.5 stars"></label>
+                                </fieldset>
+                                </dt>
+
+
+                                <dd>
+
+                                    <span class="rating-number ep-gris">0</span><br>
+                                </dd>
+                                <dt>
+                            <span class="visitas-number ep-gris">
+                            {% if empresa.likeSharePorElemento.count > 0 %}
+                                {{ empresa.likeSharePorElemento.first.visitas }}
+                            {% else %}
+                                0
+                            {% endif %}
+                            </span>
+                                </dt>
+                                <dd>
+                                    <span><i class="fa fa-user"></i></span>
+                                </dd>
+                            </dl>
+
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <p class="text-right">
+                                <a target="_blank" class="ep-gris" href="
+                            {% if empresa.contactoEmpresa.count > 0 %}
+                            {{ empresa.contactoEmpresa.first.contacto.web }}
+                            {% else %}
+                            #
+                            {% endif %}
+                            ">Sitio Web <i class="fa fa-globe"></i>
+                                </a>
+                            </p>
+                            <p class="text-right">
+                                <a target="_blank" class="ep-gris" id="btn-maps" href="#">
+                                    Como Llegar? <i class="fa fa-map-marker"></i>
+                                </a>
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="row text-center">
+                        <a class="btn ep-btn-lg-publicacion ep-bg-rojo" target="_blank"
+                           href="#">
+                            <i class="fa fa-bell-o"></i>
+                        </a>
+                    </div>
+
+                    <span class="pull-right text-muted">
+                        {% if comentarios is not empty %}
+                            {{ comentarios.count }} comments
+                        {% endif %}
+                    </span>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer box-comments">
-                    <div class="box-comment">
-                        <!-- User image -->
-                        <img class="img-circle img-sm" src="{{ asset('bundles/app/img/avatar.jpg') }}" alt="User Image">
+                    {% for comentario in comentarios %}
+                        <div class="box-comment">
+                            <!-- User image -->
+                            <img class="img-circle img-sm" src="{{ asset('bundles/app/img/avatar.jpg') }}"
+                                 alt="User Image">
 
-                        <div class="comment-text">
+                            <div class="comment-text">
                       <span class="username">
-                        Maria Gonzales
-                        <span class="text-muted pull-right">8:03 PM Today</span>
+                        {{ comentario.persona }}
+                          <span class="text-muted pull-right">{{ comentario.fechaCreacion | date('H:i d/m/Y') }}</span>
                       </span><!-- /.username -->
-                            It is a long established fact that a reader will be distracted
-                            by the readable content of a page when looking at its layout.
+                                {{ comentario.texto }}
+                            </div>
+                            <!-- /.comment-text -->
                         </div>
-                        <!-- /.comment-text -->
-                    </div>
-                    <!-- /.box-comment -->
-                    <div class="box-comment">
-                        <!-- User image -->
-                        <img class="img-circle img-sm" src="{{ asset('bundles/app/img/avatar.jpg') }}" alt="User Image">
+                    {% endfor %}
 
-                        <div class="comment-text">
-                      <span class="username">
-                        Luna Stark
-                        <span class="text-muted pull-right">8:03 PM Today</span>
-                      </span><!-- /.username -->
-                            It is a long established fact that a reader will be distracted
-                            by the readable content of a page when looking at its layout.
-                        </div>
-                        <!-- /.comment-text -->
-                    </div>
-                    <!-- /.box-comment -->
                 </div>
                 <!-- /.box-footer -->
                 <div class="box-footer">
-                    <form action="#" method="post">
-                        <img class="img-responsive img-circle img-sm" src="{{ asset('bundles/app/img/avatar.jpg') }}"
-                             alt="Alt Text">
-                        <!-- .img-push is used to add margin to elements next to floating images -->
-                        <div class="img-push">
-                            <input type="text" class="form-control input-sm" placeholder="Press enter to post comment">
+                    {% if is_granted("ROLE_PERSONA") %}
+                        <form action="#" method="post" id="box-comment-empresa">
+                            <img class="img-responsive img-circle img-sm"
+                                 src="{{ asset('bundles/app/img/avatar.jpg') }}"
+                                 alt="Alt Text">
+                            <!-- .img-push is used to add margin to elements next to floating images -->
+                            <div class="img-push">
+                                <input type="text" name="texto" class="form-control input-sm"
+                                       placeholder="Presiona Enter para comentar">
+                            </div>
+                        </form>
+                    {% else %}
+                        <div class="text-center">
+                            <span>Para Comentar tenes que inciar sesion</span>
                         </div>
-                    </form>
+                    {% endif %}
                 </div>
                 <!-- /.box-footer -->
             </div>
@@ -260,6 +399,7 @@
 {% block javascripts %}
     <script>
         $(document).ready(function () {
+//            corousel de fotos
             $('#myCarousel').carousel({
                 interval: 10000
             })
@@ -277,6 +417,69 @@
                     $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
                 }
             });
+//            comentario
+            {% if is_granted("ROLE_PERSONA") %}
+            $('#box-comment-empresa').on('submit', function (e) {
+                e.preventDefault();
+                var formVal = $(this).serialize();
+                console.log('formVal', formVal);
+
+                $.ajax({
+                    url: "{{ path('comentar_perfil_empresa', {empresaId: empresa.id ,personaId: app.user.persona.id } ) }}",
+                    type: "POST",
+                    success: function (res) {
+
+
+                    },
+                    error: function (res) {
+
+
+                    },
+                });
+            });
+            {% endif %}
+
+            //        acciones perfil
+            $('.ep-btn-perfil-compartir').click(function (ev) {
+                ev.preventDefault();
+
+                var href = $(this).data('href');
+                var image = $(this).data('image');
+                var name = $(this).data('name');
+                console.log(image);
+                FB.ui({
+                    method: 'feed',
+                    name: name,
+                    link: href,
+                    picture: image,
+                    caption: 'evenprom.com',
+                }, function (response) {
+                });
+
+
+                console.log("pubID", $(this).data('publicacion-id'));
+            })
+
+//            ubicacion
+            {% if empresa.direccionEmpresa.count > 0 %}
+            var address = '{{ empresa.direccionEmpresa.first.direccion.calle }} {{ empresa.direccionEmpresa.first.direccion.altura }}, {{ empresa.direccionEmpresa.first.direccion.localidad }}, {{ empresa.direccionEmpresa.first.direccion.localidad.departamento.provincia }}'
+
+            $.ajax({
+                url: "//maps.googleapis.com/maps/api/geocode/json?address=" + address + "&sensor=false",
+                type: "POST",
+                success: function (res) {
+                    lat = res.results[0].geometry.location.lat;
+                    long = res.results[0].geometry.location.lng;
+                    console.log(long);
+                    $('#btn-maps').attr('href', 'https://www.google.com/maps/place/' + lat + ',' + long);
+
+
+                },
+
+
+            });
+            {% endif %}
+
         });
     </script>
 {% endblock %}

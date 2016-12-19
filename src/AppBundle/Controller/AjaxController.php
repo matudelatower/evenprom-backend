@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Comentario;
 use AppBundle\Entity\NoticiaInternaEmpresa;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -108,6 +109,34 @@ class AjaxController extends Controller {
 			)
 		);
 
+	}
+
+	public function comentarPerfilEmpresa( Request $request, $empresaId, $personaId ) {
+
+
+		$em = $this->getDoctrine()->getManager();
+
+		$empresa = $em->getRepository( 'AppBundle:Empresa' )->find( $empresaId );
+		$persona = $em->getRepository( 'AppBundle:Empresa' )->find( $personaId );
+
+		if ( ! $persona ) {
+
+			return new JsonResponse( array(
+				'text' => 'La Persona no existe o no esta logueado',
+			), 404 );
+		}
+
+		$comentario = new Comentario();
+		$comentario->setTexto();
+		$comentario->setEmpresa( $empresa );
+		$comentario->setPersona( $persona );
+
+		$em->persist( $comentario );
+		$em->flush();
+
+		return new JsonResponse( array(
+			'text' => 'Comentario Guardado Correctamente',
+		) );
 	}
 
 }

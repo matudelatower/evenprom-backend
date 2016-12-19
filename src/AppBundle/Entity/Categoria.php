@@ -59,6 +59,14 @@ class Categoria extends BaseClass
      */
     private $icono;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="icono_web", type="string", length=255, nullable=true)
+     * @Expose()
+     */
+    private $iconoWeb;
+
 
     public function __toString() {
         return $this->nombre;
@@ -217,5 +225,29 @@ class Categoria extends BaseClass
     public function getIcono()
     {
         return $this->icono;
+    }
+
+    /**
+     * Set iconoWeb
+     *
+     * @param string $iconoWeb
+     *
+     * @return Categoria
+     */
+    public function setIconoWeb($iconoWeb)
+    {
+        $this->iconoWeb = $iconoWeb;
+
+        return $this;
+    }
+
+    /**
+     * Get iconoWeb
+     *
+     * @return string
+     */
+    public function getIconoWeb()
+    {
+        return $this->iconoWeb;
     }
 }

@@ -8,17 +8,13 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller {
 	public function indexAction( Request $request ) {
 
-		$em = $this->getDoctrine();
+
 		if ( ! $this->get( 'security.authorization_checker' )->isGranted( 'IS_AUTHENTICATED_FULLY' ) ||
 		     $this->get( 'security.authorization_checker' )->isGranted( 'ROLE_USUARIO' ) ||
-		     $this->get( 'security.authorization_checker' )->isGranted( 'ROLE_PERSONA' )) {
+		     $this->get( 'security.authorization_checker' )->isGranted( 'ROLE_PERSONA' )
+		) {
 
-			$publicaciones = $em->getRepository( "AppBundle:Publicacion" )->findAll();
-
-			return $this->render( 'AppBundle:Default:index.html.twig',
-				array(
-					'publicaciones' => $publicaciones
-				) );
+			return $this->redirectToRoute( 'app_index' );
 
 		}
 
@@ -37,11 +33,11 @@ class DefaultController extends Controller {
 
 		$empresas = $em->getRepository( 'AppBundle:Empresa' )->findAll();
 
-		$categorias = $em->getRepository('AppBundle:Categoria')->findAll();
+		$categorias = $em->getRepository( 'AppBundle:Categoria' )->findAll();
 
 		return $this->render( '@App/Default/sitios.html.twig',
 			array(
-				'empresas' => $empresas,
+				'empresas'   => $empresas,
 				'categorias' => $categorias
 			) );
 	}
@@ -51,9 +47,23 @@ class DefaultController extends Controller {
 
 		$empresa = $em->getRepository( 'AppBundle:Empresa' )->find( $id );
 
+		$comentarios = $em->getRepository( 'AppBundle:Comentario' )->findUltimosComentariosByEmpresa( $empresa );
+
 		return $this->render( '@App/Default/perfil_empresa.html.twig',
 			array(
-				'empresa' => $empresa
+				'empresa' => $empresa,
+				'comentarios'=>$comentarios
+			) );
+	}
+
+	public function indexAppAction( Request $request ) {
+
+		$em            = $this->getDoctrine();
+		$publicaciones = $em->getRepository( "AppBundle:Publicacion" )->findAll();
+
+		return $this->render( 'AppBundle:Default:index.html.twig',
+			array(
+				'publicaciones' => $publicaciones
 			) );
 	}
 }

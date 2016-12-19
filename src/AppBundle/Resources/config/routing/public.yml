@@ -1,3 +1,8 @@
+app_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Default:indexApp" }
+    methods:  [GET]
+
 sitios_index:
     path:     /sitios
     defaults: { _controller: "AppBundle:Default:indexSitios" }
@@ -6,7 +11,12 @@ app_perfil_empresa:
     path:     /{id}/sitios
     defaults: { _controller: "AppBundle:Default:sitios" }
 
-publicacion_show:
-    path:     /publicacion/{id}/show
-    defaults: { _controller: "AppBundle:Publicacion:show" }
+publicacion_public_show:
+    path:     /#publicacion/{id}
+#    defaults: { _controller: "AppBundle:Publicacion:redirectFb" }
     methods:  [GET]
+
+#publicacion_public_show_23:
+#    path:     /%23publicacion/{id}
+#    defaults: { _controller: "AppBundle:Publicacion:redirectFb" }
+#    methods:  [GET]

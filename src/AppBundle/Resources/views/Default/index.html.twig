@@ -162,7 +162,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="#" data-publicacion-id="{{ publicacion.id }}"
-                                   data-href="{{ url('publicacion_show', {'id': publicacion.id }) }}"
+                                   data-href="{{ url('publicacion_public_show', {'id': publicacion.id }, true)}}"
                                    data-image="{{ asset('uploads/images/publicaciones/'~ publicacion.imageName, null, true) }}"
                                    data-name="{{ publicacion.titulo }}"
                                    class="ep-btn-oferta-compartir">
@@ -170,7 +170,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="https://twitter.com/intent/tweet?text={{ publicacion.titulo }}&url={{ url('publicacion_show', {'id': publicacion.id }) }}&via=evenprom">
+                                <a href="https://twitter.com/intent/tweet?text={{ publicacion.titulo }}&url={{ url('publicacion_public_show', {'id': publicacion.id }) }}&via=evenprom">
                                     <i class="fa fa-twitter"></i> Tweet
                                 </a>
                             </li>
@@ -191,23 +191,46 @@
 {% endblock content %}
 {% block javascripts %}
     <script>
+
+        function openModalPublicacion(id) {
+            $.ajax({
+                type: 'get',
+                url: '{{ path("ver_publicacion") }}',
+                data: {id: id},
+                success: function (data) {
+                    $('#modal-publicacion .modal-body').html(data);
+                    $('#modal-publicacion').modal('toggle');
+                }
+            });
+        }
+
+        $(function () {
+            if (window.location.hash) {
+                var hash = window.location.hash;
+
+                console.log('hash', hash);
+                var split = hash.split("/");
+
+                if (split[0] == '#publicacion') {
+                    var id = split[1];
+                    openModalPublicacion(id);
+                }
+
+//                $(hash).modal('toggle');
+            }
+        });
+
         $(document).ready(function () {
 
             $('.btn-ver-publicacion, .ep-info-box').click(function (e) {
                 e.preventDefault();
 
                 var id = $(this).data('publicacion-id');
-                $.ajax({
-                    type: 'get',
-                    url: '{{ path("ver_publicacion") }}',
-                    data: {id:id},
-                    success: function (data) {
-                        $('#modal-publicacion .modal-body').html(data);
-                        $('#modal-publicacion').modal('toggle');
-                    }
-                });
+                openModalPublicacion(id);
 
-            })
+            });
+
+
         });
     </script>
 {% endblock %}
