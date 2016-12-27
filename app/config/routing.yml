@@ -24,6 +24,12 @@ fos_user:
 
 app:
     resource: "@AppBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/empresa-admin
+    requirements:
+        _locale: |en|es|pt
+
+public:
+    resource: "@AppBundle/Resources/config/routing/public.yml"
     prefix:   /{_locale}
     requirements:
         _locale: |en|es|pt

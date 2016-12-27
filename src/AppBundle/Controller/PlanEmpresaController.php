@@ -44,7 +44,7 @@ class PlanEmpresaController extends Controller {
 					$this->get( 'session' )->getFlashBag()->add(
 						'warning',
 						$this->get( 'translator' )->trans( '%entity%',
-							array( '%entity%' => 'Tu Plan está activo hasta el'. $item->getVencimiento()->format('d/m/Y') ),
+							array( '%entity%' => 'Tu Plan está activo hasta el '. $item->getVencimiento()->format('d/m/Y') ),
 							'flashes' )
 					);
 

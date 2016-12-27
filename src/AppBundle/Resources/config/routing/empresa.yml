@@ -23,11 +23,6 @@ empresa_delete:
     defaults: { _controller: "AppBundle:Empresa:delete" }
     methods:  DELETE
 
-empresa_registrar:
-    path:     /registrar
-    defaults: { _controller: "AppBundle:Empresa:registrar" }
-    methods:  [GET, POST]
-
 empresa_perfil:
     path:     /perfil
     defaults: { _controller: "AppBundle:Empresa:perfil" }

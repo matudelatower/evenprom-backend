@@ -1,18 +1,18 @@
-get_sub_rubros:
-    path: /get_sub_rubros
-    defaults: { _controller: "AppBundle:Ajax:getSubRubros" }
+#get_sub_rubros:
+#    path: /get_sub_rubros
+#    defaults: { _controller: "AppBundle:Ajax:getSubRubros" }
 
-get_categorias:
-    path: /get_categorias
-    defaults: { _controller: "AppBundle:Ajax:getCategorias" }
+#get_categorias:
+#    path: /get_categorias
+#    defaults: { _controller: "AppBundle:Ajax:getCategorias" }
 
 noticia_interna_marcar_leida:
     path: /noticia_interna_marcar_leida
     defaults: { _controller: "AppBundle:Ajax:noticiaMarcarLeida" }
 
-ver_publicacion:
-    path: /ver_publicacion
-    defaults: { _controller: "AppBundle:Ajax:verPublicacion" }
+#ver_publicacion:
+#    path: /ver_publicacion
+#    defaults: { _controller: "AppBundle:Ajax:verPublicacion" }
 
 comentar_perfil_empresa:
     path: /comentar_perfil_empresa/{empresaId}/{personaId}

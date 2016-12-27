@@ -37,12 +37,13 @@ security:
     access_control:
         - { path: ^/api/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/%languages%/app/^, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%languages%/^, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/%languages%/admin/, role: ROLE_ADMIN }
         - { path: ^/%languages%/empresa/registrar, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/%languages%/persona/registrar, role: IS_AUTHENTICATED_ANONYMOUSLY }
 #        - { path: ^/%languages%, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/%languages%/empresa, role: ROLE_EMPRESA }
+        - { path: ^/%languages%/empresa-admin, role: ROLE_EMPRESA }
         - { path: ^/%languages%/persona, role: ROLE_PERSONA }
-        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/, role: IS_AUTHENTICATED_FULLY }
+#        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/%languages%/, role: IS_AUTHENTICATED_FULLY }

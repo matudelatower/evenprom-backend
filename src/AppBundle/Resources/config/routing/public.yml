@@ -1,11 +1,18 @@
+app_inicio:
+    path:     /inicio/{empresa}
+    defaults: { _controller: "AppBundle:Default:indexApp", empresa: null }
+#    defaults: { _controller: "AppBundle:Default:index" }
+    methods:  [GET]
+
 app_index:
     path:     /
-    defaults: { _controller: "AppBundle:Default:indexApp" }
+#    defaults: { _controller: "AppBundle:Default:indexApp" }
+    defaults: { _controller: "AppBundle:Default:index" }
     methods:  [GET]
 
 sitios_index:
-    path:     /sitios
-    defaults: { _controller: "AppBundle:Default:indexSitios" }
+    path:     /sitios/{categoria}
+    defaults: { _controller: "AppBundle:Default:indexSitios", categoria: null }
 
 app_perfil_empresa:
     path:     /{id}/sitios
@@ -20,3 +27,19 @@ publicacion_public_show:
 #    path:     /%23publicacion/{id}
 #    defaults: { _controller: "AppBundle:Publicacion:redirectFb" }
 #    methods:  [GET]
+
+persona_registrar:
+    path:     /persona/registrar
+    defaults: { _controller: "AppBundle:Persona:registrar" }
+    methods:  [GET, POST]
+
+
+empresa_registrar:
+    path:     /empresa/registrar
+    defaults: { _controller: "AppBundle:Empresa:registrar" }
+    methods:  [GET, POST]
+
+public_ajax:
+    resource: "@AppBundle/Resources/config/routing/ajax_public.yml"
+    prefix:   /ajax
+

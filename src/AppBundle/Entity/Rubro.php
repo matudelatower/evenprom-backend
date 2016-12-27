@@ -4,12 +4,16 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity\Base\BaseClass;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Rubro
  *
  * @ORM\Table(name="rubros")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\RubroRepository")
+ * @ExclusionPolicy("all")
  */
 class Rubro extends BaseClass
 {
@@ -42,6 +46,22 @@ class Rubro extends BaseClass
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="icono", type="string", length=255, nullable=true)
+	 * @Expose()
+	 */
+	private $icono;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="icono_web", type="string", length=255, nullable=true)
+	 * @Expose()
+	 */
+	private $iconoWeb;
 
     public function __toString() {
         return $this->nombre;
@@ -177,5 +197,53 @@ class Rubro extends BaseClass
         $this->actualizadoPor = $actualizadoPor;
 
         return $this;
+    }
+
+    /**
+     * Set icono
+     *
+     * @param string $icono
+     *
+     * @return Rubro
+     */
+    public function setIcono($icono)
+    {
+        $this->icono = $icono;
+
+        return $this;
+    }
+
+    /**
+     * Get icono
+     *
+     * @return string
+     */
+    public function getIcono()
+    {
+        return $this->icono;
+    }
+
+    /**
+     * Set iconoWeb
+     *
+     * @param string $iconoWeb
+     *
+     * @return Rubro
+     */
+    public function setIconoWeb($iconoWeb)
+    {
+        $this->iconoWeb = $iconoWeb;
+
+        return $this;
+    }
+
+    /**
+     * Get iconoWeb
+     *
+     * @return string
+     */
+    public function getIconoWeb()
+    {
+        return $this->iconoWeb;
     }
 }

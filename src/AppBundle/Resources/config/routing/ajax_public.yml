@@ -1,0 +1,11 @@
+get_sub_rubros:
+    path: /get_sub_rubros
+    defaults: { _controller: "AppBundle:Ajax:getSubRubros" }
+
+get_categorias:
+    path: /get_categorias
+    defaults: { _controller: "AppBundle:Ajax:getCategorias" }
+
+ver_publicacion:
+    path: /ver_publicacion
+    defaults: { _controller: "AppBundle:Ajax:verPublicacion" }

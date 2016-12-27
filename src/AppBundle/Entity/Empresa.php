@@ -776,9 +776,13 @@ class Empresa extends BaseClass {
 	 * @return Empresa
 	 */
 	public function addCategoriaEmpresa( \AppBundle\Entity\CategoriaEmpresa $categoriaEmpresa ) {
-		$this->categoriaEmpresa[] = $categoriaEmpresa;
+
+		$categoriaEmpresa->setEmpresa( $this );
+
+		$this->categoriaEmpresa->add( $categoriaEmpresa );
 
 		return $this;
+
 	}
 
 	/**
@@ -864,7 +868,10 @@ class Empresa extends BaseClass {
 	 * @return Empresa
 	 */
 	public function addEmpresaOnda( \AppBundle\Entity\EmpresaOnda $empresaOnda ) {
-		$this->empresaOnda[] = $empresaOnda;
+
+		$empresaOnda->setEmpresa( $this );
+
+		$this->empresaOnda->add( $empresaOnda );
 
 		return $this;
 	}
@@ -982,37 +989,34 @@ class Empresa extends BaseClass {
 		return $this->empresaHotelAgencia;
 	}
 
-    /**
-     * Add likeSharePorElemento
-     *
-     * @param \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento
-     *
-     * @return Empresa
-     */
-    public function addLikeSharePorElemento(\AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento)
-    {
-        $this->likeSharePorElemento[] = $likeSharePorElemento;
+	/**
+	 * Add likeSharePorElemento
+	 *
+	 * @param \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento
+	 *
+	 * @return Empresa
+	 */
+	public function addLikeSharePorElemento( \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento ) {
+		$this->likeSharePorElemento[] = $likeSharePorElemento;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Remove likeSharePorElemento
-     *
-     * @param \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento
-     */
-    public function removeLikeSharePorElemento(\AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento)
-    {
-        $this->likeSharePorElemento->removeElement($likeSharePorElemento);
-    }
+	/**
+	 * Remove likeSharePorElemento
+	 *
+	 * @param \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento
+	 */
+	public function removeLikeSharePorElemento( \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento ) {
+		$this->likeSharePorElemento->removeElement( $likeSharePorElemento );
+	}
 
-    /**
-     * Get likeSharePorElemento
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getLikeSharePorElemento()
-    {
-        return $this->likeSharePorElemento;
-    }
+	/**
+	 * Get likeSharePorElemento
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getLikeSharePorElemento() {
+		return $this->likeSharePorElemento;
+	}
 }

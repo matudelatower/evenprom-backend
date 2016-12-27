@@ -148,15 +148,22 @@ or publicacion.publicacionEmpresa.first.empresa.premium == false %}
         <img src="{{ asset('bundles/app/AdminLTE-2.3.5/img/credit/american-express.png') }}" alt="American Express">
     </div>
     <div class="box-footer">
-        <form action="#" method="post">
-
-            <img class="img-responsive img-circle img-sm user-avatar"
-                 src="{{ asset('bundles/app/img/avatar.jpg') }}" alt="Alt Text">
-            <!-- .img-push is used to add margin to elements next to floating images -->
-            <div class="img-push">
-                <input type="text" class="form-control input-sm" placeholder="Presioná Enter para comentar">
+        {% if is_granted("ROLE_PERSONA") %}
+            <form action="#" method="post" id="box-comment-publicacion">
+                <img class="img-responsive img-circle img-sm"
+                     src="{{ asset('bundles/app/img/avatar.jpg') }}"
+                     alt="Alt Text">
+                <!-- .img-push is used to add margin to elements next to floating images -->
+                <div class="img-push">
+                    <input type="text" name="texto" class="form-control input-sm"
+                           placeholder="Presiona Enter para comentar">
+                </div>
+            </form>
+        {% else %}
+            <div class="text-center">
+                <span>Para Comentar tenes que inciar sesion</span>
             </div>
-        </form>
+        {% endif %}
     </div>
 
 

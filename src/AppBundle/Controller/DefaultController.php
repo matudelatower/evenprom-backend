@@ -14,7 +14,7 @@ class DefaultController extends Controller {
 		     $this->get( 'security.authorization_checker' )->isGranted( 'ROLE_PERSONA' )
 		) {
 
-			return $this->redirectToRoute( 'app_index' );
+			return $this->redirectToRoute( 'app_inicio' );
 
 		}
 
@@ -27,12 +27,18 @@ class DefaultController extends Controller {
 
 	}
 
-	public function indexSitiosAction( Request $request ) {
+	public function indexSitiosAction( Request $request, $categoria = null ) {
 
 		$em = $this->getDoctrine();
 
-		$empresas = $em->getRepository( 'AppBundle:Empresa' )->findAll();
+		if ( $categoria ) {
 
+			$empresas = $em->getRepository( 'AppBundle:Empresa' )->findBySlugCategoria( $categoria );
+		} else {
+
+			$empresas = $em->getRepository( 'AppBundle:Empresa' )->findAll();
+
+		}
 		$categorias = $em->getRepository( 'AppBundle:Categoria' )->findAll();
 
 		return $this->render( '@App/Default/sitios.html.twig',
@@ -51,15 +57,22 @@ class DefaultController extends Controller {
 
 		return $this->render( '@App/Default/perfil_empresa.html.twig',
 			array(
-				'empresa' => $empresa,
-				'comentarios'=>$comentarios
+				'empresa'     => $empresa,
+				'comentarios' => $comentarios
 			) );
 	}
 
-	public function indexAppAction( Request $request ) {
+	public function indexAppAction( Request $request, $empresa = null ) {
 
-		$em            = $this->getDoctrine();
-		$publicaciones = $em->getRepository( "AppBundle:Publicacion" )->findAll();
+		$em = $this->getDoctrine();
+
+		if ( $empresa ) {
+			$oEmpresa      = $em->getRepository( "AppBundle:Empresa" )->find( $empresa );
+			$publicaciones = $em->getRepository( "AppBundle:Publicacion" )->findAllByEmpresa( $oEmpresa );
+		} else {
+			$publicaciones = $em->getRepository( "AppBundle:Publicacion" )->findAll();
+		}
+
 
 		return $this->render( 'AppBundle:Default:index.html.twig',
 			array(

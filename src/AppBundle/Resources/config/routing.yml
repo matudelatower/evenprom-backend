@@ -6,9 +6,9 @@ app_persona:
     resource: "@AppBundle/Resources/config/routing/persona.yml"
     prefix:   /persona
 
-app_public:
-    resource: "@AppBundle/Resources/config/routing/public.yml"
-    prefix:   /app
+#app_public:
+#    resource: "@AppBundle/Resources/config/routing/public.yml"
+#    prefix:   /app
 
 app_noticia_interna:
     resource: "@AppBundle/Resources/config/routing/noticiainterna.yml"

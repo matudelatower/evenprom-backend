@@ -22,6 +22,14 @@
     margin-top: 20%;
 }
 
+.navbar-brand {
+    padding: 1% !important;
+}
+
+.logo-navbar{
+    width: 25%;
+}
+
 .ep-info-box {
     background: #fff none repeat scroll 0 0;
     border-radius: 2px;

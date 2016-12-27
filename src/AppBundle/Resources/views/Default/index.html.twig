@@ -52,11 +52,9 @@
 
                         <span class="ep-info-box-nombre-empresa-premium"
                               style="color: {{ colorPublicacion }}">
-                            <i class="fa {% if publicacion.publicacionEmpresa.first.empresa.categoriaEmpresa.first | length > 0
-                            and publicacion.publicacionEmpresa.first.empresa.categoriaEmpresa.first.categoria.icono == 'restaurant' %}
-                            fa-cutlery
-                            {% else %}
-                            fa-heart-o
+                            <i class="fa {% if publicacion.publicacionEmpresa.first.empresa.categoriaEmpresa.first | length > 0 %}
+                            {{ publicacion.publicacionEmpresa.first.empresa.categoriaEmpresa.first.categoria.iconoWeb }}
+
                             {% endif %}"></i> | {{ publicacion.publicacionEmpresa.first.empresa }}</span>
                             </div>
                             <div class="">
@@ -118,11 +116,8 @@
 
                         <span class="ep-info-box-nombre-empresa"
                               style="color: {{ colorPublicacion }}">
-                            <i class="fa {% if publicacion.publicacionEmpresa.first.empresa.categoriaEmpresa.first | length > 0
-                            and publicacion.publicacionEmpresa.first.empresa.categoriaEmpresa.first.categoria.icono == 'restaurant' %}
-                            fa-cutlery
-                            {% else %}
-                            fa-heart-o
+                            <i class="fa {% if publicacion.publicacionEmpresa.first.empresa.categoriaEmpresa.first | length > 0 %}
+                            {{ publicacion.publicacionEmpresa.first.empresa.categoriaEmpresa.first.categoria.iconoWeb }}
                             {% endif %}"></i> | {{ publicacion.publicacionEmpresa.first.empresa }}</span>
                             </div>
                             <div class="text-center">
@@ -162,7 +157,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="#" data-publicacion-id="{{ publicacion.id }}"
-                                   data-href="{{ url('publicacion_public_show', {'id': publicacion.id }, true)}}"
+                                   data-href="{{ url('publicacion_public_show', {'id': publicacion.id }, true) }}"
                                    data-image="{{ asset('uploads/images/publicaciones/'~ publicacion.imageName, null, true) }}"
                                    data-name="{{ publicacion.titulo }}"
                                    class="ep-btn-oferta-compartir">
