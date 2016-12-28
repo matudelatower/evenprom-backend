@@ -159,6 +159,12 @@ class Empresa extends BaseClass {
 	 */
 	private $likeSharePorElemento;
 
+	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\PromocionCalendario", mappedBy="empresa", cascade={"persist", "remove"})
+	 */
+	private $promoCalendario;
+
 
 	/**
 	 * NOTE: This is not a mapped field of entity metadata, just a simple property.

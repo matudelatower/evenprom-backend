@@ -1,0 +1,63 @@
+{% extends '::layout_base.html.twig' %}
+{% trans_default_domain "app" %}
+{% block content %}
+    <h1>Promocion Calendario</h1>
+
+    {% set avatarEmpresa  = asset('bundles/app/img/avatar.jpg') %}
+
+    {% if empresa.imageName %}
+        {% set avatarEmpresa  = asset('uploads/images/empresas/'~ empresa.imageName) %}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Box Comment -->
+            <div class="box box-widget">
+                <div class="box-header with-border">
+                    <div class="user-block">
+                        <img class="img-circle" src="{{ avatarEmpresa }}" alt="User Image">
+                        <span class="username"><a href="#">{{ empresa | upper }}</a></span>
+                        <span class="description">Promoción Calendario - Disponible hasta: {{ promocionCalendario.disponibleHasta | date('d/m/Y') }}</span>
+                    </div>
+                    <!-- /.user-block -->
+                    <div class="box-tools">
+
+                    </div>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+
+                    <h1>{{ promocionCalendario.titulo }}</h1>
+
+                    {% if promocionCalendario.imageName %}
+                        <img class="img-responsive pad"
+                             src="{{ asset('uploads/images/publicaciones/'~ promocionCalendario.imageName) }}" alt="Photo">
+                    {% endif %}
+
+                    <!-- post text -->
+                    <p>{{ promocionCalendario.descripcion }}</p>
+
+
+                </div>
+                <!-- /.box-body -->
+
+                <!-- /.box-footer -->
+                <div class="box-footer">
+
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+
+    <div class="form-buttons">
+
+        <a class="btn btn-default" href="{{ path('promocion_calendario_index') }}">{{ 'button.backtolist'|trans }} </a>
+
+        <a class="btn btn-default"
+           href="{{ path('promocion_calendario_edit', { 'id': promocionCalendario.id }) }}">{{ 'button.edit'|trans }}</a>
+
+    </div>
+{% endblock %}

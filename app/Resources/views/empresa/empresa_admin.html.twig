@@ -40,8 +40,8 @@
                 <div class="box box-widget">
                     <div class="box-header with-border">
                         <div class="user-block">
-                            <img class="img-circle" src="{{ asset('bundles/app/img/avatar.jpg') }}" alt="User Image">
-                            <span class="username"><a href="#">{{ noticia.creadoPor }}</a></span>
+                            <img class="img-circle" src="{{ asset('bundles/app/img/favicon.png') }}" alt="User Image">
+                            <span class="username"><a href="#">EvenProm</a></span>
                             <span class="description">{{ 'Shared publicly' | trans }}
                                 - {{ noticia.fechaCreacion | date('d/m/Y') }}</span>
                         </div>
@@ -69,9 +69,11 @@
                     <!-- /.box-header -->
                     <div class="box-body">
 
-                        <img class="img-responsive pad"
-                             src="{{ asset('uploads/images/noticias_internas/'~ noticia.imageName) }}"
-                             alt="Attachment Image">
+                        {% if noticia.imageName %}
+                            <img class="img-responsive pad"
+                                 src="{{ asset('uploads/images/noticias_internas/'~ noticia.imageName) }}"
+                                 alt="Attachment Image">
+                        {% endif %}
 
                         <!-- post text -->
                         {{ noticia.cuerpo |raw }}
@@ -83,6 +85,54 @@
                     <!-- /.box-footer -->
                     <div class="box-footer">
 
+                    </div>
+                    <!-- /.box-footer -->
+                </div>
+                <!-- /.box -->
+            </div>
+        {% endfor %}
+
+        {% for promoCalendario in promocionesCalendario %}
+            <div class="col-md-6">
+                <!-- Box Comment -->
+                <div class="box box-widget">
+                    <div class="box-header with-border">
+                        <div class="user-block">
+                            <img class="img-circle" src="{{ asset('bundles/app/img/favicon.png') }}" alt="User Image">
+                            <span class="username"><a href="#">EvenProm</a></span>
+                            <span class="description">Promoción Calendario - Disponible hasta: {{ promoCalendario.disponibleHasta | date('d/m/Y') }}</span>
+                        </div>
+                        <!-- /.user-block -->
+                        <div class="box-tools">
+
+                        </div>
+                        <!-- /.box-tools -->
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+
+                        <h1>{{ promoCalendario.titulo }}</h1>
+
+
+                        <!-- post text -->
+                        <p>{{ promoCalendario.descripcion }}</p>
+
+
+                    </div>
+                    <!-- /.box-body -->
+
+                    <!-- /.box-footer -->
+                    <div class="box-footer">
+                        {% if promoCalendario.empresa is not null %}
+                            <a class="btn btn-block btn-default disabled" href="{{ path('plan_empresa_basic') }}">
+                                Adquirido
+                            </a>
+                        {% else %}
+                            <a class="btn btn-block btn-primary"
+                               href="{{ path('promocion_calendario_adquirir', {'id':promoCalendario.id } ) }}">
+                                Adquirir
+                            </a>
+                        {% endif %}
                     </div>
                     <!-- /.box-footer -->
                 </div>

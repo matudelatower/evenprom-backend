@@ -1,0 +1,36 @@
+    {% extends '::layout_base.html.twig' %}
+
+    {% block content %}
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">PromocionCalendario creation</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <button type="submit" class="btn btn-primary"><i
+                                class="fa fa-save"></i> {{ 'button.save'|trans }}</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+    </div>
+
+            <div class="form-buttons">
+
+            <a class="btn btn-default" href="{{ path('promocion_calendario_index') }}">{{ 'button.backtolist'|trans }} </a>
+    </div>
+{% endblock %}

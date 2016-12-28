@@ -1,0 +1,16 @@
+easy_admin:
+    entities:
+        PromocionCalendario:
+            class: AppBundle\Entity\PromocionCalendario
+            form:
+                fields:
+                    - { property: 'titulo' }
+                    - { property: 'descripcion' }
+                    - { property: 'disponibleDesde',  ,type_options: { widget: 'single_text', format: 'dd-MM-yyyy', attr: { class: 'datepicker' }} }
+                    - { property: 'disponibleHasta', type_options: { widget: 'single_text', format: 'dd-MM-yyyy', attr: { class: 'datepicker' }} }
+            edit:
+                title:  'Editar Promocion Calendario'
+            new:
+                title:  'Alta Promocion Calendario'
+            list:
+                title:  'Promocion Calendario'

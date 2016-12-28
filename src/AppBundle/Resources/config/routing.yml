@@ -1,3 +1,7 @@
+app_promocion_calendario:
+    resource: "@AppBundle/Resources/config/routing/promocioncalendario.yml"
+    prefix:   /promocion_calendario
+
 app_plan_empresa:
     resource: "@AppBundle/Resources/config/routing/planempresa.yml"
     prefix:   /plan_empresa

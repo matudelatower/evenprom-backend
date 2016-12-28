@@ -100,6 +100,10 @@
                 <source>menu.empresa.suscripcion</source>
                 <target>Suscripción</target>
             </trans-unit>
+            <trans-unit id="menu_empresa_promo_calendario">
+                <source>menu.empresa.promo_calendario</source>
+                <target>Promociones Calendario</target>
+            </trans-unit>
 
             <!--propias de la app-->
             <trans-unit id="profile_empresa">

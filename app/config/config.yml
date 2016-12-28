@@ -121,21 +121,27 @@ vich_uploader:
         empresas_image:
             uri_prefix:         %app.path.empresas_image%
             upload_destination: %kernel.root_dir%/../web/uploads/images/empresas
+            namer:              vich_uploader.namer_origname
         publicaciones_image:
             uri_prefix:         %app.path.publicaciones_image%
             upload_destination: %kernel.root_dir%/../web/uploads/images/publicaciones
+            namer:              vich_uploader.namer_origname
         noticias_image:
             uri_prefix:         %app.path.noticias_image%
             upload_destination: %kernel.root_dir%/../web/uploads/images/noticias
+            namer:              vich_uploader.namer_origname
         noticias_internas_image:
             uri_prefix:         %app.path.noticias_internas_image%
             upload_destination: %kernel.root_dir%/../web/uploads/images/noticias_internas
+            namer:              vich_uploader.namer_origname
         planes_image:
             uri_prefix:         %app.path.planes_image%
             upload_destination: %kernel.root_dir%/../web/uploads/images/planes
+            namer:              vich_uploader.namer_origname
         personas_image:
             uri_prefix:         %app.path.personas_image%
             upload_destination: %kernel.root_dir%/../web/uploads/images/personas
+            namer:              vich_uploader.namer_origname
 
 ivory_ck_editor:
     default_config: my_config

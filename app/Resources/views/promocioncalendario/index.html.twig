@@ -1,0 +1,62 @@
+{% extends '::layout_base.html.twig' %}
+{% trans_default_domain "app" %}
+    {% block content %}
+
+        <div class="row">
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Mis Promociones Calendario</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="data-table table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Titulo</th>
+                                <th>Descripcion</th>
+                                <th>Disponible desde</th>
+                                <th>Disponible hasta</th>
+                                <th>Imagen</th>
+                                <th>Activo</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for promocionCalendario in promocionCalendarios %}
+                                <tr>
+                                    <td>
+                                        <a href="{{ path('promocion_calendario_show', { 'id': promocionCalendario.id }) }}">{{ promocionCalendario.id }}</a>
+                                    </td>
+                                    <td>{{ promocionCalendario.titulo }}</td>
+                                    <td>{{ promocionCalendario.descripcion }}</td>
+                                    <td>{% if promocionCalendario.disponibleDesde %}{{ promocionCalendario.disponibleDesde|date('Y-m-d') }}{% endif %}</td>
+                                    <td>{% if promocionCalendario.disponibleHasta %}{{ promocionCalendario.disponibleHasta|date('Y-m-d') }}{% endif %}</td>
+
+                                    <td>{{ promocionCalendario.imageName }}</td>
+                                    <td>{% if promocionCalendario.activo %}Si{% else %}No{% endif %}</td>
+                                    <td>
+
+                                        <a class="btn btn-default"
+                                           href="{{ path('promocion_calendario_show', { 'id': promocionCalendario.id }) }}"><i
+                                                    class="fa fa-eye"></i></a>
+
+                                        <a class="btn btn-default"
+                                           href="{{ path('promocion_calendario_edit', { 'id': promocionCalendario.id }) }}"><i
+                                                    class="fa fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}

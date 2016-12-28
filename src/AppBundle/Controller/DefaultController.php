@@ -55,12 +55,12 @@ class DefaultController extends Controller {
 
 		$comentarios = $em->getRepository( 'AppBundle:Comentario' )->findUltimosComentariosByEmpresa( $empresa );
 
-		$noticias = $em->getRepository( 'AppBundle:NoticiaEmpresa' )->findByNoticiasByEmpresa($empresa);
+		$noticias = $em->getRepository( 'AppBundle:NoticiaEmpresa' )->findByNoticiasByEmpresa( $empresa );
 
 		return $this->render( '@App/Default/perfil_empresa.html.twig',
 			array(
-				'empresa'     => $empresa,
-				'comentarios' => $comentarios,
+				'empresa'         => $empresa,
+				'comentarios'     => $comentarios,
 				'noticiasEmpresa' => $noticias
 			) );
 	}
@@ -76,10 +76,13 @@ class DefaultController extends Controller {
 			$publicaciones = $em->getRepository( "AppBundle:Publicacion" )->findAll();
 		}
 
+		$promoCalendario = $em->getRepository( 'AppBundle:PromocionCalendario' )->findActuales();
+
 
 		return $this->render( 'AppBundle:Default:index.html.twig',
 			array(
-				'publicaciones' => $publicaciones
+				'publicaciones'   => $publicaciones,
+				'promoCalendario' => $promoCalendario,
 			) );
 	}
 }

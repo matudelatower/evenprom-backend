@@ -1,0 +1,28 @@
+promocion_calendario_index:
+    path:     /
+    defaults: { _controller: "AppBundle:PromocionCalendario:index" }
+    methods:  GET
+
+promocion_calendario_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:PromocionCalendario:show" }
+    methods:  GET
+
+#promocion_calendario_new:
+#    path:     /new
+#    defaults: { _controller: "AppBundle:PromocionCalendario:new" }
+#    methods:  [GET, POST]
+
+promocion_calendario_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:PromocionCalendario:edit" }
+    methods:  [GET, POST]
+
+promocion_calendario_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:PromocionCalendario:delete" }
+    methods:  DELETE
+
+promocion_calendario_adquirir:
+    path:     /{id}/adquirir
+    defaults: { _controller: "AppBundle:PromocionCalendario:adquirir" }

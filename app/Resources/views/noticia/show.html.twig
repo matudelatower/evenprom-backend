@@ -3,12 +3,17 @@
 {% block content %}
     <div class="row">
 
+        {% set avatarEmpresa  = asset('bundles/app/img/avatar.jpg') %}
+
+        {% if noticium.noticiaEmpresa.first.empresa.imageName %}
+            {% set avatarEmpresa  = asset('uploads/images/empresas/'~ noticium.noticiaEmpresa.first.empresa.imageName) %}
+        {% endif %}
         <div class="col-md-6">
             <!-- Box Comment -->
             <div class="box box-widget">
                 <div class="box-header with-border">
                     <div class="user-block">
-                        <img class="img-circle" src="{{ asset('uploads/images/empresas/'~ noticium.noticiaEmpresa.first.empresa.imageName) }}" alt="User Image">
+                        <img class="img-circle" src="{{ avatarEmpresa }}" alt="User Image">
                         <span class="username"><a href="#">{{ noticium.noticiaEmpresa.first.empresa }}</a></span>
                         <span class="description">{{ 'publicado el'|trans }} {{ noticium.fechaCreacion | date('d/m/Y') }}</span>
                     </div>
@@ -16,9 +21,11 @@
                     <div class="box-tools">
                         <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Mark as read">
                             <i class="fa fa-circle-o"></i></button>
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                    class="fa fa-minus"></i>
                         </button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                        </button>
                     </div>
                     <!-- /.box-tools -->
                 </div>
@@ -26,19 +33,25 @@
                 <div class="box-body">
 
                     <div>
-                        <label>Visible Desde:</label><span>{% if noticium.visibleDesde %}{{ noticium.visibleDesde|date('Y-m-d H:i:s') }}{% endif %}</span>
-                        <label>Visible Hasta:</label><span>{% if noticium.visibleHasta %}{{ noticium.visibleHasta|date('Y-m-d H:i:s') }}{% endif %}</span>
+                        <label>Visible
+                            Desde:</label><span>{% if noticium.visibleDesde %}{{ noticium.visibleDesde|date('Y-m-d H:i:s') }}{% endif %}</span>
+                        <label>Visible
+                            Hasta:</label><span>{% if noticium.visibleHasta %}{{ noticium.visibleHasta|date('Y-m-d H:i:s') }}{% endif %}</span>
 
                     </div>
 
                     <h1>{{ noticium.titulo }}</h1>
 
-                    <img class="img-responsive pad" src="{{ asset('uploads/images/noticias/'~ noticium.imageName) }}" alt="Photo">
+                    {% if noticium.imageName %}
+                        <img class="img-responsive pad"
+                             src="{{ asset('uploads/images/noticias/'~ noticium.imageName) }}" alt="Photo">
+                    {% endif %}
 
                     <p>{{ noticium.cuerpo |raw }}</p>
-                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-                    <span class="pull-right text-muted">127 likes - 3 comments</span>
+                    {# TODO crear pantalla para ver noticias de empresas #}
+                    {#<button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>#}
+                    {#<button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>#}
+                    {#<span class="pull-right text-muted">127 likes - 3 comments</span>#}
                 </div>
                 <!-- /.box-body -->
 

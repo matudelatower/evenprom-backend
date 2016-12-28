@@ -27,9 +27,10 @@ easy_admin:
             - Rubro
             - SubRubro
             - Descuento
+            - { label: 'Promo Calendario', entity: PromocionCalendario }
             - { label: 'Hoteles y Agencias', entity: HotelAgencia }
             - { label: 'Tipo Publicación', entity: TipoPublicacion }
-            - { label: 'Tipo Doccumento', entity: TipoDocumento }
+            - { label: 'Tipo Documento', entity: TipoDocumento }
             - label: 'Ubicación'
               children:
                   - 'Pais'
@@ -40,6 +41,7 @@ easy_admin:
             - { label: 'Cerrar Sesión', route: 'fos_user_security_logout', icon: 'sign-out' }
 #
     assets:
+        favicon: 'bundles/app/img/favicon.png'
         css:
             - 'bundles/app/plugins/datepicker/datepicker3.css'
             - 'bundles/app/plugins/daterangepicker/daterangepicker.css'
