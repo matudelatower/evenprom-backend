@@ -43,4 +43,20 @@ class PromocionCalendarioRepository extends \Doctrine\ORM\EntityRepository {
 
 		return $qb->getQuery()->getResult();
 	}
+
+	public function findActualesAdquiridas() {
+		$qb = $this->createQueryBuilder( 'pc' );
+
+		$qb->where( 'pc.disponibleDesde <= :fechaActual' )
+		   ->andWhere( 'pc.disponibleHasta >= :fechaActual' )
+		->andWhere('pc.empresa is not null');
+
+		$fechaActual = new \DateTime( 'now' );
+
+		$qb->setParameter( 'fechaActual', $fechaActual->format( 'Y-m-d' ) );
+
+
+		return $qb->getQuery()->getResult();
+
+	}
 }

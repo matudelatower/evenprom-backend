@@ -76,7 +76,7 @@ class DefaultController extends Controller {
 			$publicaciones = $em->getRepository( "AppBundle:Publicacion" )->findAll();
 		}
 
-		$promoCalendario = $em->getRepository( 'AppBundle:PromocionCalendario' )->findActuales();
+		$promoCalendario = $em->getRepository( 'AppBundle:PromocionCalendario' )->findActualesAdquiridas();
 
 
 		return $this->render( 'AppBundle:Default:index.html.twig',
