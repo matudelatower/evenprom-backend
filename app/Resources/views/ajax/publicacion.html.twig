@@ -1,3 +1,5 @@
+{% trans_default_domain "app" %}
+
 <style>
     #mapid {
         height: 90px;
@@ -161,7 +163,10 @@ or publicacion.publicacionEmpresa.first.empresa.premium == false %}
             </form>
         {% else %}
             <div class="text-center">
-                <span>Para Comentar tenes que inciar sesion</span>
+                <span>Para Comentar tenes que <a href="{{ path('fos_user_security_login') }}" class="dropdown-toggle">
+                                    <span>{{ 'login' | trans }}</span>
+                                </a>
+                </span>
             </div>
         {% endif %}
     </div>

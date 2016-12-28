@@ -1,5 +1,7 @@
 {% extends 'layout_base_public.html.twig' %}
 
+{% trans_default_domain "app" %}
+
 {% block stylesheets %}
     <style>
         .bar-btns {
@@ -92,7 +94,7 @@
             height: 100%;
         }
 
-        .ep-btn-empresa-favear{
+        .ep-btn-empresa-favear {
             font-size: 20pt;
             left: 85%;
             position: absolute;
@@ -173,6 +175,16 @@
         </a>
 
     </aside>
+
+
+
+    {% set avatarEmpresa  = asset('bundles/app/img/avatar.jpg') %}
+
+    {% if empresa.imageName %}
+        {% set avatarEmpresa  = asset('uploads/images/empresas/'~ empresa.imageName) %}
+    {% endif %}
+
+
     <div class="row">
         <div class="col-md-12">
             <!-- Box Comment -->
@@ -180,7 +192,7 @@
                 <div class="box-header with-border">
                     <div class="user-block">
                         <img class="img-circle"
-                             src="{% if empresa.imageName %}{{ asset('uploads/images/empresas/'~ empresa.imageName) }}{% else %} {{ asset('bundles/app/img/avatar.jpg') }} {% endif %} "
+                             src="{{ avatarEmpresa }}"
                              alt="User Image">
                         <span class="username"><a href="#"
                                                   style="color: {{ empresa.color }}">{{ empresa.nombre | upper }}</a></span>
@@ -286,7 +298,8 @@
                     <div class="row">
 
                         <div class="col-md-4 col-md-offset-4">
-                            <a class="btn btn-block btn-info btn-lg" href="{{ path('app_inicio', {'empresa': empresa.id}) }}">
+                            <a class="btn btn-block btn-info btn-lg"
+                               href="{{ path('app_inicio', {'empresa': empresa.id}) }}">
                                 Ver Eventos y Promociones Hoy
                             </a>
 
@@ -295,9 +308,68 @@
 
                     <div class="well margin-top-5">
                         <h3 class="text-center">Novedades</h3>
-                        <div class="col-md-12">
 
-                        </div>
+                            <div class="row">
+                                {% for noticiaEmpresa in noticiasEmpresa %}
+                                    <div class="col-md-6">
+                                        <!-- Box Comment -->
+                                        <div class="box box-widget">
+                                            <div class="box-header with-border">
+                                                <div class="user-block">
+                                                    <img class="img-circle"
+                                                         src="{{ avatarEmpresa }}"
+                                                         alt="User Image">
+                                                    <span class="username"><a href="#">{{ empresa.nombre }}</a></span>
+                                                    <span class="description">{{ 'publicado el'|trans }} {{ noticiaEmpresa.noticia.fechaCreacion | date('d/m/Y') }}</span>
+                                                </div>
+                                                <!-- /.user-block -->
+                                                <div class="box-tools">
+
+                                                    <button type="button" class="btn btn-box-tool"
+                                                            data-widget="collapse"><i
+                                                                class="fa fa-minus"></i>
+                                                    </button>
+                                                </div>
+                                                <!-- /.box-tools -->
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+
+                                                <div>
+                                                    <label>Visible
+                                                        Desde:</label><span>{% if noticiaEmpresa.noticia.visibleDesde %}{{ noticiaEmpresa.noticia.visibleDesde|date('Y-m-d H:i:s') }}{% endif %}</span>
+                                                    <label>Visible
+                                                        Hasta:</label><span>{% if noticiaEmpresa.noticia.visibleHasta %}{{ noticiaEmpresa.noticia.visibleHasta|date('Y-m-d H:i:s') }}{% endif %}</span>
+
+                                                </div>
+
+                                                <h1>{{ noticiaEmpresa.noticia.titulo }}</h1>
+
+                                                {% if noticiaEmpresa.noticia.imageName %}
+                                                <img class="img-responsive pad"
+                                                     src="{{ asset('uploads/images/noticias/'~ noticiaEmpresa.noticia.imageName) }}"
+                                                     alt="Photo">
+                                                {% endif %}
+
+                                                <p>{{ noticiaEmpresa.noticia.cuerpo |raw }}</p>
+                                                {# TODO crear pantalla para ver noticias de empresas #}
+                                                {#<button type="button" class="btn btn-default btn-xs"><i#}
+                                                            {#class="fa fa-share"></i> Share#}
+                                                {#</button>#}
+                                                {#<button type="button" class="btn btn-default btn-xs"><i#}
+                                                            {#class="fa fa-thumbs-o-up"></i> Like#}
+                                                {#</button>#}
+                                                {#<span class="pull-right text-muted">127 likes - 3 comments</span>#}
+                                            </div>
+                                            <!-- /.box-body -->
+
+                                            <!-- /.box-footer -->
+                                        </div>
+                                        <!-- /.box -->
+                                    </div>
+
+                                {% endfor %}
+                            </div>
 
                     </div>
 
@@ -425,7 +497,9 @@
                         </form>
                     {% else %}
                         <div class="text-center">
-                            <span>Para Comentar tenes que inciar sesion</span>
+                            <span>Para Comentar tenes que <a href="{{ path('fos_user_security_login') }}" class="dropdown-toggle">
+                                    <span>{{ 'login' | trans }}</span>
+                                </a></span>
                         </div>
                     {% endif %}
                 </div>

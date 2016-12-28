@@ -55,10 +55,13 @@ class DefaultController extends Controller {
 
 		$comentarios = $em->getRepository( 'AppBundle:Comentario' )->findUltimosComentariosByEmpresa( $empresa );
 
+		$noticias = $em->getRepository( 'AppBundle:NoticiaEmpresa' )->findByNoticiasByEmpresa($empresa);
+
 		return $this->render( '@App/Default/perfil_empresa.html.twig',
 			array(
 				'empresa'     => $empresa,
-				'comentarios' => $comentarios
+				'comentarios' => $comentarios,
+				'noticiasEmpresa' => $noticias
 			) );
 	}
 
