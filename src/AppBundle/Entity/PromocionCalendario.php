@@ -21,55 +21,54 @@ use JMS\Serializer\Annotation\Type;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PromocionCalendarioRepository")
  * @ExclusionPolicy("all")
  */
-class PromocionCalendario extends BaseClass
-{
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @Expose()
-     */
-    private $id;
+class PromocionCalendario extends BaseClass {
+	/**
+	 * @var int
+	 *
+	 * @ORM\Column(name="id", type="integer")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="AUTO")
+	 * @Expose()
+	 */
+	private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="titulo", type="string", length=255)
-     * @Expose()
-     */
-    private $titulo;
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="titulo", type="string", length=255)
+	 * @Expose()
+	 */
+	private $titulo;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="descripcion", type="string", length=255)
-     * @Expose()
-     */
-    private $descripcion;
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="descripcion", type="string", length=255)
+	 * @Expose()
+	 */
+	private $descripcion;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="disponible_desde", type="date")
-     */
-    private $disponibleDesde;
+	/**
+	 * @var \DateTime
+	 *
+	 * @ORM\Column(name="disponible_desde", type="date")
+	 */
+	private $disponibleDesde;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="disponible_hasta", type="date")
-     */
-    private $disponibleHasta;
+	/**
+	 * @var \DateTime
+	 *
+	 * @ORM\Column(name="disponible_hasta", type="date")
+	 */
+	private $disponibleHasta;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="cuerpo", type="text", nullable=true)
-     * @Expose()
-     */
-    private $cuerpo;
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="cuerpo", type="text", nullable=true)
+	 * @Expose()
+	 */
+	private $cuerpo;
 
 	/**
 	 *
@@ -169,259 +168,255 @@ class PromocionCalendario extends BaseClass
 
 	}
 
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("nombre_empresa")
+	 */
+	public function getNombreEmpresa() {
+
+		$return = false;
+
+		if ( $this->getEmpresa() ) {
+			$return = $this->getEmpresa()->getNombre();
+		}
+
+		return $return;
+
+	}
+
 	public function __toString() {
 		return $this->titulo;
 	}
 
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+	/**
+	 * Get id
+	 *
+	 * @return int
+	 */
+	public function getId() {
+		return $this->id;
+	}
 
-    /**
-     * Set titulo
-     *
-     * @param string $titulo
-     *
-     * @return PromocionCalendario
-     */
-    public function setTitulo($titulo)
-    {
-        $this->titulo = $titulo;
+	/**
+	 * Set titulo
+	 *
+	 * @param string $titulo
+	 *
+	 * @return PromocionCalendario
+	 */
+	public function setTitulo( $titulo ) {
+		$this->titulo = $titulo;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get titulo
-     *
-     * @return string
-     */
-    public function getTitulo()
-    {
-        return $this->titulo;
-    }
+	/**
+	 * Get titulo
+	 *
+	 * @return string
+	 */
+	public function getTitulo() {
+		return $this->titulo;
+	}
 
-    /**
-     * Set descripcion
-     *
-     * @param string $descripcion
-     *
-     * @return PromocionCalendario
-     */
-    public function setDescripcion($descripcion)
-    {
-        $this->descripcion = $descripcion;
+	/**
+	 * Set descripcion
+	 *
+	 * @param string $descripcion
+	 *
+	 * @return PromocionCalendario
+	 */
+	public function setDescripcion( $descripcion ) {
+		$this->descripcion = $descripcion;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get descripcion
-     *
-     * @return string
-     */
-    public function getDescripcion()
-    {
-        return $this->descripcion;
-    }
+	/**
+	 * Get descripcion
+	 *
+	 * @return string
+	 */
+	public function getDescripcion() {
+		return $this->descripcion;
+	}
 
-    /**
-     * Set disponibleDesde
-     *
-     * @param \DateTime $disponibleDesde
-     *
-     * @return PromocionCalendario
-     */
-    public function setDisponibleDesde($disponibleDesde)
-    {
-        $this->disponibleDesde = $disponibleDesde;
+	/**
+	 * Set disponibleDesde
+	 *
+	 * @param \DateTime $disponibleDesde
+	 *
+	 * @return PromocionCalendario
+	 */
+	public function setDisponibleDesde( $disponibleDesde ) {
+		$this->disponibleDesde = $disponibleDesde;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get disponibleDesde
-     *
-     * @return \DateTime
-     */
-    public function getDisponibleDesde()
-    {
-        return $this->disponibleDesde;
-    }
+	/**
+	 * Get disponibleDesde
+	 *
+	 * @return \DateTime
+	 */
+	public function getDisponibleDesde() {
+		return $this->disponibleDesde;
+	}
 
-    /**
-     * Set disponibleHasta
-     *
-     * @param \DateTime $disponibleHasta
-     *
-     * @return PromocionCalendario
-     */
-    public function setDisponibleHasta($disponibleHasta)
-    {
-        $this->disponibleHasta = $disponibleHasta;
+	/**
+	 * Set disponibleHasta
+	 *
+	 * @param \DateTime $disponibleHasta
+	 *
+	 * @return PromocionCalendario
+	 */
+	public function setDisponibleHasta( $disponibleHasta ) {
+		$this->disponibleHasta = $disponibleHasta;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get disponibleHasta
-     *
-     * @return \DateTime
-     */
-    public function getDisponibleHasta()
-    {
-        return $this->disponibleHasta;
-    }
+	/**
+	 * Get disponibleHasta
+	 *
+	 * @return \DateTime
+	 */
+	public function getDisponibleHasta() {
+		return $this->disponibleHasta;
+	}
 
-    /**
-     * Set cuerpo
-     *
-     * @param string $cuerpo
-     *
-     * @return PromocionCalendario
-     */
-    public function setCuerpo($cuerpo)
-    {
-        $this->cuerpo = $cuerpo;
+	/**
+	 * Set cuerpo
+	 *
+	 * @param string $cuerpo
+	 *
+	 * @return PromocionCalendario
+	 */
+	public function setCuerpo( $cuerpo ) {
+		$this->cuerpo = $cuerpo;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get cuerpo
-     *
-     * @return string
-     */
-    public function getCuerpo()
-    {
-        return $this->cuerpo;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->likeSharePorElemento = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+	/**
+	 * Get cuerpo
+	 *
+	 * @return string
+	 */
+	public function getCuerpo() {
+		return $this->cuerpo;
+	}
 
-    /**
-     * Set fechaCreacion
-     *
-     * @param \DateTime $fechaCreacion
-     *
-     * @return PromocionCalendario
-     */
-    public function setFechaCreacion($fechaCreacion)
-    {
-        $this->fechaCreacion = $fechaCreacion;
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
+		$this->likeSharePorElemento = new \Doctrine\Common\Collections\ArrayCollection();
+	}
 
-        return $this;
-    }
+	/**
+	 * Set fechaCreacion
+	 *
+	 * @param \DateTime $fechaCreacion
+	 *
+	 * @return PromocionCalendario
+	 */
+	public function setFechaCreacion( $fechaCreacion ) {
+		$this->fechaCreacion = $fechaCreacion;
 
-    /**
-     * Set fechaActualizacion
-     *
-     * @param \DateTime $fechaActualizacion
-     *
-     * @return PromocionCalendario
-     */
-    public function setFechaActualizacion($fechaActualizacion)
-    {
-        $this->fechaActualizacion = $fechaActualizacion;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set fechaActualizacion
+	 *
+	 * @param \DateTime $fechaActualizacion
+	 *
+	 * @return PromocionCalendario
+	 */
+	public function setFechaActualizacion( $fechaActualizacion ) {
+		$this->fechaActualizacion = $fechaActualizacion;
 
-    /**
-     * Add likeSharePorElemento
-     *
-     * @param \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento
-     *
-     * @return PromocionCalendario
-     */
-    public function addLikeSharePorElemento(\AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento)
-    {
-        $this->likeSharePorElemento[] = $likeSharePorElemento;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Add likeSharePorElemento
+	 *
+	 * @param \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento
+	 *
+	 * @return PromocionCalendario
+	 */
+	public function addLikeSharePorElemento( \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento ) {
+		$this->likeSharePorElemento[] = $likeSharePorElemento;
 
-    /**
-     * Remove likeSharePorElemento
-     *
-     * @param \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento
-     */
-    public function removeLikeSharePorElemento(\AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento)
-    {
-        $this->likeSharePorElemento->removeElement($likeSharePorElemento);
-    }
+		return $this;
+	}
 
-    /**
-     * Get likeSharePorElemento
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getLikeSharePorElemento()
-    {
-        return $this->likeSharePorElemento;
-    }
+	/**
+	 * Remove likeSharePorElemento
+	 *
+	 * @param \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento
+	 */
+	public function removeLikeSharePorElemento( \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento ) {
+		$this->likeSharePorElemento->removeElement( $likeSharePorElemento );
+	}
 
-    /**
-     * Set creadoPor
-     *
-     * @param \UsuariosBundle\Entity\Usuario $creadoPor
-     *
-     * @return PromocionCalendario
-     */
-    public function setCreadoPor(\UsuariosBundle\Entity\Usuario $creadoPor = null)
-    {
-        $this->creadoPor = $creadoPor;
+	/**
+	 * Get likeSharePorElemento
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getLikeSharePorElemento() {
+		return $this->likeSharePorElemento;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set creadoPor
+	 *
+	 * @param \UsuariosBundle\Entity\Usuario $creadoPor
+	 *
+	 * @return PromocionCalendario
+	 */
+	public function setCreadoPor( \UsuariosBundle\Entity\Usuario $creadoPor = null ) {
+		$this->creadoPor = $creadoPor;
 
-    /**
-     * Set actualizadoPor
-     *
-     * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
-     *
-     * @return PromocionCalendario
-     */
-    public function setActualizadoPor(\UsuariosBundle\Entity\Usuario $actualizadoPor = null)
-    {
-        $this->actualizadoPor = $actualizadoPor;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set actualizadoPor
+	 *
+	 * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
+	 *
+	 * @return PromocionCalendario
+	 */
+	public function setActualizadoPor( \UsuariosBundle\Entity\Usuario $actualizadoPor = null ) {
+		$this->actualizadoPor = $actualizadoPor;
 
-    /**
-     * Set empresa
-     *
-     * @param \AppBundle\Entity\Empresa $empresa
-     *
-     * @return PromocionCalendario
-     */
-    public function setEmpresa(\AppBundle\Entity\Empresa $empresa = null)
-    {
-        $this->empresa = $empresa;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set empresa
+	 *
+	 * @param \AppBundle\Entity\Empresa $empresa
+	 *
+	 * @return PromocionCalendario
+	 */
+	public function setEmpresa( \AppBundle\Entity\Empresa $empresa = null ) {
+		$this->empresa = $empresa;
 
-    /**
-     * Get empresa
-     *
-     * @return \AppBundle\Entity\Empresa
-     */
-    public function getEmpresa()
-    {
-        return $this->empresa;
-    }
+		return $this;
+	}
+
+	/**
+	 * Get empresa
+	 *
+	 * @return \AppBundle\Entity\Empresa
+	 */
+	public function getEmpresa() {
+		return $this->empresa;
+	}
 }
