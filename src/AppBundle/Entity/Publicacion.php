@@ -337,6 +337,25 @@ class Publicacion extends BaseClass {
 	}
 
 	/**
+	 * @VirtualProperty()
+	 * @SerializedName("rango_fecha")
+	 */
+	public function getRangoFecha()
+	{
+
+		$retorno =  array(
+			"fecha_desde" => $this->fechaInicio ? date_format($this->fechaInicio, "d-m-Y") : "",
+			"fecha_hasta" => $this->fechaFin ? date_format($this->fechaFin, "d-m-Y") : "",
+			"hora_desde" => $this->horaInicio ? date_format($this->horaInicio, "H:i") : "",
+			"hora_hasta" => $this->horaFin ? date_format($this->horaFin, "H:i") : ""
+		);
+
+		return $retorno;
+
+
+	}
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {
