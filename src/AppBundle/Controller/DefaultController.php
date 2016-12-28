@@ -71,9 +71,9 @@ class DefaultController extends Controller {
 
 		if ( $empresa ) {
 			$oEmpresa      = $em->getRepository( "AppBundle:Empresa" )->find( $empresa );
-			$publicaciones = $em->getRepository( "AppBundle:Publicacion" )->findAllByEmpresa( $oEmpresa );
+			$publicaciones = $em->getRepository( "AppBundle:Publicacion" )->findActualesByEmpresa( $oEmpresa );
 		} else {
-			$publicaciones = $em->getRepository( "AppBundle:Publicacion" )->findAll();
+			$publicaciones = $em->getRepository( "AppBundle:Publicacion" )->findActuales();
 		}
 
 		$promoCalendario = $em->getRepository( 'AppBundle:PromocionCalendario' )->findActualesAdquiridas();

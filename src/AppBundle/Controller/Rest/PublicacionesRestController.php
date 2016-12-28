@@ -9,7 +9,7 @@ class PublicacionesRestController extends FOSRestController {
 
 	public function getPublicacionesAction( Request $request ) {
 
-		$publicaciones = $this->getDoctrine()->getRepository( "AppBundle:Publicacion" )->findAll();
+		$publicaciones = $this->getDoctrine()->getRepository( "AppBundle:Publicacion" )->findActuales();
 
 		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.publicaciones_image' );
 
@@ -31,7 +31,9 @@ class PublicacionesRestController extends FOSRestController {
 
 	public function getPublicacionesporempresaAction( Request $request, $empresaId ) {
 
-		$publicaciones = $this->getDoctrine()->getRepository( "AppBundle:Publicacion" )->findAllByEmpresa( $empresaId );
+		$empresa = $this->getDoctrine()->getRepository( "AppBundle:Empresa" )->find( $empresaId );
+
+		$publicaciones = $this->getDoctrine()->getRepository( "AppBundle:Publicacion" )->findActualesByEmpresa( $empresa );
 
 		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.publicaciones_image' );
 
@@ -53,9 +55,17 @@ class PublicacionesRestController extends FOSRestController {
 
 	public function getPromoCalendarioAction( Request $request ) {
 
-		$promoCalenadario = array();
+		$promosCalendario = $this->getDoctrine()->getRepository( "AppBundle:PromocionCalendario" )->findActualesAdquiridas();
 
-		$vista = $this->view( $promoCalenadario,
+		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.publicaciones_image' );
+
+		foreach ( $promosCalendario as $promoCalendario ) {
+			if ( $promoCalendario->getImageName() ) {
+				$promoCalendario->setImageName( $host . '/' . $promoCalendario->getImageName() );
+			}
+		}
+
+		$vista = $this->view( $promosCalendario,
 			200 );
 
 		return $this->handleView( $vista );

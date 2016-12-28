@@ -2,14 +2,18 @@
 {% trans_default_domain "app" %}
 {% block content %}
     <div class="row">
+        {% set avatarEmpresa  = asset('bundles/app/img/avatar.jpg') %}
 
+        {% if publicacion.publicacionEmpresa.first.empresa.imageName %}
+            {% set avatarEmpresa  = asset('uploads/images/empresas/'~ publicacion.publicacionEmpresa.first.empresa.imageName) %}
+        {% endif %}
         <div class="col-md-6">
             <!-- Box Comment -->
             <div class="box box-widget">
                 <div class="box-header with-border">
                     <div class="user-block">
                         <img class="img-circle"
-                             src="{{ asset('uploads/images/empresas/'~ publicacion.publicacionEmpresa.first.empresa.imageName) }}"
+                             src="{{ avatarEmpresa }}"
                              alt="User Image">
                         <span class="username"><a href="#">{{ publicacion.publicacionEmpresa.first.empresa }}</a></span>
                         <span class="description">{{ 'publicado el'|trans }} {{ publicacion.fechaCreacion | date('d/m/Y') }}</span>
@@ -43,9 +47,9 @@
                          alt="Photo">
 
                     <p>{{ publicacion.cuerpo |raw }}</p>
-                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-                    <span class="pull-right text-muted">127 likes - 3 comments</span>
+                    {#<button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>#}
+                    {#<button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>#}
+                    {#<span class="pull-right text-muted">127 likes - 3 comments</span>#}
                 </div>
                 <!-- /.box-body -->
 

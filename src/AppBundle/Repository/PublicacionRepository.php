@@ -30,4 +30,53 @@ class PublicacionRepository extends EntityRepository {
 		return $qb->getQuery()->getResult();
 
 	}
+
+	public function findActuales(  ) {
+		$qb = $this->createQueryBuilder( 'p' );
+
+		$qb->join('p.publicacionEmpresa', 'pe')
+			->join('pe.empresa', 'emp')
+			;
+
+		$qb->where( 'p.fechaInicio <= :fechaActual' )
+		   ->andWhere( 'p.fechaFin >= :fechaActual' )
+			->andWhere('p.publicado = true')
+		;
+		$fechaActual = new \DateTime( 'now' );
+		$qb->setParameter( 'fechaActual', $fechaActual->format( 'Y-m-d' ) );
+
+
+		$qb->orderBy('p.horaInicio');
+		$qb->addOrderBy('emp.premium');
+
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function findActualesByEmpresa( $empresa ) {
+		$qb = $this->createQueryBuilder( 'p' );
+
+
+		$qb->join('p.publicacionEmpresa', 'pe')
+			->join('pe.empresa', 'emp')
+			;
+
+		$qb->where( 'p.fechaInicio <= :fechaActual' )
+		   ->andWhere( 'p.fechaFin >= :fechaActual' )
+			->andWhere('p.publicado = true')
+		;
+
+		$qb->andWhere( 'pe.empresa = :empresa' )
+		   ->setParameter( 'empresa', $empresa );
+
+		$fechaActual = new \DateTime( 'now' );
+		$qb->setParameter( 'fechaActual', $fechaActual->format( 'Y-m-d' ) );
+
+
+		$qb->orderBy('p.horaInicio');
+		$qb->addOrderBy('emp.premium');
+
+
+		return $qb->getQuery()->getResult();
+	}
 }
