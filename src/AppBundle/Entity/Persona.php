@@ -21,33 +21,32 @@ use JMS\Serializer\Annotation\Type;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PersonaRepository")
  * @ExclusionPolicy("all")
  */
-class Persona extends BaseClass
-{
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @Expose()
-     */
-    private $id;
+class Persona extends BaseClass {
+	/**
+	 * @var int
+	 *
+	 * @ORM\Column(name="id", type="integer")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="AUTO")
+	 * @Expose()
+	 */
+	private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nombre", type="string", length=255)
-     * @Expose()
-     */
-    private $nombre;
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="nombre", type="string", length=255)
+	 * @Expose()
+	 */
+	private $nombre;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="apellido", type="string", length=255)
-     * @Expose()
-     */
-    private $apellido;
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="apellido", type="string", length=255)
+	 * @Expose()
+	 */
+	private $apellido;
 
 	/**
 	 * @var \DateTime
@@ -57,13 +56,13 @@ class Persona extends BaseClass
 	 */
 	private $fechaNacimiento;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="dni", type="string", length=255, unique=true, nullable=true)
-     * @Expose()
-     */
-    private $dni;
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="dni", type="string", length=255, unique=true, nullable=true)
+	 * @Expose()
+	 */
+	private $dni;
 
 	/**
 	 * @var
@@ -173,258 +172,270 @@ class Persona extends BaseClass
 
 	}
 
-	public function __toString() {
-		return $this->apellido.", ".$this->nombre;
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("usuario_id")
+	 */
+	public function getUsuarioId() {
+
+		$return = array();
+
+		if ( $this->getUsuario() ) {
+			$return = $this->getUsuario()->getId();
+		}
+
+		return $return;
+
 	}
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("username")
+	 */
+	public function getUsername() {
 
-    /**
-     * Set nombre
-     *
-     * @param string $nombre
-     *
-     * @return Persona
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
+		$return = array();
 
-        return $this;
-    }
+		if ( $this->getUsuario() ) {
+			$return = $this->getUsuario()->getUsername();
+		}
 
-    /**
-     * Get nombre
-     *
-     * @return string
-     */
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
+		return $return;
 
-    /**
-     * Set apellido
-     *
-     * @param string $apellido
-     *
-     * @return Persona
-     */
-    public function setApellido($apellido)
-    {
-        $this->apellido = $apellido;
+	}
 
-        return $this;
-    }
+	public function __toString() {
+		return $this->apellido . ", " . $this->nombre;
+	}
 
-    /**
-     * Get apellido
-     *
-     * @return string
-     */
-    public function getApellido()
-    {
-        return $this->apellido;
-    }
+	/**
+	 * Get id
+	 *
+	 * @return int
+	 */
+	public function getId() {
+		return $this->id;
+	}
 
-    /**
-     * Set dni
-     *
-     * @param string $dni
-     *
-     * @return Persona
-     */
-    public function setDni($dni)
-    {
-        $this->dni = $dni;
+	/**
+	 * Set nombre
+	 *
+	 * @param string $nombre
+	 *
+	 * @return Persona
+	 */
+	public function setNombre( $nombre ) {
+		$this->nombre = $nombre;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get dni
-     *
-     * @return string
-     */
-    public function getDni()
-    {
-        return $this->dni;
-    }
+	/**
+	 * Get nombre
+	 *
+	 * @return string
+	 */
+	public function getNombre() {
+		return $this->nombre;
+	}
 
-    /**
-     * Set fechaNacimiento
-     *
-     * @param \DateTime $fechaNacimiento
-     *
-     * @return Persona
-     */
-    public function setFechaNacimiento($fechaNacimiento)
-    {
-        $this->fechaNacimiento = $fechaNacimiento;
+	/**
+	 * Set apellido
+	 *
+	 * @param string $apellido
+	 *
+	 * @return Persona
+	 */
+	public function setApellido( $apellido ) {
+		$this->apellido = $apellido;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get fechaNacimiento
-     *
-     * @return \DateTime
-     */
-    public function getFechaNacimiento()
-    {
-        return $this->fechaNacimiento;
-    }
+	/**
+	 * Get apellido
+	 *
+	 * @return string
+	 */
+	public function getApellido() {
+		return $this->apellido;
+	}
 
-    /**
-     * Set fechaCreacion
-     *
-     * @param \DateTime $fechaCreacion
-     *
-     * @return Persona
-     */
-    public function setFechaCreacion($fechaCreacion)
-    {
-        $this->fechaCreacion = $fechaCreacion;
+	/**
+	 * Set dni
+	 *
+	 * @param string $dni
+	 *
+	 * @return Persona
+	 */
+	public function setDni( $dni ) {
+		$this->dni = $dni;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Set fechaActualizacion
-     *
-     * @param \DateTime $fechaActualizacion
-     *
-     * @return Persona
-     */
-    public function setFechaActualizacion($fechaActualizacion)
-    {
-        $this->fechaActualizacion = $fechaActualizacion;
+	/**
+	 * Get dni
+	 *
+	 * @return string
+	 */
+	public function getDni() {
+		return $this->dni;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set fechaNacimiento
+	 *
+	 * @param \DateTime $fechaNacimiento
+	 *
+	 * @return Persona
+	 */
+	public function setFechaNacimiento( $fechaNacimiento ) {
+		$this->fechaNacimiento = $fechaNacimiento;
 
-    /**
-     * Set tipoDocumento
-     *
-     * @param \AppBundle\Entity\TipoDocumento $tipoDocumento
-     *
-     * @return Persona
-     */
-    public function setTipoDocumento(\AppBundle\Entity\TipoDocumento $tipoDocumento = null)
-    {
-        $this->tipoDocumento = $tipoDocumento;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Get fechaNacimiento
+	 *
+	 * @return \DateTime
+	 */
+	public function getFechaNacimiento() {
+		return $this->fechaNacimiento;
+	}
 
-    /**
-     * Get tipoDocumento
-     *
-     * @return \AppBundle\Entity\TipoDocumento
-     */
-    public function getTipoDocumento()
-    {
-        return $this->tipoDocumento;
-    }
+	/**
+	 * Set fechaCreacion
+	 *
+	 * @param \DateTime $fechaCreacion
+	 *
+	 * @return Persona
+	 */
+	public function setFechaCreacion( $fechaCreacion ) {
+		$this->fechaCreacion = $fechaCreacion;
 
-    /**
-     * Set creadoPor
-     *
-     * @param \UsuariosBundle\Entity\Usuario $creadoPor
-     *
-     * @return Persona
-     */
-    public function setCreadoPor(\UsuariosBundle\Entity\Usuario $creadoPor = null)
-    {
-        $this->creadoPor = $creadoPor;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set fechaActualizacion
+	 *
+	 * @param \DateTime $fechaActualizacion
+	 *
+	 * @return Persona
+	 */
+	public function setFechaActualizacion( $fechaActualizacion ) {
+		$this->fechaActualizacion = $fechaActualizacion;
 
-    /**
-     * Set actualizadoPor
-     *
-     * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
-     *
-     * @return Persona
-     */
-    public function setActualizadoPor(\UsuariosBundle\Entity\Usuario $actualizadoPor = null)
-    {
-        $this->actualizadoPor = $actualizadoPor;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set tipoDocumento
+	 *
+	 * @param \AppBundle\Entity\TipoDocumento $tipoDocumento
+	 *
+	 * @return Persona
+	 */
+	public function setTipoDocumento( \AppBundle\Entity\TipoDocumento $tipoDocumento = null ) {
+		$this->tipoDocumento = $tipoDocumento;
 
-    /**
-     * Set usuario
-     *
-     * @param \UsuariosBundle\Entity\Usuario $usuario
-     *
-     * @return Persona
-     */
-    public function setUsuario(\UsuariosBundle\Entity\Usuario $usuario = null)
-    {
-        $this->usuario = $usuario;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Get tipoDocumento
+	 *
+	 * @return \AppBundle\Entity\TipoDocumento
+	 */
+	public function getTipoDocumento() {
+		return $this->tipoDocumento;
+	}
 
-    /**
-     * Get usuario
-     *
-     * @return \UsuariosBundle\Entity\Usuario
-     */
-    public function getUsuario()
-    {
-        return $this->usuario;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->personaOnda = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+	/**
+	 * Set creadoPor
+	 *
+	 * @param \UsuariosBundle\Entity\Usuario $creadoPor
+	 *
+	 * @return Persona
+	 */
+	public function setCreadoPor( \UsuariosBundle\Entity\Usuario $creadoPor = null ) {
+		$this->creadoPor = $creadoPor;
 
-    /**
-     * Add personaOnda
-     *
-     * @param \AppBundle\Entity\PersonaOnda $personaOnda
-     *
-     * @return Persona
-     */
-    public function addPersonaOnda(\AppBundle\Entity\PersonaOnda $personaOnda)
-    {
-        $this->personaOnda[] = $personaOnda;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set actualizadoPor
+	 *
+	 * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
+	 *
+	 * @return Persona
+	 */
+	public function setActualizadoPor( \UsuariosBundle\Entity\Usuario $actualizadoPor = null ) {
+		$this->actualizadoPor = $actualizadoPor;
 
-    /**
-     * Remove personaOnda
-     *
-     * @param \AppBundle\Entity\PersonaOnda $personaOnda
-     */
-    public function removePersonaOnda(\AppBundle\Entity\PersonaOnda $personaOnda)
-    {
-        $this->personaOnda->removeElement($personaOnda);
-    }
+		return $this;
+	}
 
-    /**
-     * Get personaOnda
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPersonaOnda()
-    {
-        return $this->personaOnda;
-    }
+	/**
+	 * Set usuario
+	 *
+	 * @param \UsuariosBundle\Entity\Usuario $usuario
+	 *
+	 * @return Persona
+	 */
+	public function setUsuario( \UsuariosBundle\Entity\Usuario $usuario = null ) {
+		$this->usuario = $usuario;
+
+		return $this;
+	}
+
+	/**
+	 * Get usuario
+	 *
+	 * @return \UsuariosBundle\Entity\Usuario
+	 */
+	public function getUsuario() {
+		return $this->usuario;
+	}
+
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
+		$this->personaOnda = new \Doctrine\Common\Collections\ArrayCollection();
+	}
+
+	/**
+	 * Add personaOnda
+	 *
+	 * @param \AppBundle\Entity\PersonaOnda $personaOnda
+	 *
+	 * @return Persona
+	 */
+	public function addPersonaOnda( \AppBundle\Entity\PersonaOnda $personaOnda ) {
+		$this->personaOnda[] = $personaOnda;
+
+		return $this;
+	}
+
+	/**
+	 * Remove personaOnda
+	 *
+	 * @param \AppBundle\Entity\PersonaOnda $personaOnda
+	 */
+	public function removePersonaOnda( \AppBundle\Entity\PersonaOnda $personaOnda ) {
+		$this->personaOnda->removeElement( $personaOnda );
+	}
+
+	/**
+	 * Get personaOnda
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getPersonaOnda() {
+		return $this->personaOnda;
+	}
 }

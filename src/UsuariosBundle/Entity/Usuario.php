@@ -13,11 +13,17 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use JMS\Serializer\Annotation as Serializer;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * @ORM\Entity(repositoryClass="UsuarioRepository")
  * @ORM\Table(name="fos_user")
  * @UniqueEntity("username")
+ * @Serializer\ExclusionPolicy("all")
  */
 class Usuario extends BaseUser {
 
@@ -25,6 +31,7 @@ class Usuario extends BaseUser {
 	 * @ORM\Id
 	 * @ORM\Column(type="integer")
 	 * @ORM\GeneratedValue(strategy="AUTO")
+	 * @Serializer\Exclude
 	 */
 	protected $id;
 
@@ -102,6 +109,34 @@ class Usuario extends BaseUser {
 	/** @ORM\Column(name="google_access_token", type="string", length=255, nullable=true) */
 	protected $googleAccessToken;
 
+
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("username")
+	 */
+	public function getVUsername() {
+
+		$return = $this->username;
+
+		return $return;
+
+	}
+
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("persona")
+	 */
+	public function getVPersona() {
+
+		$return = array();
+
+		if ( $this->getPersona()->first() ) {
+			$return= $this->getPersona()->first();
+		}
+
+		return $return;
+
+	}
 
 	/**
 	 * Set creado
