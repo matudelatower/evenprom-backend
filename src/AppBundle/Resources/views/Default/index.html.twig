@@ -184,13 +184,13 @@
                     </a>
                     <a href="#" data-publicacion-id="{{ publicacion.id }}"
                        class="btn ep-btn-oferta-favear ep-btn-oferta ep-rojo">
+                        {% set faHeart = 'fa-heart-o' %}
                         {% for favorito in favoritos %}
                             {% if publicacion == favorito.publicacion %}
-                                <i class="fa fa-heart"></i>
-                            {% else %}
-                                <i class="fa fa-heart-o"></i>
+                                {% set faHeart = 'fa-heart' %}
                             {% endif %}
                         {% endfor %}
+                        <i class="fa {{ faHeart }}"></i>
                     </a>
                     <div class="btn-group ep-btn-share">
                         <a class="btn dropdown-toggle ep-btn-oferta ep-verde" data-toggle="dropdown">

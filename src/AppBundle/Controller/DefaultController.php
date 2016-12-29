@@ -33,7 +33,7 @@ class DefaultController extends Controller {
 
 		$favoritos = array();
 
-		if ( $this->getUser()->getPersona()->first() ) {
+		if ( $this->getUser() && $this->getUser()->getPersona()) {
 			$favoritos = $em->getRepository( "AppBundle:Favorito" )->findEmpresasFavoritas(
 				$this->getUser()->getPersona()->first()
 			);
@@ -63,7 +63,7 @@ class DefaultController extends Controller {
 		$empresa = $em->getRepository( 'AppBundle:Empresa' )->find( $id );
 
 		$favoritos = array();
-		if ( $this->getUser()->getPersona()->first() ) {
+		if ( $this->getUser() && $this->getUser()->getPersona()) {
 			$criteria  = array(
 				'persona' => $this->getUser()->getPersona()->first(),
 				'empresa' => $empresa
@@ -90,7 +90,7 @@ class DefaultController extends Controller {
 
 		$favoritos = array();
 
-		if ( $this->getUser()->getPersona()->first() ) {
+		if ( $this->getUser() && $this->getUser()->getPersona()) {
 			$favoritos = $em->getRepository( "AppBundle:Favorito" )->findPublicacionesFavoritas(
 				$this->getUser()->getPersona()->first()
 			);
