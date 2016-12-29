@@ -25,7 +25,7 @@ class Favorito extends BaseClass
 	/**
 	 * @var
 	 *
-	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Empresa")
+	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Empresa", inversedBy="favorito")
 	 * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id", nullable=true)
 	 */
 	private $empresa;
@@ -33,7 +33,7 @@ class Favorito extends BaseClass
 	/**
 	 * @var
 	 *
-	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Publicacion")
+	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Publicacion", inversedBy="favorito")
 	 * @ORM\JoinColumn(name="publicacion_id", referencedColumnName="id", nullable=true)
 	 */
 	private $publicacion;

@@ -136,6 +136,12 @@ class Publicacion extends BaseClass {
 	protected $publicado = true;
 
 	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\Favorito", mappedBy="publicacion", cascade={"persist", "remove"})
+	 */
+	private $favorito;
+
+	/**
 	 * NOTE: This is not a mapped field of entity metadata, just a simple property.
 	 *
 	 * @Vich\UploadableField(mapping="publicaciones_image", fileNameProperty="imageName")
@@ -371,6 +377,22 @@ class Publicacion extends BaseClass {
 
 		return $retorno;
 
+
+	}
+
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("likes")
+	 */
+	public function getLikes() {
+
+		$return = false;
+
+		if ( $this->getFavorito() ) {
+			$return = count($this->getFavorito());
+		}
+
+		return $return;
 
 	}
 
@@ -816,5 +838,39 @@ class Publicacion extends BaseClass {
     public function getLikeSharePorElemento()
     {
         return $this->likeSharePorElemento;
+    }
+
+    /**
+     * Add favorito
+     *
+     * @param \AppBundle\Entity\Favorito $favorito
+     *
+     * @return Publicacion
+     */
+    public function addFavorito(\AppBundle\Entity\Favorito $favorito)
+    {
+        $this->favorito[] = $favorito;
+
+        return $this;
+    }
+
+    /**
+     * Remove favorito
+     *
+     * @param \AppBundle\Entity\Favorito $favorito
+     */
+    public function removeFavorito(\AppBundle\Entity\Favorito $favorito)
+    {
+        $this->favorito->removeElement($favorito);
+    }
+
+    /**
+     * Get favorito
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFavorito()
+    {
+        return $this->favorito;
     }
 }

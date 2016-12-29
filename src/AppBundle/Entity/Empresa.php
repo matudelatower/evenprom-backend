@@ -165,6 +165,12 @@ class Empresa extends BaseClass {
 	 */
 	private $promoCalendario;
 
+	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\Favorito", mappedBy="empresa", cascade={"persist", "remove"})
+	 */
+	private $favorito;
+
 
 	/**
 	 * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -321,6 +327,22 @@ class Empresa extends BaseClass {
 			foreach ( $this->getEmpresaSubRubro() as $empresaSubRubro ) {
 				$return[] = $empresaSubRubro->getSubRubro();
 			}
+		}
+
+		return $return;
+
+	}
+
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("likes")
+	 */
+	public function getLikes() {
+
+		$return = false;
+
+		if ( $this->getFavorito() ) {
+			$return = count($this->getFavorito());
 		}
 
 		return $return;
@@ -1025,4 +1047,72 @@ class Empresa extends BaseClass {
 	public function getLikeSharePorElemento() {
 		return $this->likeSharePorElemento;
 	}
+
+    /**
+     * Add promoCalendario
+     *
+     * @param \AppBundle\Entity\PromocionCalendario $promoCalendario
+     *
+     * @return Empresa
+     */
+    public function addPromoCalendario(\AppBundle\Entity\PromocionCalendario $promoCalendario)
+    {
+        $this->promoCalendario[] = $promoCalendario;
+
+        return $this;
+    }
+
+    /**
+     * Remove promoCalendario
+     *
+     * @param \AppBundle\Entity\PromocionCalendario $promoCalendario
+     */
+    public function removePromoCalendario(\AppBundle\Entity\PromocionCalendario $promoCalendario)
+    {
+        $this->promoCalendario->removeElement($promoCalendario);
+    }
+
+    /**
+     * Get promoCalendario
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPromoCalendario()
+    {
+        return $this->promoCalendario;
+    }
+
+    /**
+     * Add favorito
+     *
+     * @param \AppBundle\Entity\Favorito $favorito
+     *
+     * @return Empresa
+     */
+    public function addFavorito(\AppBundle\Entity\Favorito $favorito)
+    {
+        $this->favorito[] = $favorito;
+
+        return $this;
+    }
+
+    /**
+     * Remove favorito
+     *
+     * @param \AppBundle\Entity\Favorito $favorito
+     */
+    public function removeFavorito(\AppBundle\Entity\Favorito $favorito)
+    {
+        $this->favorito->removeElement($favorito);
+    }
+
+    /**
+     * Get favorito
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFavorito()
+    {
+        return $this->favorito;
+    }
 }
