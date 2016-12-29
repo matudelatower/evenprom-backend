@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Comentario;
+use AppBundle\Entity\Favorito;
+use AppBundle\Entity\LikesSharePorElemento;
 use AppBundle\Entity\NoticiaInternaEmpresa;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -111,13 +113,13 @@ class AjaxController extends Controller {
 
 	}
 
-	public function comentarPerfilEmpresa( Request $request, $empresaId, $personaId ) {
+	public function comentarPerfilEmpresaAction( Request $request, $empresaId, $personaId ) {
 
 
 		$em = $this->getDoctrine()->getManager();
 
 		$empresa = $em->getRepository( 'AppBundle:Empresa' )->find( $empresaId );
-		$persona = $em->getRepository( 'AppBundle:Empresa' )->find( $personaId );
+		$persona = $em->getRepository( 'AppBundle:Persona' )->find( $personaId );
 
 		if ( ! $persona ) {
 
@@ -137,6 +139,48 @@ class AjaxController extends Controller {
 		return new JsonResponse( array(
 			'text' => 'Comentario Guardado Correctamente',
 		) );
+	}
+
+	public function favearEmpresaAction( Request $request ) {
+
+
+		$empresaId = $request->get( 'empresaId' );
+		$personaId = $request->get( 'personaId' );
+
+		$appManager = $this->get( 'manager.app' );
+
+		$favorito = $appManager->favearEmpresa( $empresaId, $personaId );
+
+		if ( $favorito ) {
+			return new JsonResponse( array(
+				'text' => 'ok',
+			) );
+		}
+
+		return new JsonResponse( array(
+			'text' => 'error',
+		), 500 );
+	}
+
+	public function favearPublicacionAction( Request $request ) {
+
+
+		$publicacionId = $request->get( 'publicacionId' );
+		$personaId     = $request->get( 'personaId' );
+
+		$appManager = $this->get( 'manager.app' );
+
+		$favorito = $appManager->favearPublicacion( $publicacionId, $personaId );
+
+		if ( $favorito ) {
+			return new JsonResponse( array(
+				'text' => 'ok',
+			) );
+		}
+
+		return new JsonResponse( array(
+			'text' => 'error',
+		), 500 );
 	}
 
 }

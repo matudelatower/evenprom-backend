@@ -59,6 +59,14 @@ class LikesSharePorElemento extends BaseClass
 	 */
 	private $publicacion;
 
+	/**
+	 * @var
+	 *
+	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Persona")
+	 * @ORM\JoinColumn(name="persona_id", referencedColumnName="id", nullable=true)
+	 */
+	private $persona;
+
 
 	/**
 	 * @var int
@@ -276,5 +284,29 @@ class LikesSharePorElemento extends BaseClass
         $this->actualizadoPor = $actualizadoPor;
 
         return $this;
+    }
+
+    /**
+     * Set persona
+     *
+     * @param \AppBundle\Entity\Persona $persona
+     *
+     * @return LikesSharePorElemento
+     */
+    public function setPersona(\AppBundle\Entity\Persona $persona = null)
+    {
+        $this->persona = $persona;
+
+        return $this;
+    }
+
+    /**
+     * Get persona
+     *
+     * @return \AppBundle\Entity\Persona
+     */
+    public function getPersona()
+    {
+        return $this->persona;
     }
 }

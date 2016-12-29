@@ -543,7 +543,7 @@
                 console.log('formVal', formVal);
 
                 $.ajax({
-                    url: "{{ path('comentar_perfil_empresa', {empresaId: empresa.id ,personaId: app.user.persona.id } ) }}",
+                    url: "{{ path('comentar_perfil_empresa', {empresaId: empresa.id ,personaId: app.user.persona.first.id } ) }}",
                     type: "POST",
                     success: function (res) {
 

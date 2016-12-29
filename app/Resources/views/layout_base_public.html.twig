@@ -124,9 +124,9 @@
                     {#</div>#}
                     {#</form>#}
 
-                <!-- /.navbar-collapse -->
-                <!-- User Account Menu -->
-                {#<div class="navbar-custom-menu">#}
+                    <!-- /.navbar-collapse -->
+                    <!-- User Account Menu -->
+                    {#<div class="navbar-custom-menu">#}
                     <ul class="nav navbar-nav navbar-right">
                         {% if is_granted("ROLE_PERSONA") %}
                             {% include 'userPersonaDropdown.html.twig' %}
@@ -143,10 +143,10 @@
                             </li>
                         {% endif %}
                     </ul>
-                {#</div>#}
-                <!-- /.navbar-custom-menu -->
-            </div>
-            <!-- /.container-fluid -->
+                    {#</div>#}
+                    <!-- /.navbar-custom-menu -->
+                </div>
+                <!-- /.container-fluid -->
         </nav>
     </header>
     <!-- Full Width Column -->
@@ -277,8 +277,63 @@
 
 
             console.log("pubID", $(this).data('publicacion-id'));
-        })
+        });
 
+//        fav empresas
+        $('.ep-btn-empresa-favear').click(function (ev) {
+            ev.preventDefault();
+            {% if is_granted("ROLE_PERSONA") %}
+
+            var empresaId = $(this).data('empresa-id');
+            var corazon = $(this);
+
+
+            $.ajax({
+                url: "{{ path('favear_empresa') }}",
+                type: "POST",
+                data: {empresaId: empresaId, personaId: {{ app.user.persona.first.id }} },
+                success: function (res) {
+                    corazon.html('<i class="fa fa-heart"></i>');
+
+                },
+                error: function (res) {
+
+
+                },
+            });
+            {% else %}
+            var mensaje = 'Primero tenes que <a href="{{ path('fos_user_security_login') }}" class="dropdown-toggle"><span>{{ 'login' | trans }}</span></a>';
+            modalAlert(mensaje);
+            {% endif %}
+
+        })
+//        fav publicaciones
+        $('.ep-btn-oferta-favear').click(function (ev) {
+            ev.preventDefault();
+            {% if is_granted("ROLE_PERSONA") %}
+
+            var publicacionId = $(this).data('publicacion-id');
+            var corazon = $(this);
+
+            $.ajax({
+                url: "{{ path('favear_publicacion') }}",
+                type: "POST",
+                data: {publicacionId: publicacionId, personaId: {{ app.user.persona.first.id }} },
+                success: function (res) {
+                    corazon.html('<i class="fa fa-heart"></i>');
+
+                },
+                error: function (res) {
+
+
+                },
+            });
+            {% else %}
+            var mensaje = 'Primero tenes que <a href="{{ path('fos_user_security_login') }}" class="dropdown-toggle"><span>{{ 'login' | trans }}</span></a>';
+            modalAlert(mensaje);
+            {% endif %}
+
+        })
 
     });
 

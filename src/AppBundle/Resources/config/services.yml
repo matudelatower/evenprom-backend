@@ -5,3 +5,6 @@ services:
 #    manager.personas:
 #        class: AppBundle\Services\PersonasManager
 #        arguments: ["@service_id", "plain_value"]
+    manager.app:
+        class: AppBundle\Services\AppManager
+        arguments: ["@doctrine.orm.default_entity_manager"]

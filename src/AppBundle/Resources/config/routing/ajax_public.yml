@@ -9,3 +9,15 @@ get_categorias:
 ver_publicacion:
     path: /ver_publicacion
     defaults: { _controller: "AppBundle:Ajax:verPublicacion" }
+
+comentar_perfil_empresa:
+    path: /comentar_perfil_empresa/{empresaId}/{personaId}
+    defaults: { _controller: "AppBundle:Ajax:comentarPerfilEmpresa" }
+
+favear_empresa:
+    path: /favear_empresa
+    defaults: { _controller: "AppBundle:Ajax:favearEmpresa" }
+
+favear_publicacion:
+    path: /favear_publicacion
+    defaults: { _controller: "AppBundle:Ajax:favearPublicacion" }
