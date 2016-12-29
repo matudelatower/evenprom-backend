@@ -73,7 +73,6 @@ class EventoType extends AbstractType {
 				array(
 					'required' => false,
 					'widget'   => 'single_text',
-					'data'     => null,
 					'attr'     => array(
 						'class'       => 'timepicker',
 						'placeholder' => "Hora de inicio del evento",

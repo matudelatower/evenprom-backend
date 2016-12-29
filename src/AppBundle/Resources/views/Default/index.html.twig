@@ -69,8 +69,12 @@
                                 {% endif %}
                                 {{ hora }} HS
                             {% elseif publicacion.tipoPublicacion.slug =='oferta' %}
-                                {% if fecha != publicacion.fechaInicio | date('d-M') %}
-                                    {% set fecha =  publicacion.fechaInicio | date('d-M') %}
+                                {% if date() != publicacion.fechaInicio %}
+                                    {% if publicacion.fechaInicio < date()  %}
+                                        {% set fecha =  "now"|date("d-M") %}
+                                    {% else %}
+                                        {% set fecha =  publicacion.fechaInicio | date('d-M') %}
+                                    {% endif %}
                                 {% endif %}
                                 {{ fecha | upper }}
                             {% endif %}
@@ -133,8 +137,12 @@
                                 {% endif %}
                                 {{ hora }} HS
                             {% elseif publicacion.tipoPublicacion.slug =='oferta' %}
-                                {% if fecha != publicacion.fechaInicio | date('d-M') %}
-                                    {% set fecha =  publicacion.fechaInicio | date('d-M') %}
+                                {% if date() != publicacion.fechaInicio %}
+                                    {% if publicacion.fechaInicio < date()  %}
+                                        {% set fecha =  "now"|date("d-M") %}
+                                    {% else %}
+                                        {% set fecha =  publicacion.fechaInicio | date('d-M') %}
+                                    {% endif %}
                                 {% endif %}
                                 {{ fecha | upper }}
                             {% endif %}
