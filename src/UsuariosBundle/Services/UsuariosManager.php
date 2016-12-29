@@ -31,6 +31,15 @@ class UsuariosManager {
 		$nombre   = $params['nombre'];
 		$apellido = $params['apellido'];
 
+		$existeUsuario = $this->userManager->findUserByEmail( $email );
+
+		if ( $existeUsuario ) {
+
+			$persona = $existeUsuario->getPersona()->first();
+
+			return $persona;
+		}
+
 //		Usuario
 		$usuario = new Usuario();
 
