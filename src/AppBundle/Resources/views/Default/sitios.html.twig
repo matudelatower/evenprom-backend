@@ -88,7 +88,17 @@
                             <div class="col-sm-4">
                                 <div class="description-block">
                                     <span class="description-text">
-                                        <a class="btn ep-btn-empresa-favear" data-empresa-id="{{ empresa.id }}" href="#"><i class="fa fa-heart-o"></i></a>
+                                        <a class="btn ep-btn-empresa-favear ep-rojo" data-empresa-id="{{ empresa.id }}"
+                                           href="#">
+                                            {% set faHeart = 'fa-heart-o' %}
+                                            {% for favorito in favoritos %}
+                                                {% if empresa == favorito.empresa %}
+                                                    {% set faHeart = 'fa-heart' %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            <i class="fa {{ faHeart }}"></i>
+
+                                        </a>
                                     </span>
                                 </div>
                                 <!-- /.description-block -->

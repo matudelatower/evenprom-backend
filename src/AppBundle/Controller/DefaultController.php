@@ -31,6 +31,14 @@ class DefaultController extends Controller {
 
 		$em = $this->getDoctrine();
 
+		$favoritos = array();
+
+		if ( $this->getUser()->getPersona()->first() ) {
+			$favoritos = $em->getRepository( "AppBundle:Favorito" )->findEmpresasFavoritas(
+				$this->getUser()->getPersona()->first()
+			);
+		}
+
 		if ( $categoria ) {
 
 			$empresas = $em->getRepository( 'AppBundle:Empresa' )->findBySlugCategoria( $categoria );
@@ -44,7 +52,8 @@ class DefaultController extends Controller {
 		return $this->render( '@App/Default/sitios.html.twig',
 			array(
 				'empresas'   => $empresas,
-				'categorias' => $categorias
+				'categorias' => $categorias,
+				'favoritos'  => $favoritos,
 			) );
 	}
 
@@ -52,6 +61,15 @@ class DefaultController extends Controller {
 		$em = $this->getDoctrine();
 
 		$empresa = $em->getRepository( 'AppBundle:Empresa' )->find( $id );
+
+		$favoritos = array();
+		if ( $this->getUser()->getPersona()->first() ) {
+			$criteria  = array(
+				'persona' => $this->getUser()->getPersona()->first(),
+				'empresa' => $empresa
+			);
+			$favoritos = $em->getRepository( "AppBundle:Favorito" )->findBy($criteria);
+		}
 
 		$comentarios = $em->getRepository( 'AppBundle:Comentario' )->findUltimosComentariosByEmpresa( $empresa );
 
@@ -61,13 +79,22 @@ class DefaultController extends Controller {
 			array(
 				'empresa'         => $empresa,
 				'comentarios'     => $comentarios,
-				'noticiasEmpresa' => $noticias
+				'noticiasEmpresa' => $noticias,
+				'favoritos'       => $favoritos,
 			) );
 	}
 
 	public function indexAppAction( Request $request, $empresa = null ) {
 
 		$em = $this->getDoctrine();
+
+		$favoritos = array();
+
+		if ( $this->getUser()->getPersona()->first() ) {
+			$favoritos = $em->getRepository( "AppBundle:Favorito" )->findPublicacionesFavoritas(
+				$this->getUser()->getPersona()->first()
+			);
+		}
 
 		if ( $empresa ) {
 			$oEmpresa      = $em->getRepository( "AppBundle:Empresa" )->find( $empresa );
@@ -83,6 +110,7 @@ class DefaultController extends Controller {
 			array(
 				'publicaciones'   => $publicaciones,
 				'promoCalendario' => $promoCalendario,
+				'favoritos'       => $favoritos,
 			) );
 	}
 }

@@ -70,7 +70,7 @@
                                 {{ hora }} HS
                             {% elseif publicacion.tipoPublicacion.slug =='oferta' %}
                                 {% if date() != publicacion.fechaInicio %}
-                                    {% if publicacion.fechaInicio < date()  %}
+                                    {% if publicacion.fechaInicio < date() %}
                                         {% set fecha =  "now"|date("d-M") %}
                                     {% else %}
                                         {% set fecha =  publicacion.fechaInicio | date('d-M') %}
@@ -138,7 +138,7 @@
                                 {{ hora }} HS
                             {% elseif publicacion.tipoPublicacion.slug =='oferta' %}
                                 {% if date() != publicacion.fechaInicio %}
-                                    {% if publicacion.fechaInicio < date()  %}
+                                    {% if publicacion.fechaInicio < date() %}
                                         {% set fecha =  "now"|date("d-M") %}
                                     {% else %}
                                         {% set fecha =  publicacion.fechaInicio | date('d-M') %}
@@ -184,7 +184,13 @@
                     </a>
                     <a href="#" data-publicacion-id="{{ publicacion.id }}"
                        class="btn ep-btn-oferta-favear ep-btn-oferta ep-rojo">
-                        <i class="fa fa-heart-o"></i>
+                        {% for favorito in favoritos %}
+                            {% if publicacion == favorito.publicacion %}
+                                <i class="fa fa-heart"></i>
+                            {% else %}
+                                <i class="fa fa-heart-o"></i>
+                            {% endif %}
+                        {% endfor %}
                     </a>
                     <div class="btn-group ep-btn-share">
                         <a class="btn dropdown-toggle ep-btn-oferta ep-verde" data-toggle="dropdown">

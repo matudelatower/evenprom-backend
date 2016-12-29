@@ -216,7 +216,11 @@
                 <div class="box-body">
                     <a href="#" data-empresa-id="{{ empresa.id }}"
                        class="btn ep-btn-empresa-favear ep-rojo">
-                        <i class="fa fa-heart-o"></i>
+                        {% if favoritos is not empty %}
+                            <i class="fa fa-heart"></i>
+                        {% else %}
+                            <i class="fa fa-heart-o"></i>
+                        {% endif %}
                     </a>
                     <div class="text-center">
                         <div class="video-container">
@@ -309,67 +313,67 @@
                     <div class="well margin-top-5">
                         <h3 class="text-center">Novedades</h3>
 
-                            <div class="row">
-                                {% for noticiaEmpresa in noticiasEmpresa %}
-                                    <div class="col-md-6">
-                                        <!-- Box Comment -->
-                                        <div class="box box-widget">
-                                            <div class="box-header with-border">
-                                                <div class="user-block">
-                                                    <img class="img-circle"
-                                                         src="{{ avatarEmpresa }}"
-                                                         alt="User Image">
-                                                    <span class="username"><a href="#">{{ empresa.nombre }}</a></span>
-                                                    <span class="description">{{ 'publicado el'|trans }} {{ noticiaEmpresa.noticia.fechaCreacion | date('d/m/Y') }}</span>
-                                                </div>
-                                                <!-- /.user-block -->
-                                                <div class="box-tools">
-
-                                                    <button type="button" class="btn btn-box-tool"
-                                                            data-widget="collapse"><i
-                                                                class="fa fa-minus"></i>
-                                                    </button>
-                                                </div>
-                                                <!-- /.box-tools -->
+                        <div class="row">
+                            {% for noticiaEmpresa in noticiasEmpresa %}
+                                <div class="col-md-6">
+                                    <!-- Box Comment -->
+                                    <div class="box box-widget">
+                                        <div class="box-header with-border">
+                                            <div class="user-block">
+                                                <img class="img-circle"
+                                                     src="{{ avatarEmpresa }}"
+                                                     alt="User Image">
+                                                <span class="username"><a href="#">{{ empresa.nombre }}</a></span>
+                                                <span class="description">{{ 'publicado el'|trans }} {{ noticiaEmpresa.noticia.fechaCreacion | date('d/m/Y') }}</span>
                                             </div>
-                                            <!-- /.box-header -->
-                                            <div class="box-body">
+                                            <!-- /.user-block -->
+                                            <div class="box-tools">
 
-                                                <div>
-                                                    <label>Visible
-                                                        Desde:</label><span>{% if noticiaEmpresa.noticia.visibleDesde %}{{ noticiaEmpresa.noticia.visibleDesde|date('Y-m-d H:i:s') }}{% endif %}</span>
-                                                    <label>Visible
-                                                        Hasta:</label><span>{% if noticiaEmpresa.noticia.visibleHasta %}{{ noticiaEmpresa.noticia.visibleHasta|date('Y-m-d H:i:s') }}{% endif %}</span>
+                                                <button type="button" class="btn btn-box-tool"
+                                                        data-widget="collapse"><i
+                                                            class="fa fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <!-- /.box-tools -->
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
 
-                                                </div>
+                                            <div>
+                                                <label>Visible
+                                                    Desde:</label><span>{% if noticiaEmpresa.noticia.visibleDesde %}{{ noticiaEmpresa.noticia.visibleDesde|date('Y-m-d H:i:s') }}{% endif %}</span>
+                                                <label>Visible
+                                                    Hasta:</label><span>{% if noticiaEmpresa.noticia.visibleHasta %}{{ noticiaEmpresa.noticia.visibleHasta|date('Y-m-d H:i:s') }}{% endif %}</span>
 
-                                                <h1>{{ noticiaEmpresa.noticia.titulo }}</h1>
+                                            </div>
 
-                                                {% if noticiaEmpresa.noticia.imageName %}
+                                            <h1>{{ noticiaEmpresa.noticia.titulo }}</h1>
+
+                                            {% if noticiaEmpresa.noticia.imageName %}
                                                 <img class="img-responsive pad"
                                                      src="{{ asset('uploads/images/noticias/'~ noticiaEmpresa.noticia.imageName) }}"
                                                      alt="Photo">
-                                                {% endif %}
+                                            {% endif %}
 
-                                                <p>{{ noticiaEmpresa.noticia.cuerpo |raw }}</p>
-                                                {# TODO crear pantalla para ver noticias de empresas #}
-                                                {#<button type="button" class="btn btn-default btn-xs"><i#}
-                                                            {#class="fa fa-share"></i> Share#}
-                                                {#</button>#}
-                                                {#<button type="button" class="btn btn-default btn-xs"><i#}
-                                                            {#class="fa fa-thumbs-o-up"></i> Like#}
-                                                {#</button>#}
-                                                {#<span class="pull-right text-muted">127 likes - 3 comments</span>#}
-                                            </div>
-                                            <!-- /.box-body -->
-
-                                            <!-- /.box-footer -->
+                                            <p>{{ noticiaEmpresa.noticia.cuerpo |raw }}</p>
+                                            {# TODO crear pantalla para ver noticias de empresas #}
+                                            {#<button type="button" class="btn btn-default btn-xs"><i#}
+                                            {#class="fa fa-share"></i> Share#}
+                                            {#</button>#}
+                                            {#<button type="button" class="btn btn-default btn-xs"><i#}
+                                            {#class="fa fa-thumbs-o-up"></i> Like#}
+                                            {#</button>#}
+                                            {#<span class="pull-right text-muted">127 likes - 3 comments</span>#}
                                         </div>
-                                        <!-- /.box -->
-                                    </div>
+                                        <!-- /.box-body -->
 
-                                {% endfor %}
-                            </div>
+                                        <!-- /.box-footer -->
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+
+                            {% endfor %}
+                        </div>
 
                     </div>
 
@@ -497,7 +501,8 @@
                         </form>
                     {% else %}
                         <div class="text-center">
-                            <span>Para Comentar tenes que <a href="{{ path('fos_user_security_login') }}" class="dropdown-toggle">
+                            <span>Para Comentar tenes que <a href="{{ path('fos_user_security_login') }}"
+                                                             class="dropdown-toggle">
                                     <span>{{ 'login' | trans }}</span>
                                 </a></span>
                         </div>
