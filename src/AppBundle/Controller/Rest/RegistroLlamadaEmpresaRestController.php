@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 class RegistroLlamadaEmpresaRestController extends FOSRestController {
 
 
-	public function postRegistrollamadaempresaAction( Request $request, $empresaId, $clienteId = null ) {
+	public function postRegistroLlamadaEmpresaAction( Request $request, $empresaId, $personaId = null) {
 
 		$em = $this->getDoctrine()->getManager();
 
@@ -17,6 +17,11 @@ class RegistroLlamadaEmpresaRestController extends FOSRestController {
 
 		$registroLlamadaEmpresa = new RegistroLlamadaEmpresa();
 		$registroLlamadaEmpresa->setEmpresa( $empresa );
+		if ( $personaId ) {
+			$persona = $em->getRepository( "AppBundle:Persona" )->find( $personaId );
+			$registroLlamadaEmpresa->setPersona( $persona );
+		}
+
 
 		$em->persist( $registroLlamadaEmpresa );
 		$em->flush();
