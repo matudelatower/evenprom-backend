@@ -38,6 +38,14 @@ class RegistroLlamadaEmpresa extends BaseClass
      */
     private $persona;
 
+	/**
+	 * @var
+	 *
+	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Publicacion")
+	 * @ORM\JoinColumn(name="publicacion_id", referencedColumnName="id")
+	 */
+	private $publicacion;
+
 
     /**
      * Get id
@@ -150,5 +158,29 @@ class RegistroLlamadaEmpresa extends BaseClass
         $this->actualizadoPor = $actualizadoPor;
 
         return $this;
+    }
+
+    /**
+     * Set publicacion
+     *
+     * @param \AppBundle\Entity\Publicacion $publicacion
+     *
+     * @return RegistroLlamadaEmpresa
+     */
+    public function setPublicacion(\AppBundle\Entity\Publicacion $publicacion = null)
+    {
+        $this->publicacion = $publicacion;
+
+        return $this;
+    }
+
+    /**
+     * Get publicacion
+     *
+     * @return \AppBundle\Entity\Publicacion
+     */
+    public function getPublicacion()
+    {
+        return $this->publicacion;
     }
 }

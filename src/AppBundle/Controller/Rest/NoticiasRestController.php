@@ -26,15 +26,17 @@ class NoticiasRestController extends FOSRestController {
 		return $this->handleView( $vista );
 	}
 
-	public function getNoticiasEmpresaAction( Request $request, $noticiaId ) {
+	public function getNoticiasEmpresaAction( Request $request, $empresaId ) {
 
-		$noticias = $this->getDoctrine()->getRepository( "AppBundle:Noticia" )->findAllByEmpresa( $noticiaId );
+		$empresa = $this->getDoctrine()->getRepository( "AppBundle:Empresa" )->find($empresaId);
+
+		$noticias = $this->getDoctrine()->getRepository( "AppBundle:NoticiaEmpresa" )->findByNoticiasByEmpresa( $empresa );
 
 		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.noticias_image' );
 
 		foreach ( $noticias as $noticia ) {
-			if ( $noticia->getImageName() ) {
-				$noticia->setImageName( $host . '/' . $noticia->getImageName() );
+			if ( $noticia->getNoticia()->getImageName() ) {
+				$noticia->getNoticia()->setImageName( $host . '/' . $noticia->getImageName() );
 			}
 		}
 

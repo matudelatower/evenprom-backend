@@ -31,4 +31,27 @@ class RegistroLlamadaEmpresaRestController extends FOSRestController {
 
 		return $this->handleView( $vista );
 	}
+
+	public function postRegistroLlamadaPublicacionAction( Request $request, $publicacionId, $personaId = null) {
+
+		$em = $this->getDoctrine()->getManager();
+
+		$publicacion = $em->getRepository( "AppBundle:Publicacion" )->find( $publicacionId );
+
+		$registroLlamadaEmpresa = new RegistroLlamadaEmpresa();
+		$registroLlamadaEmpresa->setPublicacion( $publicacion );
+		if ( $personaId ) {
+			$persona = $em->getRepository( "AppBundle:Persona" )->find( $personaId );
+			$registroLlamadaEmpresa->setPersona( $persona );
+		}
+
+
+		$em->persist( $registroLlamadaEmpresa );
+		$em->flush();
+
+		$vista = $this->view( $registroLlamadaEmpresa,
+			200 );
+
+		return $this->handleView( $vista );
+	}
 }
