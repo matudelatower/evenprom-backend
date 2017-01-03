@@ -1,21 +1,20 @@
 easy_admin:
     entities:
-        Empresa:
-            class: AppBundle\Entity\Empresa
+        Persona:
+            class: AppBundle\Entity\Persona
             form:
                 fields:
                     - { property: 'nombre',  type_options: { disabled: true }  }
-                    - { property: 'descripcion', type_options: { disabled: true }  }
-                    - { property: 'premium' }
+                    - { property: 'apellido', type_options: { disabled: true }  }
             edit:
-                title:  'Editar Empresa'
+                title:  'Editar Persona'
             new:
-                title:  'Alta Empresa'
+                title:  'Alta Persona'
             list:
-                title:  'Empresa'
+                title:  'Personas'
                 fields:
                     - { property: 'nombre' }
-#                    - { property: 'premium' }
+                    - { property: 'apellido' }
 #                    - { property: 'localidad' }
 #                    - { property: 'mail' }
 #                    - { property: 'telefono' }

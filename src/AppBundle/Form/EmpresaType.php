@@ -26,6 +26,7 @@ class EmpresaType extends AbstractType {
 					),
 					'required' => false,
 				) )
+			->add( 'cuit' )
 			->add( 'color',
 				TextType::class,
 				array(
@@ -82,16 +83,17 @@ class EmpresaType extends AbstractType {
 					'label_attr'    => array( 'class' => 'text-green h2' )
 				)
 			)
-			->add( 'categoriaEmpresa',
-				BootstrapCollectionType::class,
-				array(
-					'entry_type'    => CategoriaEmpresaType::class,
-					'allow_add'     => true,
-					'allow_delete'  => true,
-					'by_reference'  => false,
-					'max_items_add' => 1,
-					'label_attr'    => array( 'class' => 'text-green h2' )
-				) )
+//			->add( 'categoriaEmpresa',
+//				BootstrapCollectionType::class,
+//				array(
+//					'entry_type'    => CategoriaEmpresaType::class,
+//					'allow_add'     => true,
+//					'allow_delete'  => true,
+//					'by_reference'  => false,
+//					'max_items_add' => 1,
+//					'label'         => 'Rubro',
+//					'label_attr'    => array( 'class' => 'text-green h2' )
+//				) )
 			->add( 'empresaOnda',
 				BootstrapCollectionType::class,
 				array(
@@ -99,7 +101,8 @@ class EmpresaType extends AbstractType {
 					'allow_add'    => true,
 					'allow_delete' => true,
 					'by_reference' => false,
-					'label_attr'    => array( 'class' => 'text-green h2' )
+					'label' => 'Onda de la Empresa',
+					'label_attr'   => array( 'class' => 'text-green h2' )
 				) )
 			->add( 'empresaSubRubro',
 				BootstrapCollectionType::class,
@@ -108,7 +111,8 @@ class EmpresaType extends AbstractType {
 					'allow_add'    => true,
 					'allow_delete' => true,
 					'by_reference' => false,
-					'label_attr'    => array( 'class' => 'text-green h2' )
+					'label'        => 'Rubro',
+					'label_attr'   => array( 'class' => 'text-green h2' )
 				) )
 			->add( 'empresaHotelAgencia',
 				BootstrapCollectionType::class,
@@ -118,6 +122,7 @@ class EmpresaType extends AbstractType {
 					'allow_delete'  => true,
 					'by_reference'  => false,
 					'max_items_add' => 1,
+					'label' => 'Tu empresas es un hotel o una agencia?',
 					'label_attr'    => array( 'class' => 'text-green h2' )
 				) );
 	}

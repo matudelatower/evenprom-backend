@@ -15,6 +15,9 @@ class ContactoEmpresaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+	        ->add('responsableContacto', null, array(
+	        	'label'=>'Responsable de contacto'
+	        ))
             ->add('contacto', ContactoType::class)
         ;
     }

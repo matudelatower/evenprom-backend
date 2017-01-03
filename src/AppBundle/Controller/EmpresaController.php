@@ -210,10 +210,10 @@ class EmpresaController extends Controller {
 			$contactoEmpresa = new ContactoEmpresa();
 			$empresa->addContactoEmpresa( $contactoEmpresa );
 		}
-		if ( $empresa->getCategoriaEmpresa()->count() == 0 ) {
-			$categoriaEmpresa = new CategoriaEmpresa();
-			$empresa->addCategoriaEmpresa( $categoriaEmpresa );
-		}
+//		if ( $empresa->getCategoriaEmpresa()->count() == 0 ) {
+//			$categoriaEmpresa = new CategoriaEmpresa();
+//			$empresa->addCategoriaEmpresa( $categoriaEmpresa );
+//		}
 		if ( $empresa->getEmpresaOnda()->count() == 0 ) {
 			$empresaOnda = new EmpresaOnda();
 			$empresa->addEmpresaOnda( $empresaOnda );

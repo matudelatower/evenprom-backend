@@ -60,7 +60,7 @@ class EmpresasRestController extends FOSRestController {
 
 	public function getEmpresasporslugAction( Request $request, $slug ) {
 
-		$empresas = $this->getDoctrine()->getRepository( "AppBundle:Empresa" )->findBySlugCategoria( $slug );
+		$empresas = $this->getDoctrine()->getRepository( "AppBundle:Empresa" )->findBySlugRubro( $slug );
 
 		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.empresas_image' );
 

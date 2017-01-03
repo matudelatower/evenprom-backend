@@ -28,4 +28,21 @@ class EmpresaRepository extends EntityRepository {
 
 	}
 
+	public function findBySlugRubro( $slug ) {
+
+
+		$qb = $this->createQueryBuilder( 'e' );
+
+		$qb->join( 'e.empresaSubRubro', 'esr' )
+		   ->join( 'esr.subRubro', 'sr' )
+		   ->join( 'sr.rubro', 'r' );
+
+		$qb->where( 'r.slug = :slug' )
+		   ->setParameter( 'slug', $slug );
+
+		return $qb->getQuery()->getResult();
+
+
+	}
+
 }

@@ -21,14 +21,16 @@ or publicacion.publicacionEmpresa.first.empresa.premium == false %}
     </div>
     <div class="col-md-6">
         <div class="pull-right" style="font-size: 20pt; margin-top: 5%">
-            <i class="fa fa-check-circle-o ep-rojo"></i>
+            <i class="fa fa-check-circle ep-rojo"></i>
             {% if publicacion.likeSharePorElemento.count > 0 %}
+                {#TODO checkin#}
                 {{ publicacion.likeSharePorElemento.first.likes }}
             {% else %}
                 0
             {% endif %}
-            <i class="fa fa-user ep-rojo"></i>
+            <i class="fa fa-heart ep-rojo"></i>
             {% if publicacion.likeSharePorElemento.count > 0 %}
+                {#TODO favoritos#}
                 {{ publicacion.likeSharePorElemento.first.visitas }}
             {% else %}
                 0
@@ -64,6 +66,10 @@ or publicacion.publicacionEmpresa.first.empresa.premium == false %}
 
                             </span>
             </div>
+            <a href="#" data-publicacion-id="{{ publicacion.id }}"
+               class="btn ep-btn-oferta-checkin-modal ep-rojo">
+                <i class="fa fa-check-circle-o"></i>
+            </a>
             <a href="#" data-publicacion-id="{{ publicacion.id }}"
                class="btn ep-btn-oferta-favear-modal ep-rojo">
                 <i class="fa fa-heart-o"></i>

@@ -46,6 +46,13 @@ class PlanEmpresa extends BaseClass
 	 */
 	private $vencimiento;
 
+	/**
+	 * @var \DateTime
+	 *
+	 * @ORM\Column(name="platofrma_pago", type="string", nullable=true)
+	 */
+	private $platofrmaPago;
+
     /**
      * Get id
      *

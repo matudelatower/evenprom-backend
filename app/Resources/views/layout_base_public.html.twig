@@ -100,8 +100,7 @@
                         <img class="logo-navbar" src="{{ asset('bundles/app/img/favicon.png') }}">
                             </span>
 
-                        <span class="ep-celeste"><b>Even</b></span>
-                        <span class="ep-fucsia"><b>Prom</b></span>
+                        <span class="ep-celeste"><b>Even</b></span><span class="ep-fucsia"><b>Prom</b></span>
 
                     </a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -131,16 +130,23 @@
                         {% if is_granted("ROLE_PERSONA") %}
                             {% include 'userPersonaDropdown.html.twig' %}
                         {% else %}
+                            <li>
+                                <a class="btn ep-bg-fucsia"
+                                   style="color: #fff !important; margin-right: 6%; font-size: 13pt">
+                                    Descarga la App
+                                </a>
+                            </li>
                             <li class="user user-menu">
-                                <a href="{{ path('fos_user_security_login') }}" class="dropdown-toggle">
+                                <a href="{{ path('fos_user_security_login') }}"
+                                   style="color: #fff !important;font-size: 13pt" class="btn ep-bg-celeste">
                                     <span>{{ 'login' | trans }}</span>
                                 </a>
                             </li>
-                            <li class="user user-menu">
-                                <a href="{{ path('persona_registrar') }}" class="dropdown-toggle">
-                                    <span>{{ 'button.register' | trans }}</span>
-                                </a>
-                            </li>
+                            {#<li class="user user-menu">#}
+                            {#<a href="{{ path('persona_registrar') }}" class="dropdown-toggle">#}
+                            {#<span>{{ 'button.register' | trans }}</span>#}
+                            {#</a>#}
+                            {#</li>#}
                         {% endif %}
                     </ul>
                     {#</div>#}

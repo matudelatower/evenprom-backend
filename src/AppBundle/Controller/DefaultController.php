@@ -27,7 +27,7 @@ class DefaultController extends Controller {
 
 	}
 
-	public function indexSitiosAction( Request $request, $categoria = null ) {
+	public function indexSitiosAction( Request $request, $rubro = null ) {
 
 		$em = $this->getDoctrine();
 
@@ -39,20 +39,20 @@ class DefaultController extends Controller {
 			);
 		}
 
-		if ( $categoria ) {
+		if ( $rubro ) {
 
-			$empresas = $em->getRepository( 'AppBundle:Empresa' )->findBySlugCategoria( $categoria );
+			$empresas = $em->getRepository( 'AppBundle:Empresa' )->findBySlugRubro( $rubro );
 		} else {
 
 			$empresas = $em->getRepository( 'AppBundle:Empresa' )->findAll();
 
 		}
-		$categorias = $em->getRepository( 'AppBundle:Categoria' )->findAll();
+		$rubros = $em->getRepository( 'AppBundle:Rubro' )->findAll();
 
 		return $this->render( '@App/Default/sitios.html.twig',
 			array(
 				'empresas'   => $empresas,
-				'categorias' => $categorias,
+				'rubros' => $rubros,
 				'favoritos'  => $favoritos,
 			) );
 	}

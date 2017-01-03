@@ -38,6 +38,13 @@ class ContactoEmpresa extends BaseClass
      */
     private $contacto;
 
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="responsable_contacto", type="string", length=255, nullable=true)
+	 */
+	private $responsableContacto;
+
 
     /**
      * Get id
@@ -151,5 +158,29 @@ class ContactoEmpresa extends BaseClass
         $this->actualizadoPor = $actualizadoPor;
 
         return $this;
+    }
+
+    /**
+     * Set responsableContacto
+     *
+     * @param string $responsableContacto
+     *
+     * @return ContactoEmpresa
+     */
+    public function setResponsableContacto($responsableContacto)
+    {
+        $this->responsableContacto = $responsableContacto;
+
+        return $this;
+    }
+
+    /**
+     * Get responsableContacto
+     *
+     * @return string
+     */
+    public function getResponsableContacto()
+    {
+        return $this->responsableContacto;
     }
 }

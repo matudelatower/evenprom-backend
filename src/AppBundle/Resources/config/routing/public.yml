@@ -11,8 +11,8 @@ app_index:
     methods:  [GET]
 
 sitios_index:
-    path:     /sitios/{categoria}
-    defaults: { _controller: "AppBundle:Default:indexSitios", categoria: null }
+    path:     /sitios/{rubro}
+    defaults: { _controller: "AppBundle:Default:indexSitios", rubro: null }
 
 app_perfil_empresa:
     path:     /{id}/sitios
@@ -43,3 +43,7 @@ public_ajax:
     resource: "@AppBundle/Resources/config/routing/ajax_public.yml"
     prefix:   /ajax
 
+persona_perfil:
+    path:     /perfil
+    defaults: { _controller: "AppBundle:Persona:perfil" }
+    methods:  [GET, POST]

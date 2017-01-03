@@ -62,6 +62,73 @@ class Plan extends BaseClass
 
 
 	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="boton_mercado_pago", type="text", nullable=true)
+	 */
+	private $botonMercadoPago;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="boton_pay_pal", type="text", nullable=true)
+	 */
+	private $botonPayPal;
+
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="geolocalizacion", type="boolean", nullable=true)
+	 */
+	private $geolocalizacion;
+
+
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="noticias", type="boolean", nullable=true)
+	 */
+	private $noticias;
+
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="cantidad_publicacion_premium", type="integer", nullable=true)
+	 */
+	private $cantidadPublicacionPremium;
+
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="cantidad_publicaciones_comun", type="integer", nullable=true)
+	 */
+	private $cantidadPublicacionesComun;
+
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="perfil_empresa_video", type="boolean", nullable=true)
+	 */
+	private $perfilEmpresaVideo;
+
+
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="perfil_empresa_slide_fotos", type="boolean", nullable=true)
+	 */
+	private $perfilEmpresaSlideFotos;
+
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="perfil_empresa_llamada", type="boolean", nullable=true)
+	 */
+	private $perfilEmpresallamada;
+
+
+
+	/**
 	 * NOTE: This is not a mapped field of entity metadata, just a simple property.
 	 *
 	 * @Vich\UploadableField(mapping="planes_image", fileNameProperty="imageName")
@@ -310,5 +377,53 @@ class Plan extends BaseClass
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set botonMercadoPago
+     *
+     * @param string $botonMercadoPago
+     *
+     * @return Plan
+     */
+    public function setBotonMercadoPago($botonMercadoPago)
+    {
+        $this->botonMercadoPago = $botonMercadoPago;
+
+        return $this;
+    }
+
+    /**
+     * Get botonMercadoPago
+     *
+     * @return string
+     */
+    public function getBotonMercadoPago()
+    {
+        return $this->botonMercadoPago;
+    }
+
+    /**
+     * Set botonPayPal
+     *
+     * @param string $botonPayPal
+     *
+     * @return Plan
+     */
+    public function setBotonPayPal($botonPayPal)
+    {
+        $this->botonPayPal = $botonPayPal;
+
+        return $this;
+    }
+
+    /**
+     * Get botonPayPal
+     *
+     * @return string
+     */
+    public function getBotonPayPal()
+    {
+        return $this->botonPayPal;
     }
 }

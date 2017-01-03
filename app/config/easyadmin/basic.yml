@@ -1,11 +1,13 @@
 #easy admin
 easy_admin:
+    disabled_actions: ['delete']
     site_name: %site_name%
     list:
         actions:
             - { name: 'show', icon: 'eye', label: '' }
             - { name: 'edit', icon: 'pencil', label: '' }
-            - { name: 'delete', icon: 'trash', label: '' }
+#            - { name: 'delete', icon: 'trash', label: '' }
+
     entities:
         Pais:
             class: Matudelatower\UbicacionBundle\Entity\Pais
@@ -20,15 +22,15 @@ easy_admin:
         brand_color: '#367fa9'
         menu:
             - Empresa
-            - Categoria
+            - Persona
             - Plan
+            - { label: 'Subscripciones', entity: PlanEmpresa }
             - { label: 'Noticia Interna', entity: NoticiaInterna }
             - Onda
             - Rubro
             - SubRubro
             - Descuento
             - { label: 'Promo Calendario', entity: PromocionCalendario }
-            - { label: 'Hoteles y Agencias', entity: HotelAgencia }
             - { label: 'Tipo Publicación', entity: TipoPublicacion }
             - { label: 'Tipo Documento', entity: TipoDocumento }
             - label: 'Ubicación'

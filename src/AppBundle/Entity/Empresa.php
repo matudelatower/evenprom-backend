@@ -171,6 +171,13 @@ class Empresa extends BaseClass {
 	 */
 	private $favorito;
 
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="cuit", type="string", length=255, unique=true, nullable=true)
+	 */
+	private $cuit;
+
 
 	/**
 	 * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -317,6 +324,24 @@ class Empresa extends BaseClass {
 
 	/**
 	 * @VirtualProperty()
+	 * @SerializedName("sub_rubros")
+	 */
+	public function getSubRubros() {
+
+		$return = array();
+
+		if ( $this->getEmpresaSubRubro() ) {
+			foreach ( $this->getEmpresaSubRubro() as $empresaSubRubro ) {
+				$return[] = $empresaSubRubro->getSubRubro();
+			}
+		}
+
+		return $return;
+
+	}
+
+	/**
+	 * @VirtualProperty()
 	 * @SerializedName("rubros")
 	 */
 	public function getRubros() {
@@ -325,7 +350,9 @@ class Empresa extends BaseClass {
 
 		if ( $this->getEmpresaSubRubro() ) {
 			foreach ( $this->getEmpresaSubRubro() as $empresaSubRubro ) {
-				$return[] = $empresaSubRubro->getSubRubro();
+
+				$return[] = $empresaSubRubro->getSubRubro()->getRubro();
+
 			}
 		}
 
@@ -342,7 +369,7 @@ class Empresa extends BaseClass {
 		$return = false;
 
 		if ( $this->getFavorito() ) {
-			$return = count($this->getFavorito());
+			$return = count( $this->getFavorito() );
 		}
 
 		return $return;
@@ -1048,71 +1075,89 @@ class Empresa extends BaseClass {
 		return $this->likeSharePorElemento;
 	}
 
+	/**
+	 * Add promoCalendario
+	 *
+	 * @param \AppBundle\Entity\PromocionCalendario $promoCalendario
+	 *
+	 * @return Empresa
+	 */
+	public function addPromoCalendario( \AppBundle\Entity\PromocionCalendario $promoCalendario ) {
+		$this->promoCalendario[] = $promoCalendario;
+
+		return $this;
+	}
+
+	/**
+	 * Remove promoCalendario
+	 *
+	 * @param \AppBundle\Entity\PromocionCalendario $promoCalendario
+	 */
+	public function removePromoCalendario( \AppBundle\Entity\PromocionCalendario $promoCalendario ) {
+		$this->promoCalendario->removeElement( $promoCalendario );
+	}
+
+	/**
+	 * Get promoCalendario
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getPromoCalendario() {
+		return $this->promoCalendario;
+	}
+
+	/**
+	 * Add favorito
+	 *
+	 * @param \AppBundle\Entity\Favorito $favorito
+	 *
+	 * @return Empresa
+	 */
+	public function addFavorito( \AppBundle\Entity\Favorito $favorito ) {
+		$this->favorito[] = $favorito;
+
+		return $this;
+	}
+
+	/**
+	 * Remove favorito
+	 *
+	 * @param \AppBundle\Entity\Favorito $favorito
+	 */
+	public function removeFavorito( \AppBundle\Entity\Favorito $favorito ) {
+		$this->favorito->removeElement( $favorito );
+	}
+
+	/**
+	 * Get favorito
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getFavorito() {
+		return $this->favorito;
+	}
+
     /**
-     * Add promoCalendario
+     * Set cuit
      *
-     * @param \AppBundle\Entity\PromocionCalendario $promoCalendario
+     * @param string $cuit
      *
      * @return Empresa
      */
-    public function addPromoCalendario(\AppBundle\Entity\PromocionCalendario $promoCalendario)
+    public function setCuit($cuit)
     {
-        $this->promoCalendario[] = $promoCalendario;
+        $this->cuit = $cuit;
 
         return $this;
     }
 
     /**
-     * Remove promoCalendario
+     * Get cuit
      *
-     * @param \AppBundle\Entity\PromocionCalendario $promoCalendario
+     * @return string
      */
-    public function removePromoCalendario(\AppBundle\Entity\PromocionCalendario $promoCalendario)
+    public function getCuit()
     {
-        $this->promoCalendario->removeElement($promoCalendario);
-    }
-
-    /**
-     * Get promoCalendario
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPromoCalendario()
-    {
-        return $this->promoCalendario;
-    }
-
-    /**
-     * Add favorito
-     *
-     * @param \AppBundle\Entity\Favorito $favorito
-     *
-     * @return Empresa
-     */
-    public function addFavorito(\AppBundle\Entity\Favorito $favorito)
-    {
-        $this->favorito[] = $favorito;
-
-        return $this;
-    }
-
-    /**
-     * Remove favorito
-     *
-     * @param \AppBundle\Entity\Favorito $favorito
-     */
-    public function removeFavorito(\AppBundle\Entity\Favorito $favorito)
-    {
-        $this->favorito->removeElement($favorito);
-    }
-
-    /**
-     * Get favorito
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getFavorito()
-    {
-        return $this->favorito;
+        return $this->cuit;
     }
 }

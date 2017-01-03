@@ -17,6 +17,7 @@ parameters:
     app.path.noticias_internas_image: /uploads/images/noticias_internas
     app.path.planes_image: /uploads/images/planes
     app.path.personas_image: /uploads/images/personas
+    app.path.rubros_image: /uploads/images/rubros
 
 framework:
     #esi:             ~
@@ -141,6 +142,10 @@ vich_uploader:
         personas_image:
             uri_prefix:         %app.path.personas_image%
             upload_destination: %kernel.root_dir%/../web/uploads/images/personas
+            namer:              vich_uploader.namer_origname
+        rubros_image:
+            uri_prefix:         %app.path.rubros_image%
+            upload_destination: %kernel.root_dir%/../web/uploads/images/rubros
             namer:              vich_uploader.namer_origname
 
 ivory_ck_editor:

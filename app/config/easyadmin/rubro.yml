@@ -7,6 +7,7 @@ easy_admin:
                     - { property: 'nombre' }
                     - { property: 'descripcion' }
                     - { property: 'slug' }
+                    - { property: 'imageFile', type: 'vich_image' }
                     - { property: 'activo' }
             edit:
                 title:  'Editar Rubro'
