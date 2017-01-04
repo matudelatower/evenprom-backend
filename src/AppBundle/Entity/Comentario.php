@@ -17,25 +17,24 @@ use JMS\Serializer\Annotation\Type;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ComentarioRepository")
  * @ExclusionPolicy("all")
  */
-class Comentario extends BaseClass
-{
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @Expose()
-     */
-    private $id;
+class Comentario extends BaseClass {
+	/**
+	 * @var int
+	 *
+	 * @ORM\Column(name="id", type="integer")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="AUTO")
+	 * @Expose()
+	 */
+	private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="texto", type="text")
-     * @Expose()
-     */
-    private $texto;
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="texto", type="text")
+	 * @Expose()
+	 */
+	private $texto;
 
 	/**
 	 * @var
@@ -62,167 +61,187 @@ class Comentario extends BaseClass
 	 */
 	private $persona;
 
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("fbId")
+	 */
+	public function getFbId() {
+
+		$return = array();
+
+		if ( $this->getPersona()->getUsuario() ) {
+
+			$return = $this->getPersona()->getUsuario()->getFacebookId();
+		}
+
+		return $return;
+
+	}
+
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("gId")
+	 */
+	public function getgId() {
+
+		$return = array();
+
+		if ( $this->getPersona()->getUsuario() ) {
+
+			$return = $this->getPersona()->getUsuario()->getGoogleId();
+		}
+
+		return $return;
+
+	}
 
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+	/**
+	 * Get id
+	 *
+	 * @return int
+	 */
+	public function getId() {
+		return $this->id;
+	}
 
-    /**
-     * Set texto
-     *
-     * @param string $texto
-     *
-     * @return Comentario
-     */
-    public function setTexto($texto)
-    {
-        $this->texto = $texto;
+	/**
+	 * Set texto
+	 *
+	 * @param string $texto
+	 *
+	 * @return Comentario
+	 */
+	public function setTexto( $texto ) {
+		$this->texto = $texto;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get texto
-     *
-     * @return string
-     */
-    public function getTexto()
-    {
-        return $this->texto;
-    }
+	/**
+	 * Get texto
+	 *
+	 * @return string
+	 */
+	public function getTexto() {
+		return $this->texto;
+	}
 
-    /**
-     * Set fechaCreacion
-     *
-     * @param \DateTime $fechaCreacion
-     *
-     * @return Comentario
-     */
-    public function setFechaCreacion($fechaCreacion)
-    {
-        $this->fechaCreacion = $fechaCreacion;
+	/**
+	 * Set fechaCreacion
+	 *
+	 * @param \DateTime $fechaCreacion
+	 *
+	 * @return Comentario
+	 */
+	public function setFechaCreacion( $fechaCreacion ) {
+		$this->fechaCreacion = $fechaCreacion;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Set fechaActualizacion
-     *
-     * @param \DateTime $fechaActualizacion
-     *
-     * @return Comentario
-     */
-    public function setFechaActualizacion($fechaActualizacion)
-    {
-        $this->fechaActualizacion = $fechaActualizacion;
+	/**
+	 * Set fechaActualizacion
+	 *
+	 * @param \DateTime $fechaActualizacion
+	 *
+	 * @return Comentario
+	 */
+	public function setFechaActualizacion( $fechaActualizacion ) {
+		$this->fechaActualizacion = $fechaActualizacion;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Set empresa
-     *
-     * @param \AppBundle\Entity\Empresa $empresa
-     *
-     * @return Comentario
-     */
-    public function setEmpresa(\AppBundle\Entity\Empresa $empresa = null)
-    {
-        $this->empresa = $empresa;
+	/**
+	 * Set empresa
+	 *
+	 * @param \AppBundle\Entity\Empresa $empresa
+	 *
+	 * @return Comentario
+	 */
+	public function setEmpresa( \AppBundle\Entity\Empresa $empresa = null ) {
+		$this->empresa = $empresa;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get empresa
-     *
-     * @return \AppBundle\Entity\Empresa
-     */
-    public function getEmpresa()
-    {
-        return $this->empresa;
-    }
+	/**
+	 * Get empresa
+	 *
+	 * @return \AppBundle\Entity\Empresa
+	 */
+	public function getEmpresa() {
+		return $this->empresa;
+	}
 
-    /**
-     * Set publicacion
-     *
-     * @param \AppBundle\Entity\Publicacion $publicacion
-     *
-     * @return Comentario
-     */
-    public function setPublicacion(\AppBundle\Entity\Publicacion $publicacion = null)
-    {
-        $this->publicacion = $publicacion;
+	/**
+	 * Set publicacion
+	 *
+	 * @param \AppBundle\Entity\Publicacion $publicacion
+	 *
+	 * @return Comentario
+	 */
+	public function setPublicacion( \AppBundle\Entity\Publicacion $publicacion = null ) {
+		$this->publicacion = $publicacion;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get publicacion
-     *
-     * @return \AppBundle\Entity\Publicacion
-     */
-    public function getPublicacion()
-    {
-        return $this->publicacion;
-    }
+	/**
+	 * Get publicacion
+	 *
+	 * @return \AppBundle\Entity\Publicacion
+	 */
+	public function getPublicacion() {
+		return $this->publicacion;
+	}
 
-    /**
-     * Set persona
-     *
-     * @param \AppBundle\Entity\Persona $persona
-     *
-     * @return Comentario
-     */
-    public function setPersona(\AppBundle\Entity\Persona $persona)
-    {
-        $this->persona = $persona;
+	/**
+	 * Set persona
+	 *
+	 * @param \AppBundle\Entity\Persona $persona
+	 *
+	 * @return Comentario
+	 */
+	public function setPersona( \AppBundle\Entity\Persona $persona ) {
+		$this->persona = $persona;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get persona
-     *
-     * @return \AppBundle\Entity\Persona
-     */
-    public function getPersona()
-    {
-        return $this->persona;
-    }
+	/**
+	 * Get persona
+	 *
+	 * @return \AppBundle\Entity\Persona
+	 */
+	public function getPersona() {
+		return $this->persona;
+	}
 
-    /**
-     * Set creadoPor
-     *
-     * @param \UsuariosBundle\Entity\Usuario $creadoPor
-     *
-     * @return Comentario
-     */
-    public function setCreadoPor(\UsuariosBundle\Entity\Usuario $creadoPor = null)
-    {
-        $this->creadoPor = $creadoPor;
+	/**
+	 * Set creadoPor
+	 *
+	 * @param \UsuariosBundle\Entity\Usuario $creadoPor
+	 *
+	 * @return Comentario
+	 */
+	public function setCreadoPor( \UsuariosBundle\Entity\Usuario $creadoPor = null ) {
+		$this->creadoPor = $creadoPor;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Set actualizadoPor
-     *
-     * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
-     *
-     * @return Comentario
-     */
-    public function setActualizadoPor(\UsuariosBundle\Entity\Usuario $actualizadoPor = null)
-    {
-        $this->actualizadoPor = $actualizadoPor;
+	/**
+	 * Set actualizadoPor
+	 *
+	 * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
+	 *
+	 * @return Comentario
+	 */
+	public function setActualizadoPor( \UsuariosBundle\Entity\Usuario $actualizadoPor = null ) {
+		$this->actualizadoPor = $actualizadoPor;
 
-        return $this;
-    }
+		return $this;
+	}
 }
