@@ -4,12 +4,18 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity\Base\BaseClass;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Favorito
  *
  * @ORM\Table(name="favoritos")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\FavoritoRepository")
+ * @ExclusionPolicy("all")
  */
 class Favorito extends BaseClass
 {
@@ -19,6 +25,7 @@ class Favorito extends BaseClass
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose()
      */
     private $id;
 
@@ -27,6 +34,7 @@ class Favorito extends BaseClass
 	 *
 	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Empresa", inversedBy="favorito")
 	 * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id", nullable=true)
+	 * @Expose()
 	 */
 	private $empresa;
 
@@ -35,6 +43,7 @@ class Favorito extends BaseClass
 	 *
 	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Publicacion", inversedBy="favorito")
 	 * @ORM\JoinColumn(name="publicacion_id", referencedColumnName="id", nullable=true)
+	 * @Expose()
 	 */
 	private $publicacion;
 
