@@ -4,12 +4,18 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity\Base\BaseClass;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Comentario
  *
  * @ORM\Table(name="comentarios")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ComentarioRepository")
+ * @ExclusionPolicy("all")
  */
 class Comentario extends BaseClass
 {
@@ -19,6 +25,7 @@ class Comentario extends BaseClass
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose()
      */
     private $id;
 
@@ -26,6 +33,7 @@ class Comentario extends BaseClass
      * @var string
      *
      * @ORM\Column(name="texto", type="text")
+     * @Expose()
      */
     private $texto;
 
@@ -50,6 +58,7 @@ class Comentario extends BaseClass
 	 *
 	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Persona")
 	 * @ORM\JoinColumn(name="persona_id", referencedColumnName="id", nullable=false)
+	 * @Expose()
 	 */
 	private $persona;
 

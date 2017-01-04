@@ -9,6 +9,7 @@
 namespace AppBundle\Services;
 
 
+use AppBundle\Entity\Comentario;
 use AppBundle\Entity\Favorito;
 use Doctrine\ORM\EntityManager;
 
@@ -45,6 +46,38 @@ class AppManager {
 		$favorito = new Favorito();
 		$favorito->setPublicacion( $publicacion );
 		$favorito->setPersona( $persona );
+
+		$em->persist( $favorito );
+		$em->flush();
+
+		return $favorito;
+	}
+
+	public function comentarEmpresa( $empresaId, $personaId, $texto ) {
+		$em      = $this->em;
+		$empresa = $em->getRepository( 'AppBundle:Empresa' )->find( $empresaId );
+		$persona = $em->getRepository( 'AppBundle:Persona' )->find( $personaId );
+
+		$favorito = new Comentario();
+		$favorito->setEmpresa( $empresa );
+		$favorito->setPersona( $persona );
+		$favorito->setTexto( $texto );
+
+		$em->persist( $favorito );
+		$em->flush();
+
+		return $favorito;
+	}
+
+	public function comentarPublicacion( $publicacionId, $personaId, $texto ) {
+		$em          = $this->em;
+		$publicacion = $em->getRepository( 'AppBundle:Publicacion' )->find( $publicacionId );
+		$persona     = $em->getRepository( 'AppBundle:Persona' )->find( $personaId );
+
+		$favorito = new Comentario();
+		$favorito->setPublicacion( $publicacion );
+		$favorito->setPersona( $persona );
+		$favorito->setTexto( $texto );
 
 		$em->persist( $favorito );
 		$em->flush();

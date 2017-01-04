@@ -34,4 +34,16 @@ class FavoritosRestController extends FOSRestController {
 
 		return $this->handleView( $vista );
 	}
+
+	public function getFavoritosPersonasAction( Request $request, $personaId ) {
+
+		$persona   = $this->getDoctrine()->getRepository( "AppBundle:Persona" )->find( $personaId );
+		$favoritos = $this->getDoctrine()->getRepository( "AppBundle:Favorito" )->findByPersona( $persona );
+
+
+		$vista = $this->view( $favoritos,
+			200 );
+
+		return $this->handleView( $vista );
+	}
 }

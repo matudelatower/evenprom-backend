@@ -1,3 +1,8 @@
+comentario :
+  type: rest
+  resource:     "@AppBundle/Controller/Rest/ComentariosRestController.php"
+  name_prefix:  api_
+
 rubro :
   type: rest
   resource:     "@AppBundle/Controller/Rest/RubrosRestController.php"
