@@ -21,10 +21,33 @@ class PublicacionesRestController extends FOSRestController {
 
 
 		$vista = $this->view( $publicaciones,
-			200 )
-//			->setTemplate( "MyBundle:Users:getUsers.html.twig" )
-//			->setTemplateVar( 'noticias' )
-		;
+			200 );
+
+		return $this->handleView( $vista );
+	}
+
+	public function getPublicacionesPersonaAction( Request $request, $personaId ) {
+
+		$publicaciones = $this->getDoctrine()->getRepository( "AppBundle:Publicacion" )->findActuales();
+
+
+		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.publicaciones_image' );
+
+		foreach ( $publicaciones as $publicacione ) {
+			if ( $publicacione->getImageName() ) {
+				$publicacione->setImageName( $host . '/' . $publicacione->getImageName() );
+			}
+
+			if ( $publicacione->getFavorito()->first()->getPersona()->getId() == $personaId &&
+			     $publicacione->getFavorito()->first()->getActivo()) {
+				$publicacione->setLikePersona( true );
+			}
+
+		}
+
+
+		$vista = $this->view( $publicaciones,
+			200 );
 
 		return $this->handleView( $vista );
 	}

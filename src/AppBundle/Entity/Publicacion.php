@@ -184,6 +184,8 @@ class Publicacion extends BaseClass {
 		return $this;
 	}
 
+	private $likePersona = false;
+
 	/**
 	 * @return File
 	 */
@@ -365,14 +367,13 @@ class Publicacion extends BaseClass {
 	 * @VirtualProperty()
 	 * @SerializedName("rango_fecha")
 	 */
-	public function getRangoFecha()
-	{
+	public function getRangoFecha() {
 
-		$retorno =  array(
-			"fecha_desde" => $this->fechaInicio ? date_format($this->fechaInicio, "d-m-Y") : "",
-			"fecha_hasta" => $this->fechaFin ? date_format($this->fechaFin, "d-m-Y") : "",
-			"hora_desde" => $this->horaInicio ? date_format($this->horaInicio, "H:i") : "",
-			"hora_hasta" => $this->horaFin ? date_format($this->horaFin, "H:i") : ""
+		$retorno = array(
+			"fecha_desde" => $this->fechaInicio ? date_format( $this->fechaInicio, "d-m-Y" ) : "",
+			"fecha_hasta" => $this->fechaFin ? date_format( $this->fechaFin, "d-m-Y" ) : "",
+			"hora_desde"  => $this->horaInicio ? date_format( $this->horaInicio, "H:i" ) : "",
+			"hora_hasta"  => $this->horaFin ? date_format( $this->horaFin, "H:i" ) : ""
 		);
 
 		return $retorno;
@@ -389,10 +390,28 @@ class Publicacion extends BaseClass {
 		$return = false;
 
 		if ( $this->getFavorito() ) {
-			$return = count($this->getFavorito());
+			$return = count( $this->getFavorito() );
 		}
 
 		return $return;
+
+	}
+
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("like_persona")
+	 */
+	public function getLikePersona() {
+
+
+		return $this->likePersona;
+
+	}
+
+	public function setLikePersona( $bool ) {
+		$this->likePersona = $bool;
+
+		return $this->likePersona;
 
 	}
 
@@ -806,71 +825,65 @@ class Publicacion extends BaseClass {
 		return $this->descuentoPublicacion;
 	}
 
-    /**
-     * Add likeSharePorElemento
-     *
-     * @param \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento
-     *
-     * @return Publicacion
-     */
-    public function addLikeSharePorElemento(\AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento)
-    {
-        $this->likeSharePorElemento[] = $likeSharePorElemento;
+	/**
+	 * Add likeSharePorElemento
+	 *
+	 * @param \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento
+	 *
+	 * @return Publicacion
+	 */
+	public function addLikeSharePorElemento( \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento ) {
+		$this->likeSharePorElemento[] = $likeSharePorElemento;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Remove likeSharePorElemento
-     *
-     * @param \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento
-     */
-    public function removeLikeSharePorElemento(\AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento)
-    {
-        $this->likeSharePorElemento->removeElement($likeSharePorElemento);
-    }
+	/**
+	 * Remove likeSharePorElemento
+	 *
+	 * @param \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento
+	 */
+	public function removeLikeSharePorElemento( \AppBundle\Entity\LikesSharePorElemento $likeSharePorElemento ) {
+		$this->likeSharePorElemento->removeElement( $likeSharePorElemento );
+	}
 
-    /**
-     * Get likeSharePorElemento
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getLikeSharePorElemento()
-    {
-        return $this->likeSharePorElemento;
-    }
+	/**
+	 * Get likeSharePorElemento
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getLikeSharePorElemento() {
+		return $this->likeSharePorElemento;
+	}
 
-    /**
-     * Add favorito
-     *
-     * @param \AppBundle\Entity\Favorito $favorito
-     *
-     * @return Publicacion
-     */
-    public function addFavorito(\AppBundle\Entity\Favorito $favorito)
-    {
-        $this->favorito[] = $favorito;
+	/**
+	 * Add favorito
+	 *
+	 * @param \AppBundle\Entity\Favorito $favorito
+	 *
+	 * @return Publicacion
+	 */
+	public function addFavorito( \AppBundle\Entity\Favorito $favorito ) {
+		$this->favorito[] = $favorito;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Remove favorito
-     *
-     * @param \AppBundle\Entity\Favorito $favorito
-     */
-    public function removeFavorito(\AppBundle\Entity\Favorito $favorito)
-    {
-        $this->favorito->removeElement($favorito);
-    }
+	/**
+	 * Remove favorito
+	 *
+	 * @param \AppBundle\Entity\Favorito $favorito
+	 */
+	public function removeFavorito( \AppBundle\Entity\Favorito $favorito ) {
+		$this->favorito->removeElement( $favorito );
+	}
 
-    /**
-     * Get favorito
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getFavorito()
-    {
-        return $this->favorito;
-    }
+	/**
+	 * Get favorito
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getFavorito() {
+		return $this->favorito;
+	}
 }

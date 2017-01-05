@@ -82,4 +82,34 @@ class PublicacionRepository extends EntityRepository {
 
 		return $qb->getQuery()->getResult();
 	}
+
+	public function findActualesPersona($persona) {
+		$qb = $this->createQueryBuilder( 'p' )
+			->addSelect('fav')
+		;
+
+		$qb->join( 'p.publicacionEmpresa', 'pe' )
+		   ->join( 'pe.empresa', 'emp' )
+		   ->leftJoin( 'p.favorito', 'fav' );
+
+		$qb->where( 'p.fechaInicio <= :fechaActualMax' )
+		   ->andWhere( 'p.fechaFin >= :fechaActualMin' )
+		   ->andWhere( 'p.publicado = true' )
+		   ->orWhere( 'p.horaInicio >= :horaActual' )
+		   ->orWhere( 'fav.persona = :persona' )
+		;
+		$fechaActual = new \DateTime( 'now' );
+
+		$qb->setParameter( 'fechaActualMax', $fechaActual->format( 'Y-m-d' ) . " 23:59:59" );
+		$qb->setParameter( 'fechaActualMin', $fechaActual->format( 'Y-m-d' ) . " 00:00:00" );
+		$qb->setParameter( 'horaActual', $fechaActual->format( 'H:i:s' ) );
+		$qb->setParameter( 'persona', $persona );
+
+
+		$qb->orderBy( 'p.horaInicio' );
+		$qb->addOrderBy( 'emp.premium' );
+
+
+		return $qb->getQuery()->getResult();
+	}
 }
