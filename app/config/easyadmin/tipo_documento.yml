@@ -6,7 +6,6 @@ easy_admin:
                 fields:
                     - { property: 'siglas' }
                     - { property: 'descripcion' }
-                    - { property: 'slug' }
                     - { property: 'activo' }
             edit:
                 title:  'Editar Tipo Documento'

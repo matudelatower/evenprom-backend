@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity\Base\BaseClass;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
@@ -46,6 +47,7 @@ class Onda extends BaseClass{
 	/**
 	 * @var string
 	 *
+	 * @Gedmo\Slug(fields={"nombre"})
 	 * @ORM\Column(name="slug", type="string", length=255, unique=true)
 	 * @Expose()
 	 */

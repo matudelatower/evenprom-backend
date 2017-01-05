@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity\Base\BaseClass;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * TipoDocumento
@@ -39,6 +40,7 @@ class TipoDocumento extends BaseClass
     /**
      * @var string
      *
+     * @Gedmo\Slug(fields={"siglas"})
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;

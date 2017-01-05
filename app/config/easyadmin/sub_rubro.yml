@@ -7,7 +7,6 @@ easy_admin:
                     - { property: 'rubro' }
                     - { property: 'nombre' }
                     - { property: 'descripcion' }
-                    - { property: 'slug' }
                     - { property: 'activo' }
             edit:
                 title:  'Editar Sub Rubro'

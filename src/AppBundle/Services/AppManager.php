@@ -28,9 +28,19 @@ class AppManager {
 		$empresa = $em->getRepository( 'AppBundle:Empresa' )->find( $empresaId );
 		$persona = $em->getRepository( 'AppBundle:Persona' )->find( $personaId );
 
-		$favorito = new Favorito();
-		$favorito->setEmpresa( $empresa );
-		$favorito->setPersona( $persona );
+		$criteria = array(
+			'persona' => $persona,
+			'empresa' => $empresa,
+		);
+		$favorito = $em->getRepository( 'AppBundle:Favorito' )->findOneBy( $criteria );
+
+		if ( $favorito ) {
+			$favorito->setActivo( ! $favorito->getActivo() );
+		} else {
+			$favorito = new Favorito();
+			$favorito->setEmpresa( $empresa );
+			$favorito->setPersona( $persona );
+		}
 
 		$em->persist( $favorito );
 		$em->flush();
@@ -43,9 +53,20 @@ class AppManager {
 		$publicacion = $em->getRepository( 'AppBundle:Publicacion' )->find( $publicacionId );
 		$persona     = $em->getRepository( 'AppBundle:Persona' )->find( $personaId );
 
-		$favorito = new Favorito();
-		$favorito->setPublicacion( $publicacion );
-		$favorito->setPersona( $persona );
+		$criteria = array(
+			'persona'     => $persona,
+			'publicacion' => $publicacion,
+		);
+
+		$favorito = $em->getRepository( 'AppBundle:Favorito' )->findOneBy( $criteria );
+
+		if ( $favorito ) {
+			$favorito->setActivo( ! $favorito->getActivo() );
+		} else {
+			$favorito = new Favorito();
+			$favorito->setPublicacion( $publicacion );
+			$favorito->setPersona( $persona );
+		}
 
 		$em->persist( $favorito );
 		$em->flush();

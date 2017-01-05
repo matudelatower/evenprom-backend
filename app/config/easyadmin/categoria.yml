@@ -6,5 +6,5 @@ easy_admin:
                 fields:
                     - { property: 'nombre' }
                     - { property: 'descripcion' }
-                    - { property: 'slug' }
                     - { property: 'activo' }
+                    - { property: 'iconoWeb', type_options: { attr: { class: 'iconpicker' }} }

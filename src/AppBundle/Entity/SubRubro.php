@@ -9,6 +9,7 @@ use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * SubRubro
@@ -48,6 +49,7 @@ class SubRubro extends BaseClass
     /**
      * @var string
      *
+     * @Gedmo\Slug(fields={"nombre"})
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
      * @Expose()
      */

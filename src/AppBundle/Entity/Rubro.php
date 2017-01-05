@@ -9,6 +9,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Rubro
@@ -48,6 +49,7 @@ class Rubro extends BaseClass
     /**
      * @var string
      *
+     * @Gedmo\Slug(fields={"nombre"})
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
      * @Expose()
      */

@@ -99,6 +99,7 @@ stof_doctrine_extensions:
             translatable: true
             timestampable: true
             blameable: true
+            sluggable: true
 
 knp_menu:
     # use "twig: false" to disable the Twig extension and the TwigRenderer
