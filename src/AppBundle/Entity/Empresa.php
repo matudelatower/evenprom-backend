@@ -376,6 +376,26 @@ class Empresa extends BaseClass {
 
 	}
 
+	private $likePersona = false;
+
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("like_persona")
+	 */
+	public function getLikePersona() {
+
+
+		return $this->likePersona;
+
+	}
+
+	public function setLikePersona( $bool ) {
+		$this->likePersona = $bool;
+
+		return $this->likePersona;
+
+	}
+
 
 	/**
 	 * Constructor
