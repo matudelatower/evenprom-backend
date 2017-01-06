@@ -19,7 +19,7 @@ class FavoritosRestController extends FOSRestController {
 		if ( $favorito->getPersona()->getId() == $personaId &&
 		     $favorito->getActivo()
 		) {
-			$favorito->getPublicacion()->setLikePersona( true );
+			$favorito->getEmpresa()->setLikePersona( true );
 		}
 
 		$vista = $this->view( $favorito,
