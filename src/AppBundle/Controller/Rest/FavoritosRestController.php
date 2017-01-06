@@ -16,6 +16,12 @@ class FavoritosRestController extends FOSRestController {
 
 		$favorito = $appManager->favearEmpresa( $empresaId, $personaId );
 
+		if ( $favorito->getPersona()->getId() == $personaId &&
+		     $favorito->getActivo()
+		) {
+			$favorito->getPublicacion()->setLikePersona( true );
+		}
+
 		$vista = $this->view( $favorito,
 			200 );
 
@@ -28,6 +34,12 @@ class FavoritosRestController extends FOSRestController {
 		$appManager = $this->get( 'manager.app' );
 
 		$favorito = $appManager->favearPublicacion( $publicacionId, $personaId );
+
+		if ( $favorito->getPersona()->getId() == $personaId &&
+		     $favorito->getActivo()
+		) {
+			$favorito->getPublicacion()->setLikePersona( true );
+		}
 
 		$vista = $this->view( $favorito,
 			200 );
