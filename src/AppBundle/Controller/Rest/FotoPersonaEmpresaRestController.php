@@ -16,14 +16,27 @@ class FotoPersonaEmpresaRestController extends FOSRestController {
 
 		$appManager = $this->get( 'manager.app' );
 
+		$em = $this->getDoctrine()->getManager();
+
 
 		$fotoPersonaEmpresa = new FotoPersonaEmpresa();
+
+		$empresa = $em->getRepository('AppBundle:Empresa')->find($empresaId);
+		$persona = $em->getRepository('AppBundle:Persona')->find($personaId);
+
+		$imagen = $request->files->get('file');
+
+
+		$fotoPersonaEmpresa->setEmpresa($empresa);
+		$fotoPersonaEmpresa->setPersona($persona);
+		$fotoPersonaEmpresa->setImageFile($imagen);
+
 
 		$form = $this->createForm(FotoPersonaEmpresaType::class, $fotoPersonaEmpresa);
 
 		$form->handleRequest($request);
 
-		$em = $this->getDoctrine()->getManager();
+
 		$em->persist( $fotoPersonaEmpresa );
 		$em->flush();
 
