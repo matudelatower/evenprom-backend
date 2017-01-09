@@ -117,6 +117,38 @@ class FotoPersonaEmpresa extends BaseClass
 		return $this->imageName;
 	}
 
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("fbId")
+	 */
+	public function getUsuarioFbId() {
+
+		$return = null;
+
+		if ( $this->getPersona()->getUsuario() ) {
+			$return = $this->getPersona()->getUsuario()->getFacebookId();
+		}
+
+		return $return;
+
+	}
+
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("gId")
+	 */
+	public function getUsuarioGId() {
+
+		$return = null;
+
+		if ( $this->getPersona()->getUsuario() ) {
+			$return = $this->getPersona()->getUsuario()->getGoogleId();
+		}
+
+		return $return;
+
+	}
+
 
     /**
      * Get id
