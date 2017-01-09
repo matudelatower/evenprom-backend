@@ -21,20 +21,20 @@ class FotoPersonaEmpresaRestController extends FOSRestController {
 
 		$fotoPersonaEmpresa = new FotoPersonaEmpresa();
 
-		$empresa = $em->getRepository('AppBundle:Empresa')->find($empresaId);
-		$persona = $em->getRepository('AppBundle:Persona')->find($personaId);
+		$empresa = $em->getRepository( 'AppBundle:Empresa' )->find( $empresaId );
+		$persona = $em->getRepository( 'AppBundle:Persona' )->find( $personaId );
 
-		$imagen = $request->files->get('file');
-
-
-		$fotoPersonaEmpresa->setEmpresa($empresa);
-		$fotoPersonaEmpresa->setPersona($persona);
-		$fotoPersonaEmpresa->setImageFile($imagen);
+		$imagen = $request->files->get( 'file' );
 
 
-		$form = $this->createForm(FotoPersonaEmpresaType::class, $fotoPersonaEmpresa);
+		$fotoPersonaEmpresa->setEmpresa( $empresa );
+		$fotoPersonaEmpresa->setPersona( $persona );
+		$fotoPersonaEmpresa->setImageFile( $imagen );
 
-		$form->handleRequest($request);
+
+		$form = $this->createForm( FotoPersonaEmpresaType::class, $fotoPersonaEmpresa );
+
+		$form->handleRequest( $request );
 
 
 		$em->persist( $fotoPersonaEmpresa );
@@ -42,6 +42,35 @@ class FotoPersonaEmpresaRestController extends FOSRestController {
 
 
 		$vista = $this->view( $fotoPersonaEmpresa,
+			200 );
+
+		return $this->handleView( $vista );
+	}
+
+	public function getFotoEmpresaAction( Request $request, $empresaId ) {
+
+
+		$em = $this->getDoctrine()->getManager();
+
+
+		$empresa = $em->getRepository( 'AppBundle:Empresa' )->find( $empresaId );
+
+		$criteria = array(
+			'empresa' => $empresa
+		);
+
+		$fotosPersonaEmpresa = $em->getRepository( 'AppBundle:FotoPersonaEmpresa' )->findBy( $criteria );
+
+		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.imagen_usuario_empresa_image' );
+
+		foreach ( $fotosPersonaEmpresa as $fotoPersonaEmpresa ) {
+			if ( $fotoPersonaEmpresa->getImageName() ) {
+				$fotoPersonaEmpresa->setImageName( $host . '/' . $fotoPersonaEmpresa->getImageName() );
+			}
+
+		}
+
+		$vista = $this->view( $fotosPersonaEmpresa,
 			200 );
 
 		return $this->handleView( $vista );

@@ -190,8 +190,6 @@ class Publicacion extends BaseClass {
 		return $this;
 	}
 
-	private $likePersona = false;
-
 	/**
 	 * @return File
 	 */
@@ -387,6 +385,8 @@ class Publicacion extends BaseClass {
 
 	}
 
+	private $likePersona = false;
+
 	/**
 	 * @VirtualProperty()
 	 * @SerializedName("likes")
@@ -418,6 +418,42 @@ class Publicacion extends BaseClass {
 		$this->likePersona = $bool;
 
 		return $this->likePersona;
+
+	}
+
+	private $checkInPersona = false;
+
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("checkins")
+	 */
+	public function getCheckIns() {
+
+		$return = false;
+
+		if ( $this->getCheckIn() ) {
+			$return = count( $this->getCheckIn() );
+		}
+
+		return $return;
+
+	}
+
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("checkin_persona")
+	 */
+	public function getCheckInPersona() {
+
+
+		return $this->checkInPersona;
+
+	}
+
+	public function setCheckInPersona( $bool ) {
+		$this->likePersona = $bool;
+
+		return $this->checkInPersona;
 
 	}
 

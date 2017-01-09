@@ -19,7 +19,7 @@ class CheckInsRestController extends FOSRestController {
 		if ( $checkIn->getPersona()->getId() == $personaId &&
 		     $checkIn->getActivo()
 		) {
-			$checkIn->getEmpresa()->setLikePersona( true );
+			$checkIn->getEmpresa()->setCheckInPersona( true );
 		}
 
 		$vista = $this->view( $checkIn,
@@ -38,7 +38,7 @@ class CheckInsRestController extends FOSRestController {
 		if ( $checkIn->getPersona()->getId() == $personaId &&
 		     $checkIn->getActivo()
 		) {
-			$checkIn->getPublicacion()->setLikePersona( true );
+			$checkIn->getPublicacion()->setCheckInPersona( true );
 		}
 
 		$vista = $this->view( $checkIn,
