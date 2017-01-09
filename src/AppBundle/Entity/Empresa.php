@@ -172,6 +172,12 @@ class Empresa extends BaseClass {
 	private $favorito;
 
 	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\CheckIn", mappedBy="empresa", cascade={"persist", "remove"})
+	 */
+	private $checkIn;
+
+	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="cuit", type="string", length=255, unique=true, nullable=true)

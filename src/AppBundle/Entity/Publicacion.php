@@ -142,6 +142,12 @@ class Publicacion extends BaseClass {
 	private $favorito;
 
 	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\CheckIn", mappedBy="publicacion", cascade={"persist", "remove"})
+	 */
+	private $checkIn;
+
+	/**
 	 * NOTE: This is not a mapped field of entity metadata, just a simple property.
 	 *
 	 * @Vich\UploadableField(mapping="publicaciones_image", fileNameProperty="imageName")
@@ -886,4 +892,38 @@ class Publicacion extends BaseClass {
 	public function getFavorito() {
 		return $this->favorito;
 	}
+
+    /**
+     * Add checkIn
+     *
+     * @param \AppBundle\Entity\CheckIn $checkIn
+     *
+     * @return Publicacion
+     */
+    public function addCheckIn(\AppBundle\Entity\CheckIn $checkIn)
+    {
+        $this->checkIn[] = $checkIn;
+
+        return $this;
+    }
+
+    /**
+     * Remove checkIn
+     *
+     * @param \AppBundle\Entity\CheckIn $checkIn
+     */
+    public function removeCheckIn(\AppBundle\Entity\CheckIn $checkIn)
+    {
+        $this->checkIn->removeElement($checkIn);
+    }
+
+    /**
+     * Get checkIn
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCheckIn()
+    {
+        return $this->checkIn;
+    }
 }

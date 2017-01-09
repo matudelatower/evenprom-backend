@@ -9,6 +9,7 @@
 namespace AppBundle\Services;
 
 
+use AppBundle\Entity\CheckIn;
 use AppBundle\Entity\Comentario;
 use AppBundle\Entity\Favorito;
 use Doctrine\ORM\EntityManager;
@@ -104,6 +105,57 @@ class AppManager {
 		$em->flush();
 
 		return $favorito;
+	}
+
+	public function checkInEmpresa( $empresaId, $personaId ) {
+		$em      = $this->em;
+		$empresa = $em->getRepository( 'AppBundle:Empresa' )->find( $empresaId );
+		$persona = $em->getRepository( 'AppBundle:Persona' )->find( $personaId );
+
+		$criteria = array(
+			'persona' => $persona,
+			'empresa' => $empresa,
+		);
+		$checkIn = $em->getRepository( 'AppBundle:CheckIn' )->findOneBy( $criteria );
+
+		if ( $checkIn ) {
+			$checkIn->setActivo( ! $checkIn->getActivo() );
+		} else {
+			$checkIn = new CheckIn();
+			$checkIn->setEmpresa( $empresa );
+			$checkIn->setPersona( $persona );
+		}
+
+		$em->persist( $checkIn );
+		$em->flush();
+
+		return $checkIn;
+	}
+
+	public function checkInPublicacion( $publicacionId, $personaId ) {
+		$em          = $this->em;
+		$publicacion = $em->getRepository( 'AppBundle:Publicacion' )->find( $publicacionId );
+		$persona     = $em->getRepository( 'AppBundle:Persona' )->find( $personaId );
+
+		$criteria = array(
+			'persona'     => $persona,
+			'publicacion' => $publicacion,
+		);
+
+		$checkIn = $em->getRepository( 'AppBundle:CheckIn' )->findOneBy( $criteria );
+
+		if ( $checkIn ) {
+			$checkIn->setActivo( ! $checkIn->getActivo() );
+		} else {
+			$checkIn = new CheckIn();
+			$checkIn->setPublicacion( $publicacion );
+			$checkIn->setPersona( $persona );
+		}
+
+		$em->persist( $checkIn );
+		$em->flush();
+
+		return $checkIn;
 	}
 
 }

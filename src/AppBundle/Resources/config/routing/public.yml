@@ -28,10 +28,10 @@ publicacion_public_show:
 #    defaults: { _controller: "AppBundle:Publicacion:redirectFb" }
 #    methods:  [GET]
 
-persona_registrar:
-    path:     /persona/registrar
-    defaults: { _controller: "AppBundle:Persona:registrar" }
-    methods:  [GET, POST]
+#persona_registrar:
+#    path:     /persona/registrar
+#    defaults: { _controller: "AppBundle:Persona:registrar" }
+#    methods:  [GET, POST]
 
 
 empresa_registrar:
