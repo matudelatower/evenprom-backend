@@ -451,7 +451,7 @@ class Publicacion extends BaseClass {
 	}
 
 	public function setCheckInPersona( $bool ) {
-		$this->likePersona = $bool;
+		$this->checkInPersona = $bool;
 
 		return $this->checkInPersona;
 
