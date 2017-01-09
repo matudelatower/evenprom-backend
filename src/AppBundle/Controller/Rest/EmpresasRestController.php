@@ -75,11 +75,12 @@ class EmpresasRestController extends FOSRestController {
 					$empresaOnda->getOnda()->setIcono( $hostOnda . $empresaOnda->getOnda()->getIcono() . '-only.png' );
 				}
 			}
-			if ( $empresa->getFavorito()->count() > 0 &&
-			     $empresa->getFavorito()->last()->getPersona()->getId() == $personaId &&
-			     $empresa->getFavorito()->last()->getActivo()
-			) {
-				$empresa->setLikePersona( true );
+			foreach ( $empresa->getFavorito() as $favorito ) {
+				if ( $favorito->getPersona()->getId() == $personaId &&
+				     $favorito->getActivo()
+				) {
+					$empresa->setLikePersona( true );
+				}
 			}
 		}
 
@@ -106,11 +107,13 @@ class EmpresasRestController extends FOSRestController {
 					$empresaOnda->getOnda()->setIcono( $hostOnda . $empresaOnda->getOnda()->getIcono() . '-only.png' );
 				}
 			}
-			if ( $empresa->getFavorito()->count() > 0 &&
-			     $empresa->getFavorito()->last()->getPersona()->getId() == $personaId &&
-			     $empresa->getFavorito()->last()->getActivo()
-			) {
-				$empresa->setLikePersona( true );
+
+			foreach ( $empresa->getFavorito() as $favorito ) {
+				if ( $favorito->getPersona()->getId() == $personaId &&
+				     $favorito->getActivo()
+				) {
+					$empresa->setLikePersona( true );
+				}
 			}
 		}
 

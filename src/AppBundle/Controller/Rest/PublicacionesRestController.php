@@ -38,10 +38,14 @@ class PublicacionesRestController extends FOSRestController {
 				$publicacione->setImageName( $host . '/' . $publicacione->getImageName() );
 			}
 
-			if ( $publicacione->getFavorito()->last()->getPersona()->getId() == $personaId &&
-			     $publicacione->getFavorito()->last()->getActivo()) {
-				$publicacione->setLikePersona( true );
+			foreach ( $publicacione->getFavorito() as $favorito ) {
+				if ( $favorito->getPersona()->getId() == $personaId &&
+				     $favorito->getActivo()
+				) {
+					$publicacione->setLikePersona( true );
+				}
 			}
+
 
 		}
 
