@@ -18,6 +18,7 @@ use JMS\Serializer\Annotation\Type;
  * @Vich\Uploadable
  * @ORM\Table(name="fotos_personas_empresas")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\FotoPersonaEmpresaRepository")
+ * @ExclusionPolicy("all")
  */
 class FotoPersonaEmpresa extends BaseClass
 {
@@ -36,7 +37,6 @@ class FotoPersonaEmpresa extends BaseClass
 	 *
 	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Empresa")
 	 * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id", nullable=true)
-	 * @Expose()
 	 */
 	private $empresa;
 
