@@ -1,3 +1,13 @@
+foto_persona_empresa :
+  type: rest
+  resource:     "@AppBundle/Controller/Rest/FotoPersonaEmpresaRestController.php"
+  name_prefix:  api_
+
+check_in :
+  type: rest
+  resource:     "@AppBundle/Controller/Rest/CheckInsRestController.php"
+  name_prefix:  api_
+
 comentario :
   type: rest
   resource:     "@AppBundle/Controller/Rest/ComentariosRestController.php"
