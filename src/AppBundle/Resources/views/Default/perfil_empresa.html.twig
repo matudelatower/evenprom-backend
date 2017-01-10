@@ -260,48 +260,25 @@
                             <!-- Carousel items -->
                             <div class="carousel fdi-Carousel slide" id="eventCarousel" data-interval="0">
                                 <div class="carousel-inner onebyone-carosel">
-                                    <div class="item active">
-                                        <div class="col-md-4">
-                                            <a href="#"><img src="http://placehold.it/200x200"
-                                                             class="img-responsive center-block"></a>
-                                            <div class="text-center">1</div>
+                                    {% for fotoPersona in fotosPersonaEmpresa %}
+                                        <div class="item {% if loop.first %}active{% endif %}">
+                                            <div class="col-md-4">
+                                                <a href="#"><img
+                                                            src="{{ asset('uploads/images/imagen_usuario_empresa/'~ fotoPersona.imageName) }}"
+                                                            class="img-responsive center-block"></a>
+                                                <div class="margin-top-3">
+                                                    <img class="img-circle img-sm img-fotos-usuarios"
+                                                         data-fbid="{{ fotoPersona.persona.usuario.facebookId }}"
+                                                         data-gid="{{ fotoPersona.persona.usuario.googleId }}"
+                                                         src="{{ asset('bundles/app/img/avatar.jpg') }}"
+                                                         alt="User Image">
+                                                    <div class="img-push">
+                                                        {{ fotoPersona.persona }}
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="col-md-4">
-                                            <a href="#"><img src="http://placehold.it/200x200"
-                                                             class="img-responsive center-block"></a>
-                                            <div class="text-center">2</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="col-md-4">
-                                            <a href="#"><img src="http://placehold.it/200x200"
-                                                             class="img-responsive center-block"></a>
-                                            <div class="text-center">3</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="col-md-4">
-                                            <a href="#"><img src="http://placehold.it/200x200"
-                                                             class="img-responsive center-block"></a>
-                                            <div class="text-center">4</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="col-md-4">
-                                            <a href="#"><img src="http://placehold.it/200x200"
-                                                             class="img-responsive center-block"></a>
-                                            <div class="text-center">5</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="col-md-4">
-                                            <a href="#"><img src="http://placehold.it/200x200"
-                                                             class="img-responsive center-block"></a>
-                                            <div class="text-center">6</div>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                                 <a class="left carousel-control" href="#eventCarousel" data-slide="prev"></a>
                                 <a class="right carousel-control" href="#eventCarousel" data-slide="next"></a>
@@ -483,7 +460,10 @@
                     {% for comentario in comentarios %}
                         <div class="box-comment">
                             <!-- User image -->
-                            <img class="img-circle img-sm" src="{{ asset('bundles/app/img/avatar.jpg') }}"
+                            <img class="img-circle img-sm img-fotos-usuarios"
+                                 data-fbid="{{ comentario.persona.usuario.facebookId }}"
+                                 data-gid="{{ comentario.persona.usuario.googleId }}"
+                                 src="{{ asset('bundles/app/img/avatar.jpg') }}"
                                  alt="User Image">
 
                             <div class="comment-text">
@@ -573,6 +553,9 @@
                 });
             });
             {% endif %}
+
+//            TODO iterar sobre todas las fotos para traerlas
+//            $('.img-fotos-usuarios').
 
             //        acciones perfil
             $('.ep-btn-perfil-compartir').click(function (ev) {

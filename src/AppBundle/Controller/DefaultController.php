@@ -33,7 +33,7 @@ class DefaultController extends Controller {
 
 		$favoritos = array();
 
-		if ( $this->getUser() && $this->getUser()->getPersona()) {
+		if ( $this->getUser() && $this->getUser()->getPersona() ) {
 			$favoritos = $em->getRepository( "AppBundle:Favorito" )->findEmpresasFavoritas(
 				$this->getUser()->getPersona()->first()
 			);
@@ -51,9 +51,9 @@ class DefaultController extends Controller {
 
 		return $this->render( '@App/Default/sitios.html.twig',
 			array(
-				'empresas'   => $empresas,
-				'rubros' => $rubros,
-				'favoritos'  => $favoritos,
+				'empresas'  => $empresas,
+				'rubros'    => $rubros,
+				'favoritos' => $favoritos,
 			) );
 	}
 
@@ -63,24 +63,27 @@ class DefaultController extends Controller {
 		$empresa = $em->getRepository( 'AppBundle:Empresa' )->find( $id );
 
 		$favoritos = array();
-		if ( $this->getUser() && $this->getUser()->getPersona()) {
+		if ( $this->getUser() && $this->getUser()->getPersona() ) {
 			$criteria  = array(
 				'persona' => $this->getUser()->getPersona()->first(),
 				'empresa' => $empresa
 			);
-			$favoritos = $em->getRepository( "AppBundle:Favorito" )->findBy($criteria);
+			$favoritos = $em->getRepository( "AppBundle:Favorito" )->findBy( $criteria );
 		}
 
 		$comentarios = $em->getRepository( 'AppBundle:Comentario' )->findUltimosComentariosByEmpresa( $empresa );
 
 		$noticias = $em->getRepository( 'AppBundle:NoticiaEmpresa' )->findByNoticiasByEmpresa( $empresa );
 
+		$fotosPersonaEmpresa = $em->getRepository( 'AppBundle:FotoPersonaEmpresa' )->findByEmpresa( $empresa );
+
 		return $this->render( '@App/Default/perfil_empresa.html.twig',
 			array(
-				'empresa'         => $empresa,
-				'comentarios'     => $comentarios,
-				'noticiasEmpresa' => $noticias,
-				'favoritos'       => $favoritos,
+				'empresa'             => $empresa,
+				'comentarios'         => $comentarios,
+				'noticiasEmpresa'     => $noticias,
+				'favoritos'           => $favoritos,
+				'fotosPersonaEmpresa' => $fotosPersonaEmpresa,
 			) );
 	}
 
@@ -90,7 +93,7 @@ class DefaultController extends Controller {
 
 		$favoritos = array();
 
-		if ( $this->getUser() && $this->getUser()->getPersona()) {
+		if ( $this->getUser() && $this->getUser()->getPersona() ) {
 			$favoritos = $em->getRepository( "AppBundle:Favorito" )->findPublicacionesFavoritas(
 				$this->getUser()->getPersona()->first()
 			);
@@ -113,7 +116,7 @@ class DefaultController extends Controller {
 				'publicaciones'   => $publicaciones,
 				'promoCalendario' => $promoCalendario,
 				'favoritos'       => $favoritos,
-				'rubros'       => $rubros,
+				'rubros'          => $rubros,
 			) );
 	}
 }
