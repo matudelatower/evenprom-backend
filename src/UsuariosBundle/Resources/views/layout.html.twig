@@ -156,7 +156,8 @@
                     if (response.authResponse) {
                         document.location = "{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}";
                     } else {
-                        alert('Cancelled.');
+//                        alert('Cancelled.');
+                        console.log('Cancelled')
                     }
                 }, {scope: 'email'});
             }

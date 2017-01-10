@@ -63,8 +63,23 @@ class FotoPersonaEmpresaRestController extends FOSRestController {
 
 		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.imagen_usuario_empresa_image' );
 
+		/** @var CacheManager */
+		$cacheManager = $this
+			->container
+			->get( 'liip_imagine.cache.manager' );
+
+
 		foreach ( $fotosPersonaEmpresa as $fotoPersonaEmpresa ) {
 			if ( $fotoPersonaEmpresa->getImageName() ) {
+
+				/** @var string */
+				$sourcePath = $cacheManager
+					->getBrowserPath(
+						$this->getParameter( 'app.path.imagen_usuario_empresa_image' ) . '/' . $fotoPersonaEmpresa->getImageName(),
+						'my_thumb'
+					);
+				$fotoPersonaEmpresa->setThumb( $sourcePath );
+				
 				$fotoPersonaEmpresa->setImageName( $host . '/' . $fotoPersonaEmpresa->getImageName() );
 			}
 

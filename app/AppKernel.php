@@ -30,6 +30,7 @@ class AppKernel extends Kernel
 	        new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new UsuariosBundle\UsuariosBundle(),
             new AppBundle\AppBundle(),
+	        new Liip\ImagineBundle\LiipImagineBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

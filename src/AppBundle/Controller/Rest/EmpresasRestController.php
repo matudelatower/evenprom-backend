@@ -67,13 +67,14 @@ class EmpresasRestController extends FOSRestController {
 		$hostOnda = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . '/bundles/app/img/ondas/';
 
 		foreach ( $empresas as $empresa ) {
-			if ( $empresa->getImageName() ) {
-				$empresa->setImageName( $host . '/' . $empresa->getImageName() );
-			}
+
 			foreach ( $empresa->getEmpresaOnda() as $empresaOnda ) {
 				if ( $empresaOnda->getOnda() ) {
 					$empresaOnda->getOnda()->setIcono( $hostOnda . $empresaOnda->getOnda()->getIcono() . '-only.png' );
 				}
+			}
+			if ( $empresa->getImageName() ) {
+				$empresa->setImageName( $host . '/' . $empresa->getImageName() );
 			}
 			foreach ( $empresa->getFavorito() as $favorito ) {
 				if ( $favorito->getPersona()->getId() == $personaId &&
@@ -99,13 +100,15 @@ class EmpresasRestController extends FOSRestController {
 		$hostOnda = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . '/bundles/app/img/ondas/';
 
 		foreach ( $empresas as $empresa ) {
-			if ( $empresa->getImageName() ) {
-				$empresa->setImageName( $host . '/' . $empresa->getImageName() );
-			}
+
 			foreach ( $empresa->getEmpresaOnda() as $empresaOnda ) {
 				if ( $empresaOnda->getOnda() ) {
 					$empresaOnda->getOnda()->setIcono( $hostOnda . $empresaOnda->getOnda()->getIcono() . '-only.png' );
 				}
+			}
+
+			if ( $empresa->getImageName() ) {
+				$empresa->setImageName( $host . '/' . $empresa->getImageName() );
 			}
 
 			foreach ( $empresa->getFavorito() as $favorito ) {

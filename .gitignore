@@ -22,6 +22,7 @@
 !web/uploads/images/planes/.gitkeep
 /web/uploads/images/imagen_usuario_empresa/*
 !web/uploads/images/imagen_usuario_empresa/.gitkeep
+/web/media/
 
 # -- Editores -----------------------------------------
 # vim

@@ -20,17 +20,16 @@ use JMS\Serializer\Annotation\Type;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\FotoPersonaEmpresaRepository")
  * @ExclusionPolicy("all")
  */
-class FotoPersonaEmpresa extends BaseClass
-{
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @Expose()
-     */
-    private $id;
+class FotoPersonaEmpresa extends BaseClass {
+	/**
+	 * @var int
+	 *
+	 * @ORM\Column(name="id", type="integer")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="AUTO")
+	 * @Expose()
+	 */
+	private $id;
 
 	/**
 	 * @var
@@ -149,118 +148,124 @@ class FotoPersonaEmpresa extends BaseClass
 
 	}
 
+	private $thumb;
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+	public function setThumb( $val ) {
+		$this->thumb = $val;
 
-    /**
-     * Set fechaCreacion
-     *
-     * @param \DateTime $fechaCreacion
-     *
-     * @return FotoPersonaEmpresa
-     */
-    public function setFechaCreacion($fechaCreacion)
-    {
-        $this->fechaCreacion = $fechaCreacion;
+	}
 
-        return $this;
-    }
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("thumb")
+	 */
+	public function getThumb() {
+		return $this->thumb;
+	}
 
-    /**
-     * Set fechaActualizacion
-     *
-     * @param \DateTime $fechaActualizacion
-     *
-     * @return FotoPersonaEmpresa
-     */
-    public function setFechaActualizacion($fechaActualizacion)
-    {
-        $this->fechaActualizacion = $fechaActualizacion;
 
-        return $this;
-    }
+	/**
+	 * Get id
+	 *
+	 * @return int
+	 */
+	public function getId() {
+		return $this->id;
+	}
 
-    /**
-     * Set empresa
-     *
-     * @param \AppBundle\Entity\Empresa $empresa
-     *
-     * @return FotoPersonaEmpresa
-     */
-    public function setEmpresa(\AppBundle\Entity\Empresa $empresa = null)
-    {
-        $this->empresa = $empresa;
+	/**
+	 * Set fechaCreacion
+	 *
+	 * @param \DateTime $fechaCreacion
+	 *
+	 * @return FotoPersonaEmpresa
+	 */
+	public function setFechaCreacion( $fechaCreacion ) {
+		$this->fechaCreacion = $fechaCreacion;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get empresa
-     *
-     * @return \AppBundle\Entity\Empresa
-     */
-    public function getEmpresa()
-    {
-        return $this->empresa;
-    }
+	/**
+	 * Set fechaActualizacion
+	 *
+	 * @param \DateTime $fechaActualizacion
+	 *
+	 * @return FotoPersonaEmpresa
+	 */
+	public function setFechaActualizacion( $fechaActualizacion ) {
+		$this->fechaActualizacion = $fechaActualizacion;
 
-    /**
-     * Set persona
-     *
-     * @param \AppBundle\Entity\Persona $persona
-     *
-     * @return FotoPersonaEmpresa
-     */
-    public function setPersona(\AppBundle\Entity\Persona $persona = null)
-    {
-        $this->persona = $persona;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set empresa
+	 *
+	 * @param \AppBundle\Entity\Empresa $empresa
+	 *
+	 * @return FotoPersonaEmpresa
+	 */
+	public function setEmpresa( \AppBundle\Entity\Empresa $empresa = null ) {
+		$this->empresa = $empresa;
 
-    /**
-     * Get persona
-     *
-     * @return \AppBundle\Entity\Persona
-     */
-    public function getPersona()
-    {
-        return $this->persona;
-    }
+		return $this;
+	}
 
-    /**
-     * Set creadoPor
-     *
-     * @param \UsuariosBundle\Entity\Usuario $creadoPor
-     *
-     * @return FotoPersonaEmpresa
-     */
-    public function setCreadoPor(\UsuariosBundle\Entity\Usuario $creadoPor = null)
-    {
-        $this->creadoPor = $creadoPor;
+	/**
+	 * Get empresa
+	 *
+	 * @return \AppBundle\Entity\Empresa
+	 */
+	public function getEmpresa() {
+		return $this->empresa;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set persona
+	 *
+	 * @param \AppBundle\Entity\Persona $persona
+	 *
+	 * @return FotoPersonaEmpresa
+	 */
+	public function setPersona( \AppBundle\Entity\Persona $persona = null ) {
+		$this->persona = $persona;
 
-    /**
-     * Set actualizadoPor
-     *
-     * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
-     *
-     * @return FotoPersonaEmpresa
-     */
-    public function setActualizadoPor(\UsuariosBundle\Entity\Usuario $actualizadoPor = null)
-    {
-        $this->actualizadoPor = $actualizadoPor;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Get persona
+	 *
+	 * @return \AppBundle\Entity\Persona
+	 */
+	public function getPersona() {
+		return $this->persona;
+	}
+
+	/**
+	 * Set creadoPor
+	 *
+	 * @param \UsuariosBundle\Entity\Usuario $creadoPor
+	 *
+	 * @return FotoPersonaEmpresa
+	 */
+	public function setCreadoPor( \UsuariosBundle\Entity\Usuario $creadoPor = null ) {
+		$this->creadoPor = $creadoPor;
+
+		return $this;
+	}
+
+	/**
+	 * Set actualizadoPor
+	 *
+	 * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
+	 *
+	 * @return FotoPersonaEmpresa
+	 */
+	public function setActualizadoPor( \UsuariosBundle\Entity\Usuario $actualizadoPor = null ) {
+		$this->actualizadoPor = $actualizadoPor;
+
+		return $this;
+	}
 }
