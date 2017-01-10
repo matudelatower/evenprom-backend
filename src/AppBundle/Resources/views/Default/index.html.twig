@@ -105,41 +105,42 @@
                 </div>
             </div>
         </div>
-        {% if promoCalendario is not empty %}
+        <div class="col-md-6">
+            {% if promoCalendario is not empty %}
 
-            {% for promo in promoCalendario %}
-                <div class="col-md-6 col-sm-6 col-xs-12 ep-publicacion-box">
-                    <div class="ep-promo-calendario-info-box promo-calendario-box"
-                         data-promo-calendario-id="{{ promo.id }}">
-                        <div class="ep-promo-calendario-titulo" style="background-color: {{ promo.colorPublicacion }};">
-                            {{ promo.titulo |upper }}
-                        </div>
-                        <div class="ep-promo-calendario-body">
-                            <a href="#" class="btn-ver-promo-calendario" data-promo-calendario-id="{{ promo.id }}">
-                                {% set src = asset('bundles/app/img/default-thumbnail.jpeg') %}
-                                {% if promo.imageName %}
-                                    {% set src = asset('uploads/images/publicaciones/'~ promo.imageName) %}
-                                {% endif %}
-                                <img class="img-responsive"
-                                     src="{{ src }}"
-                                     alt="Photo">
-                            </a>
-                            <div class="ep-promo-calendario-nombre-empresa">
-                                {{ promo.empresa | upper }}
+                {% for promo in promoCalendario %}
+                    <div class="ep-publicacion-box">
+                        <div class="ep-promo-calendario-info-box promo-calendario-box"
+                             data-promo-calendario-id="{{ promo.id }}">
+                            <div class="ep-promo-calendario-titulo" style="background-color: {{ promo.colorPublicacion }};">
+                                {{ promo.titulo |upper }}
+                            </div>
+                            <div class="ep-promo-calendario-body">
+                                <a href="#" class="btn-ver-promo-calendario" data-promo-calendario-id="{{ promo.id }}">
+                                    {% set src = asset('bundles/app/img/default-thumbnail.jpeg') %}
+                                    {% if promo.imageName %}
+                                        {% set src = asset('uploads/images/publicaciones/'~ promo.imageName) %}
+                                    {% endif %}
+                                    <img class="img-responsive"
+                                         src="{{ src }}"
+                                         alt="Photo">
+                                </a>
+                                <div class="ep-promo-calendario-nombre-empresa">
+                                    {{ promo.empresa | upper }}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
-        {% endif %}
-        {% for publicacion in publicaciones %}
-            <div class="col-md-6 col-sm-6 col-xs-12 ep-publicacion-box">
+                {% endfor %}
+            {% endif %}
+            {% for publicacion in publicaciones %}
+                <div class="ep-publicacion-box">
 
-                {% if publicacion.publicacionEmpresa.first.empresa.premium %}
-                    {% set colorPublicacion = publicacion.colorPublicacion %}
-                    {# Premium #}
-                    <div class="ep-info-box-premium">
-                        <div class="ep-info-box-empresa-premium">
+                    {% if publicacion.publicacionEmpresa.first.empresa.premium %}
+                        {% set colorPublicacion = publicacion.colorPublicacion %}
+                        {# Premium #}
+                        <div class="ep-info-box-premium">
+                            <div class="ep-info-box-empresa-premium">
                         <span class="fecha-publicacion">
                             {% set fecha =  publicacion.fechaInicio | date('d-M') %}
                             {% set hora =  publicacion.horaInicio | date('H') %}
@@ -160,7 +161,7 @@
                             {% endif %}
 
                         </span>
-                            <div class="ep-info-box-empresa-body-premium">
+                                <div class="ep-info-box-empresa-body-premium">
 
                         <span class="ep-info-box-nombre-empresa-premium"
                               style="color: {{ colorPublicacion }}">
@@ -168,29 +169,29 @@
                             {{ publicacion.publicacionEmpresa.first.empresa.categoriaEmpresa.first.categoria.iconoWeb }}
 
                             {% endif %}"></i> | {{ publicacion.publicacionEmpresa.first.empresa }}</span>
-                            </div>
-                            <div class="">
-                                <span class="ep-info-box-descripcion ep-gris-claro">{{ publicacion.descripcion }}</span>
-                            </div>
-
-                        </div>
-                        <div class="ep-info-box-content text-center">
-                            <div class="ep-info-box-content-body">
+                                </div>
+                                <div class="">
+                                    <span class="ep-info-box-descripcion ep-gris-claro">{{ publicacion.descripcion }}</span>
+                                </div>
 
                             </div>
+                            <div class="ep-info-box-content text-center">
+                                <div class="ep-info-box-content-body">
+
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ep-info-box-premium">
-                        <a href="#" class="btn-ver-publicacion" data-publicacion-id="{{ publicacion.id }}">
-                            {% set src = asset('bundles/app/img/default-thumbnail.jpeg') %}
-                            {% if publicacion.imageName %}
-                                {% set src = asset('uploads/images/publicaciones/'~ publicacion.imageName) %}
-                            {% endif %}
-                            <img class="img-responsive pad"
-                                 src="{{ src }}"
-                                 alt="Photo">
-                        </a>
-                        <div class="ep-badge-evento-premium" style="background-color: {{ colorPublicacion }}">
+                        <div class="ep-info-box-premium">
+                            <a href="#" class="btn-ver-publicacion" data-publicacion-id="{{ publicacion.id }}">
+                                {% set src = asset('bundles/app/img/default-thumbnail.jpeg') %}
+                                {% if publicacion.imageName %}
+                                    {% set src = asset('uploads/images/publicaciones/'~ publicacion.imageName) %}
+                                {% endif %}
+                                <img class="img-responsive pad"
+                                     src="{{ src }}"
+                                     alt="Photo">
+                            </a>
+                            <div class="ep-badge-evento-premium" style="background-color: {{ colorPublicacion }}">
                             <span class="ep-info-box-titulo-premium">
                                 {% if publicacion.tipoPublicacion.slug =='evento' %}
                                     {{ publicacion.titulo }}
@@ -201,13 +202,13 @@
                                 {% endif %}
 
                             </span>
+                            </div>
                         </div>
-                    </div>
-                {% else %}
-                    {% set colorPublicacion = '#5c666f' %}
-                    <!-- Info Boxes Style 2 -->
-                    <div class="ep-info-box" data-publicacion-id="{{ publicacion.id }}">
-                        <div class="ep-info-box-empresa">
+                    {% else %}
+                        {% set colorPublicacion = '#5c666f' %}
+                        <!-- Info Boxes Style 2 -->
+                        <div class="ep-info-box" data-publicacion-id="{{ publicacion.id }}">
+                            <div class="ep-info-box-empresa">
                         <span class="fecha-publicacion">
                             {% set fecha =  publicacion.fechaInicio | date('d-M') %}
                             {% set hora =  publicacion.horaInicio | date('H') %}
@@ -228,21 +229,21 @@
                             {% endif %}
 
                         </span>
-                            <div class="ep-info-box-empresa-body">
+                                <div class="ep-info-box-empresa-body">
 
                         <span class="ep-info-box-nombre-empresa"
                               style="color: {{ colorPublicacion }}">
                             <i class="fa {% if publicacion.publicacionEmpresa.first.empresa.categoriaEmpresa.first | length > 0 %}
                             {{ publicacion.publicacionEmpresa.first.empresa.categoriaEmpresa.first.categoria.iconoWeb }}
                             {% endif %}"></i> | {{ publicacion.publicacionEmpresa.first.empresa }}</span>
-                            </div>
-                            <div class="text-center">
-                                <span class="ep-info-box-descripcion ep-gris-claro">{{ publicacion.descripcion }}</span>
-                            </div>
+                                </div>
+                                <div class="text-center">
+                                    <span class="ep-info-box-descripcion ep-gris-claro">{{ publicacion.descripcion }}</span>
+                                </div>
 
-                        </div>
-                        <div class="ep-info-box-content text-center">
-                            <div class="ep-info-box-content-body">
+                            </div>
+                            <div class="ep-info-box-content text-center">
+                                <div class="ep-info-box-content-body">
                             <span class="ep-info-box-titulo" style="color: {{ colorPublicacion }}">
                                 {% if publicacion.tipoPublicacion.slug =='evento' %}
                                     {{ publicacion.titulo }}
@@ -253,56 +254,57 @@
                                 {% endif %}
 
                             </span><br>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endif %}
-                <div class="ep-info-box-botones">
-                    <a href="#" data-publicacion-id="{{ publicacion.id }}"
-                       class="btn ep-btn-oferta-comentar ep-btn-oferta ep-celeste">
-                        <i class="fa fa-commenting-o"></i>
-                    </a>
-                    <a href="#" data-publicacion-id="{{ publicacion.id }}"
-                       class="btn ep-btn-oferta-favear ep-btn-oferta ep-rojo">
-                        {% set faHeart = 'fa-heart-o' %}
-                        {% for favorito in favoritos %}
-                            {% if publicacion == favorito.publicacion %}
-                                {% set faHeart = 'fa-heart' %}
-                            {% endif %}
-                        {% endfor %}
-                        <i class="fa {{ faHeart }}"></i>
-                    </a>
-                    <div class="btn-group ep-btn-share">
-                        <a class="btn dropdown-toggle ep-btn-oferta ep-verde" data-toggle="dropdown">
-                            <span class="fa fa-share-alt"></span>
+                    {% endif %}
+                    <div class="ep-info-box-botones">
+                        <a href="#" data-publicacion-id="{{ publicacion.id }}"
+                           class="btn ep-btn-oferta-comentar ep-btn-oferta ep-celeste">
+                            <i class="fa fa-commenting-o"></i>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#" data-publicacion-id="{{ publicacion.id }}"
-                                   data-href="{{ url('publicacion_public_show', {'id': publicacion.id }, true) }}"
-                                   data-image="{{ asset('uploads/images/publicaciones/'~ publicacion.imageName, null, true) }}"
-                                   data-name="{{ publicacion.titulo }}"
-                                   class="ep-btn-oferta-compartir">
-                                    <i class="fa fa-facebook"></i> Compartir
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://twitter.com/intent/tweet?text={{ publicacion.titulo }}&url={{ url('publicacion_public_show', {'id': publicacion.id }) }}&via=evenprom">
-                                    <i class="fa fa-twitter"></i> Tweet
-                                </a>
-                            </li>
+                        <a href="#" data-publicacion-id="{{ publicacion.id }}"
+                           class="btn ep-btn-oferta-favear ep-btn-oferta ep-rojo">
+                            {% set faHeart = 'fa-heart-o' %}
+                            {% for favorito in favoritos %}
+                                {% if publicacion == favorito.publicacion %}
+                                    {% set faHeart = 'fa-heart' %}
+                                {% endif %}
+                            {% endfor %}
+                            <i class="fa {{ faHeart }}"></i>
+                        </a>
+                        <div class="btn-group ep-btn-share">
+                            <a class="btn dropdown-toggle ep-btn-oferta ep-verde" data-toggle="dropdown">
+                                <span class="fa fa-share-alt"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#" data-publicacion-id="{{ publicacion.id }}"
+                                       data-href="{{ url('publicacion_public_show', {'id': publicacion.id }, true) }}"
+                                       data-image="{{ asset('uploads/images/publicaciones/'~ publicacion.imageName, null, true) }}"
+                                       data-name="{{ publicacion.titulo }}"
+                                       class="ep-btn-oferta-compartir">
+                                        <i class="fa fa-facebook"></i> Compartir
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://twitter.com/intent/tweet?text={{ publicacion.titulo }}&url={{ url('publicacion_public_show', {'id': publicacion.id }) }}&via=evenprom">
+                                        <i class="fa fa-twitter"></i> Tweet
+                                    </a>
+                                </li>
 
-                        </ul>
+                            </ul>
 
+                        </div>
                     </div>
+                    <!-- /.info-box -->
+
                 </div>
-                <!-- /.info-box -->
-
-            </div>
-            <!-- /.box -->
+                <!-- /.box -->
 
 
-        {% endfor %}
+            {% endfor %}
+        </div>
         <div class="col-md-3 hidden-xs">
             <div class="row">
                 <div class="box box-solid">
