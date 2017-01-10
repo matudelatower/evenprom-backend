@@ -171,13 +171,13 @@
     /*border-radius: 15px;*/
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
-    bottom: 15%;
+    bottom: 25%;
+    top: 69%;
     color: #fff;
     float: right;
     /*height: 15%;*/
     position: absolute;
     right: 4.5%;
-    /*top: 70%;*/
     z-index: 999;
     text-align: right;
     padding: 1%;
