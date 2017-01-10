@@ -132,6 +132,7 @@
                         {% else %}
                             <li>
                                 <a class="btn ep-bg-fucsia"
+                                   href="https://play.google.com/store/apps/details?id=com.evenprom.evenpromapp&hl=es&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
                                    style="color: #fff !important; margin-right: 6%; font-size: 13pt">
                                     Descarga la App
                                 </a>
@@ -158,14 +159,6 @@
     <!-- Full Width Column -->
     <div class="content-wrapper">
         <div class="container">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    {#Top Navigation#}
-                    {#<small>Example 2.0</small>#}
-                </h1>
-
-            </section>
 
             <!-- Main content -->
             <section class="content">
@@ -358,7 +351,6 @@
         }).then(function () {
 
             return gapi.client.people.people.get({
-                access_token: "{{ app.user.googleAccessToken }}",
                 resourceName: 'people/me'
             });
         }).then(function (resp) {

@@ -88,6 +88,18 @@ class Persona extends BaseClass {
 	private $personaOnda;
 
 	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\CheckIn", mappedBy="persona", cascade={"persist", "remove"})
+	 */
+	private $checkIn;
+
+	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\Favorito", mappedBy="persona", cascade={"persist", "remove"})
+	 */
+	private $favorito;
+
+	/**
 	 * NOTE: This is not a mapped field of entity metadata, just a simple property.
 	 *
 	 * @Vich\UploadableField(mapping="personas_image", fileNameProperty="imageName")
@@ -199,6 +211,30 @@ class Persona extends BaseClass {
 		if ( $this->getUsuario() ) {
 			$return = $this->getUsuario()->getUsername();
 		}
+
+		return $return;
+
+	}
+
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("checkIns")
+	 */
+	public function getCheckIns() {
+
+		$return = $this->getCheckIn()->count();
+
+		return $return;
+
+	}
+
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("favoritos")
+	 */
+	public function getFavoritos() {
+
+		$return = $this->getFavorito()->count();
 
 		return $return;
 
@@ -438,4 +474,69 @@ class Persona extends BaseClass {
 	public function getPersonaOnda() {
 		return $this->personaOnda;
 	}
+
+	/**
+	 * Add checkIn
+	 *
+	 * @param \AppBundle\Entity\CheckIn $checkIn
+	 *
+	 * @return Persona
+	 */
+	public function addCheckIn( \AppBundle\Entity\CheckIn $checkIn ) {
+		$this->checkIn[] = $checkIn;
+
+		return $this;
+	}
+
+	/**
+	 * Remove checkIn
+	 *
+	 * @param \AppBundle\Entity\CheckIn $checkIn
+	 */
+	public function removeCheckIn( \AppBundle\Entity\CheckIn $checkIn ) {
+		$this->checkIn->removeElement( $checkIn );
+	}
+
+	/**
+	 * Get checkIn
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getCheckIn() {
+		return $this->checkIn;
+	}
+
+    /**
+     * Add favorito
+     *
+     * @param \AppBundle\Entity\Favorito $favorito
+     *
+     * @return Persona
+     */
+    public function addFavorito(\AppBundle\Entity\Favorito $favorito)
+    {
+        $this->favorito[] = $favorito;
+
+        return $this;
+    }
+
+    /**
+     * Remove favorito
+     *
+     * @param \AppBundle\Entity\Favorito $favorito
+     */
+    public function removeFavorito(\AppBundle\Entity\Favorito $favorito)
+    {
+        $this->favorito->removeElement($favorito);
+    }
+
+    /**
+     * Get favorito
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFavorito()
+    {
+        return $this->favorito;
+    }
 }

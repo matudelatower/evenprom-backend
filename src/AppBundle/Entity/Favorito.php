@@ -50,7 +50,7 @@ class Favorito extends BaseClass
 	/**
 	 * @var
 	 *
-	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Persona")
+	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Persona", inversedBy="favorito")
 	 * @ORM\JoinColumn(name="persona_id", referencedColumnName="id", nullable=true)
 	 */
 	private $persona;

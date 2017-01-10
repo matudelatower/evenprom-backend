@@ -1,4 +1,23 @@
 {% trans_default_domain "app" %}
+<form class="navbar-form navbar-left" role="search">
+    <div class="form-group">
+        <input type="text" class="form-control" id="navbar-search-input" placeholder="Buscar">
+    </div>
+</form>
+<li class="dropdown notifications-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-bell-o"></i>
+    </a>
+    <ul class="dropdown-menu">
+        <li class="header">Descarga la App para configurar tus notificaciones</li>
+        <div>
+            <a href='https://play.google.com/store/apps/details?id=com.evenprom.evenpromapp&hl=es&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img
+                        alt='Disponible en Google Play'
+                        class="img-responsive"
+                        src='https://play.google.com/intl/en_us/badges/images/generic/es_badge_web_generic.png'/></a>
+        </div>
+    </ul>
+</li>
 <li class="dropdown user user-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <img src="{% if app.user.persona.first and app.user.persona.first.imageName %}

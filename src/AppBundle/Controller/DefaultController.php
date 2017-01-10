@@ -105,12 +105,15 @@ class DefaultController extends Controller {
 
 		$promoCalendario = $em->getRepository( 'AppBundle:PromocionCalendario' )->findActualesAdquiridas();
 
+		$rubros = $em->getRepository( 'AppBundle:Rubro' )->findAll();
+
 
 		return $this->render( 'AppBundle:Default:index.html.twig',
 			array(
 				'publicaciones'   => $publicaciones,
 				'promoCalendario' => $promoCalendario,
 				'favoritos'       => $favoritos,
+				'rubros'       => $rubros,
 			) );
 	}
 }

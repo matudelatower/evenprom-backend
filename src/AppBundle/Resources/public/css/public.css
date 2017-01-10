@@ -2,7 +2,7 @@
     background-color: #fff !important;
 }
 
-.main-header .navbar .nav > li > a{
+.main-header .navbar .nav > li > a {
     color: #5c666f !important;
 }
 
@@ -368,4 +368,9 @@
 .block-modal-publicacion {
     border-bottom: 1px solid gray;
     padding: 2%;
+}
+
+/*sitios*/
+.widget-user .widget-user-image > img {
+    min-height: 90px;
 }
