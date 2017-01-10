@@ -71,7 +71,7 @@
             padding-bottom: 2%;
         }
 
-        .div-categorias {
+        .div-rubros {
             display: table;
             text-align: right;
         }
@@ -201,12 +201,12 @@
                              alt="User Image">
                         <span class="username"><a href="#"
                                                   style="color: {{ empresa.color }}">{{ empresa.nombre | upper }}</a></span>
-                        {#<span class="description">{{ empresa.descripcion }}</span>#}
+                        <span class="description">{{ empresa.descripcion }}</span>
                     </div>
                     <div class="box-tools pull-right">
-                        <div class="div-categorias">
+                        <div class="div-rubros">
                             <i class="fa {% if empresa.categoriaEmpresa.count >0 %}{{ empresa.empresaSubRubro.first.subRubro.rubro.iconoWeb }} {% endif %}"
-                               style="font-size: 3vw; padding-top: 1%">
+                               style="font-size: 3vw; padding-top: 1%; margin-right: 2%">
 
                             </i>
                             {% if empresa.empresaOnda.count >0 %}
