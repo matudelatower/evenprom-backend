@@ -353,6 +353,22 @@ class Publicacion extends BaseClass {
 
 	/**
 	 * @VirtualProperty()
+	 * @SerializedName("rubros")
+	 */
+	public function getRubros() {
+
+		$return = null;
+
+		if ( $this->getPublicacionEmpresa()->first() ) {
+			$return = $this->getPublicacionEmpresa()->first()->getEmpresa()->getRubros();
+		}
+
+		return $return;
+
+	}
+
+	/**
+	 * @VirtualProperty()
 	 * @SerializedName("tipo_publicacion")
 	 */
 	public function getTipoDePublicacion() {
@@ -929,37 +945,34 @@ class Publicacion extends BaseClass {
 		return $this->favorito;
 	}
 
-    /**
-     * Add checkIn
-     *
-     * @param \AppBundle\Entity\CheckIn $checkIn
-     *
-     * @return Publicacion
-     */
-    public function addCheckIn(\AppBundle\Entity\CheckIn $checkIn)
-    {
-        $this->checkIn[] = $checkIn;
+	/**
+	 * Add checkIn
+	 *
+	 * @param \AppBundle\Entity\CheckIn $checkIn
+	 *
+	 * @return Publicacion
+	 */
+	public function addCheckIn( \AppBundle\Entity\CheckIn $checkIn ) {
+		$this->checkIn[] = $checkIn;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Remove checkIn
-     *
-     * @param \AppBundle\Entity\CheckIn $checkIn
-     */
-    public function removeCheckIn(\AppBundle\Entity\CheckIn $checkIn)
-    {
-        $this->checkIn->removeElement($checkIn);
-    }
+	/**
+	 * Remove checkIn
+	 *
+	 * @param \AppBundle\Entity\CheckIn $checkIn
+	 */
+	public function removeCheckIn( \AppBundle\Entity\CheckIn $checkIn ) {
+		$this->checkIn->removeElement( $checkIn );
+	}
 
-    /**
-     * Get checkIn
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCheckIn()
-    {
-        return $this->checkIn;
-    }
+	/**
+	 * Get checkIn
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getCheckIn() {
+		return $this->checkIn;
+	}
 }
