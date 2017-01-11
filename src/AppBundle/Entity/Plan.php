@@ -426,4 +426,172 @@ class Plan extends BaseClass
     {
         return $this->botonPayPal;
     }
+
+    /**
+     * Set geolocalizacion
+     *
+     * @param boolean $geolocalizacion
+     *
+     * @return Plan
+     */
+    public function setGeolocalizacion($geolocalizacion)
+    {
+        $this->geolocalizacion = $geolocalizacion;
+
+        return $this;
+    }
+
+    /**
+     * Get geolocalizacion
+     *
+     * @return boolean
+     */
+    public function getGeolocalizacion()
+    {
+        return $this->geolocalizacion;
+    }
+
+    /**
+     * Set noticias
+     *
+     * @param boolean $noticias
+     *
+     * @return Plan
+     */
+    public function setNoticias($noticias)
+    {
+        $this->noticias = $noticias;
+
+        return $this;
+    }
+
+    /**
+     * Get noticias
+     *
+     * @return boolean
+     */
+    public function getNoticias()
+    {
+        return $this->noticias;
+    }
+
+    /**
+     * Set cantidadPublicacionPremium
+     *
+     * @param integer $cantidadPublicacionPremium
+     *
+     * @return Plan
+     */
+    public function setCantidadPublicacionPremium($cantidadPublicacionPremium)
+    {
+        $this->cantidadPublicacionPremium = $cantidadPublicacionPremium;
+
+        return $this;
+    }
+
+    /**
+     * Get cantidadPublicacionPremium
+     *
+     * @return integer
+     */
+    public function getCantidadPublicacionPremium()
+    {
+        return $this->cantidadPublicacionPremium;
+    }
+
+    /**
+     * Set cantidadPublicacionesComun
+     *
+     * @param integer $cantidadPublicacionesComun
+     *
+     * @return Plan
+     */
+    public function setCantidadPublicacionesComun($cantidadPublicacionesComun)
+    {
+        $this->cantidadPublicacionesComun = $cantidadPublicacionesComun;
+
+        return $this;
+    }
+
+    /**
+     * Get cantidadPublicacionesComun
+     *
+     * @return integer
+     */
+    public function getCantidadPublicacionesComun()
+    {
+        return $this->cantidadPublicacionesComun;
+    }
+
+    /**
+     * Set perfilEmpresaVideo
+     *
+     * @param boolean $perfilEmpresaVideo
+     *
+     * @return Plan
+     */
+    public function setPerfilEmpresaVideo($perfilEmpresaVideo)
+    {
+        $this->perfilEmpresaVideo = $perfilEmpresaVideo;
+
+        return $this;
+    }
+
+    /**
+     * Get perfilEmpresaVideo
+     *
+     * @return boolean
+     */
+    public function getPerfilEmpresaVideo()
+    {
+        return $this->perfilEmpresaVideo;
+    }
+
+    /**
+     * Set perfilEmpresaSlideFotos
+     *
+     * @param boolean $perfilEmpresaSlideFotos
+     *
+     * @return Plan
+     */
+    public function setPerfilEmpresaSlideFotos($perfilEmpresaSlideFotos)
+    {
+        $this->perfilEmpresaSlideFotos = $perfilEmpresaSlideFotos;
+
+        return $this;
+    }
+
+    /**
+     * Get perfilEmpresaSlideFotos
+     *
+     * @return boolean
+     */
+    public function getPerfilEmpresaSlideFotos()
+    {
+        return $this->perfilEmpresaSlideFotos;
+    }
+
+    /**
+     * Set perfilEmpresallamada
+     *
+     * @param boolean $perfilEmpresallamada
+     *
+     * @return Plan
+     */
+    public function setPerfilEmpresallamada($perfilEmpresallamada)
+    {
+        $this->perfilEmpresallamada = $perfilEmpresallamada;
+
+        return $this;
+    }
+
+    /**
+     * Get perfilEmpresallamada
+     *
+     * @return boolean
+     */
+    public function getPerfilEmpresallamada()
+    {
+        return $this->perfilEmpresallamada;
+    }
 }

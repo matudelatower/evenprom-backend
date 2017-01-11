@@ -33,7 +33,7 @@ class DireccionEmpresa extends BaseClass {
 	/**
 	 * @var
 	 *
-	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Direccion", cascade={"persist"})
+	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Direccion",inversedBy="direccionEmpresa", cascade={"persist"})
 	 * @ORM\JoinColumn(name="direccion_id", referencedColumnName="id")
 	 */
 	private $direccion;

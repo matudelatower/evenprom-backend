@@ -178,6 +178,12 @@ class Empresa extends BaseClass {
 	private $checkIn;
 
 	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\PublicacionEmpresa", mappedBy="empresa", cascade={"persist", "remove"})
+	 */
+	private $publicacionEmpresa;
+
+	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="cuit", type="string", length=255, unique=true, nullable=true)
@@ -1185,5 +1191,73 @@ class Empresa extends BaseClass {
     public function getCuit()
     {
         return $this->cuit;
+    }
+
+    /**
+     * Add checkIn
+     *
+     * @param \AppBundle\Entity\CheckIn $checkIn
+     *
+     * @return Empresa
+     */
+    public function addCheckIn(\AppBundle\Entity\CheckIn $checkIn)
+    {
+        $this->checkIn[] = $checkIn;
+
+        return $this;
+    }
+
+    /**
+     * Remove checkIn
+     *
+     * @param \AppBundle\Entity\CheckIn $checkIn
+     */
+    public function removeCheckIn(\AppBundle\Entity\CheckIn $checkIn)
+    {
+        $this->checkIn->removeElement($checkIn);
+    }
+
+    /**
+     * Get checkIn
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCheckIn()
+    {
+        return $this->checkIn;
+    }
+
+    /**
+     * Add publicacionEmpresa
+     *
+     * @param \AppBundle\Entity\PublicacionEmpresa $publicacionEmpresa
+     *
+     * @return Empresa
+     */
+    public function addPublicacionEmpresa(\AppBundle\Entity\PublicacionEmpresa $publicacionEmpresa)
+    {
+        $this->publicacionEmpresa[] = $publicacionEmpresa;
+
+        return $this;
+    }
+
+    /**
+     * Remove publicacionEmpresa
+     *
+     * @param \AppBundle\Entity\PublicacionEmpresa $publicacionEmpresa
+     */
+    public function removePublicacionEmpresa(\AppBundle\Entity\PublicacionEmpresa $publicacionEmpresa)
+    {
+        $this->publicacionEmpresa->removeElement($publicacionEmpresa);
+    }
+
+    /**
+     * Get publicacionEmpresa
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPublicacionEmpresa()
+    {
+        return $this->publicacionEmpresa;
     }
 }

@@ -190,4 +190,28 @@ class PlanEmpresa extends BaseClass
 
         return $this;
     }
+
+    /**
+     * Set platofrmaPago
+     *
+     * @param string $platofrmaPago
+     *
+     * @return PlanEmpresa
+     */
+    public function setPlatofrmaPago($platofrmaPago)
+    {
+        $this->platofrmaPago = $platofrmaPago;
+
+        return $this;
+    }
+
+    /**
+     * Get platofrmaPago
+     *
+     * @return string
+     */
+    public function getPlatofrmaPago()
+    {
+        return $this->platofrmaPago;
+    }
 }

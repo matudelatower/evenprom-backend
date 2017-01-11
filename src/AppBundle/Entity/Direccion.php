@@ -72,10 +72,16 @@ class Direccion extends BaseClass {
 	/**
 	 * @var
 	 *
-	 * @ORM\ManyToOne(targetEntity="Matudelatower\UbicacionBundle\Entity\Localidad")
+	 * @ORM\ManyToOne(targetEntity="Matudelatower\UbicacionBundle\Entity\Localidad", inversedBy="direccion")
 	 * @ORM\JoinColumn(name="localidad_id", referencedColumnName="id")
 	 */
 	private $localidad;
+
+	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\DireccionEmpresa", mappedBy="direccion", cascade={"persist", "remove"})
+	 */
+	private $direccionEmpresa;
 
 
 	/**
@@ -335,4 +341,45 @@ class Direccion extends BaseClass {
 
 		return $this;
 	}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->direccionEmpresa = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add direccionEmpresa
+     *
+     * @param \AppBundle\Entity\DireccionEmpresa $direccionEmpresa
+     *
+     * @return Direccion
+     */
+    public function addDireccionEmpresa(\AppBundle\Entity\DireccionEmpresa $direccionEmpresa)
+    {
+        $this->direccionEmpresa[] = $direccionEmpresa;
+
+        return $this;
+    }
+
+    /**
+     * Remove direccionEmpresa
+     *
+     * @param \AppBundle\Entity\DireccionEmpresa $direccionEmpresa
+     */
+    public function removeDireccionEmpresa(\AppBundle\Entity\DireccionEmpresa $direccionEmpresa)
+    {
+        $this->direccionEmpresa->removeElement($direccionEmpresa);
+    }
+
+    /**
+     * Get direccionEmpresa
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDireccionEmpresa()
+    {
+        return $this->direccionEmpresa;
+    }
 }

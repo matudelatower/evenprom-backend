@@ -25,7 +25,7 @@ class PublicacionEmpresa extends BaseClass
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Empresa")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Empresa", inversedBy="publicacionEmpresa")
      * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
      */
     private $empresa;
