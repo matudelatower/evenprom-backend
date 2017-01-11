@@ -28,7 +28,10 @@ class PublicacionesRestController extends FOSRestController {
 
 	public function getPublicacionesPersonaAction( Request $request, $personaId ) {
 
-		$publicaciones = $this->getDoctrine()->getRepository( "AppBundle:Publicacion" )->findActuales();
+		$datos = json_decode($request->get('fields'));
+
+		$publicaciones = $this->getDoctrine()->getRepository( "AppBundle:Publicacion" )->findActuales($datos);
+
 
 
 		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.publicaciones_image' );

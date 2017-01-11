@@ -31,7 +31,9 @@ class PublicacionRepository extends EntityRepository {
 
 	}
 
-	public function findActuales() {
+	public function findActuales( $fields = null ) {
+
+
 		$qb = $this->createQueryBuilder( 'p' );
 
 		$qb->join( 'p.publicacionEmpresa', 'pe' )
@@ -46,6 +48,34 @@ class PublicacionRepository extends EntityRepository {
 		$qb->setParameter( 'fechaActualMax', $fechaActual->format( 'Y-m-d' ) . " 23:59:59" );
 		$qb->setParameter( 'fechaActualMin', $fechaActual->format( 'Y-m-d' ) . " 00:00:00" );
 		$qb->setParameter( 'horaActual', $fechaActual->format( 'H:i:s' ) );
+
+		if ( $fields ) {
+			foreach ( $fields as $field ) {
+				$i = $field->clase;
+				if ( $i == "rubro" && $field->data ) {
+					$qb->join( 'emp.empresaSubRubro', 'esr' )
+					   ->join( 'esr.subRubro', 'sr' )
+					   ->join( 'sr.rubro', 'r' )
+					   ->orWhere( 'r.id in (:idRubros)' )
+					   ->setParameter( 'idRubros', $field->data );
+
+				}
+				if ( $i == "onda" & $field->data ) {
+					$qb->join( 'emp.empresaOnda', 'eo' )
+					   ->join( 'eo.onda', 'o' )
+					   ->orWhere( 'o.id in (:idOndas)' )
+					   ->setParameter( 'idOndas', $field->data );
+
+				}
+				if ( $i == "localidad" & $field->data ) {
+					$qb->join( 'emp.direccionEmpresa', 'de' )
+					   ->join( 'de.direccion', 'd' )
+					   ->join( 'd.localidad', 'loc' )
+					   ->orWhere( 'loc.id in (:idLocalidades)' )
+					   ->setParameter( 'idLocalidades', $field->data );
+				}
+			}
+		}
 
 
 		$qb->orderBy( 'p.horaInicio' );
