@@ -1,3 +1,8 @@
+descuento :
+  type: rest
+  resource:     "@AppBundle/Controller/Rest/DescuentosRestController.php"
+  name_prefix:  api_
+
 foto_persona_empresa :
   type: rest
   resource:     "@AppBundle/Controller/Rest/FotoPersonaEmpresaRestController.php"
