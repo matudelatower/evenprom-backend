@@ -86,7 +86,7 @@ class Direccion extends BaseClass {
 
 	/**
 	 * @VirtualProperty()
-	 * @SerializedName("json_localidad")
+	 * @SerializedName("localidad")
 	 */
 	public function getJsonLocalidad() {
 
@@ -102,7 +102,7 @@ class Direccion extends BaseClass {
 	}
 	/**
 	 * @VirtualProperty()
-	 * @SerializedName("json_departamento")
+	 * @SerializedName("departamento_localidad")
 	 */
 	public function getJsonDepartamento() {
 
@@ -118,7 +118,7 @@ class Direccion extends BaseClass {
 	}
 	/**
 	 * @VirtualProperty()
-	 * @SerializedName("json_provincia")
+	 * @SerializedName("provincia")
 	 */
 	public function getJsonProvincia() {
 
@@ -134,7 +134,7 @@ class Direccion extends BaseClass {
 	}
 	/**
 	 * @VirtualProperty()
-	 * @SerializedName("json_pais")
+	 * @SerializedName("pais")
 	 */
 	public function getJsonPais() {
 
