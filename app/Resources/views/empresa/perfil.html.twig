@@ -57,24 +57,24 @@
                                 <div class="row">
                                     <div class="col-sm-4 border-right">
                                         <div class="description-block">
-                                            <h5 class="description-header">3,200</h5>
-                                            <span class="description-text">SALES</span>
+                                            <h5 class="description-header">{{ empresa.checkins }}</h5>
+                                            <span class="description-text">CHECKINS</span>
                                         </div>
                                         <!-- /.description-block -->
                                     </div>
                                     <!-- /.col -->
                                     <div class="col-sm-4 border-right">
                                         <div class="description-block">
-                                            <h5 class="description-header">13,000</h5>
-                                            <span class="description-text">FOLLOWERS</span>
+                                            <h5 class="description-header">{{ empresa.likes }}</h5>
+                                            <span class="description-text">LIKES</span>
                                         </div>
                                         <!-- /.description-block -->
                                     </div>
                                     <!-- /.col -->
                                     <div class="col-sm-4">
                                         <div class="description-block">
-                                            <h5 class="description-header">35</h5>
-                                            <span class="description-text">PRODUCTS</span>
+                                            <h5 class="description-header"></h5>
+                                            <span class="description-text">RANKING</span>
                                         </div>
                                         <!-- /.description-block -->
                                     </div>
@@ -134,7 +134,7 @@
     <script src="{{ asset('bundles/app/plugins/colorpicker/bootstrap-colorpicker.min.js') }}"></script>
     <script>
         var hexDigits = new Array
-        ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
+        ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f");
 
         //Function to convert hex format to a rgb color
         function rgb2hex(rgb) {

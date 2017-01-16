@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ site_name }}| Registrar</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/app/img/favicon.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/app/img/favicon.png') }}"/>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -16,6 +16,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('bundles/app/AdminLTE-2.3.5/css/AdminLTE.min.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,700');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* H1 - H6 font */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .h1,
+        .h2,
+        .h3,
+        .h4,
+        .h5,
+        .h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('bundles/app/plugins/iCheck/square/blue.css') }}">
 
@@ -39,16 +62,17 @@
         {{ form_start(form) }}
         {{ form_widget(form) }}
         <div class="row">
-        <!-- /.col -->
-        <div class="col-xs-4">
-        <button type="submit" class="btn btn-primary btn-block btn-flat">{{ 'button.register'|trans }}</button>
-        </div>
-        <!-- /.col -->
+            <!-- /.col -->
+            <div class="col-xs-4">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">{{ 'button.register'|trans }}</button>
+            </div>
+            <!-- /.col -->
         </div>
         {{ form_end(form) }}
 
-
-        <a href="{{ path('fos_user_security_login') }}" class="text-center">{{ 'register.already'|trans }}</a>
+        <div style="margin-top: 3%">
+            <a href="{{ path('fos_user_security_login') }}" class="text-center">{{ 'register.already'|trans }}</a>
+        </div>
     </div>
     <!-- /.form-box -->
 </div>

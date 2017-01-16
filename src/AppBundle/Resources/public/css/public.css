@@ -1,3 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* H1 - H6 font */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: 'Poppins', sans-serif;
+}
+
+.content {
+    padding: 0;
+}
+
 .main-header .navbar {
     background-color: #fff !important;
 }

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>EvenProm | Empresas</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/app/img/favicon.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/app/img/favicon.png') }}"/>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -36,6 +36,34 @@
     <link rel="stylesheet" href="{{ asset('bundles/app/plugins/timepicker/bootstrap-timepicker.min.css') }}">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{ asset('bundles/app/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,700');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* H1 - H6 font */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .h1,
+        .h2,
+        .h3,
+        .h4,
+        .h5,
+        .h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .main-header .logo {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
 
     {% block stylesheets %}
     {% endblock stylesheets %}
@@ -82,46 +110,46 @@
 
                     <!-- Notifications: style can be found in dropdown.less -->
                     {#<li class="dropdown notifications-menu">#}
-                        {#<a href="#" class="dropdown-toggle" data-toggle="dropdown">#}
-                            {#<i class="fa fa-bell-o"></i>#}
-                            {#<span class="label label-warning">10</span>#}
-                        {#</a>#}
-                        {#<ul class="dropdown-menu">#}
-                            {#<li class="header">You have 10 notifications</li>#}
-                            {#<li>#}
-                                {#<!-- inner menu: contains the actual data -->#}
-                                {#<ul class="menu">#}
-                                    {#<li>#}
-                                        {#<a href="#">#}
-                                            {#<i class="fa fa-users text-aqua"></i> 5 new members joined today#}
-                                        {#</a>#}
-                                    {#</li>#}
-                                    {#<li>#}
-                                        {#<a href="#">#}
-                                            {#<i class="fa fa-warning text-yellow"></i> Very long description here that#}
-                                            {#may not fit into the#}
-                                            {#page and may cause design problems#}
-                                        {#</a>#}
-                                    {#</li>#}
-                                    {#<li>#}
-                                        {#<a href="#">#}
-                                            {#<i class="fa fa-users text-red"></i> 5 new members joined#}
-                                        {#</a>#}
-                                    {#</li>#}
-                                    {#<li>#}
-                                        {#<a href="#">#}
-                                            {#<i class="fa fa-shopping-cart text-green"></i> 25 sales made#}
-                                        {#</a>#}
-                                    {#</li>#}
-                                    {#<li>#}
-                                        {#<a href="#">#}
-                                            {#<i class="fa fa-user text-red"></i> You changed your username#}
-                                        {#</a>#}
-                                    {#</li>#}
-                                {#</ul>#}
-                            {#</li>#}
-                            {#<li class="footer"><a href="#">View all</a></li>#}
-                        {#</ul>#}
+                    {#<a href="#" class="dropdown-toggle" data-toggle="dropdown">#}
+                    {#<i class="fa fa-bell-o"></i>#}
+                    {#<span class="label label-warning">10</span>#}
+                    {#</a>#}
+                    {#<ul class="dropdown-menu">#}
+                    {#<li class="header">You have 10 notifications</li>#}
+                    {#<li>#}
+                    {#<!-- inner menu: contains the actual data -->#}
+                    {#<ul class="menu">#}
+                    {#<li>#}
+                    {#<a href="#">#}
+                    {#<i class="fa fa-users text-aqua"></i> 5 new members joined today#}
+                    {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                    {#<a href="#">#}
+                    {#<i class="fa fa-warning text-yellow"></i> Very long description here that#}
+                    {#may not fit into the#}
+                    {#page and may cause design problems#}
+                    {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                    {#<a href="#">#}
+                    {#<i class="fa fa-users text-red"></i> 5 new members joined#}
+                    {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                    {#<a href="#">#}
+                    {#<i class="fa fa-shopping-cart text-green"></i> 25 sales made#}
+                    {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                    {#<a href="#">#}
+                    {#<i class="fa fa-user text-red"></i> You changed your username#}
+                    {#</a>#}
+                    {#</li>#}
+                    {#</ul>#}
+                    {#</li>#}
+                    {#<li class="footer"><a href="#">View all</a></li>#}
+                    {#</ul>#}
                     {#</li>#}
                     <!-- Tasks: style can be found in dropdown.less -->
                     <li class="dropdown tasks-menu">
@@ -186,14 +214,14 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         {#<section class="content-header">#}
-            {#<h1>#}
-                {#Dashboard#}
-                {#<small>Control panel</small>#}
-            {#</h1>#}
-            {#<ol class="breadcrumb">#}
-                {#<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>#}
-                {#<li class="active">Dashboard</li>#}
-            {#</ol>#}
+        {#<h1>#}
+        {#Dashboard#}
+        {#<small>Control panel</small>#}
+        {#</h1>#}
+        {#<ol class="breadcrumb">#}
+        {#<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>#}
+        {#<li class="active">Dashboard</li>#}
+        {#</ol>#}
         {#</section>#}
 
         <!-- Main content -->
@@ -280,7 +308,7 @@
 <script src="{{ asset('bundles/app/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
 <!-- datepicker locales-->
 {% if app.request.locale != 'en' %}
-<script src="{{ asset('bundles/app/plugins/datepicker/locales/bootstrap-datepicker.'~ app.request.locale ~'.js') }}"></script>
+    <script src="{{ asset('bundles/app/plugins/datepicker/locales/bootstrap-datepicker.'~ app.request.locale ~'.js') }}"></script>
 {% endif %}
 <!-- bootstrap time picker -->
 <script src="{{ asset('bundles/app/plugins/timepicker/bootstrap-timepicker.min.js') }}"></script>

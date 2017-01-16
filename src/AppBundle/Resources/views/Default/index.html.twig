@@ -112,7 +112,8 @@
                     <div class="ep-publicacion-box">
                         <div class="ep-promo-calendario-info-box promo-calendario-box"
                              data-promo-calendario-id="{{ promo.id }}">
-                            <div class="ep-promo-calendario-titulo" style="background-color: {{ promo.colorPublicacion }};">
+                            <div class="ep-promo-calendario-titulo"
+                                 style="background-color: {{ promo.colorPublicacion }};">
                                 {{ promo.titulo |upper }}
                             </div>
                             <div class="ep-promo-calendario-body">
@@ -165,10 +166,10 @@
 
                         <span class="ep-info-box-nombre-empresa-premium"
                               style="color: {{ colorPublicacion }}">
-                            <i class="fa {% if publicacion.publicacionEmpresa.first.empresa.categoriaEmpresa.first | length > 0 %}
-                            {{ publicacion.publicacionEmpresa.first.empresa.categoriaEmpresa.first.categoria.iconoWeb }}
+                            <i class="fa {% if publicacion.publicacionEmpresa.first.empresa.rubros | length > 0 %}
+                            {{ publicacion.publicacionEmpresa.first.empresa.rubros[0].iconoWeb }}
 
-                            {% endif %}"></i> | {{ publicacion.publicacionEmpresa.first.empresa }}</span>
+                            {% endif %}"></i> | <strong>{{ publicacion.publicacionEmpresa.first.empresa }}</strong></span>
                                 </div>
                                 <div class="">
                                     <span class="ep-info-box-descripcion ep-gris-claro">{{ publicacion.descripcion }}</span>
@@ -193,6 +194,7 @@
                             </a>
                             <div class="ep-badge-evento-premium" style="background-color: {{ colorPublicacion }}">
                             <span class="ep-info-box-titulo-premium">
+                                <strong>
                                 {% if publicacion.tipoPublicacion.slug =='evento' %}
                                     {{ publicacion.titulo }}
                                 {% elseif publicacion.tipoPublicacion.slug =='oferta' %}
@@ -200,7 +202,7 @@
                                         {{ publicacion.descuentoPublicacion.first.descuento.nombre }}
                                     {% endif %}
                                 {% endif %}
-
+                                </strong>
                             </span>
                             </div>
                         </div>
@@ -233,9 +235,9 @@
 
                         <span class="ep-info-box-nombre-empresa"
                               style="color: {{ colorPublicacion }}">
-                            <i class="fa {% if publicacion.publicacionEmpresa.first.empresa.categoriaEmpresa.first | length > 0 %}
-                            {{ publicacion.publicacionEmpresa.first.empresa.categoriaEmpresa.first.categoria.iconoWeb }}
-                            {% endif %}"></i> | {{ publicacion.publicacionEmpresa.first.empresa }}</span>
+                            <i class="fa {% if publicacion.publicacionEmpresa.first.empresa.rubros | length > 0 %}
+                            {{ publicacion.publicacionEmpresa.first.empresa.rubros[0].iconoWeb }}
+                            {% endif %}"></i> | <strong>{{ publicacion.publicacionEmpresa.first.empresa }}</strong></span>
                                 </div>
                                 <div class="text-center">
                                     <span class="ep-info-box-descripcion ep-gris-claro">{{ publicacion.descripcion }}</span>
@@ -245,6 +247,7 @@
                             <div class="ep-info-box-content text-center">
                                 <div class="ep-info-box-content-body">
                             <span class="ep-info-box-titulo" style="color: {{ colorPublicacion }}">
+                                <strong>
                                 {% if publicacion.tipoPublicacion.slug =='evento' %}
                                     {{ publicacion.titulo }}
                                 {% elseif publicacion.tipoPublicacion.slug =='oferta' %}
@@ -252,7 +255,7 @@
                                         {{ publicacion.descuentoPublicacion.first.descuento.nombre }}
                                     {% endif %}
                                 {% endif %}
-
+                                </strong>
                             </span><br>
                                 </div>
                             </div>

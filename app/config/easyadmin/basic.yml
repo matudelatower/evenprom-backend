@@ -41,14 +41,16 @@ easy_admin:
                   - 'Localidad'
             - 'Usuario'
             - { label: 'Cerrar Sesión', route: 'fos_user_security_logout', icon: 'sign-out' }
+        assets:
+            favicon: 'bundles/app/img/favicon.png'
 #
     assets:
-        favicon: 'bundles/app/img/favicon.png'
         css:
             - 'bundles/app/plugins/datepicker/datepicker3.css'
             - 'bundles/app/plugins/daterangepicker/daterangepicker.css'
             - 'bundles/app/plugins/timepicker/bootstrap-timepicker.min.css'
             - 'bundles/app/plugins/fontawesome-iconpicker/css/fontawesome-iconpicker.min.css'
+            - 'bundles/app/css/admin.css'
         js:
             - "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"
             - 'bundles/app/plugins/daterangepicker/daterangepicker.js'

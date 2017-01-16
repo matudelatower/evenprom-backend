@@ -175,7 +175,7 @@ class EmpresaController extends Controller {
 				$userManager->updateUser( $user );
 
 				if ( null === $response = $event->getResponse() ) {
-					$url = $this->generateUrl( 'fos_user_security_login' );
+					$url = $this->generateUrl( 'empresa_perfil' );
 					$em  = $this->getDoctrine()->getManager();
 					$em->persist( $empresa );
 					$em->flush();
@@ -210,10 +210,7 @@ class EmpresaController extends Controller {
 			$contactoEmpresa = new ContactoEmpresa();
 			$empresa->addContactoEmpresa( $contactoEmpresa );
 		}
-//		if ( $empresa->getCategoriaEmpresa()->count() == 0 ) {
-//			$categoriaEmpresa = new CategoriaEmpresa();
-//			$empresa->addCategoriaEmpresa( $categoriaEmpresa );
-//		}
+
 		if ( $empresa->getEmpresaOnda()->count() == 0 ) {
 			$empresaOnda = new EmpresaOnda();
 			$empresa->addEmpresaOnda( $empresaOnda );
@@ -262,14 +259,14 @@ class EmpresaController extends Controller {
 
 		$noticias                = $em->getRepository( 'AppBundle:NoticiaInterna' )->getNoticiasActuales();
 		$noticiasInternasEmpresa = $em->getRepository( 'AppBundle:NoticiaInternaEmpresa' )->findByEmpresa( $empresa );
-		$promocionesCalendario     = $em->getRepository( 'AppBundle:PromocionCalendario' )->findActuales();
+		$promocionesCalendario   = $em->getRepository( 'AppBundle:PromocionCalendario' )->findActuales();
 
 		return $this->render( ':empresa:empresa_admin.html.twig',
 			array(
 				'empresa'                 => $empresa,
 				'noticias'                => $noticias,
 				'noticiasInternasEmpresa' => $noticiasInternasEmpresa,
-				'promocionesCalendario' => $promocionesCalendario,
+				'promocionesCalendario'   => $promocionesCalendario,
 			) );
 	}
 }

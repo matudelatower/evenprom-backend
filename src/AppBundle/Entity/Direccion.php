@@ -72,7 +72,7 @@ class Direccion extends BaseClass {
 	/**
 	 * @var
 	 *
-	 * @ORM\ManyToOne(targetEntity="Matudelatower\UbicacionBundle\Entity\Localidad", inversedBy="direccion")
+	 * @ORM\ManyToOne(targetEntity="Matudelatower\UbicacionBundle\Entity\Localidad")
 	 * @ORM\JoinColumn(name="localidad_id", referencedColumnName="id")
 	 */
 	private $localidad;

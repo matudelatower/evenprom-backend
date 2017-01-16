@@ -388,6 +388,22 @@ class Empresa extends BaseClass {
 
 	}
 
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("checkins")
+	 */
+	public function getCheckins() {
+
+		$return = false;
+
+		if ( $this->getCheckIn() ) {
+			$return = count( $this->getCheckIn() );
+		}
+
+		return $return;
+
+	}
+
 	private $likePersona = false;
 
 	/**

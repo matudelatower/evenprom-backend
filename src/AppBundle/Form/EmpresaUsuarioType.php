@@ -24,6 +24,11 @@ class EmpresaUsuarioType extends AbstractType {
 				array(
 					'label'              => 'form.username',
 					'translation_domain' => 'FOSUserBundle',
+					'attr'               => array(
+						'pattern'   => '^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$',
+						"oninvalid" => "setCustomValidity('Nombre de usuario no puede contener espacios')",
+						"onchange"  => "try{setCustomValidity('')}catch(e){}"
+					)
 				)
 			)
 			->add(
