@@ -44,7 +44,8 @@ class FOSUBUserProvider extends BaseClass {
 	 */
 	public function loadUserByOAuthUserResponse( UserResponseInterface $response ) {
 		$username = $response->getUsername();
-		$user     = $this->userManager->findUserBy( array( $this->getProperty( $response ) => $username ) );
+//		$user     = $this->userManager->findUserBy( array( $this->getProperty( $response ) => $username ) );
+		$user = $this->userManager->findUserByEmail( $response->getEmail() );
 		//when the user is registrating
 		if ( null === $user ) {
 			$service      = $response->getResourceOwner()->getName();
@@ -69,12 +70,23 @@ class FOSUBUserProvider extends BaseClass {
 			$persona->setUsuario( $user );
 
 			$user->addRole( 'ROLE_PERSONA' );
-			$user->addPersona($persona);
+			$user->addPersona( $persona );
 
 
 			$this->userManager->updateUser( $user );
 
 			return $user;
+		} else {
+			$service      = $response->getResourceOwner()->getName();
+			$setter       = 'set' . ucfirst( $service );
+			$setter_id    = $setter . 'Id';
+			$setter_token = $setter . 'AccessToken';
+			// create new user here
+
+			$user->$setter_id( $username );
+			$user->$setter_token( $response->getAccessToken() );
+
+			$this->userManager->updateUser( $user );
 		}
 		//if user exists - go with the HWIOAuth way
 		$user        = parent::loadUserByOAuthUserResponse( $response );

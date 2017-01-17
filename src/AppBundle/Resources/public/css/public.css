@@ -24,6 +24,31 @@ h6,
     padding: 0;
 }
 
+.navbar-center {
+    margin-left: 25%;
+    text-align: center;
+}
+
+.navbar-center a {
+    max-height: 50px;
+}
+
+.bs-docs-header {
+    font-size: 24px;
+    /*padding-bottom: 60px;*/
+    padding-top: 50px;
+    text-align: left;
+}
+
+.bs-docs-header {
+    font-size: 20px;
+    /*margin-bottom: 40px;*/
+}
+
+.fixed .content-wrapper, .fixed .right-side {
+    padding-top: 30px;
+}
+
 .main-header .navbar {
     background-color: #fff !important;
 }
