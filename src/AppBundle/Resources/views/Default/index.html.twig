@@ -78,14 +78,18 @@
                 <div class="box box-solid">
                     <div class="box-header with-border">
 
-                        <h3 class="box-title">Configurar Notificaciones</h3>
+                        <h3 class="box-title">
+                            <i class="fa fa-bell-o"></i>
+                            Configurar Notificaciones</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <a href='https://play.google.com/store/apps/details?id=com.evenprom.evenpromapp&hl=es&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img
-                                    alt='Disponible en Google Play'
-                                    class="img-responsive"
-                                    src='https://play.google.com/intl/en_us/badges/images/generic/es_badge_web_generic.png'/></a>
+                        <p class="text-center">
+                            <a href='https://play.google.com/store/apps/details?id=com.evenprom.evenpromapp&hl=es&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img
+                                        alt='Disponible en Google Play'
+
+                                        src='{{ asset('bundles/app/img/play-logo.png') }}'/></a>
+                        </p>
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -358,6 +362,27 @@
                     </a>
                 </div>
             </div>
+            <div class="row">
+                &nbsp;
+            </div>
+
+            {% for rubro in rubros %}
+                <div class="row">
+                    <div class="box" style="border-top-color: #{{ colores[loop.index0] }}">
+                        <div class="box-header with-border">
+
+                            <h3 class="box-title"><i class="fa {{ rubro.iconoWeb }}"></i> {{ rubro.nombre }}</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <img src="http://placehold.it/900x500/{{ colores[loop.index0] }}/ffffff&text={{ rubro.nombre }}"
+                                 alt="Second slide" class="img-responsive">
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            {% endfor %}
+
         </div>
     </div>
 

@@ -21,7 +21,7 @@ class EmpresasRestController extends FOSRestController {
 			}
 			foreach ( $empresa->getEmpresaOnda() as $empresaOnda ) {
 				if ( $empresaOnda->getOnda() ) {
-					$empresaOnda->getOnda()->setIcono( $hostOnda . $empresaOnda->getOnda()->getIcono() . '-only.png' );
+					$empresaOnda->getOnda()->setIcono( $hostOnda . $empresaOnda->getOnda()->getIcono() . '-color.png' );
 				}
 			}
 		}
@@ -47,7 +47,7 @@ class EmpresasRestController extends FOSRestController {
 
 		foreach ( $empresa->getEmpresaOnda() as $empresaOnda ) {
 			if ( $empresaOnda->getOnda() ) {
-				$empresaOnda->getOnda()->setIcono( $hostOnda . $empresaOnda->getOnda()->getIcono() . '-only.png' );
+				$empresaOnda->getOnda()->setIcono( $hostOnda . $empresaOnda->getOnda()->getIcono() . '-color.png' );
 			}
 		}
 
@@ -70,7 +70,7 @@ class EmpresasRestController extends FOSRestController {
 
 			foreach ( $empresa->getEmpresaOnda() as $empresaOnda ) {
 				if ( $empresaOnda->getOnda() ) {
-					$empresaOnda->getOnda()->setIcono( $hostOnda . $empresaOnda->getOnda()->getIcono() . '-only.png' );
+					$empresaOnda->getOnda()->setIcono( $hostOnda . $empresaOnda->getOnda()->getIcono() . '-color.png' );
 				}
 			}
 			if ( $empresa->getImageName() ) {
@@ -103,7 +103,7 @@ class EmpresasRestController extends FOSRestController {
 
 			foreach ( $empresa->getEmpresaOnda() as $empresaOnda ) {
 				if ( $empresaOnda->getOnda() ) {
-					$empresaOnda->getOnda()->setIcono( $hostOnda . $empresaOnda->getOnda()->getIcono() . '-only.png' );
+					$empresaOnda->getOnda()->setIcono( $hostOnda . $empresaOnda->getOnda()->getIcono() . '-color.png' );
 				}
 			}
 

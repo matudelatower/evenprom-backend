@@ -161,13 +161,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Brand</a>
+                    {#<a class="navbar-brand" href="#">Brand</a>#}
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active">
+                        <li {% if app.request.get('_route') == 'app_inicio' %}class="active"{% endif %}>
                             <a href="{{ path('app_inicio') }}">
                                 <i class="fa fa-home"></i>
                                 <span class="ep-celeste"><b>Even</b></span><span class="ep-fucsia"><b>Prom</b></span>
@@ -176,11 +176,14 @@
                                 </span>
                             </a>
                         </li>
-                        <li><a href="{{ path('sitios_index') }}"><span
-                                        class="glyphicon glyphicon-bullhorn"></span> {{ 'Sitios' |trans }}</a></li>
+                        <li {% if app.request.get('_route') == 'sitios_index' %}class="active"{% endif %}>
+                            <a href="{{ path('sitios_index') }}">
+                                <span class="glyphicon glyphicon-bullhorn"></span>
+                                {{ 'Sitios' |trans }}</a>
+                        </li>
 
                     </ul>
-                    <ul class="nav navbar-nav navbar-center">
+                    <ul class="nav navbar-nav navbar-center hidden-xs">
                         <li>
                             <a href="#">
                                 <img class="logo-navbar" src="{{ asset('bundles/app/img/favicon.png') }}">
@@ -192,8 +195,11 @@
                         {% if is_granted("ROLE_PERSONA") %}
                             {% include 'userPersonaDropdown.html.twig' %}
                         {% else %}
-                            <li><a href="{{ path('fos_user_security_login') }}"><i
-                                            class="fa fa-user"></i> {{ 'login' | trans }}</a></li>
+                            <li>
+                                <a href="{{ path('fos_user_security_login') }}">
+                                    <i class="fa fa-user"></i> {{ 'login' | trans }}
+                                </a>
+                            </li>
                             <li>
                                 <a href="https://play.google.com/store/apps/details?id=com.evenprom.evenpromapp&hl=es&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><i
                                             class="ion-android-playstore"></i> Descargar</a></li>
