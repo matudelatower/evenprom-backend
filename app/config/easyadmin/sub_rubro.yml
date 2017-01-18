@@ -4,7 +4,7 @@ easy_admin:
             class: AppBundle\Entity\SubRubro
             form:
                 fields:
-                    - { property: 'rubro' }
+                    - { property: 'rubro', type: 'entity', type_options: { class: 'AppBundle\Entity\Rubro', attr: { class: 'select2' }} }
                     - { property: 'nombre' }
                     - { property: 'descripcion' }
                     - { property: 'activo' }

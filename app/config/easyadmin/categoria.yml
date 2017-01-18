@@ -7,4 +7,4 @@ easy_admin:
                     - { property: 'nombre' }
                     - { property: 'descripcion' }
                     - { property: 'activo' }
-                    - { property: 'iconoWeb', type_options: { attr: { class: 'iconpicker' }} }
+                    - { property: 'iconoWeb', type_options: { attr: { class: 'iconpicker' } } }
