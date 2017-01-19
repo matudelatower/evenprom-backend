@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ site_name }} | Login</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/app/img/favicon.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/app/img/favicon.png') }}"/>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="robots" content="nofollow">
@@ -44,6 +44,31 @@
         .h6 {
             font-family: 'Poppins', sans-serif;
         }
+
+        @media screen and (max-width: 768px) {
+            .login-logo img {
+                margin-left: 40%;
+            }
+        }
+
+        @media screen and (min-width: 769px) {
+            .login-logo img {
+                margin-left: 33%;
+            }
+        }
+
+        @media screen and (max-width: 620px) {
+            .login-logo img {
+                margin-left: 33%;
+            }
+        }
+
+        .login-box {
+            margin: 1% auto;
+            width: 360px;
+        }
+
+
     </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -56,7 +81,10 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ path('app_inicio') }}">{{ site_name }}</a>
+        <a href="{{ path('app_inicio') }}">
+            <img src="{{ asset('bundles/app/img/120x120.png') }}" class="img-responsive">
+            <span>{{ site_name }}</span>
+        </a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">

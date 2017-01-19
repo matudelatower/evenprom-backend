@@ -38,6 +38,30 @@
         .h6 {
             font-family: 'Poppins', sans-serif;
         }
+
+        @media screen and (max-width: 768px) {
+            .register-logo img {
+                margin-left: 40%;
+            }
+        }
+
+        @media screen and (min-width: 769px) {
+            .register-logo img {
+                margin-left: 33%;
+            }
+        }
+
+        @media screen and (max-width: 620px) {
+            .register-logo img {
+                margin-left: 33%;
+            }
+        }
+
+        .register-box {
+            margin: 1% auto;
+            width: 360px;
+        }
+
     </style>
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('bundles/app/plugins/iCheck/square/blue.css') }}">
@@ -52,7 +76,10 @@
 <body class="hold-transition register-page">
 <div class="register-box">
     <div class="register-logo">
-        <a href="{{ path('app_homepage') }}">{{ site_name }}</a>
+        <a href="{{ path('app_homepage') }}">
+            <img src="{{ asset('bundles/app/img/120x120.png') }}" class="img-responsive">
+            <span>{{ site_name }}</span>
+        </a>
     </div>
 
     <div class="register-box-body">
