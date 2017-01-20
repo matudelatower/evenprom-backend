@@ -148,6 +148,20 @@ class Publicacion extends BaseClass {
 	private $checkIn;
 
 	/**
+	 * @var
+	 *
+	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TipoEvento")
+	 * @ORM\JoinColumn(name="tipo_evento_id", referencedColumnName="id")
+	 */
+	private $tipoEvento;
+
+	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\FechaPublicacion", mappedBy="publicacion")
+	 */
+	private $fechaPublicacion;
+
+	/**
 	 * NOTE: This is not a mapped field of entity metadata, just a simple property.
 	 *
 	 * @Vich\UploadableField(mapping="publicaciones_image", fileNameProperty="imageName")
@@ -975,4 +989,62 @@ class Publicacion extends BaseClass {
 	public function getCheckIn() {
 		return $this->checkIn;
 	}
+
+    /**
+     * Set tipoEvento
+     *
+     * @param \AppBundle\Entity\TipoEvento $tipoEvento
+     *
+     * @return Publicacion
+     */
+    public function setTipoEvento(\AppBundle\Entity\TipoEvento $tipoEvento = null)
+    {
+        $this->tipoEvento = $tipoEvento;
+
+        return $this;
+    }
+
+    /**
+     * Get tipoEvento
+     *
+     * @return \AppBundle\Entity\TipoEvento
+     */
+    public function getTipoEvento()
+    {
+        return $this->tipoEvento;
+    }
+
+    /**
+     * Add fechaPublicacion
+     *
+     * @param \AppBundle\Entity\FechaPublicacion $fechaPublicacion
+     *
+     * @return Publicacion
+     */
+    public function addFechaPublicacion(\AppBundle\Entity\FechaPublicacion $fechaPublicacion)
+    {
+        $this->fechaPublicacion[] = $fechaPublicacion;
+
+        return $this;
+    }
+
+    /**
+     * Remove fechaPublicacion
+     *
+     * @param \AppBundle\Entity\FechaPublicacion $fechaPublicacion
+     */
+    public function removeFechaPublicacion(\AppBundle\Entity\FechaPublicacion $fechaPublicacion)
+    {
+        $this->fechaPublicacion->removeElement($fechaPublicacion);
+    }
+
+    /**
+     * Get fechaPublicacion
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFechaPublicacion()
+    {
+        return $this->fechaPublicacion;
+    }
 }

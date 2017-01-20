@@ -51,7 +51,7 @@ function inicializarFecha() {
         showMeridian: false,
         defaultTime: false
     });
-    
+
     $(".select2").select2({
         language: twigLocale,
         "language": {

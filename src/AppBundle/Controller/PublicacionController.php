@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\CategoriaPublicacion;
 use AppBundle\Entity\DescuentoPublicacion;
+use AppBundle\Entity\FechaPublicacion;
 use AppBundle\Entity\PublicacionEmpresa;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -177,6 +178,16 @@ class PublicacionController extends Controller {
 			$publicacionEmpresa->setEmpresa( $empresa );
 			$publicacion->addPublicacionEmpresa( $publicacionEmpresa );
 
+			$aFechaPublicacion = explode( ',', $request->get( 'oferta' )['fechaPublicacion'] );
+
+			foreach ( $aFechaPublicacion as $fecha ) {
+				$fechaPublicacion = new FechaPublicacion();
+				$fechaPublicacion->setPublicacion( $publicacion );
+				$oFecha = \DateTime::createFromFormat( 'j/m/Y', $fecha );
+				$fechaPublicacion->setFecha( $oFecha );
+				$em->persist( $fechaPublicacion );
+			}
+
 			$em->persist( $publicacion );
 			$em->flush();
 
@@ -203,11 +214,42 @@ class PublicacionController extends Controller {
 	 */
 	public function editarOfertaAction( Request $request, Publicacion $publicacion ) {
 
+		$em = $this->getDoctrine()->getManager();
+
 		$editForm = $this->createForm( 'AppBundle\Form\OfertaType', $publicacion );
+
+		if ( $request->getMethod() == 'GET' ) {
+			$fechasPublicaciones = $em->getRepository( 'AppBundle:FechaPublicacion' )->findByPublicacion( $publicacion );
+
+			foreach ( $fechasPublicaciones as $fechasPublicacione ) {
+				$aFechas[] = $fechasPublicacione->getFecha()->format( 'd/m/Y' );
+
+			}
+			$dataFechas = implode( ",", $aFechas );
+
+			$editForm->get( 'fechaPublicacion' )->setData( $dataFechas );
+		}
+
 		$editForm->handleRequest( $request );
 
 		if ( $editForm->isSubmitted() && $editForm->isValid() ) {
-			$em = $this->getDoctrine()->getManager();
+
+			$fechasPublicaciones = $em->getRepository( 'AppBundle:FechaPublicacion' )->findByPublicacion( $publicacion );
+
+			foreach ( $fechasPublicaciones as $fechasPublicacione ) {
+				$em->remove( $fechasPublicacione );
+			}
+
+			$aFechaPublicacion = explode( ',', $request->get( 'oferta' )['fechaPublicacion'] );
+
+			foreach ( $aFechaPublicacion as $fecha ) {
+				$fechaPublicacion = new FechaPublicacion();
+				$fechaPublicacion->setPublicacion( $publicacion );
+				$oFecha = \DateTime::createFromFormat( 'j/m/Y', $fecha );
+				$fechaPublicacion->setFecha( $oFecha );
+				$em->persist( $fechaPublicacion );
+			}
+
 			$em->persist( $publicacion );
 			$em->flush();
 
@@ -251,6 +293,16 @@ class PublicacionController extends Controller {
 			$publicacionEmpresa->setEmpresa( $empresa );
 			$publicacion->addPublicacionEmpresa( $publicacionEmpresa );
 
+			$aFechaPublicacion = explode( ',', $request->get( 'evento' )['fechaPublicacion'] );
+
+			foreach ( $aFechaPublicacion as $fecha ) {
+				$fechaPublicacion = new FechaPublicacion();
+				$fechaPublicacion->setPublicacion( $publicacion );
+				$oFecha = \DateTime::createFromFormat( 'j/m/Y', $fecha );
+				$fechaPublicacion->setFecha( $oFecha );
+				$em->persist( $fechaPublicacion );
+			}
+
 			$em->persist( $publicacion );
 			$em->flush();
 
@@ -277,11 +329,42 @@ class PublicacionController extends Controller {
 	 */
 	public function editarEventoAction( Request $request, Publicacion $publicacion ) {
 
+		$em = $this->getDoctrine()->getManager();
+
 		$editForm = $this->createForm( 'AppBundle\Form\EventoType', $publicacion );
+
+		if ( $request->getMethod() == 'GET' ) {
+			$fechasPublicaciones = $em->getRepository( 'AppBundle:FechaPublicacion' )->findByPublicacion( $publicacion );
+
+			foreach ( $fechasPublicaciones as $fechasPublicacione ) {
+				$aFechas[] = $fechasPublicacione->getFecha()->format( 'd/m/Y' );
+
+			}
+			$dataFechas = implode( ",", $aFechas );
+
+			$editForm->get( 'fechaPublicacion' )->setData( $dataFechas );
+		}
+
 		$editForm->handleRequest( $request );
 
 		if ( $editForm->isSubmitted() && $editForm->isValid() ) {
-			$em = $this->getDoctrine()->getManager();
+
+			$fechasPublicaciones = $em->getRepository( 'AppBundle:FechaPublicacion' )->findByPublicacion( $publicacion );
+
+			foreach ( $fechasPublicaciones as $fechasPublicacione ) {
+				$em->remove( $fechasPublicacione );
+			}
+
+			$aFechaPublicacion = explode( ',', $request->get( 'evento' )['fechaPublicacion'] );
+
+			foreach ( $aFechaPublicacion as $fecha ) {
+				$fechaPublicacion = new FechaPublicacion();
+				$fechaPublicacion->setPublicacion( $publicacion );
+				$oFecha = \DateTime::createFromFormat( 'j/m/Y', $fecha );
+				$fechaPublicacion->setFecha( $oFecha );
+				$em->persist( $fechaPublicacion );
+			}
+
 			$em->persist( $publicacion );
 			$em->flush();
 
@@ -302,9 +385,8 @@ class PublicacionController extends Controller {
 			) );
 	}
 
-	public function redirectFbAction( $id )
-	{
-		return $this->redirectToRoute('publicacion_public_show', array('id'=> $id));
+	public function redirectFbAction( $id ) {
+		return $this->redirectToRoute( 'publicacion_public_show', array( 'id' => $id ) );
 	}
 
 

@@ -34,3 +34,14 @@
             <a class="btn btn-default" href="{{ path('publicaciones_index') }}">{{ 'button.backtolist'|trans }} </a>
         </div>
     {% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('.multidatepicker').datepicker({
+                format: "dd/mm/yyyy",
+                language: twigLocale,
+                multidate: true
+            });
+        });
+    </script>
+{% endblock javascripts %}

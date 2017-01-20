@@ -36,17 +36,22 @@ class PublicacionRepository extends EntityRepository {
 
 		$qb = $this->createQueryBuilder( 'p' );
 
-		$qb->join( 'p.publicacionEmpresa', 'pe' )
-		   ->join( 'pe.empresa', 'emp' );
+		$qb
+			->join( 'p.fechaPublicacion', 'fp' )
+			->join( 'p.publicacionEmpresa', 'pe' )
+			->join( 'pe.empresa', 'emp' );
 
-		$qb->where( 'p.fechaInicio <= :fechaActualMax' )
-		   ->andWhere( 'p.fechaFin >= :fechaActualMin' )
-		   ->andWhere( 'p.publicado = true' )
-		   ->orWhere( 'p.horaInicio >= :horaActual' );
+		$qb
+			->where( 'fp.fecha = :fechaPublicacion' )
+//			->where( 'p.fechaInicio <= :fechaActualMax' )
+//		   ->andWhere( 'p.fechaFin >= :fechaActualMin' )
+			->andWhere( 'p.publicado = true' )
+			->orWhere( 'p.horaInicio >= :horaActual' );
 		$fechaActual = new \DateTime( 'now' );
 
-		$qb->setParameter( 'fechaActualMax', $fechaActual->format( 'Y-m-d' ) . " 23:59:59" );
-		$qb->setParameter( 'fechaActualMin', $fechaActual->format( 'Y-m-d' ) . " 00:00:00" );
+		$qb->setParameter( 'fechaPublicacion', $fechaActual->format( 'Y-m-d' ) );
+//		$qb->setParameter( 'fechaActualMax', $fechaActual->format( 'Y-m-d' ) . " 23:59:59" );
+//		$qb->setParameter( 'fechaActualMin', $fechaActual->format( 'Y-m-d' ) . " 00:00:00" );
 		$qb->setParameter( 'horaActual', $fechaActual->format( 'H:i:s' ) );
 
 		if ( $fields ) {
@@ -86,6 +91,35 @@ class PublicacionRepository extends EntityRepository {
 	}
 
 	public function findActualesByEmpresa( $empresa ) {
+		$qb = $this->createQueryBuilder( 'p' );
+
+
+		$qb
+			->join( 'p.fechaPublicacion', 'fp' )
+			->join( 'p.publicacionEmpresa', 'pe' )
+			->join( 'pe.empresa', 'emp' );
+
+		$qb
+			->where( 'fp.fecha = :fechaPublicacion' )
+			->andWhere( 'p.publicado = true' )
+			->orWhere( 'p.horaInicio >= :horaActual' );
+
+		$qb->andWhere( 'pe.empresa = :empresa' )
+		   ->setParameter( 'empresa', $empresa );
+
+		$fechaActual = new \DateTime( 'now' );
+		$qb->setParameter( 'fechaPublicacion', $fechaActual->format( 'Y-m-d' ) );
+		$qb->setParameter( 'horaActual', $fechaActual->format( 'H:i:s' ) );
+
+
+		$qb->orderBy( 'p.horaInicio' );
+		$qb->addOrderBy( 'emp.premium' );
+
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function findAllActualesByEmpresa( $empresa ) {
 		$qb = $this->createQueryBuilder( 'p' );
 
 

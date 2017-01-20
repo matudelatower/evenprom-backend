@@ -8,4 +8,21 @@ easy_admin:
                     - { property: 'descripcion' }
                     - { property: 'valor' }
                     - { property: 'periodo', label: 'Periodo (en Dias)' }
-                    - { property: 'imageFile', type: 'vich_image' }
+                    - { property: 'botonMercadoPago' }
+                    - { property: 'botonPayPal' }
+                    - { property: 'geolocalizacion' }
+                    - { property: 'noticias' }
+                    - { property: 'cantidadPublicacionPremium' }
+                    - { property: 'cantidadPublicacionComun' }
+                    - { property: 'cantidadPublicacionExclusiva' }
+                    - { property: 'perfilEmpresaVideo' }
+                    - { property: 'perfilEmpresaFoto' }
+                    - { property: 'perfilEmpresaSlideFotos' }
+                    - { property: 'perfilEmpresallamada' }
+                    - { property: 'compartir' }
+                    - { property: 'linkWeb' }
+                    - { property: 'botonLlamar' }
+                    - { property: 'deepLink' }
+                    - { property: 'mailingOperador' }
+                    - { property: 'usuarioVipBrasil' }
+                    - { property: 'imageFile', type: 'vich_image', label: 'Imagen' }

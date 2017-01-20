@@ -7,12 +7,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class PlanEmpresaController extends Controller {
+
 	public function indexAction( Request $request ) {
+
 		$em = $this->getDoctrine()->getManager();
 
-		$planBasic   = $em->getRepository( 'AppBundle:Plan' )->findOneBySlug( 'basic' );
-		$planPlus    = $em->getRepository( 'AppBundle:Plan' )->findOneBySlug( 'plus' );
-		$planPremium = $em->getRepository( 'AppBundle:Plan' )->findOneBySlug( 'premium' );
+		$criteria = array( 'activo' => true );
+
+		$planes = $em->getRepository( 'AppBundle:Plan' )->findBy( $criteria );
 
 		$empresa = $this->getUser()->getEmpresa()->first();
 
@@ -20,9 +22,7 @@ class PlanEmpresaController extends Controller {
 
 		return $this->render( ':planempresa:index.html.twig',
 			array(
-				'planBasic'   => $planBasic,
-				'planPlus'    => $planPlus,
-				'planPremium' => $planPremium,
+				'planes'      => $planes,
 				'planEmpresa' => $planEmpresa,
 			)
 		);
@@ -44,12 +44,12 @@ class PlanEmpresaController extends Controller {
 					$this->get( 'session' )->getFlashBag()->add(
 						'warning',
 						$this->get( 'translator' )->trans( '%entity%',
-							array( '%entity%' => 'Tu Plan está activo hasta el '. $item->getVencimiento()->format('d/m/Y') ),
+							array( '%entity%' => 'Tu Plan está activo hasta el ' . $item->getVencimiento()->format( 'd/m/Y' ) ),
 							'flashes' )
 					);
 
 					return $this->redirectToRoute( 'plan_empresa_index' );
-				}else{
+				} else {
 					$this->get( 'session' )->getFlashBag()->add(
 						'warning',
 						$this->get( 'translator' )->trans( '%entity%',

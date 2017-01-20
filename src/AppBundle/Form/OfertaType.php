@@ -52,7 +52,7 @@ class OfertaType extends AbstractType {
 				DateType::class,
 				array(
 					'widget' => 'single_text',
-					'format' => 'dd-MM-yyyy',
+					'format' => 'dd/MM/yyyy',
 					'attr'   => array(
 						'class'       => 'datepicker',
 						'placeholder' => "Fecha de inicio de la oferta ",
@@ -62,10 +62,19 @@ class OfertaType extends AbstractType {
 				DateType::class,
 				array(
 					'widget' => 'single_text',
-					'format' => 'dd-MM-yyyy',
+					'format' => 'dd/MM/yyyy',
 					'attr'   => array(
 						'class'       => 'datepicker',
 						'placeholder' => "Fecha de fin de la oferta ",
+					),
+				) )
+			->add( 'fechaPublicacion',
+				TextType::class,
+				array(
+					'mapped' => false,
+					'attr'   => array(
+						'class'       => 'multidatepicker',
+						'placeholder' => "Fecha de en la que aparecerá la publicación",
 					),
 				) )
 			->add( 'descuentoPublicacion',

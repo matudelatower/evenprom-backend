@@ -68,7 +68,7 @@
            href="{% if publicacion.tipoPublicacion.slug =='evento' %}
                                             {{ path('evento_edit', { 'id': publicacion.id }) }}
                                         {% elseif publicacion.tipoPublicacion.slug =='oferta' %}
-                                            {{ path('evento_edit', { 'id': publicacion.id }) }}
+                                            {{ path('oferta_edit', { 'id': publicacion.id }) }}
                                         {% endif %}">{{ 'button.edit'|trans }}</a>
 
     </div>

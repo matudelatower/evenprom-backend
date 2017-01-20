@@ -227,7 +227,7 @@ h6,
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
     bottom: 25%;
-    top: 69%;
+    top: 64%;
     color: #fff;
     float: right;
     /*height: 15%;*/
@@ -235,7 +235,7 @@ h6,
     right: 4.5%;
     z-index: 999;
     text-align: right;
-    padding: 1%;
+    padding: 2%;
 }
 
 .ep-btn-share {

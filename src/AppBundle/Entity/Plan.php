@@ -6,6 +6,7 @@ use AppBundle\Entity\Base\BaseClass;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Plan
@@ -57,6 +58,7 @@ class Plan extends BaseClass
 	 * @var string
 	 *
 	 * @ORM\Column(name="slug", type="string", length=255, nullable=true)
+	 * @Gedmo\Slug(fields={"nombre"})
 	 */
 	private $slug;
 
@@ -100,9 +102,16 @@ class Plan extends BaseClass
 	/**
 	 * @var boolean
 	 *
-	 * @ORM\Column(name="cantidad_publicaciones_comun", type="integer", nullable=true)
+	 * @ORM\Column(name="cantidad_publicacion_comun", type="integer", nullable=true)
 	 */
-	private $cantidadPublicacionesComun;
+	private $cantidadPublicacionComun;
+
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="cantidad_publicacion_exclusiva", type="integer", nullable=true)
+	 */
+	private $cantidadPublicacionExclusiva;
 
 	/**
 	 * @var boolean
@@ -110,6 +119,13 @@ class Plan extends BaseClass
 	 * @ORM\Column(name="perfil_empresa_video", type="boolean", nullable=true)
 	 */
 	private $perfilEmpresaVideo;
+
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="perfil_empresa_foto", type="boolean", nullable=true)
+	 */
+	private $perfilEmpresaFoto;
 
 
 	/**
@@ -125,6 +141,48 @@ class Plan extends BaseClass
 	 * @ORM\Column(name="perfil_empresa_llamada", type="boolean", nullable=true)
 	 */
 	private $perfilEmpresallamada;
+
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="compartir", type="boolean", nullable=true)
+	 */
+	private $compartir;
+
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="link_web", type="boolean", nullable=true)
+	 */
+	private $linkWeb;
+
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="boton_llamar", type="boolean", nullable=true)
+	 */
+	private $botonLlamar;
+
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="deep_link", type="boolean", nullable=true)
+	 */
+	private $deepLink;
+
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="mailing_operador", type="boolean", nullable=true)
+	 */
+	private $mailingOperador;
+
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="usuario_vip_brasil", type="boolean", nullable=true)
+	 */
+	private $usuarioVipBrasil;
 
 
 
@@ -193,10 +251,11 @@ class Plan extends BaseClass
 	}
 
 
+
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -297,62 +356,6 @@ class Plan extends BaseClass
     public function getPeriodo()
     {
         return $this->periodo;
-    }
-
-    /**
-     * Set fechaCreacion
-     *
-     * @param \DateTime $fechaCreacion
-     *
-     * @return Plan
-     */
-    public function setFechaCreacion($fechaCreacion)
-    {
-        $this->fechaCreacion = $fechaCreacion;
-
-        return $this;
-    }
-
-    /**
-     * Set fechaActualizacion
-     *
-     * @param \DateTime $fechaActualizacion
-     *
-     * @return Plan
-     */
-    public function setFechaActualizacion($fechaActualizacion)
-    {
-        $this->fechaActualizacion = $fechaActualizacion;
-
-        return $this;
-    }
-
-    /**
-     * Set creadoPor
-     *
-     * @param \UsuariosBundle\Entity\Usuario $creadoPor
-     *
-     * @return Plan
-     */
-    public function setCreadoPor(\UsuariosBundle\Entity\Usuario $creadoPor = null)
-    {
-        $this->creadoPor = $creadoPor;
-
-        return $this;
-    }
-
-    /**
-     * Set actualizadoPor
-     *
-     * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
-     *
-     * @return Plan
-     */
-    public function setActualizadoPor(\UsuariosBundle\Entity\Usuario $actualizadoPor = null)
-    {
-        $this->actualizadoPor = $actualizadoPor;
-
-        return $this;
     }
 
     /**
@@ -500,27 +503,51 @@ class Plan extends BaseClass
     }
 
     /**
-     * Set cantidadPublicacionesComun
+     * Set cantidadPublicacionComun
      *
-     * @param integer $cantidadPublicacionesComun
+     * @param integer $cantidadPublicacionComun
      *
      * @return Plan
      */
-    public function setCantidadPublicacionesComun($cantidadPublicacionesComun)
+    public function setCantidadPublicacionComun($cantidadPublicacionComun)
     {
-        $this->cantidadPublicacionesComun = $cantidadPublicacionesComun;
+        $this->cantidadPublicacionComun = $cantidadPublicacionComun;
 
         return $this;
     }
 
     /**
-     * Get cantidadPublicacionesComun
+     * Get cantidadPublicacionComun
      *
      * @return integer
      */
-    public function getCantidadPublicacionesComun()
+    public function getCantidadPublicacionComun()
     {
-        return $this->cantidadPublicacionesComun;
+        return $this->cantidadPublicacionComun;
+    }
+
+    /**
+     * Set cantidadPublicacionExclusiva
+     *
+     * @param integer $cantidadPublicacionExclusiva
+     *
+     * @return Plan
+     */
+    public function setCantidadPublicacionExclusiva($cantidadPublicacionExclusiva)
+    {
+        $this->cantidadPublicacionExclusiva = $cantidadPublicacionExclusiva;
+
+        return $this;
+    }
+
+    /**
+     * Get cantidadPublicacionExclusiva
+     *
+     * @return integer
+     */
+    public function getCantidadPublicacionExclusiva()
+    {
+        return $this->cantidadPublicacionExclusiva;
     }
 
     /**
@@ -545,6 +572,30 @@ class Plan extends BaseClass
     public function getPerfilEmpresaVideo()
     {
         return $this->perfilEmpresaVideo;
+    }
+
+    /**
+     * Set perfilEmpresaFoto
+     *
+     * @param boolean $perfilEmpresaFoto
+     *
+     * @return Plan
+     */
+    public function setPerfilEmpresaFoto($perfilEmpresaFoto)
+    {
+        $this->perfilEmpresaFoto = $perfilEmpresaFoto;
+
+        return $this;
+    }
+
+    /**
+     * Get perfilEmpresaFoto
+     *
+     * @return boolean
+     */
+    public function getPerfilEmpresaFoto()
+    {
+        return $this->perfilEmpresaFoto;
     }
 
     /**
@@ -593,5 +644,205 @@ class Plan extends BaseClass
     public function getPerfilEmpresallamada()
     {
         return $this->perfilEmpresallamada;
+    }
+
+    /**
+     * Set compartir
+     *
+     * @param boolean $compartir
+     *
+     * @return Plan
+     */
+    public function setCompartir($compartir)
+    {
+        $this->compartir = $compartir;
+
+        return $this;
+    }
+
+    /**
+     * Get compartir
+     *
+     * @return boolean
+     */
+    public function getCompartir()
+    {
+        return $this->compartir;
+    }
+
+    /**
+     * Set linkWeb
+     *
+     * @param boolean $linkWeb
+     *
+     * @return Plan
+     */
+    public function setLinkWeb($linkWeb)
+    {
+        $this->linkWeb = $linkWeb;
+
+        return $this;
+    }
+
+    /**
+     * Get linkWeb
+     *
+     * @return boolean
+     */
+    public function getLinkWeb()
+    {
+        return $this->linkWeb;
+    }
+
+    /**
+     * Set botonLlamar
+     *
+     * @param boolean $botonLlamar
+     *
+     * @return Plan
+     */
+    public function setBotonLlamar($botonLlamar)
+    {
+        $this->botonLlamar = $botonLlamar;
+
+        return $this;
+    }
+
+    /**
+     * Get botonLlamar
+     *
+     * @return boolean
+     */
+    public function getBotonLlamar()
+    {
+        return $this->botonLlamar;
+    }
+
+    /**
+     * Set deepLink
+     *
+     * @param boolean $deepLink
+     *
+     * @return Plan
+     */
+    public function setDeepLink($deepLink)
+    {
+        $this->deepLink = $deepLink;
+
+        return $this;
+    }
+
+    /**
+     * Get deepLink
+     *
+     * @return boolean
+     */
+    public function getDeepLink()
+    {
+        return $this->deepLink;
+    }
+
+    /**
+     * Set mailingOperador
+     *
+     * @param boolean $mailingOperador
+     *
+     * @return Plan
+     */
+    public function setMailingOperador($mailingOperador)
+    {
+        $this->mailingOperador = $mailingOperador;
+
+        return $this;
+    }
+
+    /**
+     * Get mailingOperador
+     *
+     * @return boolean
+     */
+    public function getMailingOperador()
+    {
+        return $this->mailingOperador;
+    }
+
+    /**
+     * Set usuarioVipBrasil
+     *
+     * @param boolean $usuarioVipBrasil
+     *
+     * @return Plan
+     */
+    public function setUsuarioVipBrasil($usuarioVipBrasil)
+    {
+        $this->usuarioVipBrasil = $usuarioVipBrasil;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioVipBrasil
+     *
+     * @return boolean
+     */
+    public function getUsuarioVipBrasil()
+    {
+        return $this->usuarioVipBrasil;
+    }
+
+    /**
+     * Set fechaCreacion
+     *
+     * @param \DateTime $fechaCreacion
+     *
+     * @return Plan
+     */
+    public function setFechaCreacion($fechaCreacion)
+    {
+        $this->fechaCreacion = $fechaCreacion;
+
+        return $this;
+    }
+
+    /**
+     * Set fechaActualizacion
+     *
+     * @param \DateTime $fechaActualizacion
+     *
+     * @return Plan
+     */
+    public function setFechaActualizacion($fechaActualizacion)
+    {
+        $this->fechaActualizacion = $fechaActualizacion;
+
+        return $this;
+    }
+
+    /**
+     * Set creadoPor
+     *
+     * @param \UsuariosBundle\Entity\Usuario $creadoPor
+     *
+     * @return Plan
+     */
+    public function setCreadoPor(\UsuariosBundle\Entity\Usuario $creadoPor = null)
+    {
+        $this->creadoPor = $creadoPor;
+
+        return $this;
+    }
+
+    /**
+     * Set actualizadoPor
+     *
+     * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
+     *
+     * @return Plan
+     */
+    public function setActualizadoPor(\UsuariosBundle\Entity\Usuario $actualizadoPor = null)
+    {
+        $this->actualizadoPor = $actualizadoPor;
+
+        return $this;
     }
 }

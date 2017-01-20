@@ -1,0 +1,15 @@
+easy_admin:
+    entities:
+        TipoEvento:
+            class: AppBundle\Entity\TipoEvento
+            form:
+                fields:
+                    - { property: 'nombre' }
+                    - { property: 'descripcion' }
+                    - { property: 'activo' }
+            edit:
+                title:  'Editar Tipo Evento'
+            new:
+                title:  'Alta Tipo Evento'
+            list:
+                title:  'Tipo Evento'

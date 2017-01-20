@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -52,7 +53,7 @@ class EventoType extends AbstractType {
 				DateType::class,
 				array(
 					'widget' => 'single_text',
-					'format' => 'dd-MM-yyyy',
+					'format' => 'dd/MM/yyyy',
 					'attr'   => array(
 						'class'       => 'datepicker',
 						'placeholder' => "Fecha de inicio de evento/oferta ",
@@ -62,10 +63,19 @@ class EventoType extends AbstractType {
 				DateType::class,
 				array(
 					'widget' => 'single_text',
-					'format' => 'dd-MM-yyyy',
+					'format' => 'dd/MM/yyyy',
 					'attr'   => array(
 						'class'       => 'datepicker',
 						'placeholder' => "Fecha de fin de evento/oferta ",
+					),
+				) )
+			->add( 'fechaPublicacion',
+				TextType::class,
+				array(
+					'mapped' => false,
+					'attr'   => array(
+						'class'       => 'multidatepicker',
+						'placeholder' => "Fecha de en la que aparecerá la publicación",
 					),
 				) )
 			->add( 'horaInicio',
@@ -103,6 +113,14 @@ class EventoType extends AbstractType {
 					'attr'    => array(
 						'placeholder' => 'Descripcion larga del evento.'
 					),
+				) )
+			->add( 'tipoEvento',
+				EntityType::class,
+				array(
+					'class' => 'AppBundle\Entity\TipoEvento',
+					'attr'  => array(
+						'class' => 'select2'
+					)
 				) )
 			->add( 'publicado' );
 	}
