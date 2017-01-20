@@ -54,6 +54,7 @@ class DefaultController extends Controller {
 				'empresas'  => $empresas,
 				'rubros'    => $rubros,
 				'favoritos' => $favoritos,
+				'muestraBanner' => false
 			) );
 	}
 
@@ -84,39 +85,51 @@ class DefaultController extends Controller {
 				'noticiasEmpresa'     => $noticias,
 				'favoritos'           => $favoritos,
 				'fotosPersonaEmpresa' => $fotosPersonaEmpresa,
+				'muestraBanner' => false
 			) );
 	}
 
 	public function indexAppAction( Request $request, $empresa = null ) {
 
-		$em = $this->getDoctrine();
+		if ( $request->get( 'ver_inicio' ) ) {
 
-		$favoritos = array();
+			$em = $this->getDoctrine();
 
-		if ( $this->getUser() && $this->getUser()->getPersona() ) {
-			$favoritos = $em->getRepository( "AppBundle:Favorito" )->findPublicacionesFavoritas(
-				$this->getUser()->getPersona()->first()
-			);
-		}
+			$favoritos = array();
 
-		if ( $empresa ) {
-			$oEmpresa      = $em->getRepository( "AppBundle:Empresa" )->find( $empresa );
-			$publicaciones = $em->getRepository( "AppBundle:Publicacion" )->findActualesByEmpresa( $oEmpresa );
+			if ( $this->getUser() && $this->getUser()->getPersona() ) {
+				$favoritos = $em->getRepository( "AppBundle:Favorito" )->findPublicacionesFavoritas(
+					$this->getUser()->getPersona()->first()
+				);
+			}
+
+			if ( $empresa ) {
+				$oEmpresa      = $em->getRepository( "AppBundle:Empresa" )->find( $empresa );
+				$publicaciones = $em->getRepository( "AppBundle:Publicacion" )->findActualesByEmpresa( $oEmpresa );
+			} else {
+				$publicaciones = $em->getRepository( "AppBundle:Publicacion" )->findActuales();
+			}
+
+			$promoCalendario = $em->getRepository( 'AppBundle:PromocionCalendario' )->findActualesAdquiridas();
+
+			$rubros = $em->getRepository( 'AppBundle:Rubro' )->findAll();
+
+
+			return $this->render( 'AppBundle:Default:index.html.twig',
+				array(
+					'publicaciones'   => $publicaciones,
+					'promoCalendario' => $promoCalendario,
+					'favoritos'       => $favoritos,
+					'rubros'          => $rubros,
+					'muestraBanner'   => true
+				) );
+
 		} else {
-			$publicaciones = $em->getRepository( "AppBundle:Publicacion" )->findActuales();
+			return $this->render( 'AppBundle:Default:landing.html.twig',
+				array(
+					'muestraBanner' => false
+				) );
 		}
-
-		$promoCalendario = $em->getRepository( 'AppBundle:PromocionCalendario' )->findActualesAdquiridas();
-
-		$rubros = $em->getRepository( 'AppBundle:Rubro' )->findAll();
-
-
-		return $this->render( 'AppBundle:Default:index.html.twig',
-			array(
-				'publicaciones'   => $publicaciones,
-				'promoCalendario' => $promoCalendario,
-				'favoritos'       => $favoritos,
-				'rubros'          => $rubros,
-			) );
 	}
+
 }

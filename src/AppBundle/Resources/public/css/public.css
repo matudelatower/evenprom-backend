@@ -407,6 +407,7 @@ h6,
     z-index: 999;
     text-align: right;
     padding: 1%;
+    max-width: 200px;
 }
 
 .ep-btn-oferta-favear-modal {
