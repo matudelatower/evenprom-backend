@@ -2,6 +2,8 @@
 {% trans_default_domain "app" %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('bundles/app/plugins/colorpicker/bootstrap-colorpicker.min.css') }}">
+    {#leaflet#}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>
     <style>
         .widget-user .widget-user-image {
             left: 50%;
@@ -25,6 +27,16 @@
         .users-list > li {
             width: 33%;
         }
+
+        #mapid {
+            height: 300px;
+        }
+
+        .search-input,
+        .leaflet-control-search {
+            max-width: 400px;
+        }
+
     </style>
 {% endblock stylesheets %}
 {% block content %}
@@ -120,6 +132,19 @@
                             </ul>
                         </div>
                     </div>
+                    {{ form_row(form.cuit) }}
+                    {{ form_row(form.linkYoutube) }}
+                    {{ form_row(form.linkFacebook) }}
+                    {{ form_row(form.linkTwitter) }}
+                    {{ form_row(form.linkInstagram) }}
+                    {{ form_row(form.imageFile) }}
+                    {{ form_row(form.direccionEmpresa) }}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span>Para mejorar tu direccion arrastra el pin hasta tu ubicación.</span>
+                            <div id="mapid"></div>
+                        </div>
+                    </div>
                     {{ form_rest(form) }}
                     <button type="submit" class="btn btn-primary"><i
                                 class="fa fa-save"></i> {{ 'button.guardar' |trans }}</button>
@@ -132,6 +157,8 @@
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('bundles/app/plugins/colorpicker/bootstrap-colorpicker.min.js') }}"></script>
+    {#leaflet#}
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script>
         var hexDigits = new Array
         ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f");
@@ -151,7 +178,44 @@
             $(".btn-color").click(function () {
                 var color = $(this).css('background-color');
                 $('#{{ form.color.vars.id }}').val(rgb2hex(color));
-            })
+            });
+
+            var map = L.map('mapid', {doubleClickZoom: false}).locate({setView: true, maxZoom: 16});
+            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+                maxZoom: 18
+            }).addTo(map);
+
+            map.on('click', function (e) {
+                if (typeof marker === 'undefined') {
+                    marker = new L.marker(e.latlng, {draggable: 'true'});
+
+                    console.log(e.latlng);
+
+                    $('.direccion-lat').val(e.latlng.lat);
+                    $('.direccion-lng').val(e.latlng.lng);
+
+                    marker.on('dragend', function (event) {
+                        var marker = event.target;
+                        var position = marker.getLatLng();
+                        console.log(position);
+                        marker.setLatLng(position, {draggable: 'true'}).bindPopup(position).update();
+
+                        $('.direccion-lat').val(position.lat);
+                        $('.direccion-lng').val(position.lng)
+
+                    });
+                    map.addLayer(marker);
+                } else {
+                    marker.setLatLng(e.latlng, {draggable: 'true'}).bindPopup(e.latlng).update();
+                    var position = marker.getLatLng();
+                    console.log(position);
+                    $('.direccion-lat').val(position.lat);
+                    $('.direccion-lng').val(position.lng)
+                }
+            });
+
+
         });
     </script>
     {% include 'UbicacionBundle:Default:matudelatower_ubicacionbundle.js.twig' %}

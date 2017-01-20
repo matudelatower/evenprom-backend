@@ -83,6 +83,22 @@ class Direccion extends BaseClass {
 	 */
 	private $direccionEmpresa;
 
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="lat", type="string", length=255, nullable=true)
+	 * @Expose()
+	 */
+	private $lat;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="lng", type="string", length=255, nullable=true)
+	 * @Expose()
+	 */
+	private $lng;
+
 
 	/**
 	 * @VirtualProperty()
@@ -381,5 +397,53 @@ class Direccion extends BaseClass {
     public function getDireccionEmpresa()
     {
         return $this->direccionEmpresa;
+    }
+
+    /**
+     * Set lat
+     *
+     * @param string $lat
+     *
+     * @return Direccion
+     */
+    public function setLat($lat)
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    /**
+     * Get lat
+     *
+     * @return string
+     */
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    /**
+     * Set lng
+     *
+     * @param string $lng
+     *
+     * @return Direccion
+     */
+    public function setLng($lng)
+    {
+        $this->lng = $lng;
+
+        return $this;
+    }
+
+    /**
+     * Get lng
+     *
+     * @return string
+     */
+    public function getLng()
+    {
+        return $this->lng;
     }
 }
