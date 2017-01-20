@@ -360,10 +360,10 @@ class Empresa extends BaseClass {
 
 		$return = array();
 
-		if ( $this->getEmpresaSubRubro() && !$this->getEmpresaSubRubro()->isEmpty() ) {
+		if ( $this->getEmpresaSubRubro() ) {
 			foreach ( $this->getEmpresaSubRubro() as $empresaSubRubro ) {
 
-				$return[] = $empresaSubRubro->getSubRubro()->getRubro();
+				$return[] = $empresaSubRubro->getSubRubro() ? $empresaSubRubro->getSubRubro()->getRubro() : null;
 
 			}
 		}
@@ -1185,95 +1185,87 @@ class Empresa extends BaseClass {
 		return $this->favorito;
 	}
 
-    /**
-     * Set cuit
-     *
-     * @param string $cuit
-     *
-     * @return Empresa
-     */
-    public function setCuit($cuit)
-    {
-        $this->cuit = $cuit;
+	/**
+	 * Set cuit
+	 *
+	 * @param string $cuit
+	 *
+	 * @return Empresa
+	 */
+	public function setCuit( $cuit ) {
+		$this->cuit = $cuit;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get cuit
-     *
-     * @return string
-     */
-    public function getCuit()
-    {
-        return $this->cuit;
-    }
+	/**
+	 * Get cuit
+	 *
+	 * @return string
+	 */
+	public function getCuit() {
+		return $this->cuit;
+	}
 
-    /**
-     * Add checkIn
-     *
-     * @param \AppBundle\Entity\CheckIn $checkIn
-     *
-     * @return Empresa
-     */
-    public function addCheckIn(\AppBundle\Entity\CheckIn $checkIn)
-    {
-        $this->checkIn[] = $checkIn;
+	/**
+	 * Add checkIn
+	 *
+	 * @param \AppBundle\Entity\CheckIn $checkIn
+	 *
+	 * @return Empresa
+	 */
+	public function addCheckIn( \AppBundle\Entity\CheckIn $checkIn ) {
+		$this->checkIn[] = $checkIn;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Remove checkIn
-     *
-     * @param \AppBundle\Entity\CheckIn $checkIn
-     */
-    public function removeCheckIn(\AppBundle\Entity\CheckIn $checkIn)
-    {
-        $this->checkIn->removeElement($checkIn);
-    }
+	/**
+	 * Remove checkIn
+	 *
+	 * @param \AppBundle\Entity\CheckIn $checkIn
+	 */
+	public function removeCheckIn( \AppBundle\Entity\CheckIn $checkIn ) {
+		$this->checkIn->removeElement( $checkIn );
+	}
 
-    /**
-     * Get checkIn
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCheckIn()
-    {
-        return $this->checkIn;
-    }
+	/**
+	 * Get checkIn
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getCheckIn() {
+		return $this->checkIn;
+	}
 
-    /**
-     * Add publicacionEmpresa
-     *
-     * @param \AppBundle\Entity\PublicacionEmpresa $publicacionEmpresa
-     *
-     * @return Empresa
-     */
-    public function addPublicacionEmpresa(\AppBundle\Entity\PublicacionEmpresa $publicacionEmpresa)
-    {
-        $this->publicacionEmpresa[] = $publicacionEmpresa;
+	/**
+	 * Add publicacionEmpresa
+	 *
+	 * @param \AppBundle\Entity\PublicacionEmpresa $publicacionEmpresa
+	 *
+	 * @return Empresa
+	 */
+	public function addPublicacionEmpresa( \AppBundle\Entity\PublicacionEmpresa $publicacionEmpresa ) {
+		$this->publicacionEmpresa[] = $publicacionEmpresa;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Remove publicacionEmpresa
-     *
-     * @param \AppBundle\Entity\PublicacionEmpresa $publicacionEmpresa
-     */
-    public function removePublicacionEmpresa(\AppBundle\Entity\PublicacionEmpresa $publicacionEmpresa)
-    {
-        $this->publicacionEmpresa->removeElement($publicacionEmpresa);
-    }
+	/**
+	 * Remove publicacionEmpresa
+	 *
+	 * @param \AppBundle\Entity\PublicacionEmpresa $publicacionEmpresa
+	 */
+	public function removePublicacionEmpresa( \AppBundle\Entity\PublicacionEmpresa $publicacionEmpresa ) {
+		$this->publicacionEmpresa->removeElement( $publicacionEmpresa );
+	}
 
-    /**
-     * Get publicacionEmpresa
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPublicacionEmpresa()
-    {
-        return $this->publicacionEmpresa;
-    }
+	/**
+	 * Get publicacionEmpresa
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getPublicacionEmpresa() {
+		return $this->publicacionEmpresa;
+	}
 }
