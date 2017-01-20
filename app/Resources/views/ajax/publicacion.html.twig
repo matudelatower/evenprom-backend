@@ -191,20 +191,22 @@ or publicacion.publicacionEmpresa.first.empresa.premium == false %}
             url: "//maps.googleapis.com/maps/api/geocode/json?address=" + address + "&sensor=false",
             type: "POST",
             success: function (res) {
-                lat = res.results[0].geometry.location.lat;
-                long = res.results[0].geometry.location.lng;
-                console.log(long);
-                $('#btn-maps').attr('href', 'https://www.google.com/maps/place/' + lat + ',' + long);
+                if (res.status == 'OK') {
+                    lat = res.results[0].geometry.location.lat;
+                    long = res.results[0].geometry.location.lng;
+                    console.log(long);
+                    $('#btn-maps').attr('href', 'https://www.google.com/maps/place/' + lat + ',' + long);
 
-                var map = L.map('mapid').setView([lat, long],
-                    15);
+                    var map = L.map('mapid').setView([lat, long],
+                        15);
 
-                L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-                    maxZoom: 18
-                }).addTo(map);
+                    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+                        maxZoom: 18
+                    }).addTo(map);
 
-                L.marker([lat, long], {draggable: false}).addTo(map);
+                    L.marker([lat, long], {draggable: false}).addTo(map);
+                }
 
             },
 
