@@ -360,7 +360,7 @@ class Empresa extends BaseClass {
 
 		$return = array();
 
-		if ( $this->getEmpresaSubRubro() ) {
+		if ( $this->getEmpresaSubRubro() && !$this->getEmpresaSubRubro()->isEmpty() ) {
 			foreach ( $this->getEmpresaSubRubro() as $empresaSubRubro ) {
 
 				$return[] = $empresaSubRubro->getSubRubro()->getRubro();
