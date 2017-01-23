@@ -4,8 +4,4 @@ easy_admin:
             class: AppBundle\Entity\PlanEmpresa
             form:
                 fields:
-                    - { property: 'nombre' }
-                    - { property: 'descripcion' }
-                    - { property: 'valor' }
-                    - { property: 'periodo', label: 'Periodo (en Dias)' }
-                    - { property: 'imageFile', type: 'vich_image' }
+                    - { property: 'vencimiento' }

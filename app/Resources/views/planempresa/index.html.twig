@@ -33,8 +33,14 @@
                                         Adquirir
                                     </a>
                                 {% else %}
-                                    {{ plan.botonMercadoPago | raw }}
-                                    {{ plan.botonPayPal | raw }}
+                                    {% if plan.botonMercadoPago %}
+                                        <div>MercadoPago</div>
+                                        {{ plan.botonMercadoPago | raw }}
+                                    {% endif %}
+                                    {% if plan.botonPayPal %}
+                                        <div>PayPal</div>
+                                        {{ plan.botonPayPal | raw }}
+                                    {% endif %}
                                 {% endif %}
                             {% endif %}
                         </div>

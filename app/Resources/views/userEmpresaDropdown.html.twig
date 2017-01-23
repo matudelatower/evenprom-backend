@@ -19,7 +19,7 @@
                                 " class="img-circle" alt="User Image">
 
             <p>
-                {{ app.user.empresa.first }} - {% if (app.user.empresa.first.rubros | length) > 0  %}
+                {{ app.user.empresa.first }} - {% if (app.user.empresa.first.rubros | length) > 0 %}
                     {{ app.user.empresa.first.rubros[0] }}
                 {% else %}
                     {{ 'sin.categoria' | trans }}
@@ -28,22 +28,22 @@
             </p>
         </li>
         <!-- Menu Body -->
-        {#<li class="user-body">#}
-            {#<div class="row">#}
-                {#<div class="col-xs-4 text-center">#}
-                    {#<span>{{ app.user.empresa.first.checkins }}</span>#}
-                    {#<a href="#">CheckIns</a>#}
-                {#</div>#}
-                {#<div class="col-xs-4 text-center">#}
-                    {#<span>{{ app.user.empresa.first.likes }}</span>#}
-                    {#<a href="#">Likes</a>#}
-                {#</div>#}
-                {#<div class="col-xs-4 text-center">#}
-                    {#<a href="#">Ranking</a>#}
-                {#</div>#}
-            {#</div>#}
-            {#<!-- /.row -->#}
-        {#</li>#}
+        <li class="user-body">
+            <div class="row">
+                <div class="col-xs-4 text-center">
+                    <span>{{ app.user.empresa.first.checkins }}</span>
+                    <a href="#">CheckIns</a>
+                </div>
+                <div class="col-xs-4 text-center">
+                    <span>{{ app.user.empresa.first.likes }}</span>
+                    <a href="#">Likes</a>
+                </div>
+                <div class="col-xs-4 text-center">
+                    <a href="#">Ranking</a>
+                </div>
+            </div>
+            <!-- /.row -->
+        </li>
         <!-- Menu Footer-->
         <li class="user-footer">
             <div class="pull-left">
@@ -54,7 +54,8 @@
                 {% endif %}
             </div>
             <div class="pull-right">
-                <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default btn-flat">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+                <a href="{{ path('fos_user_security_logout') }}"
+                   class="btn btn-default btn-flat">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
             </div>
         </li>
     </ul>
