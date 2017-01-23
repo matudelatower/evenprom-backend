@@ -22,6 +22,8 @@
 !web/uploads/images/planes/.gitkeep
 /web/uploads/images/imagen_usuario_empresa/*
 !web/uploads/images/imagen_usuario_empresa/.gitkeep
+/web/uploads/images/rubros/*
+!web/uploads/images/rubros/.gitkeep
 /web/media/
 
 # -- Editores -----------------------------------------

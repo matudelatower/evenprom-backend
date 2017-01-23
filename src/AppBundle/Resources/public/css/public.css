@@ -186,6 +186,10 @@ h6,
     padding-top: 1%;
 }
 
+.ep-info-box-premium img{
+    border-radius: 20px;
+}
+
 .ep-info-box-content-premium {
     width: 50%;
     color: #5C666F;

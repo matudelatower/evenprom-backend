@@ -72,6 +72,12 @@ class Rubro extends BaseClass
 	private $iconoWeb;
 
 	/**
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\ThumbRubro", mappedBy="rubro", cascade={"persist", "remove"})
+	 */
+	private $thumbRubro;
+
+	/**
 	 * NOTE: This is not a mapped field of entity metadata, just a simple property.
 	 *
 	 * @Vich\UploadableField(mapping="rubros_image", fileNameProperty="imageName")
@@ -317,5 +323,49 @@ class Rubro extends BaseClass
     public function getIconoWeb()
     {
         return $this->iconoWeb;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->thumbRubro = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add thumbRubro
+     *
+     * @param \AppBundle\Entity\ThumbRubro $thumbRubro
+     *
+     * @return Rubro
+     */
+    public function addThumbRubro(\AppBundle\Entity\ThumbRubro $thumbRubro)
+    {
+
+	    $thumbRubro->setRubro( $this );
+
+	    $this->thumbRubro->add( $thumbRubro );
+
+	    return $this;
+    }
+
+    /**
+     * Remove thumbRubro
+     *
+     * @param \AppBundle\Entity\ThumbRubro $thumbRubro
+     */
+    public function removeThumbRubro(\AppBundle\Entity\ThumbRubro $thumbRubro)
+    {
+        $this->thumbRubro->removeElement($thumbRubro);
+    }
+
+    /**
+     * Get thumbRubro
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getThumbRubro()
+    {
+        return $this->thumbRubro;
     }
 }

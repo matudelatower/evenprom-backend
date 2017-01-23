@@ -8,6 +8,7 @@ easy_admin:
                     - { property: 'descripcion' }
                     - { property: 'imageFile', type: 'vich_image' }
                     - { property: 'iconoWeb', type_options: { attr: { class: 'iconpicker' }} }
+                    - { property: 'thumbRubro', type: 'collection', type_options: { entry_type: 'AppBundle\Form\ThumbRubroType', by_reference: false }}
                     - { property: 'activo' }
             edit:
                 title:  'Editar Rubro'
