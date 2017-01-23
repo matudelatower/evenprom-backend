@@ -22,12 +22,17 @@
                     {% set colores = ['00e9af', '00c0cf', '6a66d2', 'efe91c', 'd45ce6', 'd1dbe3', 'ff1c46'] %}
                     {% for rubro in rubros %}
                         <div class="item">
-                            <img src="http://placehold.it/1920x500/{{ colores[loop.index0] }}/ffffff&text={{ rubro.nombre }}"
-                                 alt="Second slide">
+                            {% if rubro.imageName %}
+                                <img src="{{ asset('uploads/images/rubros/'~ rubro.imageName) }}"
+                                     alt="{{ rubro.nombre }}">
+                                <div class="carousel-caption">
+                                    {{ rubro.nombre }}
+                                </div>
+                            {% else %}
+                                <img src="http://placehold.it/1920x500/{{ colores[loop.index0] }}/ffffff&text={{ rubro.nombre }}"
+                                     alt="Second slide">
+                            {% endif %}
 
-                            <div class="carousel-caption">
-                                {#Second Slide#}
-                            </div>
                         </div>
                     {% endfor %}
                 </div>
@@ -69,7 +74,7 @@
                 <div class="box box-widget widget-user">
                     <!-- Add the bg color to the header using any of the bg-* classes -->
                     <div class="widget-user-header" style="background-color: {{ empresa.color }}">
-                        <h3 class="widget-user-username">{{ empresa.nombre |upper}}</h3>
+                        <h3 class="widget-user-username">{{ empresa.nombre |upper }}</h3>
                         <h5 class="widget-user-desc">{{ empresa.descripcion }}</h5>
                     </div>
                     <div class="widget-user-image">
