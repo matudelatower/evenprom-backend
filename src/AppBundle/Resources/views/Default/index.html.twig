@@ -1,5 +1,64 @@
 {% extends 'layout_base_public.html.twig' %}
 {% trans_default_domain "app" %}
+
+{% block promoCalendario %}
+
+    {% if promoCalendario is not empty %}
+
+        {% for promo in promoCalendario %}
+            {#<div class="ep-publicacion-box">#}
+                {#<div class="ep-promo-calendario-info-box promo-calendario-box"#}
+                     {#data-promo-calendario-id="{{ promo.id }}">#}
+                    {#<div class="ep-promo-calendario-titulo"#}
+                         {#style="background-color: {{ promo.colorPublicacion }};">#}
+                        {#{{ promo.titulo |upper }}#}
+                    {#</div>#}
+                    {#<div class="ep-promo-calendario-body">#}
+                        {#<a href="#" class="btn-ver-promo-calendario" data-promo-calendario-id="{{ promo.id }}">#}
+                            {#{% set src = asset('bundles/app/img/default-thumbnail.jpeg') %}#}
+                            {#{% if promo.imageName %}#}
+                                {#{% set src = asset('uploads/images/publicaciones/'~ promo.imageName) %}#}
+                            {#{% endif %}#}
+                            {#<img class="img-responsive"#}
+                                 {#src="{{ src }}"#}
+                                 {#alt="Photo">#}
+                        {#</a>#}
+                        {#<div class="ep-promo-calendario-nombre-empresa">#}
+                            {#{{ promo.empresa | upper }}#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+            <div id="content" class="bs-docs-header" tabindex="-1">
+                <div>
+                    <div class="ep-promo-calendario-titulo"
+                         style="background-color: {{ promo.colorPublicacion }};">
+                        {{ promo.titulo |upper }}
+                    </div>
+                    {% set src = asset('bundles/app/img/default-thumbnail.jpeg') %}
+                    {% if promo.imageName %}
+                        {% set src = asset('uploads/images/publicaciones/'~ promo.imageName) %}
+                    {% endif %}
+                    <img class="img-responsive"
+                         src="{{ src }}"
+                         alt="Promo Calendario">
+                    <div class="ep-promo-calendario-nombre-empresa">
+                    {{ promo.empresa | upper }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div id="content" class="bs-docs-header" tabindex="-1">
+            <div>
+                <img class="img-responsive" src="http://placehold.it/1920x500/39CCCC/ffffff&text=EvenProm">
+            </div>
+        </div>
+    {% endif %}
+
+
+{% endblock %}
+
 {% block content %}
 
 
@@ -110,34 +169,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            {% if promoCalendario is not empty %}
 
-                {% for promo in promoCalendario %}
-                    <div class="ep-publicacion-box">
-                        <div class="ep-promo-calendario-info-box promo-calendario-box"
-                             data-promo-calendario-id="{{ promo.id }}">
-                            <div class="ep-promo-calendario-titulo"
-                                 style="background-color: {{ promo.colorPublicacion }};">
-                                {{ promo.titulo |upper }}
-                            </div>
-                            <div class="ep-promo-calendario-body">
-                                <a href="#" class="btn-ver-promo-calendario" data-promo-calendario-id="{{ promo.id }}">
-                                    {% set src = asset('bundles/app/img/default-thumbnail.jpeg') %}
-                                    {% if promo.imageName %}
-                                        {% set src = asset('uploads/images/publicaciones/'~ promo.imageName) %}
-                                    {% endif %}
-                                    <img class="img-responsive"
-                                         src="{{ src }}"
-                                         alt="Photo">
-                                </a>
-                                <div class="ep-promo-calendario-nombre-empresa">
-                                    {{ promo.empresa | upper }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% endif %}
             {% for publicacion in publicaciones %}
                 <div class="ep-publicacion-box">
 
@@ -376,7 +408,8 @@
                         <!-- /.box-header -->
                         <div class="box-body">
                             {% if rubro.thumbRubro.count > 0 %}
-                                <div id="carousel-example-generic-{{ rubro.id }}" class="carousel slide" data-ride="carousel">
+                                <div id="carousel-example-generic-{{ rubro.id }}" class="carousel slide"
+                                     data-ride="carousel">
 
                                     <div class="carousel-inner">
 
@@ -388,7 +421,8 @@
                                         {% endfor %}
 
                                     </div>
-                                    <a class="left carousel-control" href="#carousel-example-generic-{{ rubro.id }}" data-slide="prev">
+                                    <a class="left carousel-control" href="#carousel-example-generic-{{ rubro.id }}"
+                                       data-slide="prev">
                                         <span class="fa fa-angle-left"></span>
                                     </a>
                                     <a class="right carousel-control" href="#carousel-example-generic-{{ rubro.id }}"

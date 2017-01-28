@@ -53,8 +53,7 @@ class DefaultController extends Controller {
 			array(
 				'empresas'  => $empresas,
 				'rubros'    => $rubros,
-				'favoritos' => $favoritos,
-				'muestraBanner' => false
+				'favoritos' => $favoritos
 			) );
 	}
 
@@ -84,8 +83,7 @@ class DefaultController extends Controller {
 				'comentarios'         => $comentarios,
 				'noticiasEmpresa'     => $noticias,
 				'favoritos'           => $favoritos,
-				'fotosPersonaEmpresa' => $fotosPersonaEmpresa,
-				'muestraBanner' => false
+				'fotosPersonaEmpresa' => $fotosPersonaEmpresa
 			) );
 	}
 
@@ -120,14 +118,13 @@ class DefaultController extends Controller {
 					'publicaciones'   => $publicaciones,
 					'promoCalendario' => $promoCalendario,
 					'favoritos'       => $favoritos,
-					'rubros'          => $rubros,
-					'muestraBanner'   => true
+					'rubros'          => $rubros
 				) );
 
 		} else {
 			return $this->render( 'AppBundle:Default:landing.html.twig',
 				array(
-					'muestraBanner' => false
+
 				) );
 		}
 	}
