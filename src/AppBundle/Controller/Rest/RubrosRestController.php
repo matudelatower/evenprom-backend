@@ -9,8 +9,20 @@ class RubrosRestController extends FOSRestController {
 
 	public function getRubrosAction( Request $request ) {
 
-		$rubros = $this->getDoctrine()->getRepository( "AppBundle:Rubro" )->findAll();
+		$criteria = array(
+			'activo' => true
+		);
 
+		$rubros = $this->getDoctrine()->getRepository( "AppBundle:Rubro" )->findBy( $criteria );
+
+
+		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.rubros_image' );
+
+		foreach ( $rubros as $rubro ) {
+			if ( $rubro->getImageName() ) {
+				$rubro->setImageName( $host . '/' . $rubro->getImageName() );
+			}
+		}
 
 		$vista = $this->view( $rubros,
 			200 );
@@ -38,6 +50,13 @@ class RubrosRestController extends FOSRestController {
 
 		$rubros = $this->getDoctrine()->getRepository( "AppBundle:Rubro" )->findBy( $criteria );
 
+		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.rubros_image' );
+
+		foreach ( $rubros as $rubro ) {
+			if ( $rubro->getImageName() ) {
+				$rubro->setImageName( $host . '/' . $rubro->getImageName() );
+			}
+		}
 
 		$vista = $this->view( $rubros,
 			200 );
