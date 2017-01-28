@@ -12,6 +12,7 @@ use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * PromocionCalendario
@@ -91,6 +92,7 @@ class PromocionCalendario extends BaseClass {
 	 *
 	 * @var File
 	 *
+	 * @Assert\File(mimeTypes={ "image/*" })
 	 */
 	private $imageFile;
 

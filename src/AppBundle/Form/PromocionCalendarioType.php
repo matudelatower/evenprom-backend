@@ -19,26 +19,6 @@ class PromocionCalendarioType extends AbstractType
         $builder
             ->add('titulo')
             ->add('descripcion')
-//            ->add('disponibleDesde',
-//	            DateType::class,
-//	            array(
-//		            'widget' => 'single_text',
-//		            'format' => 'dd-MM-yyyy',
-//		            'attr'   => array(
-//			            'class'       => 'datepicker',
-//			            'placeholder' => "Fecha de fin de la oferta ",
-//		            ),
-//	            ) )
-//            ->add('disponibleHasta',
-//	            DateType::class,
-//	            array(
-//		            'widget' => 'single_text',
-//		            'format' => 'dd-MM-yyyy',
-//		            'attr'   => array(
-//			            'class'       => 'datepicker',
-//			            'placeholder' => "Fecha de fin de la oferta ",
-//		            ),
-//	            ) )
 	        ->add( 'cuerpo',
 		        CKEditorType::class,
 		        array(
@@ -72,7 +52,8 @@ class PromocionCalendarioType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\PromocionCalendario'
+            'data_class' => 'AppBundle\Entity\PromocionCalendario',
+            'translation_domain' => 'app'
         ));
     }
 }

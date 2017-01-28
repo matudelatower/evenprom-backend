@@ -6,7 +6,7 @@ use AppBundle\Entity\Base\BaseClass;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * NoticiaInterna
  *
@@ -72,6 +72,7 @@ class NoticiaInterna extends BaseClass
 	 * @Vich\UploadableField(mapping="noticias_internas_image", fileNameProperty="imageName")
 	 *
 	 * @var File
+	 * @Assert\File(mimeTypes={ "image/*" })
 	 */
 	private $imageFile;
 

@@ -10,6 +10,7 @@ use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Rubro
@@ -83,6 +84,8 @@ class Rubro extends BaseClass
 	 * @Vich\UploadableField(mapping="rubros_image", fileNameProperty="imageName")
 	 *
 	 * @var File
+	 *
+	 * @Assert\File(mimeTypes={ "image/*" })
 	 */
 	private $imageFile;
 

@@ -13,7 +13,7 @@ use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\VirtualProperty;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Noticia
  *
@@ -98,6 +98,8 @@ class Noticia extends BaseClass {
 	 * @Vich\UploadableField(mapping="noticias_image", fileNameProperty="imageName")
 	 *
 	 * @var File
+	 *
+	 * @Assert\File(mimeTypes={ "image/*" })
 	 */
 	private $imageFile;
 

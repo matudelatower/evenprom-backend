@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Plan
@@ -192,6 +193,8 @@ class Plan extends BaseClass
 	 * @Vich\UploadableField(mapping="planes_image", fileNameProperty="imageName")
 	 *
 	 * @var File
+	 *
+	 * @Assert\File(mimeTypes={ "image/*" })
 	 */
 	private $imageFile;
 
