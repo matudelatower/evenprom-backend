@@ -36,7 +36,7 @@ class NoticiasRestController extends FOSRestController {
 
 		foreach ( $noticias as $noticia ) {
 			if ( $noticia->getNoticia()->getImageName() ) {
-				$noticia->getNoticia()->setImageName( $host . '/' . $noticia->getImageName() );
+				$noticia->getNoticia()->setImageName( $host . '/' . $noticia->getNoticia()->getImageName() );
 			}
 		}
 
