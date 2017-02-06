@@ -34,13 +34,18 @@ class NoticiasRestController extends FOSRestController {
 
 		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.noticias_image' );
 
+		$retorno = array();
+
 		foreach ( $noticias as $noticia ) {
+
 			if ( $noticia->getNoticia()->getImageName() ) {
 				$noticia->getNoticia()->setImageName( $host . '/' . $noticia->getNoticia()->getImageName() );
 			}
+
+            $retorno [] = $noticia->getNoticia();
 		}
 
-		$vista = $this->view( $noticias,
+		$vista = $this->view( $retorno,
 			200 );
 
 		return $this->handleView( $vista );
