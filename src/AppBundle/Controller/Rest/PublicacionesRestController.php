@@ -42,7 +42,7 @@ class PublicacionesRestController extends FOSRestController {
 			}
 
 			foreach ( $publicacione->getFavorito() as $favorito ) {
-				if ( $favorito->getPersona()->getId() == $personaId &&
+				if ($favorito->getPersona() && $favorito->getPersona()->getId() == $personaId &&
 				     $favorito->getActivo()
 				) {
 					$publicacione->setLikePersona( true );
