@@ -26,3 +26,4 @@ easy_admin:
                     - { property: 'mailingOperador' }
                     - { property: 'usuarioVipBrasil' }
                     - { property: 'imageFile', type: 'vich_image', label: 'Imagen' }
+                    - { property: 'activo' }
