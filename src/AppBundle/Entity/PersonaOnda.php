@@ -2,15 +2,19 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Base\BaseClass;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * PersonaOnda
  *
  * @ORM\Table(name="personas_ondas")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PersonaOndaRepository")
+ * @ExclusionPolicy("all")
  */
-class PersonaOnda
+class PersonaOnda extends BaseClass
 {
     /**
      * @var int
@@ -18,6 +22,7 @@ class PersonaOnda
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose()
      */
     private $id;
 
@@ -26,6 +31,7 @@ class PersonaOnda
 	 *
 	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Onda", inversedBy="personaOnda")
 	 * @ORM\JoinColumn(name="onda_id", referencedColumnName="id")
+	 * @Expose()
 	 */
 	private $onda;
 

@@ -1,3 +1,7 @@
 Rest_App :
   type : rest
   resource: "@AppBundle/Resources/config/routing_rest.yml"
+
+acme_hello:
+    type: rest
+    resource: "@AppBundle/Resources/config/routing_rest/personas_rest.yml"

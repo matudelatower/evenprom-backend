@@ -35,7 +35,7 @@ class PersonasRestController extends FOSRestController {
 		return $this->handleView( $vista );
 	}
 
-	public function postPersonaAction( Request $request, $id ) {
+	public function putPersonaAction( Request $request, $id ) {
 
 		$persona = $this->getDoctrine()->getRepository( "AppBundle:Persona" )->findOneById( $id );
 
@@ -52,7 +52,7 @@ class PersonasRestController extends FOSRestController {
 			$persona->addPersonaOnda( $personaOnda );
 		}
 
-		$this->getDoctrine()->getManager()->persist( $persona );
+		$this->getDoctrine()->getManager()->flush();
 
 		$vista = $this->view( $persona,
 			200 );

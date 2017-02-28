@@ -1,0 +1,10 @@
+personas :
+    type:     rest
+    resource: "@AppBundle/Controller/Rest/PersonasRestController.php"
+
+personas_onda:
+    type:     rest
+    parent:   persona
+    resource: "@AppBundle/Controller/Rest/PersonaOndaRestController.php"
+
+
