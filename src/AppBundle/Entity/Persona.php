@@ -452,7 +452,10 @@ class Persona extends BaseClass {
 	 * @return Persona
 	 */
 	public function addPersonaOnda( \AppBundle\Entity\PersonaOnda $personaOnda ) {
-		$this->personaOnda[] = $personaOnda;
+
+		$personaOnda->setPersona( $this );
+
+		$this->personaOnda->add( $personaOnda );
 
 		return $this;
 	}

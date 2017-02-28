@@ -9,24 +9,24 @@ class OndasRestController extends FOSRestController {
 
 	public function getOndasAction( Request $request ) {
 
-		$categorias = $this->getDoctrine()->getRepository( "AppBundle:Onda" )->findAll();
+		$criteria = array( 'activo' => true );
 
-	
+		$categorias = $this->getDoctrine()->getRepository( "AppBundle:Onda" )->findBy( $criteria );
+
+
 		$vista = $this->view( $categorias,
-			200 )
-		;
+			200 );
 
 		return $this->handleView( $vista );
 	}
 
 	public function getOndasEmpresaAction( Request $request, $empresaId ) {
 
-		$categorias = $this->getDoctrine()->getRepository( "AppBundle:Onda" )->findAllByEmpresa($empresaId);
+		$categorias = $this->getDoctrine()->getRepository( "AppBundle:Onda" )->findAllByEmpresa( $empresaId );
 
 
 		$vista = $this->view( $categorias,
-			200 )
-		;
+			200 );
 
 		return $this->handleView( $vista );
 	}

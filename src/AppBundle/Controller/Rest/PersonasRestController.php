@@ -3,8 +3,10 @@
 namespace AppBundle\Controller\Rest;
 
 use AppBundle\Entity\NotificacionPersona;
+use AppBundle\Entity\PersonaOnda;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class PersonasRestController extends FOSRestController {
 
@@ -19,14 +21,53 @@ class PersonasRestController extends FOSRestController {
 		return $this->handleView( $vista );
 	}
 
+	public function getPersonaAction( Request $request, $id ) {
+
+		$persona = $this->getDoctrine()->getRepository( "AppBundle:Persona" )->findOneById( $id );
+
+		if ( ! $persona ) {
+			throw new HttpException( 404, "La persona no existe" );
+		}
+
+		$vista = $this->view( $persona,
+			200 );
+
+		return $this->handleView( $vista );
+	}
+
+	public function postPersonaAction( Request $request, $id ) {
+
+		$persona = $this->getDoctrine()->getRepository( "AppBundle:Persona" )->findOneById( $id );
+
+		if ( ! $persona ) {
+			throw new HttpException( 404, "La persona no existe" );
+		}
+
+		$ondas = $request->get( 'ondas' );
+
+		foreach ( $ondas as $ondaId ) {
+			$personaOnda = new PersonaOnda();
+			$onda        = $this->getDoctrine()->getRepository( "AppBundle:Onda" )->findOneById( $ondaId );
+			$personaOnda->setOnda( $onda );
+			$persona->addPersonaOnda( $personaOnda );
+		}
+
+		$this->getDoctrine()->getManager()->persist( $persona );
+
+		$vista = $this->view( $persona,
+			200 );
+
+		return $this->handleView( $vista );
+	}
+
 	public function getPerfilPersonaAction( Request $request, $personaId ) {
 
 		$persona = $this->getDoctrine()->getRepository( "AppBundle:Persona" )->find( $personaId );
 
-		$perfilPersona = $this->getDoctrine()->getRepository( "AppBundle:PerfilPersona" )->findByPersona( $persona );
+//		$perfilPersona = $this->getDoctrine()->getRepository( "AppBundle:PerfilPersona" )->findByPersona( $persona );
 
 
-		$vista = $this->view( $perfilPersona,
+		$vista = $this->view( $persona,
 			200 );
 
 		return $this->handleView( $vista );
