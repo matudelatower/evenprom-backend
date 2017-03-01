@@ -19,7 +19,7 @@ use JMS\Serializer\Annotation\Type;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\OndaRepository")
  * @ExclusionPolicy("all")
  */
-class Onda extends BaseClass{
+class Onda extends BaseClass {
 	/**
 	 * @var int
 	 *
@@ -58,7 +58,6 @@ class Onda extends BaseClass{
 	 * @var string
 	 *
 	 * @ORM\Column(name="icono", type="string", length=255, nullable=true)
-	 * @Expose()
 	 */
 	private $icono;
 
@@ -74,10 +73,38 @@ class Onda extends BaseClass{
 	 */
 	private $personaOnda;
 
+	private $host;
+
+	/**
+	 * @return mixed
+	 */
+	public function getHost() {
+		return $this->host;
+	}
+
+	/**
+	 * @param mixed $host
+	 */
+	public function setHost( $host ) {
+		$this->host = $host;
+	}
+
 	public function __toString() {
 		return $this->nombre;
 	}
-	
+
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("icono")
+	 */
+	public function getIconoPath() {
+
+		$return = $this->host . $this->icono . '-color.png';
+
+		return $return;
+
+	}
+
 
 	/**
 	 * Get id
@@ -153,154 +180,147 @@ class Onda extends BaseClass{
 	public function getSlug() {
 		return $this->slug;
 	}
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->empresaOnda = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
-    /**
-     * Set fechaCreacion
-     *
-     * @param \DateTime $fechaCreacion
-     * @return Onda
-     */
-    public function setFechaCreacion($fechaCreacion)
-    {
-        $this->fechaCreacion = $fechaCreacion;
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
+		$this->empresaOnda = new \Doctrine\Common\Collections\ArrayCollection();
+	}
 
-        return $this;
-    }
+	/**
+	 * Set fechaCreacion
+	 *
+	 * @param \DateTime $fechaCreacion
+	 *
+	 * @return Onda
+	 */
+	public function setFechaCreacion( $fechaCreacion ) {
+		$this->fechaCreacion = $fechaCreacion;
 
-    /**
-     * Set fechaActualizacion
-     *
-     * @param \DateTime $fechaActualizacion
-     * @return Onda
-     */
-    public function setFechaActualizacion($fechaActualizacion)
-    {
-        $this->fechaActualizacion = $fechaActualizacion;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set fechaActualizacion
+	 *
+	 * @param \DateTime $fechaActualizacion
+	 *
+	 * @return Onda
+	 */
+	public function setFechaActualizacion( $fechaActualizacion ) {
+		$this->fechaActualizacion = $fechaActualizacion;
 
-    /**
-     * Add empresaOnda
-     *
-     * @param \AppBundle\Entity\EmpresaOnda $empresaOnda
-     * @return Onda
-     */
-    public function addEmpresaOnda(\AppBundle\Entity\EmpresaOnda $empresaOnda)
-    {
-        $this->empresaOnda[] = $empresaOnda;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Add empresaOnda
+	 *
+	 * @param \AppBundle\Entity\EmpresaOnda $empresaOnda
+	 *
+	 * @return Onda
+	 */
+	public function addEmpresaOnda( \AppBundle\Entity\EmpresaOnda $empresaOnda ) {
+		$this->empresaOnda[] = $empresaOnda;
 
-    /**
-     * Remove empresaOnda
-     *
-     * @param \AppBundle\Entity\EmpresaOnda $empresaOnda
-     */
-    public function removeEmpresaOnda(\AppBundle\Entity\EmpresaOnda $empresaOnda)
-    {
-        $this->empresaOnda->removeElement($empresaOnda);
-    }
+		return $this;
+	}
 
-    /**
-     * Get empresaOnda
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getEmpresaOnda()
-    {
-        return $this->empresaOnda;
-    }
+	/**
+	 * Remove empresaOnda
+	 *
+	 * @param \AppBundle\Entity\EmpresaOnda $empresaOnda
+	 */
+	public function removeEmpresaOnda( \AppBundle\Entity\EmpresaOnda $empresaOnda ) {
+		$this->empresaOnda->removeElement( $empresaOnda );
+	}
 
-    /**
-     * Set creadoPor
-     *
-     * @param \UsuariosBundle\Entity\Usuario $creadoPor
-     * @return Onda
-     */
-    public function setCreadoPor(\UsuariosBundle\Entity\Usuario $creadoPor = null)
-    {
-        $this->creadoPor = $creadoPor;
+	/**
+	 * Get empresaOnda
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getEmpresaOnda() {
+		return $this->empresaOnda;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set creadoPor
+	 *
+	 * @param \UsuariosBundle\Entity\Usuario $creadoPor
+	 *
+	 * @return Onda
+	 */
+	public function setCreadoPor( \UsuariosBundle\Entity\Usuario $creadoPor = null ) {
+		$this->creadoPor = $creadoPor;
 
-    /**
-     * Set actualizadoPor
-     *
-     * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
-     * @return Onda
-     */
-    public function setActualizadoPor(\UsuariosBundle\Entity\Usuario $actualizadoPor = null)
-    {
-        $this->actualizadoPor = $actualizadoPor;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set actualizadoPor
+	 *
+	 * @param \UsuariosBundle\Entity\Usuario $actualizadoPor
+	 *
+	 * @return Onda
+	 */
+	public function setActualizadoPor( \UsuariosBundle\Entity\Usuario $actualizadoPor = null ) {
+		$this->actualizadoPor = $actualizadoPor;
 
-    /**
-     * Set icono
-     *
-     * @param string $icono
-     *
-     * @return Onda
-     */
-    public function setIcono($icono)
-    {
-        $this->icono = $icono;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set icono
+	 *
+	 * @param string $icono
+	 *
+	 * @return Onda
+	 */
+	public function setIcono( $icono ) {
+		$this->icono = $icono;
 
-    /**
-     * Get icono
-     *
-     * @return string
-     */
-    public function getIcono()
-    {
-        return $this->icono;
-    }
+		return $this;
+	}
 
-    /**
-     * Add personaOnda
-     *
-     * @param \AppBundle\Entity\PersonaOnda $personaOnda
-     *
-     * @return Onda
-     */
-    public function addPersonaOnda(\AppBundle\Entity\PersonaOnda $personaOnda)
-    {
-        $this->personaOnda[] = $personaOnda;
+	/**
+	 * Get icono
+	 *
+	 * @return string
+	 */
+	public function getIcono() {
+		return $this->icono;
+	}
 
-        return $this;
-    }
+	/**
+	 * Add personaOnda
+	 *
+	 * @param \AppBundle\Entity\PersonaOnda $personaOnda
+	 *
+	 * @return Onda
+	 */
+	public function addPersonaOnda( \AppBundle\Entity\PersonaOnda $personaOnda ) {
+		$this->personaOnda[] = $personaOnda;
 
-    /**
-     * Remove personaOnda
-     *
-     * @param \AppBundle\Entity\PersonaOnda $personaOnda
-     */
-    public function removePersonaOnda(\AppBundle\Entity\PersonaOnda $personaOnda)
-    {
-        $this->personaOnda->removeElement($personaOnda);
-    }
+		return $this;
+	}
 
-    /**
-     * Get personaOnda
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPersonaOnda()
-    {
-        return $this->personaOnda;
-    }
+	/**
+	 * Remove personaOnda
+	 *
+	 * @param \AppBundle\Entity\PersonaOnda $personaOnda
+	 */
+	public function removePersonaOnda( \AppBundle\Entity\PersonaOnda $personaOnda ) {
+		$this->personaOnda->removeElement( $personaOnda );
+	}
+
+	/**
+	 * Get personaOnda
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getPersonaOnda() {
+		return $this->personaOnda;
+	}
 }

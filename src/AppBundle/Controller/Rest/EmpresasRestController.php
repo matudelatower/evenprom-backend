@@ -9,7 +9,11 @@ class EmpresasRestController extends FOSRestController {
 
 	public function getEmpresasAction( Request $request ) {
 
-		$empresas = $this->getDoctrine()->getRepository( "AppBundle:Empresa" )->findAll();
+		$criteria = array(
+			'activo' => true
+		);
+
+		$empresas = $this->getDoctrine()->getRepository( "AppBundle:Empresa" )->findBy( $criteria );
 
 		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.empresas_image' );
 
@@ -21,7 +25,7 @@ class EmpresasRestController extends FOSRestController {
 			}
 			foreach ( $empresa->getEmpresaOnda() as $empresaOnda ) {
 				if ( $empresaOnda->getOnda() ) {
-					$empresaOnda->getOnda()->setIcono( $hostOnda . $empresaOnda->getOnda()->getIcono() . '-color.png' );
+					$empresaOnda->getOnda()->setHost( $hostOnda );
 				}
 			}
 		}
@@ -47,7 +51,7 @@ class EmpresasRestController extends FOSRestController {
 
 		foreach ( $empresa->getEmpresaOnda() as $empresaOnda ) {
 			if ( $empresaOnda->getOnda() ) {
-				$empresaOnda->getOnda()->setIcono( $hostOnda . $empresaOnda->getOnda()->getIcono() . '-color.png' );
+				$empresaOnda->getOnda()->setHost( $hostOnda );
 			}
 		}
 
@@ -70,7 +74,7 @@ class EmpresasRestController extends FOSRestController {
 
 			foreach ( $empresa->getEmpresaOnda() as $empresaOnda ) {
 				if ( $empresaOnda->getOnda() ) {
-					$empresaOnda->getOnda()->setIcono( $hostOnda . $empresaOnda->getOnda()->getIcono() . '-color.png' );
+					$empresaOnda->getOnda()->setHost( $hostOnda );
 				}
 			}
 			if ( $empresa->getImageName() ) {
@@ -103,7 +107,7 @@ class EmpresasRestController extends FOSRestController {
 
 			foreach ( $empresa->getEmpresaOnda() as $empresaOnda ) {
 				if ( $empresaOnda->getOnda() ) {
-					$empresaOnda->getOnda()->setIcono( $hostOnda . $empresaOnda->getOnda()->getIcono() . '-color.png' );
+					$empresaOnda->getOnda()->setHost( $hostOnda );
 				}
 			}
 
