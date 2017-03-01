@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Rest;
 
 use AppBundle\Entity\NotificacionPersona;
 use AppBundle\Entity\PersonaOnda;
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -37,19 +38,54 @@ class PersonasRestController extends FOSRestController {
 
 	public function putPersonaAction( Request $request, $id ) {
 
-		$persona = $this->getDoctrine()->getRepository( "AppBundle:Persona" )->findOneById( $id );
+		$em = $this->getDoctrine();
+
+		$persona = $em->getRepository( "AppBundle:Persona" )->findOneById( $id );
 
 		if ( ! $persona ) {
 			throw new HttpException( 404, "La persona no existe" );
 		}
 
+		$ondasOriginales = new ArrayCollection();
+
+		foreach ( $persona->getPersonaOnda() as $personaOndaO ) {
+			$ondasOriginales->add( $personaOndaO );
+		}
+
 		$ondas = $request->get( 'ondas' );
 
+//		pregunto si hay candidatas a eliminar
+		if ( $ondasOriginales->count() > count( $ondas ) ) {
+			foreach ( $ondasOriginales as $ondasOriginale ) {
+				$idOndasOriginales[] = $ondasOriginale->getOnda()->getId();
+			}
+			$result = array_diff( $idOndasOriginales, $ondas );
+			foreach ( $result as $item ) {
+				$onda = $this->getDoctrine()->getRepository( "AppBundle:Onda" )->findOneById( $item );
+				$criteria    = array(
+					'persona' => $persona
+				);
+				$personaOnda = $this->getDoctrine()->getRepository( "AppBundle:PersonaOnda" )->findBy( $criteria );
+				foreach ( $personaOnda as $item ) {
+					if($item->getOnda()->getId() == $onda->getId()){
+						$em->getManager()->remove($item);
+					}
+				}
+			}
+		}
+
 		foreach ( $ondas as $ondaId ) {
-			$personaOnda = new PersonaOnda();
 			$onda        = $this->getDoctrine()->getRepository( "AppBundle:Onda" )->findOneById( $ondaId );
-			$personaOnda->setOnda( $onda );
-			$persona->addPersonaOnda( $personaOnda );
+			$criteria    = array(
+				'onda'    => $onda,
+				'persona' => $persona
+			);
+			$personaOnda = $this->getDoctrine()->getRepository( "AppBundle:PersonaOnda" )->findBy( $criteria );
+			if ( ! $personaOnda ) {
+				$personaOnda = new PersonaOnda();
+				$personaOnda->setOnda( $onda );
+				$persona->addPersonaOnda( $personaOnda );
+			}
 		}
 
 		$this->getDoctrine()->getManager()->flush();
@@ -63,9 +99,6 @@ class PersonasRestController extends FOSRestController {
 	public function getPerfilPersonaAction( Request $request, $personaId ) {
 
 		$persona = $this->getDoctrine()->getRepository( "AppBundle:Persona" )->find( $personaId );
-
-//		$perfilPersona = $this->getDoctrine()->getRepository( "AppBundle:PerfilPersona" )->findByPersona( $persona );
-
 
 		$vista = $this->view( $persona,
 			200 );
