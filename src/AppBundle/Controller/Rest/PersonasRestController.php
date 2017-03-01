@@ -61,14 +61,14 @@ class PersonasRestController extends FOSRestController {
 			}
 			$result = array_diff( $idOndasOriginales, $ondas );
 			foreach ( $result as $item ) {
-				$onda = $this->getDoctrine()->getRepository( "AppBundle:Onda" )->findOneById( $item );
+				$onda        = $this->getDoctrine()->getRepository( "AppBundle:Onda" )->findOneById( $item );
 				$criteria    = array(
 					'persona' => $persona
 				);
 				$personaOnda = $this->getDoctrine()->getRepository( "AppBundle:PersonaOnda" )->findBy( $criteria );
 				foreach ( $personaOnda as $item ) {
-					if($item->getOnda()->getId() == $onda->getId()){
-						$em->getManager()->remove($item);
+					if ( $item->getOnda()->getId() == $onda->getId() ) {
+						$em->getManager()->remove( $item );
 					}
 				}
 			}
@@ -140,31 +140,31 @@ class PersonasRestController extends FOSRestController {
 			$notificacionPersona->setPersona( $persona );
 		}
 
-		if ( isset($params['onda']) && $params['onda'] ) {
+		if ( isset( $params['onda'] ) && $params['onda'] ) {
 			$notificacionPersona->setOnda( $params['onda'] );
 		}
-		if ( isset($params['rubro']) && $params['rubro'] ) {
+		if ( isset( $params['rubro'] ) && $params['rubro'] ) {
 			$notificacionPersona->setRubro( $params['rubro'] );
 		}
-		if ( isset($params['entretenimiento']) && $params['entretenimiento'] ) {
+		if ( isset( $params['entretenimiento'] ) && $params['entretenimiento'] ) {
 			$notificacionPersona->setEntretenimiento( $params['entretenimiento'] );
 		}
-		if ( isset($params['compras']) && $params['compras'] ) {
+		if ( isset( $params['compras'] ) && $params['compras'] ) {
 			$notificacionPersona->setCompra( $params['compras'] );
 		}
-		if ( isset($params['gastronomia']) && $params['gastronomia'] ) {
+		if ( isset( $params['gastronomia'] ) && $params['gastronomia'] ) {
 			$notificacionPersona->setGastronomico( $params['gastronomia'] );
 		}
-		if ( isset($params['empresa']) && $params['empresa'] ) {
+		if ( isset( $params['empresa'] ) && $params['empresa'] ) {
 			$notificacionPersona->setEmpresa( $params['empresa'] );
 		}
-		if ( isset($params['eventos']) && $params['eventos'] ) {
+		if ( isset( $params['eventos'] ) && $params['eventos'] ) {
 			$notificacionPersona->setEvento( array( $params['eventos'] ) );
 		}
-		if ( isset($params['descuentos']) && $params['descuentos'] ) {
+		if ( isset( $params['descuentos'] ) && $params['descuentos'] ) {
 			$notificacionPersona->setDescuento( $params['descuentos'] );
 		}
-		if ( isset($params['localidad']) && $params['localidad'] ) {
+		if ( isset( $params['localidad'] ) && $params['localidad'] ) {
 			$notificacionPersona->setLocalidad( $params['localidad'] );
 		}
 
@@ -180,7 +180,7 @@ class PersonasRestController extends FOSRestController {
 	}
 
 	public function getNotificacionesAction( $personaId ) {
-		$em     = $this->getDoctrine()->getManager();
+		$em = $this->getDoctrine()->getManager();
 
 		$persona = $em->getRepository( "AppBundle:Persona" )->find( $personaId );
 
@@ -189,9 +189,15 @@ class PersonasRestController extends FOSRestController {
 		}
 
 		$notificacionPersona = $em->getRepository( "AppBundle:NotificacionPersona" )->findOneByPersona( $persona );
+		$statusCode = 200;
+
+		if ( ! $notificacionPersona ) {
+			$notificacionPersona = array();
+			$statusCode = 404;
+		}
 
 		$vista = $this->view( $notificacionPersona,
-			200 );
+			$statusCode );
 
 		return $this->handleView( $vista );
 	}
