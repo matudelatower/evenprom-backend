@@ -122,12 +122,16 @@ class PersonasRestController extends FOSRestController {
 		return $this->handleView( $vista );
 	}
 
-	public function postNotificacionesPersonaAction( Request $request, $personaId ) {
+	public function putNotificacionesAction( Request $request, $personaId ) {
 
 		$em     = $this->getDoctrine()->getManager();
 		$params = $request->request->all();
 
 		$persona = $em->getRepository( "AppBundle:Persona" )->find( $personaId );
+
+		if ( ! $persona ) {
+			throw new HttpException( 404, "La persona no existe" );
+		}
 
 		$notificacionPersona = $em->getRepository( "AppBundle:NotificacionPersona" )->findOneByPersona( $persona );
 
@@ -136,31 +140,31 @@ class PersonasRestController extends FOSRestController {
 			$notificacionPersona->setPersona( $persona );
 		}
 
-		if ( $params['onda'] ) {
+		if ( isset($params['onda']) && $params['onda'] ) {
 			$notificacionPersona->setOnda( $params['onda'] );
 		}
-		if ( $params['rubro'] ) {
+		if ( isset($params['rubro']) && $params['rubro'] ) {
 			$notificacionPersona->setRubro( $params['rubro'] );
 		}
-		if ( $params['entretenimiento'] ) {
+		if ( isset($params['entretenimiento']) && $params['entretenimiento'] ) {
 			$notificacionPersona->setEntretenimiento( $params['entretenimiento'] );
 		}
-		if ( $params['compras'] ) {
+		if ( isset($params['compras']) && $params['compras'] ) {
 			$notificacionPersona->setCompra( $params['compras'] );
 		}
-		if ( $params['gastronomia'] ) {
+		if ( isset($params['gastronomia']) && $params['gastronomia'] ) {
 			$notificacionPersona->setGastronomico( $params['gastronomia'] );
 		}
-		if ( $params['empresa'] ) {
+		if ( isset($params['empresa']) && $params['empresa'] ) {
 			$notificacionPersona->setEmpresa( $params['empresa'] );
 		}
-		if ( $params['eventos'] ) {
+		if ( isset($params['eventos']) && $params['eventos'] ) {
 			$notificacionPersona->setEvento( array( $params['eventos'] ) );
 		}
-		if ( $params['descuentos'] ) {
+		if ( isset($params['descuentos']) && $params['descuentos'] ) {
 			$notificacionPersona->setDescuento( $params['descuentos'] );
 		}
-		if ( $params['localidad'] ) {
+		if ( isset($params['localidad']) && $params['localidad'] ) {
 			$notificacionPersona->setLocalidad( $params['localidad'] );
 		}
 
@@ -173,7 +177,22 @@ class PersonasRestController extends FOSRestController {
 			200 );
 
 		return $this->handleView( $vista );
+	}
 
+	public function getNotificacionesAction( $personaId ) {
+		$em     = $this->getDoctrine()->getManager();
 
+		$persona = $em->getRepository( "AppBundle:Persona" )->find( $personaId );
+
+		if ( ! $persona ) {
+			throw new HttpException( 404, "La persona no existe" );
+		}
+
+		$notificacionPersona = $em->getRepository( "AppBundle:NotificacionPersona" )->findOneByPersona( $persona );
+
+		$vista = $this->view( $notificacionPersona,
+			200 );
+
+		return $this->handleView( $vista );
 	}
 }

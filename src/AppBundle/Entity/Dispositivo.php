@@ -43,6 +43,13 @@ class Dispositivo extends BaseClass
      */
     private $registrationId;
 
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="player_id", type="string", length=255)
+	 */
+	private $playerId;
+
 
     /**
      * Get id
