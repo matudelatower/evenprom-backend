@@ -8,9 +8,9 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class PersonaOndaRestController extends FOSRestController {
+class PersonasOndaRestController extends FOSRestController {
 
-	public function getOndasAction( Request $request, $personaId ) {
+	public function getPersonasOndasAction( Request $request, $personaId ) {
 
 		$em = $this->getDoctrine()->getManager();
 
@@ -27,7 +27,6 @@ class PersonaOndaRestController extends FOSRestController {
 		foreach ( $personaOndas as $personaOnda ) {
 			$personaOnda->getOnda()->setHost( $hostOnda );
 		}
-
 
 		$vista = $this->view( $personaOndas,
 			200 );

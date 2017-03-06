@@ -10,6 +10,7 @@ namespace UsuariosBundle\Services;
 
 use AppBundle\Entity\Persona;
 use Doctrine\ORM\EntityManager;
+use FOS\OAuthServerBundle\Entity\ClientManager;
 use FOS\UserBundle\Doctrine\UserManager;
 use UsuariosBundle\Entity\Usuario;
 
@@ -35,7 +36,19 @@ class UsuariosManager {
 
 		if ( $existeUsuario ) {
 
+			$bytes = openssl_random_pseudo_bytes( 2 );
+
+			$pwd = bin2hex( $bytes );
+
+			$existeUsuario->setPlainPassword( $pwd );
+
+			$plainPassword = $existeUsuario->getPlainPassword();
+
+			$this->userManager->updatePassword( $existeUsuario );
+
 			$persona = $existeUsuario->getPersona()->first();
+
+			$persona->setPlainPassword( $plainPassword );
 
 			return $persona;
 		}
@@ -79,6 +92,7 @@ class UsuariosManager {
 		$persona->setNombre( $nombre );
 		$persona->setApellido( $apellido );
 		$persona->setUsuario( $usuario );
+		$persona->setPlainPassword( $usuario->getPlainPassword() );
 
 		$usuario->addPersona( $persona );
 

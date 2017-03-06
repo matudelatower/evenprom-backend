@@ -13,21 +13,27 @@ class UsuariosRestController extends FOSRestController {
 
 
 		$vista = $this->view( $usuarios,
-			200 )
-		;
+			200 );
 
 		return $this->handleView( $vista );
 	}
 
-	public function postRegistrarAction( Request $request) {
+	public function postRegistrarAction( Request $request ) {
 
-		$usuariosManager = $this->get('manager.usuario');
+		$usuariosManager = $this->get( 'manager.usuario' );
 
 		$params = $request->request->all();
 
-		$usuario = $usuariosManager->crearPerfil($params);
+		$usuario = $usuariosManager->crearPerfil( $params );
 
-		$vista = $this->view( $usuario,
+//		$clientManager = $this->container->get( 'fos_oauth_server.client_manager.default' );
+//		$client        = $clientManager->createClient();
+//		$client->setRedirectUris( array( $redirectUri ) );
+//		$client->setAllowedGrantTypes( array( 'token', 'authorization_code' ) );
+//		$clientManager->updateClient( $client );
+
+
+		$vista = $this->view( $usuario ,
 			200 );
 
 		return $this->handleView( $vista );

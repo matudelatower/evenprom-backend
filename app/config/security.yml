@@ -14,6 +14,16 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+        oauth_token:
+            pattern:      ^/oauth/v2/token
+            security:     false
+
+        api:
+            pattern:    ^/api(?!/registrars)
+            fos_oauth:  true
+            stateless:  true
+
         main:
             pattern: ^/
             anonymous: true
@@ -35,7 +45,8 @@ security:
                     service: my_user_provider
 
     access_control:
-        - { path: ^/api/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/api/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/api/registrars, role: ROLE_PERSONA }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/%languages%/^, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/%languages%/admin/, role: ROLE_ADMIN }

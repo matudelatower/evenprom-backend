@@ -31,6 +31,8 @@ class AppKernel extends Kernel
             new UsuariosBundle\UsuariosBundle(),
             new AppBundle\AppBundle(),
 	        new Liip\ImagineBundle\LiipImagineBundle(),
+	        new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
+	        new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

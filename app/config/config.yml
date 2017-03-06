@@ -160,6 +160,17 @@ ivory_ck_editor:
         my_config:
             toolbar: [ ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'],  ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat'], '/', ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'], ['Styles', 'Format']  ]
 
+fos_oauth_server:
+    db_driver: orm
+    client_class:        UsuariosBundle\Entity\Client
+    access_token_class:  UsuariosBundle\Entity\AccessToken
+    refresh_token_class: UsuariosBundle\Entity\RefreshToken
+    auth_code_class:     UsuariosBundle\Entity\AuthCode
+    service:
+        user_provider: fos_user.user_provider.username
+        options:
+            supported_scopes: user
+
 #fos rest
 fos_rest:
     serializer:
@@ -211,6 +222,8 @@ nelmio_cors:
                 allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
                 max_age: 3600
                 hosts: ['^api\.']
+
+nelmio_api_doc: ~
 
 hwi_oauth:
     connect:

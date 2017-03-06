@@ -222,7 +222,7 @@ class Persona extends BaseClass {
 	 */
 	public function getCheckIns() {
 
-		$return = $this->getCheckIn()->count();
+		$return = $this->getCheckIn() ? $this->getCheckIn()->count() : null;
 
 		return $return;
 
@@ -234,11 +234,32 @@ class Persona extends BaseClass {
 	 */
 	public function getFavoritos() {
 
-		$return = $this->getFavorito()->count();
+		$return = $this->getFavorito() ? $this->getFavorito()->count() : null;
 
 		return $return;
 
 	}
+
+//	oAuth
+
+	private $plainPassword;
+
+	/**
+	 * @return mixed
+	 * @VirtualProperty()
+	 * @SerializedName("plain_password")
+	 */
+	public function getPlainPassword() {
+		return $this->plainPassword;
+	}
+
+	/**
+	 * @param mixed $plainPassword
+	 */
+	public function setPlainPassword( $plainPassword ) {
+		$this->plainPassword = $plainPassword;
+	}
+
 
 	public function __toString() {
 		return $this->apellido . ", " . $this->nombre;
@@ -509,37 +530,34 @@ class Persona extends BaseClass {
 		return $this->checkIn;
 	}
 
-    /**
-     * Add favorito
-     *
-     * @param \AppBundle\Entity\Favorito $favorito
-     *
-     * @return Persona
-     */
-    public function addFavorito(\AppBundle\Entity\Favorito $favorito)
-    {
-        $this->favorito[] = $favorito;
+	/**
+	 * Add favorito
+	 *
+	 * @param \AppBundle\Entity\Favorito $favorito
+	 *
+	 * @return Persona
+	 */
+	public function addFavorito( \AppBundle\Entity\Favorito $favorito ) {
+		$this->favorito[] = $favorito;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Remove favorito
-     *
-     * @param \AppBundle\Entity\Favorito $favorito
-     */
-    public function removeFavorito(\AppBundle\Entity\Favorito $favorito)
-    {
-        $this->favorito->removeElement($favorito);
-    }
+	/**
+	 * Remove favorito
+	 *
+	 * @param \AppBundle\Entity\Favorito $favorito
+	 */
+	public function removeFavorito( \AppBundle\Entity\Favorito $favorito ) {
+		$this->favorito->removeElement( $favorito );
+	}
 
-    /**
-     * Get favorito
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getFavorito()
-    {
-        return $this->favorito;
-    }
+	/**
+	 * Get favorito
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getFavorito() {
+		return $this->favorito;
+	}
 }

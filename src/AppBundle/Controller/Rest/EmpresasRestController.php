@@ -4,9 +4,22 @@ namespace AppBundle\Controller\Rest;
 
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 class EmpresasRestController extends FOSRestController {
 
+	/**
+	 *
+	 * obtiene las empresas activas
+	 *
+	 * @ApiDoc(
+	 *  description="obtiene las empresas activas",
+	 * )
+	 *
+	 * @param Request $request
+	 *
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function getEmpresasAction( Request $request ) {
 
 		$criteria = array(
@@ -37,6 +50,19 @@ class EmpresasRestController extends FOSRestController {
 		return $this->handleView( $vista );
 	}
 
+	/**
+	 *
+	 * obtiene una empresa
+	 *
+	 * @ApiDoc(
+	 *  description="obtiene una empresa"
+	 * )
+	 *
+	 * @param Request $request
+	 * @param $id
+	 *
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function getEmpresaAction( Request $request, $id ) {
 
 		$empresa = $this->getDoctrine()->getRepository( "AppBundle:Empresa" )->find( $id );
