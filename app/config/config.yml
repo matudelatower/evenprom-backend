@@ -215,6 +215,11 @@ nelmio_cors:
                 allow_headers: ['*']
                 allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
                 max_age: 3600
+            '^/oauth/':
+                allow_origin: ['*']
+                allow_headers: ['*']
+                allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
+                max_age: 3600
             '^/':
                 origin_regex: true
                 allow_origin: ['^http://localhost:[0-9]+']
