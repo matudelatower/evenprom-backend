@@ -46,6 +46,8 @@ class UsuariosManager {
 
 			$this->userManager->updatePassword( $existeUsuario );
 
+			$this->userManager->updateUser( $existeUsuario );
+
 			$persona = $existeUsuario->getPersona()->first();
 
 			$persona->setPlainPassword( $plainPassword );
