@@ -18,43 +18,51 @@ use JMS\Serializer\Annotation\Type;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\DispositivoRepository")
  * @ExclusionPolicy("all")
  */
-class Dispositivo extends BaseClass
-{
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="uuid", type="string", length=255, unique=true)
-     */
-    private $uuid;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="registration_id", type="string", length=255)
-     */
-    private $registrationId;
+class Dispositivo extends BaseClass {
+	/**
+	 * @var int
+	 *
+	 * @ORM\Column(name="id", type="integer")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="AUTO")
+	 */
+	private $id;
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="player_id", type="string", length=255)
+	 * @ORM\Column(name="uuid", type="string", length=255, unique=true, nullable=true)
+	 */
+	private $uuid;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="registration_id", type="string", length=255, nullable=true)
+	 */
+	private $registrationId;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="player_id", type="string", length=255, nullable=true)
+	 * @Expose()
 	 */
 	private $playerId;
+
+	/**
+	 * @var
+	 *
+	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Persona")
+	 * @ORM\JoinColumn(name="persona_id", referencedColumnName="id", nullable=true)
+	 */
+	private $persona;
 
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -110,6 +118,30 @@ class Dispositivo extends BaseClass
     }
 
     /**
+     * Set playerId
+     *
+     * @param string $playerId
+     *
+     * @return Dispositivo
+     */
+    public function setPlayerId($playerId)
+    {
+        $this->playerId = $playerId;
+
+        return $this;
+    }
+
+    /**
+     * Get playerId
+     *
+     * @return string
+     */
+    public function getPlayerId()
+    {
+        return $this->playerId;
+    }
+
+    /**
      * Set fechaCreacion
      *
      * @param \DateTime $fechaCreacion
@@ -135,6 +167,30 @@ class Dispositivo extends BaseClass
         $this->fechaActualizacion = $fechaActualizacion;
 
         return $this;
+    }
+
+    /**
+     * Set persona
+     *
+     * @param \AppBundle\Entity\Persona $persona
+     *
+     * @return Dispositivo
+     */
+    public function setPersona(\AppBundle\Entity\Persona $persona = null)
+    {
+        $this->persona = $persona;
+
+        return $this;
+    }
+
+    /**
+     * Get persona
+     *
+     * @return \AppBundle\Entity\Persona
+     */
+    public function getPersona()
+    {
+        return $this->persona;
     }
 
     /**

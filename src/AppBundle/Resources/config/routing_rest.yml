@@ -1,3 +1,8 @@
+dispositivo :
+  type: rest
+  resource:     "@AppBundle/Controller/Rest/DispositivosRestController.php"
+  name_prefix:  api_
+
 tipo_documento :
   type: rest
   resource:     "@AppBundle/Controller/Rest/TiposDocumentoRestController.php"
