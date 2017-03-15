@@ -23,16 +23,22 @@ class DispositivosRestController extends FOSRestController {
 		$params = $request->request->all();
 
 		$criteria = array(
-			'persona' => $persona,
+			'persona'  => $persona,
 			'playerId' => $params['player_id']
 		);
 
-		$dispositivo = $em->getRepository('AppBundle:Dispositivo')->findOneBy($criteria);
+		$dispositivo = $em->getRepository( 'AppBundle:Dispositivo' )->findOneBy( $criteria );
 
-		if (! $dispositivo){
+		if ( ! $dispositivo ) {
 			$dispositivo = new Dispositivo();
 
 		}
+
+		$dispositivo->setPersona( $persona );
+		$dispositivo->setPlayerId( $params['player_id'] );
+
+		$em->persist($dispositivo);
+		$em->flush();
 
 		$vista = $this->view( $dispositivo,
 			200 );
