@@ -59,6 +59,32 @@ class PublicacionesRestController extends FOSRestController {
 		return $this->handleView( $vista );
 	}
 
+	public function getPublicacionPersonaAction( Request $request, $personaId, $publicacionId ) {
+
+		$em = $this->getDoctrine();
+
+		$publicacione = $em->getRepository('AppBundle:Publicacion')->findOneById($publicacionId);
+
+		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.publicaciones_image' );
+
+			if ( $publicacione->getImageName() ) {
+				$publicacione->setImageName( $host . '/' . $publicacione->getImageName() );
+			}
+
+			foreach ( $publicacione->getFavorito() as $favorito ) {
+				if ($favorito->getPersona() && $favorito->getPersona()->getId() == $personaId &&
+				    $favorito->getActivo()
+				) {
+					$publicacione->setLikePersona( true );
+				}
+			}
+
+		$vista = $this->view( $publicacione,
+			200 );
+
+		return $this->handleView( $vista );
+	}
+
 	public function getPublicacionesporempresaAction( Request $request, $empresaId ) {
 
 		$empresa = $this->getDoctrine()->getRepository( "AppBundle:Empresa" )->find( $empresaId );
