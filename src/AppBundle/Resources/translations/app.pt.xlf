@@ -2,9 +2,262 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="title_post_list">
-                <source>title.post_list</source>
-                <target>Post List</target>
+            <trans-unit id="register_already">
+                <source>register.already</source>
+                <target>registrar-se</target>
+            </trans-unit>
+            <trans-unit id="register_a_new_membership">
+                <source>register.a.new.membership</source>
+                <target>Registrar um novo membro</target>
+            </trans-unit>
+            <trans-unit id="register_a_new_empresa">
+                <source>register.a.new.empresa</source>
+                <target>Registrar nova empresa</target>
+            </trans-unit>
+            <trans-unit id="register_as_empresa">
+                <source>register.as.empresa</source>
+                <target>Registrar-se como uma empresa</target>
+            </trans-unit>
+            <trans-unit id="register_as_persona">
+                <source>register.as.persona</source>
+                <target>Registrar-se como uma pessoa</target>
+            </trans-unit>
+            <trans-unit id="or">
+                <source>or</source>
+                <target>ou</target>
+            </trans-unit>
+            <trans-unit id="button_register">
+                <source>button.register</source>
+                <target>Registrar</target>
+            </trans-unit>
+            <trans-unit id="business_name">
+                <source>business.name</source>
+                <target>Nome da Empresa</target>
+            </trans-unit>
+            <trans-unit id="login">
+                <source>login</source>
+                <target>Iniciar sessão</target>
+            </trans-unit>
+            <trans-unit id="cambiar_idioma">
+                <source>cambiar.idioma</source>
+                <target>Mudar idioma</target>
+            </trans-unit>
+            <trans-unit id="Member since">
+                <source>Member since</source>
+                <target>Membro Desde</target>
+            </trans-unit>
+            <trans-unit id="Mark as Read">
+                <source>Mark as Read</source>
+                <target>Marcar como lido</target>
+            </trans-unit>
+            <trans-unit id="Shared publicly">
+                <source>Shared publicly</source>
+                <target>compartilhar</target>
+            </trans-unit>
+            <trans-unit id="Sitios">
+                <source>Sitios</source>
+                <target>lugares</target>
+            </trans-unit>
+            <trans-unit id="close">
+                <source>close</source>
+                <target>sair</target>
+            </trans-unit>
+
+            <!--menu-->
+            <trans-unit id="menu_empresa_profile">
+                <source>menu.empresa.profile</source>
+                <target>Perfil</target>
+            </trans-unit>
+            <trans-unit id="menu_empresa_publicaciones">
+                <source>menu.empresa.publicaciones</source>
+                <target>Ofertas y Eventos</target>
+            </trans-unit>
+            <trans-unit id="menu_empresa_noticias">
+                <source>menu.empresa.noticias</source>
+                <target>Notícia</target>
+            </trans-unit>
+            <trans-unit id="menu_empresa_nuevo_evento">
+                <source>menu.empresa.nuevo_evento</source>
+                <target>Novo evento</target>
+            </trans-unit>
+            <trans-unit id="menu_empresa_nueva_oferta">
+                <source>menu.empresa.nueva_oferta</source>
+                <target>Nova Oferta</target>
+            </trans-unit>
+            <trans-unit id="menu_empresa_noticias_recientes">
+                <source>menu.empresa.noticias_recientes</source>
+                <target>Notícia da minha Empresa</target>
+            </trans-unit>
+            <trans-unit id="menu_empresa_publicaciones_recientes">
+                <source>menu.empresa.publicaciones_recientes</source>
+                <target>Posts recentes</target>
+            </trans-unit>
+            <trans-unit id="menu_empresa_noticias_internas">
+                <source>menu.empresa.noticias_internas</source>
+                <target>Notícias de Evenprom</target>
+            </trans-unit>
+            <trans-unit id="menu_empresa_suscripcion">
+                <source>menu.empresa.suscripcion</source>
+                <target>Subscrever-se</target>
+            </trans-unit>
+            <trans-unit id="menu_empresa_promo_calendario">
+                <source>menu.empresa.promo_calendario</source>
+                <target>promoções</target>
+            </trans-unit>
+
+            <!--propias de la app-->
+            <trans-unit id="profile_empresa">
+                <source>profile.empresa</source>
+                <target>Perfil da empresa</target>
+            </trans-unit>
+            <trans-unit id="profile_persona">
+                <source>profile.persona</source>
+                <target>Meu Perfil</target>
+            </trans-unit>
+            <trans-unit id="sin.categoria">
+                <source>sin.categoria</source>
+                <target>Sem Categoria</target>
+            </trans-unit>
+            <!--oferta-->
+            <trans-unit id="nombre.oferta">
+                <source>nombre.oferta</source>
+                <target>Nome da Oferta</target>
+            </trans-unit>
+            <!--oferta-->
+            <trans-unit id="nombre.evento">
+                <source>nombre.evento</source>
+                <target>Nome do Evento</target>
+            </trans-unit>
+
+            <!--publicacion-->
+            <trans-unit id="button_new_publicacion">
+                <source>button.new.publicacion</source>
+                <target>Nova publicação</target>
+            </trans-unit>
+            <trans-unit id="image_publicacion">
+                <source>image.publicacion</source>
+                <target>Imagem postada</target>
+            </trans-unit>
+            <trans-unit id="Descripcion">
+                <source>Descripcion</source>
+                <target>descrições</target>
+            </trans-unit>
+            <trans-unit id="Nombre">
+                <source>Nombre</source>
+                <target>Nome</target>
+            </trans-unit>
+            <trans-unit id="Color">
+                <source>Color</source>
+                <target>Cor</target>
+            </trans-unit>
+            <trans-unit id="Titulo">
+                <source>Titulo</source>
+                <target>Título</target>
+            </trans-unit>
+            <trans-unit id="Recomendado 12 caracteres">
+                <source>Recomendado 12 caracteres</source>
+                <target>Recomendado 12 caracteres</target>
+            </trans-unit>
+            <trans-unit id="Cuerpo">
+                <source>Cuerpo</source>
+                <target>Corpo</target>
+            </trans-unit>
+            <trans-unit id="Fecha inicio">
+                <source>Fecha inicio</source>
+                <target>Data de inicio</target>
+            </trans-unit>
+            <trans-unit id="Fecha fin">
+                <source>Fecha fin</source>
+                <target>Data de término</target>
+            </trans-unit>
+            <trans-unit id="Hora inicio">
+                <source>Hora inicio</source>
+                <target>Hora do inicio</target>
+            </trans-unit>
+            <trans-unit id="Hora fin">
+                <source>Hora fin</source>
+                <target>Hora do fim</target>
+            </trans-unit>
+            <trans-unit id="Tipo publicacion">
+                <source>Tipo publicacion</source>
+                <target>Tipo de publicação</target>
+            </trans-unit>
+            <trans-unit id="Categoria publicacion">
+                <source>Categoria publicacion</source>
+                <target>Categoria</target>
+            </trans-unit>
+            <trans-unit id="Descuento publicacion">
+                <source>Descuento publicacion</source>
+                <target>Desconto</target>
+            </trans-unit>
+            <!--noticia-->
+            <trans-unit id="button_new_noticia">
+                <source>button.new.noticia</source>
+                <target>Nova Notícia</target>
+            </trans-unit>
+            <trans-unit id="Publicado">
+                <source>Publicado</source>
+                <target>Publicado</target>
+            </trans-unit>
+            <trans-unit id="Resumen">
+                <source>Resumen</source>
+                <target>Resumo</target>
+            </trans-unit>
+            <trans-unit id="Visible desde">
+                <source>Visible desde</source>
+                <target>Visível a partir de</target>
+            </trans-unit>
+            <trans-unit id="Visible hasta">
+                <source>Visible hasta</source>
+                <target>Visível a</target>
+            </trans-unit>
+            <trans-unit id="Imagen Destacada">
+                <source>Imagen Destacada</source>
+                <target>Imagem postada</target>
+            </trans-unit>
+            <trans-unit id="Orden">
+                <source>Orden</source>
+                <target>Ordem</target>
+            </trans-unit>
+            <trans-unit id="Activo">
+                <source>Activo</source>
+                <target>Ativo</target>
+            </trans-unit>
+
+            <!--security-->
+            <trans-unit id="profile">
+                <source>perfil</source>
+                <target>Perfil</target>
+            </trans-unit>
+
+            <!--forms-->
+            <trans-unit id="list">
+                <source>list</source>
+                <target>lista</target>
+            </trans-unit>
+            <trans-unit id="creation">
+                <source>creation</source>
+                <target>criar</target>
+            </trans-unit>
+            <trans-unit id="button_backtolist">
+                <source>button.backtolist</source>
+                <target>Retornar</target>
+            </trans-unit>
+            <trans-unit id="button_save">
+                <source>button.save</source>
+                <target>salvar</target>
+            </trans-unit>
+            <trans-unit id="button_edit">
+                <source>button.edit</source>
+                <target>Editar</target>
+            </trans-unit>
+            <trans-unit id="button_guardar">
+                <source>button.guardar</source>
+                <target>salvar</target>
+            </trans-unit>
+            <trans-unit id="Actions">
+                <source>Actions</source>
+                <target>ações</target>
             </trans-unit>
         </body>
     </file>
