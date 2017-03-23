@@ -8,6 +8,7 @@ easy_admin:
                     - { property: 'descripcion' }
                     - { property: 'disponibleDesde',  ,type_options: { widget: 'single_text', format: 'dd-MM-yyyy', attr: { class: 'datepicker' }} }
                     - { property: 'disponibleHasta', type_options: { widget: 'single_text', format: 'dd-MM-yyyy', attr: { class: 'datepicker' }} }
+                    - { property: 'imageFile', type: 'vich_image', label: 'Imagen' }
             edit:
                 title:  'Editar Promocion Calendario'
             new:

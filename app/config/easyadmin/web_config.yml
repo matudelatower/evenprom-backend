@@ -1,0 +1,14 @@
+easy_admin:
+    entities:
+        WebConfig:
+            class: AppBundle\Entity\WebConfig
+            form:
+                fields:
+                    - { property: 'nombre' }
+                    - { property: 'imageFile', type: 'vich_image', label: 'Imagen' }
+            edit:
+                title:  'Editar Configración Web'
+            new:
+                title:  'Alta Configración Web'
+            list:
+                title:  'Configración Web'

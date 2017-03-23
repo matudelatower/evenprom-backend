@@ -15,8 +15,8 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <b>Descripcion:</b> <span>{{ plan.descripcion }}</span><br>
-                            <b>Periodo:</b> <span> {{ plan.periodo }} días</span>
+                            <b>{{ 'Descripcion' |trans }}:</b> <span>{{ plan.descripcion }}</span><br>
+                            <b>{{ 'Periodo' |trans }}:</b> <span> {{ plan.periodo }} días</span>
 
                             <img class="img-responsive pad" src="{{ asset('uploads/images/planes/'~ plan.imageName) }}">
                         </div>
@@ -30,7 +30,7 @@
 
                                 {% if plan.botonMercadoPago is null and plan.botonPayPal is null %}
                                     <a class="btn btn-block btn-primary" href="{{ path('plan_empresa_basic') }}">
-                                        Adquirir
+                                        {{ 'Adquirir' |trans }}
                                     </a>
                                 {% else %}
                                     {% if plan.botonMercadoPago %}

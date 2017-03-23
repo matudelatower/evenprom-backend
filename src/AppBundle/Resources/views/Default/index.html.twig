@@ -6,29 +6,6 @@
     {% if promoCalendario is not empty %}
 
         {% for promo in promoCalendario %}
-            {#<div class="ep-publicacion-box">#}
-            {#<div class="ep-promo-calendario-info-box promo-calendario-box"#}
-            {#data-promo-calendario-id="{{ promo.id }}">#}
-            {#<div class="ep-promo-calendario-titulo"#}
-            {#style="background-color: {{ promo.colorPublicacion }};">#}
-            {#{{ promo.titulo |upper }}#}
-            {#</div>#}
-            {#<div class="ep-promo-calendario-body">#}
-            {#<a href="#" class="btn-ver-promo-calendario" data-promo-calendario-id="{{ promo.id }}">#}
-            {#{% set src = asset('bundles/app/img/default-thumbnail.jpeg') %}#}
-            {#{% if promo.imageName %}#}
-            {#{% set src = asset('uploads/images/publicaciones/'~ promo.imageName) %}#}
-            {#{% endif %}#}
-            {#<img class="img-responsive"#}
-            {#src="{{ src }}"#}
-            {#alt="Photo">#}
-            {#</a>#}
-            {#<div class="ep-promo-calendario-nombre-empresa">#}
-            {#{{ promo.empresa | upper }}#}
-            {#</div>#}
-            {#</div>#}
-            {#</div>#}
-            {#</div>#}
             <div id="content" class="bs-docs-header" tabindex="-1">
                 <div>
                     <div class="ep-promo-calendario-titulo"
@@ -51,7 +28,7 @@
     {% else %}
         <div id="content" class="bs-docs-header" tabindex="-1">
             <div>
-                <img class="img-responsive" src="http://placehold.it/1920x500/39CCCC/ffffff&text=EvenProm">
+                <img class="img-responsive" src="{{ asset('uploads/images/web/'~ banner.imageName) }}">
             </div>
         </div>
     {% endif %}
@@ -139,7 +116,7 @@
 
                         <h3 class="box-title">
                             <i class="fa fa-bell-o"></i>
-                            Configurar Notificaciones</h3>
+                            {{ "Configurar Notificaciones"|trans }}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -349,7 +326,7 @@
                 <div class="box box-solid">
                     <div class="box-header with-border">
 
-                        <h3 class="box-title">Noticias Empresas</h3>
+                        <h3 class="box-title">{{ 'Noticias Empresas' | trans }}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">

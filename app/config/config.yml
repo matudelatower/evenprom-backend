@@ -19,6 +19,7 @@ parameters:
     app.path.personas_image: /uploads/images/personas
     app.path.rubros_image: /uploads/images/rubros
     app.path.imagen_usuario_empresa_image: /uploads/images/imagen_usuario_empresa
+    app.path.imagen_web: /uploads/images/web
 
 framework:
     #esi:             ~
@@ -152,6 +153,10 @@ vich_uploader:
         imagen_usuario_empresa_image:
             uri_prefix:         %app.path.imagen_usuario_empresa_image%
             upload_destination: %kernel.root_dir%/../web/uploads/images/imagen_usuario_empresa
+            namer:              vich_uploader.namer_origname
+        imagen_web:
+            uri_prefix:         %app.path.imagen_web%
+            upload_destination: %kernel.root_dir%/../web/uploads/images/web
             namer:              vich_uploader.namer_origname
 
 ivory_ck_editor:
@@ -296,3 +301,7 @@ liip_imagine :
                 # create a 2px black border: center the thumbnail on a black background
                 # 4px larger to create a 2px border around the final image
                 background : { size : [254, 254], position : center, color : '#000000' }
+#one signal
+dizda_onesignal_api:
+    app_id:       %onesignal_app_id%
+    app_auth_key: %onesignal_app_auth_key%

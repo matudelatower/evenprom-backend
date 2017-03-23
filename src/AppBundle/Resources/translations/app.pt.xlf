@@ -50,6 +50,14 @@
                 <source>Mark as Read</source>
                 <target>Marcar como lido</target>
             </trans-unit>
+            <trans-unit id="Version">
+                <source>Version</source>
+                <target>Versão</target>
+            </trans-unit>
+            <trans-unit id="buscar">
+                <source>buscar</source>
+                <target>pesquisar</target>
+            </trans-unit>
             <trans-unit id="Shared publicly">
                 <source>Shared publicly</source>
                 <target>compartilhar</target>
@@ -94,7 +102,7 @@
             </trans-unit>
             <trans-unit id="menu_empresa_noticias_internas">
                 <source>menu.empresa.noticias_internas</source>
-                <target>Notícias de Evenprom</target>
+                <target>Notícias do Evenprom</target>
             </trans-unit>
             <trans-unit id="menu_empresa_suscripcion">
                 <source>menu.empresa.suscripcion</source>
@@ -103,6 +111,14 @@
             <trans-unit id="menu_empresa_promo_calendario">
                 <source>menu.empresa.promo_calendario</source>
                 <target>promoções</target>
+            </trans-unit>
+            <trans-unit id="Colores Recomendados">
+                <source>Colores Recomendados</source>
+                <target>As cores recomendadas</target>
+            </trans-unit>
+            <trans-unit id="color.empresa">
+                <source>color.empresa</source>
+                <target>Cor companhia</target>
             </trans-unit>
 
             <!--propias de la app-->
@@ -118,12 +134,82 @@
                 <source>sin.categoria</source>
                 <target>Sem Categoria</target>
             </trans-unit>
+            <trans-unit id="Localidad">
+                <source>Localidad</source>
+                <target>localidade</target>
+            </trans-unit>
+            <trans-unit id="Para mejorar tu direccion arrastra el pin hasta tu ubicación.">
+                <source>Para mejorar tu direccion arrastra el pin hasta tu ubicación.</source>
+                <target>Para melhorar o seu endereço, arrastrando o pin para sua localização</target>
+            </trans-unit>
+            <trans-unit id="Promoción Calendario">
+                <source>Promoción Calendario</source>
+                <target>Programa de divulgação</target>
+            </trans-unit>
+            <trans-unit id="Mis Promociones Calendario">
+                <source>Mis Promociones Calendario</source>
+                <target>Minhas promoçoes de calendário</target>
+            </trans-unit>
+
+            <!--perfil empresa-->
+            <trans-unit id="Tu empresas es un hotel o una agencia?">
+                <source>Tu empresas es un hotel o una agencia?</source>
+                <target>seu negócio é um hotel ou agencia</target>
+            </trans-unit>
+            <trans-unit id="Direccion empresa">
+                <source>Direccion empresa</source>
+                <target>Endereço da empresa</target>
+            </trans-unit>
+            <trans-unit id="Onda de la Empresa">
+                <source>Onda de la Empresa</source>
+                <target>Onda Empresa</target>
+            </trans-unit>
+
+            <!--contacto-->
+            <trans-unit id="Responsable de contacto">
+                <source>Responsable de contacto</source>
+                <target>Responsável pelo contato</target>
+            </trans-unit>
+            <trans-unit id="Contacto">
+                <source>Contacto</source>
+                <target>Contato</target>
+            </trans-unit>
+            <trans-unit id="Telefono">
+                <source>Telefono</source>
+                <target>Telefone</target>
+            </trans-unit>
+            <trans-unit id="Mail">
+                <source>Mail</source>
+                <target>Coreio</target>
+            </trans-unit>
+
+            <!--direccion-->
+            <trans-unit id="Calle">
+                <source>Calle</source>
+                <target>Rua</target>
+            </trans-unit>
+            <trans-unit id="Piso">
+                <source>Piso</source>
+                <target>Chão</target>
+            </trans-unit>
+            <trans-unit id="Edificio">
+                <source>Edificio</source>
+                <target>Edifício</target>
+            </trans-unit>
+
             <!--oferta-->
             <trans-unit id="nombre.oferta">
                 <source>nombre.oferta</source>
                 <target>Nome da Oferta</target>
             </trans-unit>
-            <!--oferta-->
+            <trans-unit id="help.nombre.evento">
+                <source>help.nombre.evento</source>
+                <target>O nombe do evento ou banda</target>
+            </trans-unit>
+            <trans-unit id="Apagar?">
+                <source>Apagar?</source>
+                <target>desligar</target>
+            </trans-unit>
             <trans-unit id="nombre.evento">
                 <source>nombre.evento</source>
                 <target>Nome do Evento</target>
@@ -141,6 +227,14 @@
             <trans-unit id="Descripcion">
                 <source>Descripcion</source>
                 <target>descrições</target>
+            </trans-unit>
+            <trans-unit id="Periodo">
+                <source>Periodo</source>
+                <target>Período</target>
+            </trans-unit>
+            <trans-unit id="Logo">
+                <source>Logo</source>
+                <target>Logotipo</target>
             </trans-unit>
             <trans-unit id="Nombre">
                 <source>Nombre</source>
@@ -190,6 +284,47 @@
                 <source>Descuento publicacion</source>
                 <target>Desconto</target>
             </trans-unit>
+            <trans-unit id="fecha.inicio.evento.oferta">
+                <source>fecha.inicio.evento.oferta</source>
+                <target>Data do início do evento/oferta</target>
+            </trans-unit>
+            <trans-unit id="fecha.fin.evento.oferta">
+                <source>fecha.fin.evento.oferta</source>
+                <target>Data final do evento/oferta</target>
+            </trans-unit>
+            <trans-unit id="Fecha de inicio de la oferta">
+                <source>Fecha de inicio de la oferta</source>
+                <target>Data da oferta começar</target>
+            </trans-unit>
+            <trans-unit id="Fecha de fin de la oferta">
+                <source>Fecha de fin de la oferta</source>
+                <target>Data da oferta terminando</target>
+            </trans-unit>
+            <trans-unit id="Fecha publicacion">
+                <source>Fecha publicacion</source>
+                <target>Data de publicação</target>
+            </trans-unit>
+            <trans-unit id="Fecha de en la que aparecerá la publicación">
+                <source>Fecha de en la que aparecerá la publicación</source>
+                <target>Data de publicação</target>
+            </trans-unit>
+            <trans-unit id="Hora de inicio del evento">
+                <source>Hora de inicio del evento</source>
+                <target>Data de publicação</target>
+            </trans-unit>
+            <trans-unit id="Hora de fin del evento">
+                <source>Hora de fin del evento</source>
+                <target>Data de publicação</target>
+            </trans-unit>
+            <trans-unit id="Descripcion larga del evento.">
+                <source>Descripcion larga del evento.</source>
+                <target>Data de publicação</target>
+            </trans-unit>
+            <trans-unit id="Tipo evento">
+                <source>Tipo evento</source>
+                <target>Data de publicação</target>
+            </trans-unit>
+
             <!--noticia-->
             <trans-unit id="button_new_noticia">
                 <source>button.new.noticia</source>
@@ -222,6 +357,12 @@
             <trans-unit id="Activo">
                 <source>Activo</source>
                 <target>Ativo</target>
+            </trans-unit>
+
+            <!--plan empresa-->
+            <trans-unit id="Adquirir">
+                <source>Adquirir</source>
+                <target>Compra</target>
             </trans-unit>
 
             <!--security-->
@@ -259,6 +400,40 @@
                 <source>Actions</source>
                 <target>ações</target>
             </trans-unit>
+            <trans-unit id="Agregar">
+                <source>Agregar</source>
+                <target>Adicionar</target>
+            </trans-unit>
+
+            <!--misc-->
+            <trans-unit id="Hola">
+                <source>Hola</source>
+                <target>Olá</target>
+            </trans-unit>
+            <trans-unit id="Disponible hasta">
+                <source>Disponible hasta</source>
+                <target>Disponível para</target>
+            </trans-unit>
+            <trans-unit id="Imagen">
+                <source>Imagen</source>
+                <target>Imagem</target>
+            </trans-unit>
+            <trans-unit id="Descargar">
+                <source>Descargar</source>
+                <target>Baixar</target>
+            </trans-unit>
+
+
+            <!--public-->
+            <trans-unit id="Configurar Notificaciones">
+                <source>Configurar Notificaciones</source>
+                <target>Configurar notificações</target>
+            </trans-unit>
+            <trans-unit id="Noticias Empresas">
+                <source>Noticias Empresas</source>
+                <target>Notícias da empresa</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

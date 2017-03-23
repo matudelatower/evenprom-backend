@@ -8,3 +8,6 @@ services:
     manager.app:
         class: AppBundle\Services\AppManager
         arguments: ["@doctrine.orm.default_entity_manager"]
+    manager.notificacion:
+        class: AppBundle\Services\NotificacionesManager
+        arguments: ["@doctrine.orm.default_entity_manager", @dizda_onesignal_api.service.client]

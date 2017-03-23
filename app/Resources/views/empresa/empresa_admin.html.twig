@@ -28,7 +28,7 @@
     </script>
 {% endblock %}
 {% block content %}
-    Hola {{ empresa }}
+    {{ 'Hola'|trans }} {{ empresa }}
 
     <h1>Noticias EvenProm</h1>
 
@@ -100,7 +100,7 @@
                         <div class="user-block">
                             <img class="img-circle" src="{{ asset('bundles/app/img/favicon.png') }}" alt="User Image">
                             <span class="username"><a href="#">EvenProm</a></span>
-                            <span class="description">Promoción Calendario - Disponible hasta: {{ promoCalendario.disponibleHasta | date('d/m/Y') }}</span>
+                            <span class="description">{{ 'Promoción Calendario' |trans }} - {{ 'Disponible hasta' |trans }}: {{ promoCalendario.disponibleHasta | date('d/m/Y') }}</span>
                         </div>
                         <!-- /.user-block -->
                         <div class="box-tools">
@@ -130,7 +130,7 @@
                         {% else %}
                             <a class="btn btn-block btn-primary"
                                href="{{ path('promocion_calendario_adquirir', {'id':promoCalendario.id } ) }}">
-                                Adquirir
+                                {{ 'Adquirir'|trans }}
                             </a>
                         {% endif %}
                     </div>

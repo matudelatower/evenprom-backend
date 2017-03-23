@@ -24,6 +24,8 @@
 !web/uploads/images/imagen_usuario_empresa/.gitkeep
 /web/uploads/images/rubros/*
 !web/uploads/images/rubros/.gitkeep
+/web/uploads/images/web/*
+!web/uploads/images/web/.gitkeep
 /web/media/
 
 # -- Editores -----------------------------------------

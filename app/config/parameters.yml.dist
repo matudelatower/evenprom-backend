@@ -26,3 +26,7 @@ parameters:
     g_client_id:        9999
     g_client_secret:    9999
     g_api_key:          9999
+
+    #one signal
+    onesignal_app_id : asdasd
+    onesignal_app_auth_key : asdasd

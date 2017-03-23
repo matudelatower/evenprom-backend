@@ -48,12 +48,14 @@ class DefaultController extends Controller {
 
 		}
 		$rubros = $em->getRepository( 'AppBundle:Rubro' )->findAll();
+		$banner = $em->getRepository( 'AppBundle:WebConfig' )->findOneBySlug('banner');
 
 		return $this->render( '@App/Default/sitios.html.twig',
 			array(
 				'empresas'  => $empresas,
 				'rubros'    => $rubros,
-				'favoritos' => $favoritos
+				'favoritos' => $favoritos,
+				'banner' => $banner,
 			) );
 	}
 
@@ -111,6 +113,7 @@ class DefaultController extends Controller {
 			$promoCalendario = $em->getRepository( 'AppBundle:PromocionCalendario' )->findActualesAdquiridas();
 
 			$rubros = $em->getRepository( 'AppBundle:Rubro' )->findAll();
+			$banner = $em->getRepository( 'AppBundle:WebConfig' )->findOneBySlug('banner');
 
 
 			return $this->render( 'AppBundle:Default:index.html.twig',
@@ -118,7 +121,8 @@ class DefaultController extends Controller {
 					'publicaciones'   => $publicaciones,
 					'promoCalendario' => $promoCalendario,
 					'favoritos'       => $favoritos,
-					'rubros'          => $rubros
+					'rubros'          => $rubros,
+					'banner'          => $banner
 				) );
 
 		} else {

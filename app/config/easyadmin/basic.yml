@@ -24,6 +24,7 @@ easy_admin:
         brand_color: '#367fa9'
         form_theme: ['AppBundle:Form:bootstrap_3_layout.html.twig']
         menu:
+            - { label: 'Configuración Web', entity: WebConfig }
             - Empresa
             - Persona
             - Plan

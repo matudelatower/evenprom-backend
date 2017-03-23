@@ -26,12 +26,16 @@ class EmpresaType extends AbstractType {
 					),
 					'required' => false,
 				) )
-			->add( 'cuit' )
+			->add( 'cuit',
+				null,
+				array(
+					'label' => 'CUIT/CPF/CPNJ'
+				) )
 			->add( 'color',
 				TextType::class,
 				array(
 					'attr'  => array( 'class' => 'colorpicker' ),
-					'label' => 'Color Empresa'
+					'label' => 'color.empresa'
 				) )
 			->add( 'linkYoutube',
 				UrlType::class,
@@ -101,7 +105,7 @@ class EmpresaType extends AbstractType {
 					'allow_add'    => true,
 					'allow_delete' => true,
 					'by_reference' => false,
-					'label' => 'Onda de la Empresa',
+					'label'        => 'Onda de la Empresa',
 					'label_attr'   => array( 'class' => 'text-green h2' )
 				) )
 			->add( 'empresaSubRubro',
@@ -122,7 +126,7 @@ class EmpresaType extends AbstractType {
 					'allow_delete'  => true,
 					'by_reference'  => false,
 					'max_items_add' => 1,
-					'label' => 'Tu empresas es un hotel o una agencia?',
+					'label'         => 'Tu empresas es un hotel o una agencia?',
 					'label_attr'    => array( 'class' => 'text-green h2' )
 				) );
 	}

@@ -55,7 +55,7 @@ class OfertaType extends AbstractType {
 					'format' => 'dd/MM/yyyy',
 					'attr'   => array(
 						'class'       => 'datepicker',
-						'placeholder' => "Fecha de inicio de la oferta ",
+						'placeholder' => "Fecha de inicio de la oferta",
 					),
 				) )
 			->add( 'fechaFin',
@@ -65,7 +65,7 @@ class OfertaType extends AbstractType {
 					'format' => 'dd/MM/yyyy',
 					'attr'   => array(
 						'class'       => 'datepicker',
-						'placeholder' => "Fecha de fin de la oferta ",
+						'placeholder' => "Fecha de fin de la oferta",
 					),
 				) )
 			->add( 'fechaPublicacion',

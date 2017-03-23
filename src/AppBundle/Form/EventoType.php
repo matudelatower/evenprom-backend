@@ -29,7 +29,7 @@ class EventoType extends AbstractType {
 					'attr'  => array(
 						'placeholder' => "Recomendado $maxLength caracteres",
 						'maxlength'   => $maxLength,
-						'help_text'   => 'El nombre del evento o la banda'
+						'help_text'   => "help.nombre.evento"
 					),
 					'label' => 'nombre.evento'
 				) )
@@ -56,7 +56,7 @@ class EventoType extends AbstractType {
 					'format' => 'dd/MM/yyyy',
 					'attr'   => array(
 						'class'       => 'datepicker',
-						'placeholder' => "Fecha de inicio de evento/oferta ",
+						'placeholder' => "fecha.inicio.evento.oferta",
 					),
 				) )
 			->add( 'fechaFin',
@@ -66,7 +66,7 @@ class EventoType extends AbstractType {
 					'format' => 'dd/MM/yyyy',
 					'attr'   => array(
 						'class'       => 'datepicker',
-						'placeholder' => "Fecha de fin de evento/oferta ",
+						'placeholder' => "fecha.fin.evento.oferta",
 					),
 				) )
 			->add( 'fechaPublicacion',

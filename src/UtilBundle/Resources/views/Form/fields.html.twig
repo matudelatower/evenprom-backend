@@ -1,3 +1,4 @@
+{% trans_default_domain "app" %}
 {% block jqueryautocomplete_widget %}
 
     {#{% block javascripts %}
@@ -185,7 +186,7 @@
                                                         {{ widget_prototype.vars.label |default(widget_prototype.vars.name|humanize) }}
                                                     </th>
                                                 {% endfor %}
-                                                <th style="width: 50px;">Accion</th>
+                                                <th style="width: 50px;">{{ 'Actions' |trans }}</th>
                                             </tr>
                                             </thead>
 
@@ -226,7 +227,7 @@
                                         {#                                        <a class="btn btn-blue margin-top-2 bootstrapcollection-agregar-otro-item" href="#" ><i class="icon-plus"></i> Agregar otro Item</a>#}
                                         <div class="box-footer clearfix no-border">
                                             <a class="btn btn-default pull-right bootstrapcollection-agregar-otro-item"
-                                               href="#"><i class="fa fa-plus"></i> Agregar</a>
+                                               href="#"><i class="fa fa-plus"></i> {{ 'Agregar' |trans }}</a>
                                         </div>
                                         <br>
                                     </div>

@@ -100,6 +100,27 @@ $(document).ready(function () {
         twigLocale = 'es';
     }
 
+    switch (twigLocale) {
+        case 'pt':
+            dataTableLang = {
+                "search": "Pesquisar:",
+                "zeroRecords": "Sem resultados"
+            };
+            break;
+        case 'en':
+            dataTableLang = {
+                "search": "Search:",
+                "zeroRecords": "No Result"
+            };
+            break;
+        default:
+            dataTableLang = {
+                "search": "Buscar:",
+                "zeroRecords": "Sin resultados"
+            };
+            break;
+    }
+
 
     inicializarFecha();
 
@@ -109,10 +130,7 @@ $(document).ready(function () {
         "info": false,
         "scrollX": true,
         "order": [],
-        "language": {
-            "search": "Buscar:",
-            "zeroRecords": "Sin resultados"
-        }
+        "language": dataTableLang
     });
 
     //iCheck for checkbox and radio inputs

@@ -156,7 +156,13 @@ class PersonasRestController extends FOSRestController {
 			$notificacionPersona->setGastronomico( $params['gastronomia'] );
 		}
 		if ( isset( $params['empresa'] ) && $params['empresa'] ) {
-			$notificacionPersona->setEmpresa( $params['empresa'] );
+			$aEmpresas = $notificacionPersona->getEmpresa();
+
+			$merge     = array_merge( $aEmpresas, $params['empresa'] );
+			$resultado = array_unique( $merge );
+			$aValues = array_values($resultado);
+
+			$notificacionPersona->setEmpresa( $aValues );
 		}
 		if ( isset( $params['eventos'] ) && $params['eventos'] ) {
 			$notificacionPersona->setEvento( array( $params['eventos'] ) );
@@ -189,11 +195,11 @@ class PersonasRestController extends FOSRestController {
 		}
 
 		$notificacionPersona = $em->getRepository( "AppBundle:NotificacionPersona" )->findOneByPersona( $persona );
-		$statusCode = 200;
+		$statusCode          = 200;
 
 		if ( ! $notificacionPersona ) {
 			$notificacionPersona = array();
-			$statusCode = 404;
+			$statusCode          = 404;
 		}
 
 		$vista = $this->view( $notificacionPersona,

@@ -50,6 +50,14 @@
                 <source>Mark as Read</source>
                 <target>Marcar como leído</target>
             </trans-unit>
+            <trans-unit id="Version">
+                <source>Version</source>
+                <target>Versión</target>
+            </trans-unit>
+            <trans-unit id="buscar">
+                <source>buscar</source>
+                <target>buscar</target>
+            </trans-unit>
             <trans-unit id="Shared publicly">
                 <source>Shared publicly</source>
                 <target>Publicado el</target>
@@ -117,6 +125,10 @@
             <trans-unit id="sin.categoria">
                 <source>sin.categoria</source>
                 <target>Sin Categoría</target>
+            </trans-unit>
+            <trans-unit id="color.empresa">
+                <source>color.empresa</source>
+                <target>Color Empresa</target>
             </trans-unit>
             <!--oferta-->
             <trans-unit id="nombre.oferta">
