@@ -118,17 +118,18 @@ class EmpresaType extends AbstractType {
 					'label'        => 'Rubro',
 					'label_attr'   => array( 'class' => 'text-green h2' )
 				) )
-			->add( 'empresaHotelAgencia',
-				BootstrapCollectionType::class,
-				array(
-					'entry_type'    => EmpresaHotelAgenciaType::class,
-					'allow_add'     => true,
-					'allow_delete'  => true,
-					'by_reference'  => false,
-					'max_items_add' => 1,
-					'label'         => 'Tu empresas es un hotel o una agencia?',
-					'label_attr'    => array( 'class' => 'text-green h2' )
-				) );
+//			->add( 'empresaHotelAgencia',
+//				BootstrapCollectionType::class,
+//				array(
+//					'entry_type'    => EmpresaHotelAgenciaType::class,
+//					'allow_add'     => true,
+//					'allow_delete'  => true,
+//					'by_reference'  => false,
+//					'max_items_add' => 1,
+//					'label'         => 'Tu empresas es un hotel o una agencia?',
+//					'label_attr'    => array( 'class' => 'text-green h2' )
+//				) )
+		;
 	}
 
 	/**

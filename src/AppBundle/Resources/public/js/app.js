@@ -68,6 +68,20 @@ function modalAlert(msg) {
 }
 
 /**
+ * Abre un modal para confirmar
+ *
+ * @param titulo
+ * @param body
+ * @param okButonHref
+ */
+function modalConfirm(titulo, body, okButonHref) {
+    $('#modal-alert .modal-body').html(body);
+    $('#modal-alert #myModalLabel').html(titulo);
+    $('#modal-alert #modal-btn-ok').attr('href', okButonHref);
+    $('#modal-alert').modal('toggle');
+}
+
+/**
  * Funcion para limpiar los campos de un form
  *
  * @param form el formulario a limpiar

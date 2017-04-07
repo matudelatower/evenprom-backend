@@ -122,6 +122,16 @@ class Builder implements ContainerAwareInterface {
 					)
 				);
 
+			$menu[ $keyEmpresa ]
+				->addChild(
+					$this->container->get( 'translator' )->trans( 'menu.empresa.comentarios',
+						array(),
+						'app' ),
+					array(
+						'route' => 'comentarios_index',
+					)
+				);
+
 //			$menu[ $keyEmpresa ]
 //				->addChild(
 //					$this->container->get( 'translator' )->trans( 'menu.empresa.publicaciones',

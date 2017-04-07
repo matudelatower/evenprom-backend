@@ -1,0 +1,45 @@
+{% extends '::layout_base.html.twig' %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+
+                    <h3 class="box-title">Comentario</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ comentario.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Texto</th>
+                            <td>{{ comentario.texto }}</td>
+                        </tr>
+                        <tr>
+                            <th>Fecha creacion</th>
+                            <td>{% if comentario.fechaCreacion %}{{ comentario.fechaCreacion|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Fecha actualizacion</th>
+                            <td>{% if comentario.fechaActualizacion %}{{ comentario.fechaActualizacion|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-buttons">
+
+        <a class="btn btn-default" href="{{ path('comentarios_index') }}">{{ 'button.backtolist'|trans }} </a>
+    </div>
+{% endblock %}

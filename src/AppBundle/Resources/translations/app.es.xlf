@@ -112,6 +112,10 @@
                 <source>menu.empresa.promo_calendario</source>
                 <target>Promociones Calendario</target>
             </trans-unit>
+            <trans-unit id="menu_empresa_comentarios">
+                <source>menu.empresa.comentarios</source>
+                <target>Comentarios</target>
+            </trans-unit>
 
             <!--propias de la app-->
             <trans-unit id="profile_empresa">

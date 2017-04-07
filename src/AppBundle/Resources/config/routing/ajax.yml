@@ -2,9 +2,13 @@
 #    path: /get_sub_rubros
 #    defaults: { _controller: "AppBundle:Ajax:getSubRubros" }
 
-#get_categorias:
-#    path: /get_categorias
-#    defaults: { _controller: "AppBundle:Ajax:getCategorias" }
+comentarios_delete:
+    path: /comentarios_delete/{id}
+    defaults: { _controller: "AppBundle:Ajax:eliminarComentario" }
+
+noticia_interna_no_volver_a_mostrar:
+    path: /{id}/noticia_interna_no_volver_a_mostrar/{empresaId}
+    defaults: { _controller: "AppBundle:Ajax:noVolverAMostrarNoticia" }
 
 noticia_interna_marcar_leida:
     path: /noticia_interna_marcar_leida

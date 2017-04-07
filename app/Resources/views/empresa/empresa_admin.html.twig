@@ -28,9 +28,15 @@
     </script>
 {% endblock %}
 {% block content %}
-    {{ 'Hola'|trans }} {{ empresa }}
 
-    <h1>Noticias EvenProm</h1>
+    <div class="col-md-6">
+        {{ 'Hola'|trans }} {{ empresa }}
+        <h1>Noticias EvenProm</h1>
+    </div>
+
+    <div class="col-md-6">
+        <h1>LO AYUDAMOS A CARGAR SU EMPRESA. Llamenos por Whatsapp o escribanos que lo asistiremos gratuitamente</h1>
+    </div>
 
     <div class="row">
 
@@ -100,7 +106,9 @@
                         <div class="user-block">
                             <img class="img-circle" src="{{ asset('bundles/app/img/favicon.png') }}" alt="User Image">
                             <span class="username"><a href="#">EvenProm</a></span>
-                            <span class="description">{{ 'Promoción Calendario' |trans }} - {{ 'Disponible hasta' |trans }}: {{ promoCalendario.disponibleHasta | date('d/m/Y') }}</span>
+                            <span class="description">{{ 'Promoción Calendario' |trans }}
+                                - {{ 'Disponible hasta' |trans }}
+                                : {{ promoCalendario.disponibleHasta | date('d/m/Y') }}</span>
                         </div>
                         <!-- /.user-block -->
                         <div class="box-tools">
@@ -139,6 +147,5 @@
                 <!-- /.box -->
             </div>
         {% endfor %}
-
     </div>
 {% endblock %}

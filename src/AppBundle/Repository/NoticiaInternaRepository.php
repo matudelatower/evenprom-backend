@@ -22,4 +22,28 @@ class NoticiaInternaRepository extends \Doctrine\ORM\EntityRepository {
 
 	}
 
+
+	/**
+	 *
+	 * obtiene las noticias que las empresas no leyeron
+	 *
+	 * @param $noticiasId array array con las id noticias que las empresas no han marcado
+	 * no volver a mostrar
+	 *
+	 * @return array
+	 */
+	public function getNoticias( $noticiasId ) {
+		$qb = $this->createQueryBuilder( 'ni' );
+
+
+		if ($noticiasId){
+
+			$qb->where( 'ni.id not in (:noticiasId)' );
+			$qb->setParameter( 'noticiasId', implode($noticiasId) );
+		}
+
+		return $qb->getQuery()->getResult();
+
+	}
+
 }

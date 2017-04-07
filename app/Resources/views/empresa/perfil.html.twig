@@ -103,7 +103,7 @@
                     {{ form_row(form.color) }}
                     <div class="row">
                         <div class="col-md-6">
-                            <span>{{ "Colores Recomendados" | trans}}</span>
+                            <span>{{ "Colores Recomendados" | trans }}</span>
                             <ul class="users-list clearfix">
                                 <li>
                                     <button type="button" class="btn btn-color"
@@ -173,6 +173,11 @@
             return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
         }
 
+        var map = L.map('mapid', {
+            center: [-25.59751, -54.57],
+            zoom: 16
+        });
+
         $(document).ready(function () {
             $(".colorpicker").colorpicker();
             $(".btn-color").click(function () {
@@ -180,7 +185,13 @@
                 $('#{{ form.color.vars.id }}').val(rgb2hex(color));
             });
 
-            var map = L.map('mapid', {doubleClickZoom: false}).locate({setView: true, maxZoom: 16});
+//            var map = L.map('mapid', {doubleClickZoom: false}).locate({setView: true, maxZoom: 16});
+            if (navigator.geolocation) {
+                map.locate({setView: true, maxZoom: 16});
+            } else {
+                modalAlert("Geolocation no esta disponible");
+            }
+
             L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
                 maxZoom: 18

@@ -26,6 +26,8 @@ class PublicacionRepository extends EntityRepository {
 			   ->setParameter( 'empresa', $empresa );
 		}
 
+		$qb->orderBy('p.id', 'DESC');
+
 
 		return $qb->getQuery()->getResult();
 

@@ -183,4 +183,60 @@ class AjaxController extends Controller {
 		), 500 );
 	}
 
+	public function noVolverAMostrarNoticiaAction( Request $request, $id, $empresaId ) {
+
+		$em = $this->getDoctrine()->getManager();
+
+		$empresa        = $em->getRepository( 'AppBundle:Empresa' )->find( $empresaId );
+		$noticiaInterna = $em->getRepository( 'AppBundle:NoticiaInterna' )->find( $id );
+		if ( ! $noticiaInterna ) {
+			return new JsonResponse( array(
+				'text' => 'no se encuentra la noticia',
+			), 404 );
+		}
+
+		if ( ! $empresa ) {
+			return new JsonResponse( array(
+				'text' => 'no se encuentra la empresa',
+			), 404 );
+		}
+
+		$criteria = array(
+			'noticiaInterna' => $noticiaInterna,
+			'empresa'        => $empresa
+		);
+
+		$noticiaInternaEmpresa = $em->getRepository( 'AppBundle:NoticiaInternaEmpresa' )->findOneBy( $criteria );
+
+		if ( ! $noticiaInternaEmpresa ) {
+			$noticiaInternaEmpresa = new NoticiaInternaEmpresa();
+			$noticiaInternaEmpresa->setEmpresa( $empresa );
+			$noticiaInternaEmpresa->setNoticiaInterna( $noticiaInterna );
+		}
+
+		$noticiaInternaEmpresa->setVolverAMostrar( false );
+
+		$em->persist( $noticiaInternaEmpresa );
+		$em->flush();
+
+		return new JsonResponse( 'ok' );
+	}
+
+	public function eliminarComentarioAction( $id ) {
+		$em = $this->getDoctrine()->getManager();
+
+		$comentario = $em->getRepository( 'AppBundle:Comentario' )->find( $id );
+		if ( ! $comentario ) {
+			return new JsonResponse( array(
+				'text' => 'no se encuentra el comentario',
+			), 404 );
+		}
+
+		$comentario->setActivo( false );
+		$em->persist( $comentario );
+		$em->flush();
+
+		return new JsonResponse( 'ok' );
+	}
+
 }

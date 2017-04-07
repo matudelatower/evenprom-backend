@@ -44,7 +44,8 @@
                                 <td>
                                     <a class="btn btn-default"
                                        href="{{ path('publicaciones_show', { 'id': publicacion.id }) }}"><i
-                                                class="fa fa-eye"></i></a>
+                                                class="fa fa-eye"></i>
+                                    </a>
                                     <a class="btn btn-default"
                                        href="
                                         {% if publicacion.tipoPublicacion.slug =='evento' %}
@@ -52,7 +53,13 @@
                                         {% elseif publicacion.tipoPublicacion.slug =='oferta' %}
                                             {{ path('oferta_edit', { 'id': publicacion.id }) }}
                                         {% endif %}
-                                    "><i class="fa fa-edit"></i></a>
+                                    "><i class="fa fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-default"
+                                       data-toggle="tooltip" title="" data-original-title="Ver Comentarios"
+                                       href="{{ path('comentarios_publicacion_index', { 'id': publicacion.id }) }}"><i
+                                                class="fa fa-comments-o"></i>
+                                    </a>
                                 </td>
                             </tr>
                             {% set contador = contador + 1 %}

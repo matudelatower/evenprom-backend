@@ -43,4 +43,26 @@ class ComentarioRepository extends \Doctrine\ORM\EntityRepository {
 		return $qb->getQuery()->getResult();
 
 	}
+
+	public function findActivosByEmpresa( $empresa ) {
+		$qb = $this->createQueryBuilder( 'c' );
+
+		$qb->join( 'c.empresa', 'emp' )
+		   ->where( 'emp = :empresa' )
+		   ->andWhere( 'c.activo = true' )
+		   ->setParameter( 'empresa', $empresa );
+
+		return $qb->getQuery()->getResult();
+	}
+
+	public function findActivosByPublicacion( $publicacion ) {
+		$qb = $this->createQueryBuilder( 'c' );
+
+		$qb->join( 'c.publicacion', 'emp' )
+		   ->where( 'emp = :publicacion' )
+		   ->andWhere( 'c.activo = true' )
+		   ->setParameter( 'publicacion', $publicacion );
+
+		return $qb->getQuery()->getResult();
+	}
 }

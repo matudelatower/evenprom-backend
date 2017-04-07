@@ -1,3 +1,7 @@
+app_comentarios:
+    resource: "@AppBundle/Resources/config/routing/comentario.yml"
+    prefix:   /comentarios
+
 app_promocion_calendario:
     resource: "@AppBundle/Resources/config/routing/promocioncalendario.yml"
     prefix:   /promocion_calendario
