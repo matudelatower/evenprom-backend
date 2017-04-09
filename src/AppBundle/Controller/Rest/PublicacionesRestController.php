@@ -19,7 +19,6 @@ class PublicacionesRestController extends FOSRestController {
 			}
 		}
 
-
 		$vista = $this->view( $publicaciones,
 			200 );
 
@@ -28,11 +27,9 @@ class PublicacionesRestController extends FOSRestController {
 
 	public function getPublicacionesPersonaAction( Request $request, $personaId ) {
 
-		$datos = json_decode($request->get('fields'));
+		$datos = json_decode( $request->get( 'fields' ) );
 
-		$publicaciones = $this->getDoctrine()->getRepository( "AppBundle:Publicacion" )->findActuales($datos);
-
-
+		$publicaciones = $this->getDoctrine()->getRepository( "AppBundle:Publicacion" )->findActuales( $datos );
 
 		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.publicaciones_image' );
 
@@ -42,16 +39,22 @@ class PublicacionesRestController extends FOSRestController {
 			}
 
 			foreach ( $publicacione->getFavorito() as $favorito ) {
-				if ($favorito->getPersona() && $favorito->getPersona()->getId() == $personaId &&
+				if ( $favorito->getPersona() && $favorito->getPersona()->getId() == $personaId &&
 				     $favorito->getActivo()
 				) {
 					$publicacione->setLikePersona( true );
 				}
 			}
 
+			foreach ( $publicacione->getCheckIn() as $checkIn ) {
+				if ( $checkIn->getPersona() && $checkIn->getPersona()->getId() == $personaId &&
+				     $checkIn->getActivo()
+				) {
+					$publicacione->setCheckInPersona( true );
+				}
+			}
 
 		}
-
 
 		$vista = $this->view( $publicaciones,
 			200 );
@@ -63,21 +66,29 @@ class PublicacionesRestController extends FOSRestController {
 
 		$em = $this->getDoctrine();
 
-		$publicacione = $em->getRepository('AppBundle:Publicacion')->findOneById($publicacionId);
+		$publicacione = $em->getRepository( 'AppBundle:Publicacion' )->findOneById( $publicacionId );
 
 		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.publicaciones_image' );
 
-			if ( $publicacione->getImageName() ) {
-				$publicacione->setImageName( $host . '/' . $publicacione->getImageName() );
-			}
+		if ( $publicacione->getImageName() ) {
+			$publicacione->setImageName( $host . '/' . $publicacione->getImageName() );
+		}
 
-			foreach ( $publicacione->getFavorito() as $favorito ) {
-				if ($favorito->getPersona() && $favorito->getPersona()->getId() == $personaId &&
-				    $favorito->getActivo()
-				) {
-					$publicacione->setLikePersona( true );
-				}
+		foreach ( $publicacione->getFavorito() as $favorito ) {
+			if ( $favorito->getPersona() && $favorito->getPersona()->getId() == $personaId &&
+			     $favorito->getActivo()
+			) {
+				$publicacione->setLikePersona( true );
 			}
+		}
+
+		foreach ( $publicacione->getCheckIn() as $checkIn ) {
+			if ( $checkIn->getPersona() && $checkIn->getPersona()->getId() == $personaId &&
+			     $checkIn->getActivo()
+			) {
+				$publicacione->setCheckInPersona( true );
+			}
+		}
 
 		$vista = $this->view( $publicacione,
 			200 );
