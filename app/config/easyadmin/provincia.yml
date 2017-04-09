@@ -2,14 +2,18 @@ easy_admin:
     entities:
         Provincia:
             class: Matudelatower\UbicacionBundle\Entity\Provincia
+            show:
+                actions: ['-delete']
             form:
                 fields:
                     - { property: 'descripcion' }
                     - { property: 'codigo' }
                     - { property: 'pais', type: 'entity', type_options: { class: 'Matudelatower\UbicacionBundle\Entity\Pais', attr: { class: 'select2' }} }
+                actions: ['-delete']
             edit:
                 title:  'Editar Provincia'
             new:
                 title:  'Alta Provincia'
             list:
                 title:  'Provincia'
+                actions: ['-delete']

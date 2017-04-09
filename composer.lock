@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b58fccf4728c1db40ae0451465388ae7",
+    "content-hash": "97384bdf743e17f5ddf6bd6051850b56",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1781,16 +1781,16 @@
         },
         {
             "name": "javiereguiluz/easyadmin-bundle",
-            "version": "v1.15.1",
+            "version": "v1.16.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/javiereguiluz/EasyAdminBundle.git",
-                "reference": "044e569a12011474dcbdcedc4f298d5f30cf4dff"
+                "reference": "063125ad8a9246044feada864393226f55527ea7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/javiereguiluz/EasyAdminBundle/zipball/044e569a12011474dcbdcedc4f298d5f30cf4dff",
-                "reference": "044e569a12011474dcbdcedc4f298d5f30cf4dff",
+                "url": "https://api.github.com/repos/javiereguiluz/EasyAdminBundle/zipball/063125ad8a9246044feada864393226f55527ea7",
+                "reference": "063125ad8a9246044feada864393226f55527ea7",
                 "shasum": ""
             },
             "require": {
@@ -1800,8 +1800,8 @@
                 "doctrine/orm": "~2.3",
                 "pagerfanta/pagerfanta": "~1.0,>=1.0.1",
                 "php": ">=5.3.0",
-                "sensio/distribution-bundle": "~2.3|~3.0|~4.0|~5.0",
-                "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
+                "sensio/framework-extra-bundle": "~2.3|~3.0,>=3.0.2",
+                "symfony/asset": "~2.3|~3.0",
                 "symfony/config": "~2.3|~3.0",
                 "symfony/dependency-injection": "~2.3|~3.0",
                 "symfony/doctrine-bridge": "~2.3|~3.0",
@@ -1810,8 +1810,13 @@
                 "symfony/framework-bundle": "~2.3|~3.0",
                 "symfony/http-foundation": "~2.3|~3.0",
                 "symfony/http-kernel": "~2.3|~3.0",
+                "symfony/polyfill-mbstring": "^1.0",
                 "symfony/property-access": "~2.3|~3.0",
+                "symfony/security-bundle": "~2.3|~3.0",
+                "symfony/translation": "~2.3|~3.0",
                 "symfony/twig-bridge": "^2.3.4|~3.0",
+                "symfony/twig-bundle": "~2.3|~3.0",
+                "symfony/validator": "~2.3|~3.0",
                 "twig/extensions": "~1.0",
                 "twig/twig": "~1.14,>=1.14.2|~2.0"
             },
@@ -1825,9 +1830,7 @@
                 "symfony/dom-crawler": "~2.3|~3.0",
                 "symfony/finder": "~2.3|~3.0",
                 "symfony/phpunit-bridge": "^2.7",
-                "symfony/security-bundle": "~2.3|~3.0",
-                "symfony/twig-bundle": "~2.3|~3.0",
-                "symfony/validator": "~2.3|~3.0",
+                "symfony/var-dumper": "~2.3|~3.0",
                 "symfony/yaml": "~2.3|~3.0"
             },
             "type": "symfony-bundle",
@@ -1860,7 +1863,7 @@
                 "backend",
                 "generator"
             ],
-            "time": "2016-08-04T15:40:39+00:00"
+            "time": "2017-04-01T08:20:39+00:00"
         },
         {
             "name": "jdorn/sql-formatter",

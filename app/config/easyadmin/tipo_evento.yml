@@ -2,14 +2,18 @@ easy_admin:
     entities:
         TipoEvento:
             class: AppBundle\Entity\TipoEvento
+            show:
+                actions: ['-delete']
             form:
                 fields:
                     - { property: 'nombre' }
                     - { property: 'descripcion' }
                     - { property: 'activo' }
+                actions: ['-delete']
             edit:
                 title:  'Editar Tipo Evento'
             new:
                 title:  'Alta Tipo Evento'
             list:
                 title:  'Tipo Evento'
+                actions: ['-delete']

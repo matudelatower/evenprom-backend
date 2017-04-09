@@ -10,6 +10,7 @@ easy_admin:
                     - { property: 'enabled' }
                     - { property: 'locked' }
                     - { property: 'roles' }
+                actions: ['-delete']
             new:
                 fields:
                     - { property: 'username' }
@@ -17,6 +18,7 @@ easy_admin:
                     - { property: 'plainPassword', type: 'password' }
                     - { property: 'enabled'}
                     - { property: 'locked'}
+                actions: ['-delete']
 
             list:
                 fields:
@@ -25,3 +27,4 @@ easy_admin:
 #                    - { property: 'enabled' }
 #                    - { property: 'lastLogin' }
 #                    - { property: 'locked' }
+                actions: ['-delete']

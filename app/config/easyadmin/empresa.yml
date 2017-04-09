@@ -2,11 +2,23 @@ easy_admin:
     entities:
         Empresa:
             class: AppBundle\Entity\Empresa
+            translation_domain: 'app'
+            list:
+                actions:
+                    - '-delete'
+                    - '-edit'
+                    - { name: 'admin_empresa', type: 'route', icon: 'pencil', label: '' }
+            show:
+                actions: ['-delete']
             form:
                 fields:
-                    - { property: 'nombre',  type_options: { disabled: true }  }
-                    - { property: 'descripcion', type_options: { disabled: true }  }
-                    - { property: 'premium' }
+                    - { property: 'nombre' }
+                    - { property: 'descripcion'  }
+                    - { property: 'usuario', type: "AppBundle\Form\EmpresaUsuarioType", type_options: { required: true } }
+#                    - { property: 'direccionEmpresa', type: 'collection', type_options: { entry_type: "AppBundle\Form\DireccionEmpresaType", required: false } }
+#                    - { property: 'empresaOnda', type: 'collection', type_options: { entry_type: "AppBundle\Form\EmpresaOndaType", required: false } }
+#                    - { property: 'premium' }
+                actions: ['-delete']
             edit:
                 title:  'Editar Empresa'
             new:

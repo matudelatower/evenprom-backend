@@ -41,4 +41,3 @@ app_empresa:
 app_ajax:
     resource: "@AppBundle/Resources/config/routing/ajax.yml"
     prefix:   /ajax
-

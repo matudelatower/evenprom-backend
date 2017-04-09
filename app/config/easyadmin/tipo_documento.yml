@@ -2,14 +2,18 @@ easy_admin:
     entities:
         TipoDocumento:
             class: AppBundle\Entity\TipoDocumento
+            show:
+                actions: ['-delete']
             form:
                 fields:
                     - { property: 'siglas' }
                     - { property: 'descripcion' }
                     - { property: 'activo' }
+                actions: ['-delete']
             edit:
                 title:  'Editar Tipo Documento'
             new:
                 title:  'Alta Tipo Documento'
             list:
                 title:  'Tipo Documento'
+                actions: ['-delete']

@@ -2,11 +2,16 @@ easy_admin:
     entities:
         HotelAgencia:
             class: AppBundle\Entity\HotelAgencia
+            list:
+                actions: ['-delete']
+            show:
+                actions: ['-delete']
             form:
                 fields:
                     - { property: 'nombre' }
                     - { property: 'descripcion' }
                     - { property: 'activo' }
+                actions: ['-delete']
             edit:
                 title:  'Editar Hoteles y Agencias'
             new:

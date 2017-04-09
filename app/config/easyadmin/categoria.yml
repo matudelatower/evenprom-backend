@@ -2,9 +2,14 @@ easy_admin:
     entities:
         Categoria:
             class: AppBundle\Entity\Categoria
+            list:
+                actions: ['-delete']
+            show:
+                actions: ['-delete']
             form:
                 fields:
                     - { property: 'nombre' }
                     - { property: 'descripcion' }
                     - { property: 'activo' }
                     - { property: 'iconoWeb', type_options: { attr: { class: 'iconpicker' } } }
+                actions: ['-delete']

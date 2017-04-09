@@ -96,6 +96,10 @@ class ThumbRubro extends BaseClass
 		return $this->imageName;
 	}
 
+	public function __toString() {
+		return (string) $this->id;
+	}
+
     /**
      * Get id
      *

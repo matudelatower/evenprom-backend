@@ -2,11 +2,16 @@ easy_admin:
     entities:
         Departamento:
             class: Matudelatower\UbicacionBundle\Entity\Departamento
+            list:
+                actions: ['-delete']
+            show:
+                actions: ['-delete']
             form:
                 fields:
                     - { property: 'descripcion' }
                     - { property: 'codigo' }
                     - { property: 'provincia', type: 'entity', type_options: { class: 'Matudelatower\UbicacionBundle\Entity\Provincia', attr: { class: 'select2' }} }
+                actions: ['-delete']
             edit:
                 title:  'Editar Departamento'
             new:

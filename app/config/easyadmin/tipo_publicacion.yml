@@ -2,14 +2,18 @@ easy_admin:
     entities:
         TipoPublicacion:
             class: AppBundle\Entity\TipoPublicacion
+            show:
+                actions: ['-delete']
             form:
                 fields:
                     - { property: 'nombre' }
                     - { property: 'descripcion' }
                     - { property: 'activo' }
+                actions: ['-delete']
             edit:
                 title:  'Editar Tipo Publicacion'
             new:
                 title:  'Alta Tipo Publicacion'
             list:
                 title:  'Tipo Publicacion'
+                actions: ['-delete']

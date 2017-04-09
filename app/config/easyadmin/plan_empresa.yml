@@ -5,3 +5,11 @@ easy_admin:
             form:
                 fields:
                     - { property: 'vencimiento' }
+                actions: ['-delete']
+            edit:
+                title:  'Editar Subscripción'
+            new:
+                title:  'Alta Subscripción'
+            list:
+                title:  'Subscripción'
+                actions: ['-delete']

@@ -6,9 +6,13 @@ easy_admin:
                 fields:
                     - { property: 'nombre' }
                     - { property: 'imageFile', type: 'vich_image', label: 'Imagen' }
+                actions: ['-delete']
             edit:
                 title:  'Editar Configración Web'
             new:
                 title:  'Alta Configración Web'
+            show:
+                actions: ['-delete']
             list:
                 title:  'Configración Web'
+                actions: ['-delete']

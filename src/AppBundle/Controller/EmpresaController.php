@@ -269,4 +269,65 @@ class EmpresaController extends Controller {
 				'promocionesCalendario'   => $promocionesCalendario,
 			) );
 	}
+
+	public function adminPerfilAction( Request $request ) {
+
+		/* @var $empresa Empresa */
+		
+		$em        = $this->getDoctrine()->getManager();
+		$empresaId = $request->get( 'id' );
+		$empresa   = $em->getRepository( 'AppBundle:Empresa' )->find( $empresaId );
+
+		if ( $empresa->getDireccionEmpresa()->count() == 0 ) {
+			$direccionEmpresa = new DireccionEmpresa();
+			$empresa->addDireccionEmpresa( $direccionEmpresa );
+		}
+		if ( $empresa->getContactoEmpresa()->count() == 0 ) {
+			$contactoEmpresa = new ContactoEmpresa();
+			$empresa->addContactoEmpresa( $contactoEmpresa );
+		}
+
+		if ( $empresa->getEmpresaOnda()->count() == 0 ) {
+			$empresaOnda = new EmpresaOnda();
+			$empresa->addEmpresaOnda( $empresaOnda );
+		}
+		if ( $empresa->getEmpresaSubRubro()->count() == 0 ) {
+			$empresaSubRubro = new EmpresaSubRubro();
+			$empresa->addEmpresaSubRubro( $empresaSubRubro );
+		}
+		if ( $empresa->getEmpresaHotelAgencia()->count() == 0 ) {
+			$empresaHotelAgencia = new EmpresaHotelAgencia();
+			$empresa->addEmpresaHotelAgencium( $empresaHotelAgencia );
+		}
+
+		$form = $this->createForm( EmpresaType::class, $empresa );
+
+
+		if ( $request->getMethod() == 'POST' ) {
+
+			$form->handleRequest( $request );
+			if ( $form->isValid() ) {
+
+
+				$em->persist( $empresa );
+				$em->flush();
+				$this->get( 'session' )->getFlashBag()->add(
+					'success',
+					$this->get( 'translator' )->trans( '%entity% Actualizado Correctamente',
+						array( '%entity%' => 'Perfil' ),
+						'flashes' )
+				);
+
+				return $this->redirectToRoute( 'easyadmin', array( 'action' => 'list', 'entity' => 'Empresa' ) );
+
+			}
+		}
+
+
+		return $this->render( ':empresa:perfil.html.twig',
+			array(
+				'empresa' => $empresa,
+				'form'    => $form->createView()
+			) );
+	}
 }

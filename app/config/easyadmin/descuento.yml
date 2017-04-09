@@ -2,12 +2,17 @@ easy_admin:
     entities:
         Descuento:
             class: AppBundle\Entity\Descuento
+            list:
+                actions: ['-delete']
+            show:
+                actions: ['-delete']
             form:
                 fields:
                     - { property: 'nombre' }
                     - { property: 'descripcion' }
                     - { property: 'porcentaje' }
                     - { property: 'abreviacion' }
+                actions: ['-delete']
 
             edit:
                 title:  'Editar Descuento'

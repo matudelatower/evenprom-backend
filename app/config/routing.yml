@@ -44,6 +44,12 @@ easy_admin_bundle:
     requirements:
         _locale: |en|es|pt
 
+app_admin:
+    resource: "@AppBundle/Resources/config/routing/admin.yml"
+    prefix:   /{_locale}/admin
+    requirements:
+        _locale: |en|es|pt
+
 
 ubicacion_bundle:
     resource: "@UbicacionBundle/Resources/config/routing.yml"

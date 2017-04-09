@@ -1,0 +1,3 @@
+admin_empresa:
+    path: /empresa
+    defaults: { _controller: "AppBundle:Empresa:adminPerfil" }

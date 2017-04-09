@@ -2,15 +2,19 @@ easy_admin:
     entities:
         SubRubro:
             class: AppBundle\Entity\SubRubro
+            show:
+                actions: ['-delete']
             form:
                 fields:
                     - { property: 'rubro', type: 'entity', type_options: { class: 'AppBundle\Entity\Rubro', attr: { class: 'select2' }} }
                     - { property: 'nombre' }
                     - { property: 'descripcion' }
                     - { property: 'activo' }
+                actions: ['-delete']
             edit:
                 title:  'Editar Sub Rubro'
             new:
                 title:  'Alta Sub Rubro'
             list:
                 title:  'Sub Rubro'
+                actions: ['-delete']

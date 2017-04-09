@@ -2,6 +2,11 @@ easy_admin:
     entities:
         Plan:
             class: AppBundle\Entity\Plan
+            list:
+                fields: ['id', 'nombre', 'descripcion', 'valor', 'activo']
+                actions: ['-delete']
+            show:
+                actions: ['-delete']
             form:
                 fields:
                     - { property: 'nombre' }
@@ -27,3 +32,4 @@ easy_admin:
                     - { property: 'usuarioVipBrasil' }
                     - { property: 'imageFile', type: 'vich_image', label: 'Imagen' }
                     - { property: 'activo' }
+                actions: ['-delete']

@@ -275,6 +275,44 @@
                 <source>Actions</source>
                 <target>Acciones</target>
             </trans-unit>
+            <!--backend-->
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Guardar cambios</target>
+            </trans-unit>
+            <trans-unit id="action.list">
+                <source>action.list</source>
+                <target>Volver al listado</target>
+            </trans-unit>
+            <trans-unit id="action.new">
+                <source>action.new</source>
+                <target>Crear %entity_name%</target>
+            </trans-unit>
+            <trans-unit id="action.search">
+                <source>action.search</source>
+                <target>Buscar</target>
+            </trans-unit>
+            <trans-unit id="username">
+                <source>form.username</source>
+                <target>Nombre de usuario</target>
+            </trans-unit>
+            <trans-unit id="email">
+                <source>form.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="current_password">
+                <source>form.current_password</source>
+                <target>Contraseña actual</target>
+            </trans-unit>
+            <trans-unit id="password">
+                <source>form.password</source>
+                <target>Contraseña</target>
+            </trans-unit>
+            <trans-unit id="password_confirmation">
+                <source>form.password_confirmation</source>
+                <target>Repita la contraseña</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

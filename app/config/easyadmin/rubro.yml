@@ -2,6 +2,8 @@ easy_admin:
     entities:
         Rubro:
             class: AppBundle\Entity\Rubro
+            show:
+                actions: ['-delete']
             form:
                 fields:
                     - { property: 'nombre' }
@@ -10,9 +12,11 @@ easy_admin:
                     - { property: 'iconoWeb', type_options: { attr: { class: 'iconpicker' }} }
                     - { property: 'thumbRubro', type: 'collection', type_options: { entry_type: 'AppBundle\Form\ThumbRubroType', by_reference: false }}
                     - { property: 'activo' }
+                actions: ['-delete']
             edit:
                 title:  'Editar Rubro'
             new:
                 title:  'Alta Rubro'
             list:
                 title:  'Rubro'
+                actions: ['-delete']

@@ -1,6 +1,6 @@
 #easy admin
 easy_admin:
-    disabled_actions: ['delete']
+#    disabled_actions: ['delete']
     site_name: %site_name%
     show:
         max_results: 20
@@ -8,7 +8,7 @@ easy_admin:
         actions:
             - { name: 'show', icon: 'eye', label: '' }
             - { name: 'edit', icon: 'pencil', label: '' }
-#            - { name: 'delete', icon: 'trash', label: '' }
+            - { name: 'delete', icon: 'trash', label: '' }
 
     entities:
         Pais:
@@ -45,7 +45,6 @@ easy_admin:
                   - 'Departamento'
                   - 'Localidad'
             - 'Usuario'
-            - { label: 'Cerrar Sesión', route: 'fos_user_security_logout', icon: 'sign-out' }
         assets:
             favicon: 'bundles/app/img/favicon.png'
 #

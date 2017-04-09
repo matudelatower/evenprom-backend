@@ -2,16 +2,21 @@ easy_admin:
     entities:
         Persona:
             class: AppBundle\Entity\Persona
+            disabled_actions: ['new']
+            show:
+                actions: ['-delete']
             form:
                 fields:
                     - { property: 'nombre',  type_options: { disabled: true }  }
                     - { property: 'apellido', type_options: { disabled: true }  }
+                actions: ['-delete']
             edit:
                 title:  'Editar Persona'
             new:
                 title:  'Alta Persona'
             list:
                 title:  'Personas'
+                actions: ['-delete']
                 fields:
                     - { property: 'nombre' }
                     - { property: 'apellido' }

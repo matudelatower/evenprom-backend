@@ -2,6 +2,10 @@ easy_admin:
     entities:
         Localidad:
             class: Matudelatower\UbicacionBundle\Entity\Localidad
+            list:
+                actions: ['-delete']
+            show:
+                actions: ['-delete']
             form:
                 fields:
                     - { property: 'descripcion' }
@@ -11,6 +15,7 @@ easy_admin:
                     - { property: 'longitud' }
                     - { property: 'poblacion' }
                     - { property: 'departamento', type: 'entity', type_options: { class: 'Matudelatower\UbicacionBundle\Entity\Departamento', attr: { class: 'select2' }} }
+                actions: ['-delete']
             edit:
                 title:  'Editar Localidad'
             new:
