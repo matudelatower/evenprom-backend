@@ -100,7 +100,7 @@ class Empresa extends BaseClass {
 	/**
 	 * @var
 	 *
-	 * @ORM\ManyToOne(targetEntity="UsuariosBundle\Entity\Usuario", inversedBy="empresa")
+	 * @ORM\ManyToOne(targetEntity="UsuariosBundle\Entity\Usuario", inversedBy="empresa", cascade={"persist"})
 	 * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
 	 */
 	private $usuario;
