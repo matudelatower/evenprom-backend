@@ -67,11 +67,11 @@ class UbicacionRestController extends FOSRestController {
 				INNER JOIN direcciones  ON direcciones_empresas.direccion_id = direcciones.id 
 				INNER JOIN localidades  ON direcciones.localidad_id = localidades.id ";
 
-		$fechaActual = new \DateTime( 'now' );
+//		$fechaActual = new \DateTime( 'now' );
 
-		$sql .= "WHERE publicaciones.fecha_inicio <= '" . $fechaActual->format( 'Y-m-d' ) . " 23:59:59'";
-		$sql .= " AND publicaciones.fecha_fin >= '" . $fechaActual->format( 'Y-m-d' ) . " 00:00:00'";
-		$sql .= " AND publicaciones.publicado = true";
+//		$sql .= "WHERE publicaciones.fecha_inicio >= '" . $fechaActual->format( 'Y-m-d' ) . " 00:00:00'";
+//		$sql .= " AND publicaciones.fecha_fin <= '" . $fechaActual->format( 'Y-m-d' ) . " 23:59:59'";
+//		$sql .= " AND publicaciones.publicado = true";
 
 
 		$em   = $this->getDoctrine()->getManager();
