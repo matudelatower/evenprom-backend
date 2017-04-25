@@ -13,15 +13,28 @@ class RubrosRestController extends FOSRestController {
 			'activo' => true
 		);
 
+		$locale = $request->get( 'locale' ) ? $request->get( 'locale' ) : 'es';
+
 		$rubros = $this->getDoctrine()->getRepository( "AppBundle:Rubro" )->findBy( $criteria );
 
 
 		$host = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() . $this->getParameter( 'app.path.rubros_image' );
 
+		switch ( $locale ) {
+			case 'en':
+				$prop = 'getEn';
+				break;
+			case 'pt':
+				$prop = 'getPt';
+				break;
+			default:
+				$prop = 'getNombre';
+		}
 		foreach ( $rubros as $rubro ) {
 			if ( $rubro->getImageName() ) {
 				$rubro->setImageName( $host . '/' . $rubro->getImageName() );
 			}
+			$rubro->setNombre( $rubro->$prop() );
 		}
 
 		$vista = $this->view( $rubros,

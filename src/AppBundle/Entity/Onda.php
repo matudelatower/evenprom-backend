@@ -41,6 +41,20 @@ class Onda extends BaseClass {
 	/**
 	 * @var string
 	 *
+	 * @ORM\Column(name="en", type="string", length=255, nullable=true)
+	 */
+	private $en;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="pt", type="string", length=255, nullable=true)
+	 */
+	private $pt;
+
+	/**
+	 * @var string
+	 *
 	 * @ORM\Column(name="descripcion", type="string", length=255, nullable=true)
 	 */
 	private $descripcion;
@@ -323,4 +337,52 @@ class Onda extends BaseClass {
 	public function getPersonaOnda() {
 		return $this->personaOnda;
 	}
+
+    /**
+     * Set en
+     *
+     * @param string $en
+     *
+     * @return Onda
+     */
+    public function setEn($en)
+    {
+        $this->en = $en;
+
+        return $this;
+    }
+
+    /**
+     * Get en
+     *
+     * @return string
+     */
+    public function getEn()
+    {
+        return $this->en;
+    }
+
+    /**
+     * Set pt
+     *
+     * @param string $pt
+     *
+     * @return Onda
+     */
+    public function setPt($pt)
+    {
+        $this->pt = $pt;
+
+        return $this;
+    }
+
+    /**
+     * Get pt
+     *
+     * @return string
+     */
+    public function getPt()
+    {
+        return $this->pt;
+    }
 }

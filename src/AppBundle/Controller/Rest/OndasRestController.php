@@ -11,7 +11,24 @@ class OndasRestController extends FOSRestController {
 
 		$criteria = array( 'activo' => true );
 
+		$locale = $request->get( 'locale' ) ? $request->get( 'locale' ) : 'es';
+
+		switch ( $locale ) {
+			case 'en':
+				$prop = 'getEn';
+				break;
+			case 'pt':
+				$prop = 'getPt';
+				break;
+			default:
+				$prop = 'getNombre';
+		}
+
 		$categorias = $this->getDoctrine()->getRepository( "AppBundle:Onda" )->findBy( $criteria );
+
+		foreach ( $categorias as $categoria ) {
+			$categoria->setNombre( $categoria->$prop() );
+		}
 
 
 		$vista = $this->view( $categorias,
