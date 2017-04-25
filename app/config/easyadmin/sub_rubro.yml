@@ -8,6 +8,8 @@ easy_admin:
                 fields:
                     - { property: 'rubro', type: 'entity', type_options: { class: 'AppBundle\Entity\Rubro', attr: { class: 'select2' }} }
                     - { property: 'nombre' }
+                    - { property: 'pt',type: 'text', type_options:{ label: 'Nombre en Portuges'} }
+                    - { property: 'en',type: 'text', type_options:{ label: 'Nombre en Ingles'} }
                     - { property: 'descripcion' }
                     - { property: 'activo' }
                 actions: ['-delete']

@@ -7,6 +7,8 @@ easy_admin:
             form:
                 fields:
                     - { property: 'nombre' }
+                    - { property: 'pt',type: 'text', type_options:{ label: 'Nombre en Portuges'} }
+                    - { property: 'en',type: 'text', type_options:{ label: 'Nombre en Ingles'} }
                     - { property: 'descripcion' }
                     - { property: 'activo' }
                 actions: ['-delete']

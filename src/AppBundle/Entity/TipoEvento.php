@@ -37,6 +37,20 @@ class TipoEvento extends BaseClass {
 	 */
 	private $nombre;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="en", type="string", length=255, nullable=true)
+     */
+    private $en;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pt", type="string", length=255, nullable=true)
+     */
+    private $pt;
+
 	/**
 	 * @var string
 	 *
@@ -187,5 +201,53 @@ class TipoEvento extends BaseClass {
         $this->actualizadoPor = $actualizadoPor;
 
         return $this;
+    }
+
+    /**
+     * Set en
+     *
+     * @param string $en
+     *
+     * @return TipoEvento
+     */
+    public function setEn($en)
+    {
+        $this->en = $en;
+
+        return $this;
+    }
+
+    /**
+     * Get en
+     *
+     * @return string
+     */
+    public function getEn()
+    {
+        return $this->en;
+    }
+
+    /**
+     * Set pt
+     *
+     * @param string $pt
+     *
+     * @return TipoEvento
+     */
+    public function setPt($pt)
+    {
+        $this->pt = $pt;
+
+        return $this;
+    }
+
+    /**
+     * Get pt
+     *
+     * @return string
+     */
+    public function getPt()
+    {
+        return $this->pt;
     }
 }

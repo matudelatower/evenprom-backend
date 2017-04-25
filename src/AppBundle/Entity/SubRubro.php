@@ -42,6 +42,20 @@ class SubRubro extends BaseClass
     /**
      * @var string
      *
+     * @ORM\Column(name="en", type="string", length=255, nullable=true)
+     */
+    private $en;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pt", type="string", length=255, nullable=true)
+     */
+    private $pt;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="descripcion", type="string", length=255, nullable=true)
      * @Expose()
      */
@@ -268,5 +282,53 @@ class SubRubro extends BaseClass
         $this->actualizadoPor = $actualizadoPor;
 
         return $this;
+    }
+
+    /**
+     * Set en
+     *
+     * @param string $en
+     *
+     * @return SubRubro
+     */
+    public function setEn($en)
+    {
+        $this->en = $en;
+
+        return $this;
+    }
+
+    /**
+     * Get en
+     *
+     * @return string
+     */
+    public function getEn()
+    {
+        return $this->en;
+    }
+
+    /**
+     * Set pt
+     *
+     * @param string $pt
+     *
+     * @return SubRubro
+     */
+    public function setPt($pt)
+    {
+        $this->pt = $pt;
+
+        return $this;
+    }
+
+    /**
+     * Get pt
+     *
+     * @return string
+     */
+    public function getPt()
+    {
+        return $this->pt;
     }
 }
