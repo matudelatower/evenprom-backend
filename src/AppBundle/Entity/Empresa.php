@@ -427,6 +427,26 @@ class Empresa extends BaseClass {
 
 	}
 
+	/**
+	 * @VirtualProperty()
+	 * @SerializedName("rating")
+	 */
+	public function getRating() {
+
+		$return = 0;
+
+		if ( $this->getLikes() ) {
+			if ( $this->getLikes() >= 25 ) {
+				return 5;
+			} else {
+				return ( $this->getLikes() / 5 );
+			}
+		}
+
+		return $return;
+
+	}
+
 
 	/**
 	 * Constructor
