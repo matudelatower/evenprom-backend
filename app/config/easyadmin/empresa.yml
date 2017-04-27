@@ -14,7 +14,7 @@ easy_admin:
                 fields:
                     - { property: 'nombre' }
                     - { property: 'descripcion'  }
-                    - { property: 'usuario', type: "AppBundle\Form\EmpresaUsuarioType", type_options: { required: true } }
+                    - { property: 'usuario', type: 'AppBundle\Form\EmpresaUsuarioType', type_options: { required: true } }
 #                    - { property: 'direccionEmpresa', type: 'collection', type_options: { entry_type: "AppBundle\Form\DireccionEmpresaType", required: false } }
 #                    - { property: 'empresaOnda', type: 'collection', type_options: { entry_type: "AppBundle\Form\EmpresaOndaType", required: false } }
 #                    - { property: 'premium' }

@@ -19,7 +19,7 @@ class RegistrarEmpresaType extends AbstractType {
 				array(
 					'label' => 'business.name',
 				) )
-			->add( 'usuario', new EmpresaUsuarioType() );
+			->add( 'usuario', EmpresaUsuarioType::class );
 	}
 
 	/**
@@ -29,7 +29,7 @@ class RegistrarEmpresaType extends AbstractType {
 		$resolver->setDefaults( array(
 			'data_class'         => 'AppBundle\Entity\Empresa',
 			'translation_domain' => 'app',
-			'cascade_validation' => true
+			'constraints' => true
 		) );
 	}
 }

@@ -260,7 +260,7 @@ hwi_oauth:
             type:                google
             client_id:           %g_client_id%
             client_secret:       %g_client_secret%
-            scope:               "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+            scope:               'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
             options:
                 display: popup
     firewall_name: secured_area
