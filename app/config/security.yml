@@ -19,10 +19,10 @@ security:
             pattern:      ^/oauth/v2/token
             security:     false
 
-        api:
-            pattern:    ^/api(?!/registrars)
-            fos_oauth:  true
-            stateless:  true
+#        api:
+#            pattern:    ^/api(?!/registrars)
+#            fos_oauth:  true
+#            stateless:  true
 
         main:
             pattern: ^/

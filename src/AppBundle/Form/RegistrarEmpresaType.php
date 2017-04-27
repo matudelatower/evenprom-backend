@@ -28,7 +28,8 @@ class RegistrarEmpresaType extends AbstractType {
 	public function configureOptions( OptionsResolver $resolver ) {
 		$resolver->setDefaults( array(
 			'data_class'         => 'AppBundle\Entity\Empresa',
-			'translation_domain' => 'app'
+			'translation_domain' => 'app',
+			'cascade_validation' => true
 		) );
 	}
 }

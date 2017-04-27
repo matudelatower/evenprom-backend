@@ -22,7 +22,8 @@ use JMS\Serializer\Annotation\Type;
 /**
  * @ORM\Entity(repositoryClass="UsuarioRepository")
  * @ORM\Table(name="fos_user")
- * @UniqueEntity("username")
+ * @UniqueEntity("username", message="username.existente")
+ * @UniqueEntity("email", message="email.existente")
  * @Serializer\ExclusionPolicy("all")
  */
 class Usuario extends BaseUser {
